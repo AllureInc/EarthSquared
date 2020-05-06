@@ -1,0 +1,198 @@
+/*-- header footer css --*/
+@font-face {
+font-family: 'Tiempos Headline Regular';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Regular Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-RegularItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Light';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Light.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Light Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-LightItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Medium';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Medium Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-MediumItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Semibold';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Semibold Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-SemiboldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Bold';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Bold Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Black';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Black.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Black Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-BlackItalic.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Futura Bk BT';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/futura/FutuBk.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Futura Bk BT Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/futura/FutuBkIt.woff') format('woff');
+}
+
+body{
+	font-family: 'Futura Bk BT' !important;
+}
+@media (min-width: 768px){
+	header .panel.header{
+		display:none;
+	}
+	.header-topicons{
+		width:auto;float:right;     padding: 0;    margin: 0;
+	}
+	.header-topicons li{display:inline-block;    padding: 0 17px;    margin-bottom: 0;}
+	.header-topicons li img{ width: 18.67px;}
+	header .block-search{float:left;}
+	header .section1,header .section3{width:30%;float: left;}
+	header .logo{width:40%;float: left;    margin-bottom: 0;}
+	header .logo img{margin: 0 auto;}
+	header .block-search,header .minicart-wrapper .action.showcart:before,.subchildmenu.col-md-0.mega-columns.columns4
+	{
+		display:none;
+	}
+	.section1 .button-pink{
+	    display: flex;
+	    flex-direction: row;	    
+	    width: 120px;
+	    height: 40px;
+	    background: #EBB4B9;
+	    text-align: center;
+	    align-items: center;
+	    justify-content: center;	    
+	    color: #4D4D4D;
+	    font-size:14px;
+	}
+	header .header.content
+	{
+		padding:0px 20px 2px;
+		display: flex;
+    	align-items: center;		
+	}
+	header .minicart-wrapper .action.showcart
+	{
+		content:'';
+		background: url(../images/shopping-bag.png) no-repeat;
+    	background-size: 100%;
+    	width: 18.67px;
+    	height: 18.67px;
+	}	
+	header.page-header .panel.wrapper {
+	    border-bottom: 0px solid #e8e8e8;
+	    background-color: #6e716e;
+	    border: 0;
+	    margin-bottom: 0;
+	}
+	
+	header.page-header{
+		    margin: 0px 0 0px;
+	} 
+	.menu-left-block{
+		    text-align: left;
+	}
+	.menu-left-block .title{
+		font-size:14px;
+		color: #212121;
+		text-transform: uppercase;
+	}
+	.menu-left-block ul{padding: 0;}
+	.menu-left-block ul li a{padding: 20px 0px;font-size:14px;color: #424242;}
+/*	header .header.content .logo{
+		float:none;
+	}
+	header .header.content .logo img{
+		margin:0 auto;
+	}*/
+}
+
+.navigation.sw-megamenu
+{
+	    background: #fff;
+}
+.navigation.sw-megamenu{text-align:center;}
+.navigation.sw-megamenu .level0 a{
+	font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.navigation.sw-megamenu .level0{
+	    margin: 0 30px 0 0;
+}

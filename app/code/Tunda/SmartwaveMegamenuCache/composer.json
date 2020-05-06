@@ -1,0 +1,32 @@
+{
+    "name": "tunda/module-smartwavemegamenucache",
+    "description": "Tunda Megamenu Fix Cache For Smartwave",
+    "require": {
+        "php": "~5.5|~7.0|~7.1|~7.2"
+    },
+    "suggest": {
+
+    },
+    "type": "magento2-module",
+    "version": "1.1.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Tunda S.r.l"
+        },
+        {
+            "name": "Francesco De Lucia"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Tunda\\SmartwaveMegamenuCache\\": ""
+        }
+    }
+}
