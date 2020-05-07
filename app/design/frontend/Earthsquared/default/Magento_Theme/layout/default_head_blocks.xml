@@ -9,6 +9,7 @@
 <head>	
 	<css src="css/custom.css"/>
 	<css src="css/bootstrap.min.css"/>	
+	<css src="css/font-awesome.min.css"/>	
 	<!--<script src="js/bootstrap.min.js"/>-->	
 </head> 
 </page>

@@ -11,5 +11,21 @@
 			<block class="Magento\Framework\View\Element\Template" name="header_trade_login" template="Magento_Theme::html/header/tradelogin.phtml" before="logo" />										
 		</referenceContainer>
 		<move element="minicart" destination="header-wrapper" after="top.search" />
+		<block class="Magento\Cms\Block\Block" name="news_bar">
+		    <arguments>
+		        <argument name="block_id" xsi:type="string">news_bar</argument>
+		    </arguments>
+		</block>
+		<move element="news_bar" destination="page.top" after="sw.topnav" />
+
+        <referenceBlock name="footer_links" remove="true" />   
+        <referenceContainer name="footer-container">        	
+	        	<block class="Magento\Cms\Block\Block" name="footer">
+					<arguments>
+						<argument name="block_id" xsi:type="string">footer</argument>
+					</arguments>
+				</block>
+				<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>			
+        </referenceContainer>    	
 	</body>
 </page>

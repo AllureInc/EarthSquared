@@ -12,9 +12,10 @@
 $helper = $this->helper(\Magento\Search\Helper\Data::class);
 ?>
 <div class="section3">
-<div class="block block-search">
-    <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
-    <div class="block block-content">
+<?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/header/topicons.phtml")->toHtml() ?>  
+<div class="block block-search" style="display:none;">
+    <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>                          
+    <div class="block block-content">         
         <form class="form minisearch" id="search_mini_form"
               action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
             <div class="field search">
@@ -32,7 +33,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            type="text"
                            name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
                            value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
-                           placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Search by products or category')) ?>"
                            class="input-text"
                            maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
                            role="combobox"
@@ -57,5 +58,5 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
     </div>
 </div>
 
-<?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/header/topicons.phtml")->toHtml() ?>
+
 </div>

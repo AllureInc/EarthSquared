@@ -1,5 +1,25 @@
 <ul class="header-topicons">
+	<li><a href="javascript:void(0)" class="search-toggle-icon"><img src="<?php echo $this->getUrl('pub/media/icons/').'loupe.png' ?>" /></a></li>
 	<li><a href="#"><img src="<?php echo $this->getUrl('pub/media/icons').'call.png' ?>" /></a></li>
 	<li><a href="<?php echo $this->getUrl().'customer/account/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
 	<li><a href="<?php echo $this->getUrl().'wishlist/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" /></a></li>
 </ul>
+
+<script>  
+            require([
+              'jquery'   
+            ], function ($) {
+            $(document).ready(function(){
+                $('.search-toggle-icon').on('click',function(){  
+                  if($('.block-search').hasClass('active'))                
+                  {
+                    $('.block-search').removeClass('active');  
+                  } else {
+                    $('.block-search').addClass('active');
+                  }
+                  
+                });
+            });
+            });
+
+</script>
