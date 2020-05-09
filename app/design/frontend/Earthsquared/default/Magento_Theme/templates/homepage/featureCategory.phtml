@@ -1,0 +1,23 @@
+<div class="col-md-12 nopadding">
+<?php 
+//$categories = $block->getCategoryCollection();
+// get current store’s categories
+$categories = $block->getCategoryCollection();
+foreach ($categories as $category) { 	
+	$catimage = $category->getImage();	
+	?>
+	<?php $image_url = $block->getCategoryResizeImage($catimage,381,301); ?>	
+		<div class="col-md-6 box">
+			<div class="col-md-12 nopadding">
+				<div class="col-md-6 details">
+					<div class="sub-title-category"><?php echo $category->getName(); ?></div>
+					<p><?php echo $category->getDescription() ?></p>
+					<a href="<?php echo $category->getUrl(); ?>" class="readmore">View Range</a>
+				</div>
+				<div class="col-md-6">
+					<img src="<?php echo $image_url; ?>" /> 
+				</div>				
+			</div>
+		</div>    
+<?php } ?>
+</div>
