@@ -114,13 +114,127 @@ font-weight: normal;
 src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
 }
 
+/* @font-face {
+    font-family: 'Futura Bk BT Medium';
+    src: url('../fonts/futura/FuturaBT-Medium.eot');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT Medium';
+    src:url('../fonts/futura/FuturaBT-Medium.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-Medium.svg#FuturaBT-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT italic';
+    src: url('../fonts/futura/FuturaBT-BookItalic.eot');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Futura Bk BT italic';
+    src:url('../fonts/futura/FuturaBT-BookItalic.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-BookItalic.svg#FuturaBT-BookItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Tiempos Headline Regular';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Regular';
+    src:url('../fonts/tiempos-headline/TiemposHeadline-Regular.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Regular.svg#TiemposHeadline-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'Tiempos Headline Semibold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.eot');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Semibold';
+    src:url('../fonts/tiempos-headline/TiemposHeadline-Semibold.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Semibold.svg#TiemposHeadline-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Futura Bk BT';
+    src: url('../fonts/futura/FuturaBT-Book.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT';
+    src: url('../fonts/futura/FuturaBT-Book.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos Headline Bold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.eot');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Bold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Bold.svg#TiemposHeadline-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos Headline Medium';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.eot');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Medium';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+*/
+
+
 
 body{
 	font-family: 'Futura Bk BT' !important;
 }
 /*-- button a tag css --*/
-.action.primary,a{
-	transition: 0.3s;
+.action.primary,a,.box,a:after{
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+a:hover,a:focus{
+	color:#000 !important;
+}
+a:hover{
+	text-decoration: none !important;
 }
 .action.primary{
 	background:#EDB6BB !important;
@@ -130,6 +244,18 @@ body{
 }
 .action.primary:hover{
 	opacity: 0.8;
+}
+.button-pink{
+	background: #EBB4B9;
+	text-align: center;
+	align-items: center;
+	justify-content: center;	    
+	color: #4D4D4D !important;
+}
+.button-pink:hover{
+	background:#E3AEB3;
+	color:#000 !important;
+	text-decoration: none !important;
 }
 /*-- header footer css --*/
 @media (min-width: 768px){
@@ -145,23 +271,23 @@ body{
 	.header-topicons li{display:inline-block;    padding: 0 17px;    margin-bottom: 0;}
 	.header-topicons li img{ width: 18.67px;}
 	header .block-search{float:left;}
-	header .section1,header .section3{width:30%;float: left;}
-	header .logo{width:40%;float: left;    margin-bottom: 0;}
+	header .section1{width:30%;float: left;}
+	header .section3{width:19%;float: left;}
+	header .logo{width:40%;float: left;    margin-bottom: 0;margin-right:0px;}
 	header .logo img{margin: 0 auto;}
+	header .minicart-wrapper{
+		width: 10%;
+		margin-left: 5px;
+	}
 	header .minicart-wrapper .action.showcart:before,.subchildmenu.col-md-0.mega-columns.columns4,header .minicart-wrapper .action.showcart.active:before
 	{
 		display:none;
 	}
-	.button-pink{
+	.section1 .button-pink{
 	    display: flex;
 	    flex-direction: row;	    
 	    width: 120px;
-	    height: 40px;
-	    background: #EBB4B9;
-	    text-align: center;
-	    align-items: center;
-	    justify-content: center;	    
-	    color: #4D4D4D !important;
+	    height: 40px;	    
 	    font-size:14px;	    
 	}
 	header .header.content
@@ -212,6 +338,8 @@ body{
 		color:#000 !important;
 		font-size:16px !important;
 		text-transform: uppercase;
+		font-family: Futura Bk BT Medium;
+		letter-spacing: 0.04em;
 	}
 	.navigation .menu-left-block ul li a:hover{
 		text-decoration: none !important;
@@ -263,6 +391,9 @@ body{
 .sw-megamenu.navigation li.level0 > .level-top {
     text-transform: uppercase;
 }
+.navigation.sw-megamenu .level0 a:hover{
+	color:#000;
+}
 .news_bar
 {
 	background: linear-gradient(0deg, #EDB6BB, #EDB6BB), linear-gradient(0deg, #5CA16C, #5CA16C), rgba(255, 255, 255, 0.5);
@@ -298,7 +429,7 @@ header .minicart-wrapper .action.showcart .counter.qty .counter-number{
     	min-width: 16px;
     	float: right;
     	position: absolute;
-    	right: -7px;
+    	left: 9px;
     	top: 0;
     	border-radius: 50px;
     	font-size: 10px;
@@ -450,10 +581,16 @@ margin: 20px 0px;
 	    padding-right: 10px;
 	font-family:'fontAwesome';	
 }
+
 .readmore:after{
 	content:'\f178';
 	padding-left: 10px;
-	font-family: 'fontAwesome';	
+	font-family: 'fontAwesome';		
+}
+.readmore:hover:after{
+	transform: translateX(10px);
+    color: #4D4D4D;
+    display: inline-block;
 }
 footer.page-footer ul.socialicons li{display:inline-block;padding:0 12px;}
 footer.page-footer ul.socialicons li:first-child{padding-left:0px;}
@@ -498,8 +635,16 @@ body.cms-index-index .page-main{
 	margin-top:5px !important;
 	margin-bottom: 50px;
 }
+.featurecategories{
+	margin-top: 100px;
+}
 .featurecategories .box{
 	margin-bottom:50px;
+	background: #F6F6F8;
+	padding: 20px;
+}
+.featurecategories .box:hover{
+	background: #EEEEF8;
 }
 .content-right{
 	font-size:15px;
@@ -508,17 +653,27 @@ body.cms-index-index .page-main{
 }
 .content-right a{
 	color: #4D4D4D;
+	text-decoration: none !important;
 }
 .content-right a:after{
 	content:'\f178';
 	font-family: 'fontAwesome';	
 	padding-left: 10px;
 }
+.content-right a:hover:after{
+	transform: translateX(10px);
+	color: #4D4D4D;
+	display: inline-block;
+}
+.featurecategories .box:hover .sub-title-category,.featurecategories .box:hover p,.featurecategories .box:hover a{
+	color:#000;
+}
 .line{
 	border-right: 2px solid #9E9E9E;
     height: 144px;
     margin-left: 50px;
 }
+
 .featurep-collection .product-name{
 	color: #4D4D4D;
 	font-size: 16px;
@@ -603,6 +758,12 @@ font-family:Futura Bk BT Medium;
 	align-items: center;
 	justify-content: center;
 }
+.transparent-button:hover{
+	background: #000;
+	border:1px solid #000;
+	color:#fff !important;
+	text-decoration: none !important;
+}
 .our-story{
 	display: flex;
     align-items: flex-end;
@@ -625,7 +786,7 @@ font-family:Futura Bk BT Medium;
     align-content: center;
     flex-direction: column;
 }
-.action.primary.subscribe
+.subscribe
 {
 	font-weight: normal;
 	border-radius: 0px;
@@ -648,7 +809,7 @@ font-family:Futura Bk BT Medium;
 	margin-top: 10px;
 	color:#666;
 }
-.grey-btn
+.grey-btn,.grey-btn:hover,.grey-btn:visited
 {
     background: #4D4D4D;
     text-align: center;
@@ -669,4 +830,60 @@ font-family:Futura Bk BT Medium;
 .grey-btn img{
 	width: 18px;
     margin-left: 10px;
+}
+.product-detail-action{
+	position: absolute;top:14px;right:28px;
+	opacity: 0;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+}
+.action-button button,.action-button a.towishlist{
+	padding: 0;
+    border: 0;
+    background: rgba(255, 255, 255, 0.9);
+    width: 34px;
+    height: 34px;
+    margin-bottom: 14px;
+    border-radius: 0px;
+}
+.action-button a.towishlist{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.featurep-collection .item:hover .product-detail-action{
+	opacity: 1;
+}
+@media (max-width: 1230px)
+{
+	header .section1{width:30%;}
+	header .logo{width:40%;}
+	header .section3{width:20%;}	
+
+}
+@media (max-width: 1175px)
+{
+	.header-topicons li{
+	    padding: 0 10px;	    
+	}
+}
+@media (max-width: 1024px)
+{
+	.header-topicons li{
+	    padding: 0 5px;	    
+	}
+}
+
+@media (max-width: 767px)
+{
+	header.page-header{
+		margin:0;
+	}
+	header.page-header .panel.wrapper
+	{
+		display:none;
+	}
 }

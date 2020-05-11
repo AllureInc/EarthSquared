@@ -63,10 +63,10 @@ class FeatureCategory extends \Magento\Framework\View\Element\Template
     // pass imagename, width and height
     public function getCategoryResizeImage($image, $width, $height)
     {
-        $mediacategorypath = 'pub/media/catalog/tmp/category/';
+        $mediacategorypath = 'pub/media/catalog/category/';
         if (strpos($image, $mediacategorypath) !== false) {
             $imagefile = str_replace($mediacategorypath, '', $image);
-            $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('catalog/tmp/category/') . $imagefile;
+            $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('catalog/category/') . $imagefile;
 
             $imageResized = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('resized/' . $width . '/') . $imagefile;
             //create image factory...
@@ -74,8 +74,9 @@ class FeatureCategory extends \Magento\Framework\View\Element\Template
             $imageResize->open($absolutePath);
             $imageResize->constrainOnly(true);
             $imageResize->keepTransparency(true);
-            $imageResize->keepFrame(false);
+            $imageResize->keepFrame(true);
             $imageResize->keepAspectRatio(true);
+            $imageResize->backgroundColor([255, 255, 255]);
             $imageResize->resize($width, $height);
 
             //destination folder

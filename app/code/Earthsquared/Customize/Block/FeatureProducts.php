@@ -1,6 +1,8 @@
 <?php
 namespace Earthsquared\Customize\Block;
 
+use Magento\Catalog\Block\Product\ListProduct;
+
 class FeatureProducts extends \Magento\Framework\View\Element\Template
 {
 
@@ -15,11 +17,13 @@ class FeatureProducts extends \Magento\Framework\View\Element\Template
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\Catalog\Model\CategoryFactory $categoryFactory,
+        \Magento\Catalog\Block\Product\ListProduct $listProductBlock,
         \Magento\Framework\Pricing\Helper\Data $priceHelper
     ) {
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_categoryFactory = $categoryFactory;
         $this->priceHelper = $priceHelper;
+        $this->listProductBlock = $listProductBlock;
         parent::__construct($context);
     }
 
@@ -36,5 +40,8 @@ class FeatureProducts extends \Magento\Framework\View\Element\Template
     {
         return $this->priceHelper->currency($price, true, false);
     }
-
+    public function getAddToCartPostParams($product)
+    {
+        return $this->listProductBlock->getAddToCartPostParams($product);
+    }
 }
