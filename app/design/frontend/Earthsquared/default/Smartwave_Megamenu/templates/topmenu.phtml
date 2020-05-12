@@ -1,0 +1,87 @@
+<?php
+/**
+ * Copyright © 2018 Porto. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Smartwave\Megamenu\Block\Topmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Smartwave\Megamenu\Helper\Data');
+    $_config = $_helper->getConfig('sw_megamenu');
+    $columnsLimit = 0;
+    if($_config['general']['enable']) {
+?>
+<?php $_menu = $block->getMegamenuHtml(); ?>
+<div class="mobileview">
+    <a href="javascript:;" class="closeicon"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'close-i.png' ?>" /></a> 
+    <ul class="wishcart">        
+        <?php echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Link")->setTemplate("Magento_Wishlist::link.phtml")->toHtml(); ?>            
+    </ul>
+</div>
+<nav class="navigation sw-megamenu" role="navigation">
+    <ul>
+        <?php echo $_menu; ?>
+    </ul>
+</nav>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Smartwave_Megamenu/js/sw_megamenu'
+    ], function ($) {
+        $(".sw-megamenu").swMegamenu();
+        $('.closeicon').on('click',function(){ 
+            console.log('test');           
+            $('html').removeClass('nav-open');
+        });  
+        $(window).scroll(function() {
+            var y = $(this).scrollTop();
+            var top = $('.page-header').height();
+            var navigation = $('.nav-sections.sections').height();
+            var totalh = top + navigation;
+            if (y > totalh) {
+                $('.page-wrapper').addClass('stickymenu');
+            } else {
+                $('.page-wrapper').removeClass('stickymenu');
+            }
+        });      
+    });
+</script>
+<?php
+    } else {
+?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit); ?>
+
+<nav class="navigation sw-megamenu" role="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?php /* @escapeNotVerified */ echo $_menu; ?>
+    </ul>
+</nav>
+
+<?php
+    }
+?>
+<div class="mobileview">    
+<ul class="loginreg">
+    <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+    <li><a href="<?php echo $this->getUrl().'customer/create/account' ?>"><?php echo __("Register") ?></a></li>
+</ul>
+<div class="tradesocial col-xs-12 nopadding">
+    <div class="col-xs-6"><a href="<?php echo $this->getUrl() ?>" class="button-pink trade"><?php echo __("Trade Login") ?></a></div>
+    <div class="col-xs-6">
+        <ul class="socialiconsm">
+            <li><a href="https://www.facebook.com/EarthSquaredLtd/">
+                <img src="<?php echo $this->getUrl('pub/media/headerimages/').'facebook-h.png' ?>" />
+            </a></li>
+            <li><a href="https://twitter.com/earthsquaredltd"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'twitter-h.png' ?>" /></a></li>
+            <li><a href="https://www.instagram.com/earth_squared"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'instagram-h.png' ?>" /></a></li>
+        </ul>
+    </div>
+</div>
+</div>

@@ -10,6 +10,7 @@
 $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt()
 ?>
 <span data-action="toggle-nav" class="action nav-toggle"><span><?= $block->escapeHtml(__('Toggle Nav')) ?></span></span>
+<a href="javascript:void(0)" class="search-toggle-icon1 mobileview"><img src="<?php echo $this->getUrl('pub/media/icons').'loupe.png' ?>"></a>
 <a
     class="logo"
     href="<?= $block->escapeUrl($block->getUrl('')) ?>"

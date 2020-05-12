@@ -9,6 +9,7 @@
         <referenceBlock name="catalog.topnav" remove="true"/>
         <referenceContainer name="page.top">
             <block class="Smartwave\Megamenu\Block\Topmenu" name="sw.topnav" template="Smartwave_Megamenu::topmenu.phtml" before="-"/>
-        </referenceContainer>       
+        </referenceContainer> 
+        <move element="sw.topnav" destination="store.menu" before="-"/>      
     </body>
 </page>
