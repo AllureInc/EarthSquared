@@ -19,7 +19,9 @@
                 <!-- ko i18n: 'items' --><!-- /ko -->
             <!-- /ko -->
             </span>
+            <!-- ko if: getCartParam('subtotal') -->
             <span class="total-price subtotal" data-bind="html: getCartParam('subtotal')"></span>
+            <!-- /ko -->            
         </span>
     </a>
     <?php if ($block->getIsNeedToDisplaySideBar()) :?>

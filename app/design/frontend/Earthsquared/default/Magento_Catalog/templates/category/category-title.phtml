@@ -1,0 +1,8 @@
+<?php $category = $block->getCurrentCategory(); ?>
+<div class="page-title-wrapper">
+	<h1 class="page-title"><?php echo $category->getName() ?>
+	<?php if($category->getProductCollection()->count() > 0) { ?>
+		 <span>(<?php echo $category->getProductCollection()->count(); ?> items)</span>
+	<?php } ?>	 
+	</h1>
+</div>

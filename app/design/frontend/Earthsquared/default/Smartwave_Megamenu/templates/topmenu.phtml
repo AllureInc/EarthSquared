@@ -39,13 +39,14 @@
         $('.closeicon').on('click',function(){ 
             console.log('test');           
             $('html').removeClass('nav-open');
-        });  
+            $('html').removeClass('nav-before-open');
+        });          
         $(window).scroll(function() {
             var y = $(this).scrollTop();
             var top = $('.page-header').height();
-            var navigation = $('.nav-sections.sections').height();
-            var totalh = top + navigation;
-            if (y > totalh) {
+            //var navigation = $('.nav-sections.sections').height();
+           // var totalh = top + navigation;
+            if (y > top) {
                 $('.page-wrapper').addClass('stickymenu');
             } else {
                 $('.page-wrapper').removeClass('stickymenu');

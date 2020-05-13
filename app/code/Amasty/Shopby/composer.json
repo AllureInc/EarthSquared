@@ -1,0 +1,26 @@
+{
+    "name": "amasty/shopby",
+    "description": "Improved Layered Navigation by Amasty",
+    "require": {
+        "php": "7.0.2|7.0.4|~7.0.6|^7.1.0",
+        "amasty/base": ">=1.9.7",
+        "magento/module-layered-navigation": ">=100.0",
+        "amasty/module-shop-by-base": ">=2.13.1",
+        "amasty/module-shop-by-brand": ">=2.10.2",
+        "amasty/shopby-seo": ">=2.11.1",
+        "amasty/module-improved-layered-navigation-page": ">=2.7.1"
+    },
+    "type": "magento2-module",
+    "version": "2.13.2",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Shopby\\": ""
+        }
+    }
+}
