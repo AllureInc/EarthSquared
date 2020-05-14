@@ -16,7 +16,7 @@ $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAl
     href="<?= $block->escapeUrl($block->getUrl('')) ?>"
     title="<?= $block->escapeHtmlAttr($storeName) ?>"
     aria-label="store logo">
-    <img src="<?= $block->escapeUrl($block->getLogoSrc()) ?>"
+    <img src="<?= $this->getUrl('pub/media/logo/').'earthlogo01.svg' ?>"
          title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
          alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
             <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"' : '' ?>

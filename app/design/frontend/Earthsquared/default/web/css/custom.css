@@ -1,5 +1,5 @@
 /*-- fonts css --*/
-@font-face {
+/* @font-face {
 font-family: 'Tiempos Headline Regular';
 font-style: normal;
 font-weight: normal;
@@ -113,8 +113,8 @@ font-style: normal;
 font-weight: normal;
 src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
 }
-
-/* @font-face {
+*/
+ @font-face {
     font-family: 'Futura Bk BT Medium';
     src: url('../fonts/futura/FuturaBT-Medium.eot');
     font-weight: 500;
@@ -215,7 +215,6 @@ src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
     font-style: normal;
 }
 
-*/
 
 
 
@@ -381,11 +380,11 @@ a:hover{
 	}
 
 }
-@media (min-width: 1024px){
+/*@media (min-width: 1024px){
 	.catalog-category-view.page-products .products-grid .product-item{
-		width: calc((100% - 6%)/3);
-	}
-}
+		width: calc((100% - 6%)/3);	
+	}	
+}*/
 header .block-search.active{
 	display:block !important;
 	position: absolute;
@@ -402,7 +401,7 @@ header .block-search.active{
     	background-size: 100%;
     	width: 18.67px;
     	height: 24px;
-    	background-position: 0 5px;
+    	background-position: 0 3px;
 	}
 .navigation.sw-megamenu
 {
@@ -937,20 +936,19 @@ font-family:Futura Bk BT Medium;
     transition: all 500ms ease-in-out;
 }
 .action-button button,.action-button a.towishlist{
-	padding: 0;
+	padding: 0 !important;
     border: 0;
     background: rgba(255, 255, 255, 0.9);
-    width: 34px;
+    width: 34px !important;
     height: 34px;
-    margin-bottom: 14px;
-    border-radius: 0px;
+    margin-bottom: 14px;    
 }
 .action-button a.towishlist{
-	display: flex;
+	display: flex !important;
     justify-content: center;
     align-items: center;
 }
-.featurep-collection .item:hover .product-detail-action{
+.featurep-collection .item:hover .product-detail-action,.product-item-info:hover .product-detail-action{
 	opacity: 1;
 }
 .mobileview,.tabletview{display:none !important;}
@@ -1028,7 +1026,7 @@ font-family:Futura Bk BT Medium;
 	display:none;	 
 }
 .page-products.catalog-category-view .product-item-info{
-	width: 100%;
+	width: 100%; position: relative;
 }
 .page-products .products-grid .product-item-info:hover, .page-products .products-grid .product-item-info.active{
 	box-shadow: none;
@@ -1056,11 +1054,11 @@ font-family:Futura Bk BT Medium;
 .filter-options-content a:hover{
 	background-color: transparent ;
 }
-.filter-options-content input[type="radio"],.filter-options .swatch-option{
+.filter-options-content input[type="radio"],.filter-options-content input[type="checkbox"]{
 	display: inline-block;
     position: relative;
     background-color: #fff;
-    color: #666;
+    color: #4d4d4d;
     top: 0;
     height: 18px;
     width: 18px;    
@@ -1074,12 +1072,37 @@ font-family:Futura Bk BT Medium;
     border: 1px solid #BDBDBD;
     min-width: 18px;
 }
+.filter-options-content input[type="radio"]:focus,.filter-options-content input[type="checkbox"]:focus{
+	outline:none;
+	box-shadow: none;
+}
+.filter-options-content input[type="radio"]:checked,.filter-options-content input[type="checkbox"]:checked{
+	background-color: #4d4d4d;
+	color:#fff;
+	border: 0px !important;
+	text-align: center;
+}
+.filter-options .swatch-option{
+	display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    cursor: pointer;
+    margin: 0!important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 .filter-options .swatch-option,.filter-options .swatch-option:hover{
 	border-radius: 100%;
 	outline: none !important;
+	border: 1px solid #BDBDBD !important;
 }
 .filter-content .item{
-	display: inline-flex;
+	display: flex;
 	margin: 13px 0 !important;
 }
 .filter-options-title:after,.filter-options-content .count{display:none;}
@@ -1089,18 +1112,159 @@ font-family:Futura Bk BT Medium;
 .filter-options .filter-options-content .am-shopby-swatch-label .label{
     display: inline-flex;
 }
-.swatch-option-tooltip{
-	display:none !important;
-}
-.page-products .products-grid .product-item-info:hover .product-item-inner, .page-products .products-grid .product-item-info.active .product-item-inner{
-	display: block !important;
-}
+
 .page-products .products-grid .product-item-inner{
 	    padding: 0;
-	    position: relative;
-	    border:0px;
-	    background: #fff;
+	    position: absolute !important;
+	    border: 0px !important;
+	    background: transparent !important;
+	    height: auto !important;
+	    overflow: auto !important;
+	    clip: unset !important;
+	    margin: auto !important;
+	    width: auto !important;
+	    box-shadow: none !important;
+	    top:0;
+	    right:0;
 }
+.filter-options-content .am-shopby-form a{
+    margin-left: 0;
+    color: #4d4d4d;
+}
+.swatch-option-link-layered input[type=checkbox]:checked + .am-swatch-link > .swatch-option.selected:before
+{
+	content:'';	
+	background:url('../images/sign-grey.png') no-repeat;
+	background-size:100%;
+	width:10px;
+	height:8px;
+}
+.filter-options-content input[type="radio"]:checked:after,.filter-options-content input[type="checkbox"]:checked:after{
+	/* background:url('../images/sign-white.png') no-repeat; */
+	content:'\f00c';
+	font-family: 'fontAwesome';
+	color:#fff;
+	font-size: 14px;
+}
+.filter-options .filter-options-content .am-shopby-form,.filter-options .am-swatch-options{
+	padding:0;
+}
+.page-products .sidebar.sidebar-main
+{
+    margin-top: 45px;
+}
+.filter-options-content .am-show-more{
+	color:#F87883;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-family: Futura Bk BT Medium;
+	letter-spacing: 0.03em;
+}
+.filter-options .filter-options-content .am-show-more .am-counter{
+	opacity: 1;	
+}
+.filter-options .filter-options-content .am-show-more:after,.filter-options .filter-options-content .am-show-more:before{
+	display:none;
+}
+.products.products-grid .product-item-actions{
+    margin: 0px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    align-content: center;
+}
+
+.catalog-category-view.page-products .products-grid .product-item{
+	width: 31.439%;
+    margin: 0 0.9% !important;
+}
+.products-grid .product-item-name .product-item-link{
+    font-size: 14px;
+    color: #4d4d4d;
+}
+.products-grid .product-item .price-box .price{
+	color: #616161;
+    font-family: Futura Bk BT Medium;
+    font-size: 14px;
+}
+.products-grid .swatch-option{ height: 24px;min-width: 24px;border:1px solid #BDBDBD !important; border-radius: 100%;}
+.products-grid .swatch-option.selected,.products-grid .swatch-option:hover{
+	outline: none !important;
+    border: 1px solid #4d4d4d !important;    
+    box-shadow: none !important;
+}
+.products-grid .product-item .action.towishlist:before{
+	display:none;
+}
+.page-products .products-grid .product-item-inner:before,.swatch-option-tooltip{display:none !important;}
+.product-item-info .product-detail-action{
+	top: 14px;
+    right: 14px;
+    z-index: 1;
+}
+.bottom-toolbar .limiter,.bottom-toolbar .toolbar-sorter.sorter{
+	display: none !important;
+}
+.product-item-info .product-image-photo{
+	width: 100% !important;
+}
+.bottom-toolbar .toolbar .pages{
+	width: 100%;display: block;
+}
+.bottom-toolbar .pages strong.page{
+	background: #757575;        
+    color: #fff;    
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.12);	
+    font-size: 15px;
+    border-radius: 2px;    
+}
+.bottom-toolbar .pages a.page
+{
+	background: #fff;        
+    color: #000;    
+    width: 30px;
+    height: 30px;    	
+    font-size: 15px;    
+}
+.bottom-toolbar .pages .item{
+	    margin: 0 8px 0 16px;
+	    font-size:15px;
+}
+.pages .action.next:visited:before,.pages .action.next:before,.pages .action.previous:visited:before,.pages .action.previous:before{
+	display:none !important;
+}
+.bottom-toolbar .pages .action.next>span,.bottom-toolbar .pages .action.previous>span{
+    margin: auto;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+.bottom-toolbar .pages .action{
+	box-shadow: none;
+	background: transparent;
+	border:0px;
+	font-size: 16px;
+}
+.bottom-toolbar .pages .action.next:after,.bottom-toolbar .pages .action.previous:before{
+	content:'';
+    background: url(../images/right-arrow.png) no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: 100%;
+    display: inline-block;      
+    background-position: 0 4px;      
+}
+.bottom-toolbar .pages .action.previous:before
+{
+	background: url(../images/left-arrow.png) no-repeat;
+	background-size: 100%;
+}
+.bottom-toolbar .pages-item-next{float:right;}
+.bottom-toolbar .pages-item-previous{float:left;}
 @media (max-width: 1230px)
 {
 	header .section1{width:30%;}

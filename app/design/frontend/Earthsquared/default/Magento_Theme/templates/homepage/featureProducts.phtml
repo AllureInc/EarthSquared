@@ -43,8 +43,8 @@ foreach ($categoryProducts as $product) { ?>
 				            </button>
 				    </form>
 				</div>
-				<div class="action-button">
-					<?php echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist")->setTemplate("Magento_Wishlist::catalog/product/list/addto/wishlist.phtml")->toHtml() ?>
+				<div class="action-button">					
+					<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
 				</div>
 		</div>
 		
