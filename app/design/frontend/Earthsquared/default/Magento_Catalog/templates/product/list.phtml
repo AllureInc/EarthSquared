@@ -51,6 +51,37 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
             <?php foreach ($_productCollection as $_product) :?>
             <li class="item product product-item">
                 <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
+                    <?php /*
+                    $productImage = $block->getImage($_product, $imageDisplayArea);                                        
+
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    */ ?>
+                    <?php // Product Image ?>                                        
+                    <?php /* <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
+                       class="product photo product-item-photo nhover"
+                       tabindex="-1">
+                        <?= $productImage->toHtml() ?>                        
+                    </a>  <?php */ ?>
+                    <?php 
+                    if($_product->getTypeId() == 'simple'){
+                      $productImage = $_imagehelper->init($_product, $imageDisplayArea)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);                      
+                      $productImageUrl = $productImage->getUrl();
+                      $productHoverImage = $_imagehelper->init($_product, $imageDisplayAreaHover)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);
+                      $productHoverImageUrl = $productHoverImage->getUrl();
+                    ?>
+                    <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
+                           class="product photo product-item-photo"
+                           tabindex="-1">
+                        <span class="product-image-container" style="width:100%;">
+                            <span class="product-image-wrapper" style="padding-bottom: 100%;">
+                            <img class="product-image-photo" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>" onmouseover="this.src='<?php echo ($productHoverImageUrl) ? $productHoverImageUrl : $productImageUrl ?>';" onmouseout="this.src='<?php echo $productImageUrl; ?>';" />
+                            </span>
+                        </span>    
+                    </a> 
+                <?php } else { ?>
                     <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);                                        
 
@@ -64,22 +95,8 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                        class="product photo product-item-photo nhover"
                        tabindex="-1">
                         <?= $productImage->toHtml() ?>                        
-                    </a>                    
-                    <?php 
-                      /* $productImage = $_imagehelper->init($_product, $imageDisplayArea)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);                      
-                      $productImageUrl = $productImage->getUrl();
-                      $productHoverImage = $_imagehelper->init($_product, $imageDisplayAreaHover)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);
-                      $productHoverImageUrl = $productHoverImage->getUrl();
-                    ?>
-                    <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
-                           class="product photo product-item-photo"
-                           tabindex="-1">
-                        <span class="product-image-container" style="width:100%;">
-                            <span class="product-image-wrapper" style="padding-bottom: 100%;">
-                            <img class="product-image-photo" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>" onmouseover="this.src='<?php echo ($productHoverImageUrl) ? $productHoverImageUrl : $productImageUrl ?>';" onmouseout="this.src='<?php echo $productImageUrl; ?>';" />
-                            </span>
-                        </span>    
-                    </a> <?php */ ?>
+                    </a>  
+                <?php } ?>    
                     <div class="product details product-item-details">
                         <?php
                             $_productNameStripped = $block->stripTags($_product->getName(), null, true);
@@ -95,7 +112,25 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                         <?php if ($_product->isAvailable()) :?>
                             <?= $block->getProductDetailsHtml($_product) ?>
                         <?php endif; ?>
-                        
+
+                        <?php 
+                        if($_product->getTypeId() == 'simple') 
+                        {
+                                $product_label = __("On Sale");
+                                $orgprice = $_product->getPrice();
+                                $specialprice = $_product->getSpecialPrice();
+                                $specialfromdate = $_product->getSpecialFromDate();
+                                $specialtodate = $_product->getSpecialToDate();
+                                $today = time();
+                                if(!$specialprice)
+                                    $specialprice = $orgprice;
+                                if($specialprice < $orgprice) {
+                                    if((is_null($specialfromdate) && is_null($specialtodate)) || ($today >= strtotime($specialfromdate) && is_null($specialtodate)) || ($today <= strtotime($specialtodate) && is_null($specialfromdate)) || ($today >= strtotime($specialfromdate) && $today <= strtotime($specialtodate))){  ?>                                      
+                                            <div class="product-label sale-label"><?php echo $product_label; ?></div>                                     
+                                    <?php }
+                                }
+                            }
+                        ?>
                             <div class="product-detail-action">
                                 <div class="action-button">
                                     <?php if ($_product->isSaleable()) :?>
