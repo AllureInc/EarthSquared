@@ -1,0 +1,10 @@
+<?php 
+$_product = $block->getProduct();
+$shortdescription = $_product->getShortDescription();
+if($shortdescription != '') {
+?>
+<div class="product attribute overview">
+        <strong class="type">Description</strong>
+        <div class="value" itemprop="description"><?php echo $shortdescription; ?></div>
+</div>
+<?php } ?>

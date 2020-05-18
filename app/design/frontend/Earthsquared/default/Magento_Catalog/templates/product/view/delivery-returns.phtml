@@ -1,0 +1,21 @@
+<?php
+$product = $block->getProduct();
+?>
+
+<div class="product-coll" data-mage-init='{"collapsible":
+		{
+	    "active":true,
+			"openedState": "active",
+			"saveState": false,
+			"animate": true,
+			"header": "[data-role=coll-title]",
+			"content": "[data-role=coll-content]"
+		}
+	}'>
+  <h3 class="action" data-role="coll-title">
+    <?php echo __('delivery and returns') ?>
+  </h3>    
+  <div class="coll-content" data-role="coll-content">
+    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_details_delivery_returns')->toHtml(); ?>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="product.review.form" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />
+    	<referenceBlock name="customer-account-navigation-product-reviews-link" remove="true" />
+    	<referenceBlock name="review_view" remove="true" />		
+    	<block class="Magento\Catalog\Block\Product\View" name="product.info.sku.top" template="Magento_Catalog::product/view/sku.phtml" />
+    	<move element="product.info.sku.top" destination="product.info.main" after="page.main.title" />
+    	<referenceBlock name="product.info.sku" remove="true" />
+    	<referenceBlock name="product.info.stock.sku" remove="true" />
+    	<referenceContainer name="product.info.social">
+    		<block class="Magento\Catalog\Block\Product\View" name="product.info.socialmedia" template="Magento_Catalog::product/view/socialmedia.phtml"/>
+		</referenceContainer>
+		<move element="product.info.social" destination="product.info.form.options" after="-" />
+		<referenceBlock name="view.addto.compare" remove="true" />
+		<block class="Magento\Cms\Block\Block" name="product_details_three_benefits">
+		    <arguments>
+		        <argument name="block_id" xsi:type="string">product_details_three_benefits</argument>
+		    </arguments>
+		</block>	
+        <block class="Magento\Catalog\Block\Product\View" name="product.info.desc" template="Magento_Catalog::product/view/description.phtml" />                                    
+
+        <move element="product_details_three_benefits" destination="product.info.main" after="product.info.form.options" />		
+        <move element="product.info.desc" destination="product.info.main" after="product_details_three_benefits" /> 
+		<referenceBlock name="product.info.overview" remove="true" />
+       	<block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes.more" as="additional" template="Magento_Catalog::product/view/attributes.phtml">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">More Information</argument>                
+            </arguments>
+        </block>
+        <move element="product.attributes.more" destination="product.info.main" after="product.info.desc" />
+        <referenceBlock name="product.attributes" remove="true" />
+
+        <block class="Magento\Catalog\Block\Product\View" name="product.info.delivery" template="Magento_Catalog::product/view/delivery-returns.phtml" /> 
+        <move element="product.info.delivery" destination="product.info.main" after="product.attributes.more" />
+	</body>
+</page>	

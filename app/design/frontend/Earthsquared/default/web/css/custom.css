@@ -390,11 +390,11 @@ header .block-search.active{
 	position: absolute;
 	top:75px;
 }
-.subchildmenu.col-md-0.mega-columns.columns4,header .minicart-wrapper .action.showcart.active:before
+.subchildmenu.col-md-0.mega-columns.columns4
 {
 		display:none;
 }
-	header .minicart-wrapper .action.showcart:before
+	header .minicart-wrapper .action.showcart:before,header .minicart-wrapper .action.showcart.active:before
 	{
 		content:'';
 		background: url(../images/shopping-bag.png) no-repeat;
@@ -474,7 +474,7 @@ header .minicart-wrapper .action.showcart .counter.qty
 }
 
 header .minicart-wrapper .total-price.subtotal{
-    margin-left: 33px;
+    margin-left: 10px;
     background: transparent;
     color: #4D4D4D;
     font-size: 14px;
@@ -906,7 +906,7 @@ font-family:Futura Bk BT Medium;
 }
 .grey-btn,.grey-btn:hover,.grey-btn:visited
 {
-    background: #4D4D4D;
+    background: #4D4D4D !important;
     text-align: center;
     float: right;
     display: flex;
@@ -993,7 +993,7 @@ font-family:Futura Bk BT Medium;
 }
 .breadcrumbs{
 	padding: 0 !important;
-	margin: 0 0 30px !important;
+	margin: 0 auto 30px !important;
 }
 .breadcrumbs .item:not(:last-child):after{
 	    color: #757575 !important;
@@ -1315,6 +1315,7 @@ font-family:Futura Bk BT Medium;
     top: 0;
     z-index: 1;
 }
+.catalog-product-view .product-label.sale-label{display: none;}
 .filter-current.am-filter-current{
 	position: absolute;
     right: 0;    
@@ -1355,6 +1356,195 @@ font-family:Futura Bk BT Medium;
     font-size: 12px;
     color: #616161;
     cursor: pointer;
+}
+.psku{
+	font-size: 13px;
+    color: #9E9E9E;
+    margin-bottom: 10px;
+}
+.product-info-price .price-box .price-container .price{
+	color: #4D4D4D;
+    font-size: 17px !important;
+    font-family: Futura Bk BT Medium;
+}
+.product-info-main .product-info-price .price-box .price-container > span.price-label,.product-info-main .swatch-attribute-label{
+	display:none;
+}
+.product-info-main .product-info-price{
+	border-bottom: 0px !important;
+	margin-bottom: 0px !important;
+}
+.product-info-main .product-add-form{
+	padding-top: 0 !important;
+}
+.product-options-wrapper .swatch-opt{margin: 0px 0;}
+.product-options-wrapper .swatch-attribute-selected-option{
+	    padding-left: 0;
+}
+.product-options-wrapper .swatch-option{
+	height: 30px;
+	border:0px;
+	border-radius: 100%;
+	margin: 0 14px 5px 0;
+}
+.product-options-wrapper .swatch-option:hover,.product-options-wrapper .swatch-option.selected,.product-options-wrapper .swatch-option:focus{
+	outline: none !important;
+    transform-style: preserve-3d;
+    border: 2px solid #fff !important;
+    box-shadow: 0 0 0 1px #000 !important;
+}
+.psku span{
+	text-transform: uppercase;
+}
+.product-add-form{position:relative;}
+.share-medias{
+	position: absolute;
+    top: 5px;
+    right: 0;
+    font-size: 14px;
+    color: #4d4d4d;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.share-medias img{
+	margin-right: 5px;
+}
+.product-info-main .product-add-form .product-options-bottom .box-tocart{
+	    margin-top: 40px;
+}
+.box-tocart .action.primary.tocart.grey-btn{
+	background: #4D4D4D !important;
+	padding: 0;
+    width: 250px !important;
+    height: 40px;
+    border-radius: 0px;
+    float: left;
+    font-weight: normal;
+    font-size: 15px;
+}
+.box-tocart .action.primary.tocart.grey-btn span:before{
+	content:'';
+	background: url('../images/shopping-bag_p.png') no-repeat;
+	background-size: 100%;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	margin-right: 5px;
+}
+.box-tocart .action.primary.tocart.grey-btn span{
+	align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.product-addto-links .action.towishlist{
+	color: #4d4d4d;
+    border: 1px solid #4d4d4d;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size:15px;
+    letter-spacing: 0;
+}
+.product-addto-links{float: right;}
+.product-social-links .product-addto-links .action.towishlist:before{
+	content:'';
+	background: url('../images/heart.png') no-repeat;
+	background-size:100%;
+	width:20px; 
+	height:20px;
+}
+.benefits-ul{
+	list-style: none;
+	margin-top: 50px;
+}
+.benefits-ul li{
+	display: inline-block;
+	text-align: center;
+	padding: 0 40px;
+}
+.benefits-ul li p{color:#212121;margin-top: 20px;}
+.benefits-ul li:after{
+	content: '';
+    border-right: 1px solid #E0E0E0;
+    display: inline-block;
+    width: 1px;
+    height: 70px;
+    position: absolute;
+    top: 15px;
+    right: 0;
+}
+.benefits-ul li:last-child:after{display: none;}
+.product-info-main .product-info-price .old-price .price-wrapper .price{
+	font-size:14px !important;
+	text-decoration-line: line-through;
+    color: #9E9E9E;
+}
+.product-info-main .product.attribute.overview
+{
+	width:100%;float:left;margin:50px 0px 20px !important;
+}
+.product-coll{
+	width:100%;float:left;
+}
+.product-info-main .product.attribute.overview .type,.p-title,.product-coll h3{
+	font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: normal;
+    font-family: Futura Bk BT Medium;
+    margin-bottom: 14px;
+    cursor: pointer;
+}
+.product-coll h3{
+	margin-bottom: 35px;
+}
+.product-coll h3:after{
+	content:'\f067';
+	font-family: 'fontAwesome';
+	color:#212121;
+	float: right;
+}
+.product-coll.active h3:after{
+	content:'\f068';	
+}
+.product-info-main .product.attribute.overview .value{
+	margin-top: 14px;
+}
+.additional-attributes td{
+	    border: 1px solid #E0E0E0;
+	    color: #616161;
+}
+.additional-attributes td p{ color: #424242;}
+.content-more-info{margin-bottom: 30px;}
+.catalog-product-view .breadcrumbs{
+	padding: 30px 30px 0px !important;
+}
+.fotorama__thumb-border{
+	border:0px !important;
+}
+.fotorama__arr__arr{
+	background-image: none !important;
+}
+.fotorama__arr__arr:active{
+	background-color: transparent !important;
+}
+.fotorama__arr--next .fotorama__arr__arr:after{
+    content: '\f054';
+    font-family: fontAwesome;
+    color: #4d4d4d;
+    font-size: 15px;
+}
+.fotorama__arr--prev .fotorama__arr__arr:after{
+	content: '\f053';
+    font-family: fontAwesome;
+    color: #4d4d4d;
+    font-size: 15px;	
 }
 @media (max-width: 1230px)
 {

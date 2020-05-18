@@ -325,7 +325,8 @@ define([
                             swatchOption.trigger('mouseenter');
                         }
                     });
-                }  
+                } 
+                if(!$("body").hasClass("catalog-product-view")){   
                 // added code for hide swatches when length > 3    
                     var total_swatch = $(".swatch-attribute-options .swatch-option").size();
                     //console.log(total_swatch);
@@ -344,6 +345,7 @@ define([
                         });                                                
                     } 
                     $('#loadMore').insertAfter('.swatch-attribute-options .swatch-option:last');
+                }
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
