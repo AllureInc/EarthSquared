@@ -13,10 +13,15 @@
 ?>
 
 <?php if ($block->canShowBlock()) : ?>
-    <div class="block filter">
-        <div class="block-title filter-title">
-            <strong><?= $block->escapeHtml(__('Shop By')) ?></strong>
-        </div>
+    <?php
+    $filtered = count($block->getLayer()->getState()->getFilters());
+    ?>
+    <div class="block filter" id="layered-filter-block"
+         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */
+        echo $filtered; ?>">
+            <strong data-role="title"><?= $block->escapeHtml(__('Filter')) ?></strong>
+        </div> 
 
         <div class="block-content filter-content">
             <?php echo $block->getChildHtml('state') ?>
@@ -29,7 +34,7 @@
             <?php $wrapOptions = false; ?>
             <?php foreach ($block->getFilters() as $filter) : ?>
                 <?php if (!$wrapOptions) : ?>
-                    <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= $block->escapeHtml(__('Shopping Options')) ?></strong>
+                    <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= $block->escapeHtml(__('Filters')) ?></strong>
                     <dl class="filter-options" id="narrow-by-list">
                     <?php $wrapOptions = true;
                 endif; ?>

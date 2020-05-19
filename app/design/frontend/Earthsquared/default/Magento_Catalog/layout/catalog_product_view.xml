@@ -41,5 +41,9 @@
 
         <block class="Magento\Catalog\Block\Product\View" name="product.info.delivery" template="Magento_Catalog::product/view/delivery-returns.phtml" /> 
         <move element="product.info.delivery" destination="product.info.main" after="product.attributes.more" />
+
+        <block class="Magento\Catalog\Block\Product\View" name="product.info.mobile.wish" template="Magento_Catalog::product/view/mobilewishlist.phtml" /> 
+        <move element="product.info.mobile.wish" destination="product.info.main" after="product.info.price" />
+        <referenceBlock name="product.info.details" remove="true" />
 	</body>
 </page>	
