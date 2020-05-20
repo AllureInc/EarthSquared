@@ -1,8 +1,52 @@
-<?php 
-$_product = $block->getProduct();
-?>
-<?php if ($_product->isSaleable()) { ?>
-<div class="mobileview wishlistp">
-<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+<?php
+$_product = $block->getProduct(); 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Block\Account\AuthorizationLink');
+if($customerSession->isLoggedIn()){
+	$cSession = $objectManager->create('Magento\Customer\Model\Session');
+	$custid = $cSession->getCustomerId();	
+	$pid = $_product->getId();
+	$wish = $objectManager->create('Magento\Wishlist\Model\Wishlist')->loadByCustomerId($custid);
+    $items = $wish->getItemCollection();
+    if(count($items) > 0){
+	?>
+		<div class="mobileview wishlistp">
+			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$pid ?>" class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+		</div>
+	<?php
+	} else {
+		if ($_product->isSaleable()) { ?>	
+			<div class="mobileview wishlistp">
+				<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+			</div>
+		<?php }		
+	} 
+} else {
+if ($_product->isSaleable()) { ?>	
+	<div class="mobileview wishlistp">
+		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+	</div>
+<?php }	} ?>
+<div class="share-medias mobileview"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span>
+<div class="social-media-icons" style="display:none">
+    <!-- WhatsApp -->
+    <?php /* <a target="_blank" href="https://api.whatsapp.com/send?text=<?php echo urlencode($_product->getProductUrl());?>">
+            WhatsApp</a> */ ?>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on facebook">
+        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/facebook-share.jpg'); ?>" alt="Facebook" width="12%">
+    </a>
+    <!-- TWITTER -->
+    <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter">
+        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/tw.png'); ?>" alt="Twitter" width="5%">
+    </a>
+    <!-- Pinterest -->
+    <a href="https://pinterest.com/pin/create/button/?url=<?php echo urlencode($_product->getProductUrl()); ?>&media=<?php echo urlencode($_product->getImageUrl());?> &description=<?php echo urlencode($_product->getName()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Pin it">
+        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/pinterest-share.jpg'); ?>" alt="Pinterest" width="12%">
+    </a>
+    <!-- Google Plus -->
+    <a href="https://plus.google.com/share?url=<?php echo urlencode($_product->getProductUrl()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Google Plus">
+        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/google-plus-share.jpg'); ?>" alt="Google Plus" width="12%">
+    </a>
 </div>
-<?php } ?>
+</div>

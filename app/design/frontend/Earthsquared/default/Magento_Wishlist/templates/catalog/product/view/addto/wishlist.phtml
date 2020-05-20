@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product'); 
+$customerSession = $objectManager->create('Magento\Customer\Block\Account\AuthorizationLink');
+if($customerSession->isLoggedIn()){
+	$cSession = $objectManager->create('Magento\Customer\Model\Session');
+	$custid = $cSession->getCustomerId();	
+	$pid = $_product->getId();
+	$wish = $objectManager->create('Magento\Wishlist\Model\Wishlist')->loadByCustomerId($custid);
+    $items = $wish->getItemCollection();
+    if(count($items) > 0){
+	?>		
+			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$pid ?>" class="action towishlist" data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span></a>		
+	<?php
+	} else {
+		if ($_product->isSaleable()) { ?>				
+				<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Add to Wish List')) ?></span></a>			
+		<?php }		
+	} 
+} else {
+if ($_product->isSaleable()) { ?>		
+		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Add to Wish List')) ?></span></a>
+	
+<?php }	} ?>

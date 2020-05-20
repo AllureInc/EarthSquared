@@ -19,7 +19,7 @@
     	<referenceContainer name="product.info.social">
     		<block class="Magento\Catalog\Block\Product\View" name="product.info.socialmedia" template="Magento_Catalog::product/view/socialmedia.phtml"/>
 		</referenceContainer>
-		<move element="product.info.social" destination="product.info.form.options" after="-" />
+		<move element="product.info.social" destination="product.info.main" after="-" />
 		<referenceBlock name="view.addto.compare" remove="true" />
 		<block class="Magento\Cms\Block\Block" name="product_details_three_benefits">
 		    <arguments>
@@ -28,7 +28,7 @@
 		</block>	
         <block class="Magento\Catalog\Block\Product\View" name="product.info.desc" template="Magento_Catalog::product/view/description.phtml" />                                    
 
-        <move element="product_details_three_benefits" destination="product.info.main" after="product.info.form.options" />		
+        <move element="product_details_three_benefits" destination="product.info.main" after="-" />		
         <move element="product.info.desc" destination="product.info.main" after="product_details_three_benefits" /> 
 		<referenceBlock name="product.info.overview" remove="true" />
        	<block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes.more" as="additional" template="Magento_Catalog::product/view/attributes.phtml">

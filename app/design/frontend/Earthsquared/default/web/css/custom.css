@@ -1226,6 +1226,9 @@ font-family:Futura Bk BT Medium;
 .product-item-info .product-image-photo{
 	width: 100% !important;
 }
+.product-item-photo:focus {
+    outline: none !important;
+}
 .bottom-toolbar .toolbar .pages{
 	width: 100%;display: block;
 }
@@ -1400,7 +1403,7 @@ font-family:Futura Bk BT Medium;
 .product-add-form{position:relative;}
 .share-medias{
 	position: absolute;
-    top: 5px;
+    top: -70px;
     right: 0;
     font-size: 14px;
     color: #4d4d4d;
@@ -1631,6 +1634,174 @@ font-family:Futura Bk BT Medium;
 }
 .gallery-placeholder .fotorama__arr, .gallery-placeholder  .fotorama__thumb__arr{
 	background-color: transparent !important;
+}
+.product-social-links{
+	position: relative;
+}
+/*--shopping cart ---*/
+.page-title .countitems{
+	font-size: 14px;
+	color:#616161;
+	font-family: 'Futura Bk BT';
+}
+.checkout-cart-index .page-title-wrapper{display: none;}
+.cart.table-wrapper .cart thead tr th.col{
+	font-size:12px;
+	text-transform: uppercase;
+	font-family: 'Futura Bk BT Medium';
+	color:#4d4d4d;
+	letter-spacing: 0.04em;
+	font-weight: normal;	
+	border-bottom: 1px solid #eee !important;
+	padding: 8px 0;
+}
+.cart.table-wrapper .cart>.item{
+	border-bottom: 1px solid #eee !important;
+}
+.cart.table-wrapper .product-item-name a{
+	color:#4d4d4d;
+	font-size: 14px;
+	margin-top:15px;
+}
+.cart.table-wrapper .product-item-name+.item-options{
+	    color: #757575; font-size:13px; margin-top: 10px;
+}
+.cart.table-wrapper .product-item-name+.item-options dt{
+	font-weight: normal;
+	margin: 0 5px 0 0;
+}
+#shopping-cart-table.table>tbody+tbody{
+	border-top:0px !important;
+}
+#shopping-cart-table .price-including-tax .price, #shopping-cart-table .price-excluding-tax .price{
+	font-weight: normal;
+    font-size: 14px;
+    color: #4D4D4D;
+}
+.cart.table-wrapper .col.qty .input-text{
+	border: 1px solid #E0E0E0;
+}
+.cart.table-wrapper .actions-toolbar>.action-edit, .cart.table-wrapper .actions-toolbar>.action-delete{	
+	right: 0;
+}
+.cart.table-wrapper .actions-toolbar>.action-edit>span, .cart.table-wrapper .actions-toolbar>.action-delete>span{
+	height:auto !important;
+	clip: auto !important;
+	width:auto !important;
+	margin: 2px 5px !important;
+	color:#4d4d4d !important;
+}
+.cart.table-wrapper #shopping-cart-table .actions-toolbar{
+	position: absolute;
+    bottom: 30px;
+    left: 238px;
+}
+.cart.table-wrapper .action.action-edit{
+	    margin-right: 54px;
+}
+/*.cart.table-wrapper #shopping-cart-table .actions-toolbar>.action-edit:before, .cart.table-wrapper #shopping-cart-table .actions-toolbar>.action-delete:before{
+	display: none !important;
+}*/
+.cart.table-wrapper #shopping-cart-table .actions-toolbar>.action-edit:before{
+	content:'';
+	background: url('../images/pen.png') no-repeat;
+	background-size: 100%;
+	width:16px;
+	height:16px;
+}
+.cart.table-wrapper #shopping-cart-table .actions-toolbar>.action-delete:before{
+	content:'';
+	background: url('../images/garbage.png') no-repeat;
+	background-size: 100%;
+	width:16px;
+	height:16px;
+}
+#shopping-cart-table .subtotal .price-including-tax .price, #shopping-cart-table .subtotal .price-excluding-tax .price{
+	color:#212121;
+	font-family: 'Futura Bk BT Medium';
+}
+.cart.main.actions .action.update{
+	display:none;
+}
+.cart-summary .summary.title
+{
+	font-family: 'Tiempos Headline Medium';
+    font-size: 32px;
+    color: #4d4d4d;
+    margin-bottom: 30px;
+}
+.cart-summary .cart-totals, .opc-block-summary .table-totals{
+	border: 1px solid #ccc;
+	padding:20px;
+}
+.mark, mark{
+	background-color: transparent !important; 	
+}
+#block-shipping{
+	display:none !important;
+}
+.cart-totals .grand .mark, .opc-block-summary .table-totals .grand .mark,.cart-totals tbody .mark, .cart-totals tfoot .mark,.cart-totals tbody .amount, .cart-totals tfoot .amount, .opc-block-summary .table-totals tbody .amount, .opc-block-summary .table-totals tfoot .amount{
+	text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em;
+    border-top: 0 !important;
+    padding: 16px 0px;
+}
+.cart-totals .grand strong, .opc-block-summary .table-totals .grand strong{
+	font-weight: normal !important;
+}
+#cart-totals .table.totals tbody tr{
+	border-bottom: 1px solid #eee !important;
+}
+.action.primary.checkout {
+	background: #4D4D4D !important;
+    text-align: center;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    transition: 0.3s;
+    text-decoration: none !important;
+    border-radius: 0px !important;
+    font-family: 'Futura Bk BT Medium' !important;
+}
+.cart-summary .checkout-methods-items{
+	margin:0px !important;
+}
+.cart-summary{
+	padding:0px !important;
+}
+#block-discount .content{
+	display: block !important;
+}
+#block-discount{
+	width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+#block-discount #coupon_code{
+	height: 50px;
+	color:#4d4d4d;
+}
+#discount-coupon-form .fieldset.coupon{
+	position: relative;
+}
+#discount-coupon-form .actions-toolbar{
+	position: absolute;
+	top:-1px;
+	right:0;
+}
+#discount-coupon-form .actions-toolbar .apply.primary
+{
+    width: 100%;    
+    height: 50px;
+    border-radius: 0;    
+    color: #fff;
+    background: #4D4D4D !important;
+    font-weight: normal;
+    padding: 0px 20px;	
+    font-family: 'Futura Bk BT Medium' !important;
 }
 @media (max-width: 1230px)
 {
@@ -2039,7 +2210,7 @@ font-family:Futura Bk BT Medium;
 		position: relative;
 	}
 	.share-medias{
-		top: -30px;
+		top: 90px;
 	}
 	.product-info-main .page-title{
 		font-size: 23px;
@@ -2054,6 +2225,27 @@ font-family:Futura Bk BT Medium;
 	}	
 	.product-info-main .product-add-form{
 		padding-top: 37px !important;
+	}
+	.cart-container{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.cart-summary{
+		padding: 20px !important;
+	}
+	.cart-container .form-cart{
+		padding: 20px;
+	}
+	.cart.table-wrapper{
+		border-top:0px !important;
+	}
+	.page-title-wrappersec .page-title,.cart-summary .summary.title{
+		font-size: 20px;
+    	font-family: 'Futura Bk BT';
+    	display: block;
+	}
+	.cart-summary .checkout-methods-items,#block-discount .content{
+		padding: 0;
 	}
 }
 @media (max-width: 580px)
