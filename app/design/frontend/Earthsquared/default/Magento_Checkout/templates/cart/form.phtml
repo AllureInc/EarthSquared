@@ -10,6 +10,7 @@
 ?>
 <?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2 : 1); ?>
 <?= $block->getChildHtml('form_before') ?>
+
 <form action="<?= $block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
           method="post"
           id="form-validate"
@@ -33,6 +34,18 @@
             <div class="page-title-wrappersec">
               <h1 class="page-title"><span><?php echo __('My Bag') ?></span><span class="countitems"> (<?php echo $block->getItemsCount() ?> Items)</span></h1>
             </div>
+            <div class="mobileview cart-subtotal-top">
+              Total <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $cart = $objectManager->get('\Magento\Checkout\Model\Cart');                  
+                $subTotal = $cart->getQuote()->getSubtotal();
+                $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+                echo $priceHelper->currency($subTotal, true, false); 
+              ?>
+            </div>
+            <?php 
+            echo $this->getLayout()->createBlock("Magento\Checkout\Block\Onepage\Link")->setTemplate("Magento_Checkout::onepage/linktop.phtml")->toHtml();
+            ?>
             <thead>
                 <tr>
                     <th class="col item" scope="col"><span><?= $block->escapeHtml(__('Item')) ?></span></th>
@@ -79,5 +92,15 @@
     </div>
 </form>
 <?= $block->getChildHtml('checkout.cart.order.actions') ?>
-<?= $block->getChildHtml('shopping.cart.table.after') ?>
 
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+       
+<div class="mobileview continue-shopping">
+<?php if ($block->getContinueShoppingUrl()) :?>
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtmlAttr(__('Continue Shopping')) ?>">
+                <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
+            </a>
+<?php endif; ?>
+</div>

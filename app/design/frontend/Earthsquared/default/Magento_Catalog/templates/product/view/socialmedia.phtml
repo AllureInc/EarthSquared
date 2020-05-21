@@ -1,24 +1,47 @@
 <?php $_product = $block->getProduct(); ?>
-<div class="share-medias desktopview"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span>
-<div class="social-media-icons" style="display:none">
+<div class="share-medias desktopview"><a href="javascript:;" onclick="openForm()" class="openshare"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span></a>
+<div class="social-media-icons" id="socialmedia" style="display:none">
+    <span class="btn cancel" onclick="closeForm()"><img src="<?php echo $this->getUrl('pub/media/icons/').'close.png'; ?>"/></span>
     <!-- WhatsApp -->
     <?php /* <a target="_blank" href="https://api.whatsapp.com/send?text=<?php echo urlencode($_product->getProductUrl());?>">
             WhatsApp</a> */ ?>
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on facebook">
-        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/facebook-share.jpg'); ?>" alt="Facebook" width="12%">
-    </a>
-    <!-- TWITTER -->
-    <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter">
-        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/tw.png'); ?>" alt="Twitter" width="5%">
-    </a>
-    <!-- Pinterest -->
-    <a href="https://pinterest.com/pin/create/button/?url=<?php echo urlencode($_product->getProductUrl()); ?>&media=<?php echo urlencode($_product->getImageUrl());?> &description=<?php echo urlencode($_product->getName()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Pin it">
-        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/pinterest-share.jpg'); ?>" alt="Pinterest" width="12%">
-    </a>
-    <!-- Google Plus -->
-    <a href="https://plus.google.com/share?url=<?php echo urlencode($_product->getProductUrl()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Google Plus">
-        <img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/google-plus-share.jpg'); ?>" alt="Google Plus" width="12%">
-    </a>
+    <div class="icons-s">        
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on facebook">
+            <img src="<?php echo $this->getUrl('pub/media/productpage/').'facebook-d.png'; ?>" alt="Facebook">
+        </a>
+        <!-- TWITTER -->
+        <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter">
+            <img src="<?php echo $this->getUrl('pub/media/productpage/').'twitter-d.png'; ?>" alt="Twitter">
+        </a>
+        <!-- Pinterest -->
+        <a href="https://pinterest.com/pin/create/button/?url=<?php echo urlencode($_product->getProductUrl()); ?>&media=<?php echo urlencode($_product->getImageUrl());?> &description=<?php echo urlencode($_product->getName()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Pin it">
+            <img src="<?php echo $this->getUrl('pub/media/productpage/').'pinterest.png'; ?>" alt="Pinterest">
+        </a>
+        <!-- Google Plus -->
+        <a href="https://plus.google.com/share?url=<?php echo urlencode($_product->getProductUrl()); ?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Google Plus">
+            <img src="<?php echo $this->getUrl('pub/media/productpage/').'google-plus.png'; ?>" alt="Google Plus">
+        </a>
+    </div>
 </div>
 </div>
+<script>
+    
+    function openForm() {
+      document.getElementById("socialmedia").style.display = "block";   
+    }
+    function closeForm() {
+      document.getElementById("socialmedia").style.display = "none";
+    }    
+  
+</script>
+<script>
+    require(['jquery'],function($){
+        $(document).click(function(event) {
+          //if you click on anything except the modal itself or the "open modal" link, close the modal
+          if (!$(event.target).closest("#socialmedia,.openshare").length) {
+                $("body").find("#socialmedia").hide();
+          }
+        });
+    });
+</script>
