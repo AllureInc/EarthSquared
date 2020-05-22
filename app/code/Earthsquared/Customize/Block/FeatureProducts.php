@@ -32,7 +32,7 @@ class FeatureProducts extends \Magento\Framework\View\Element\Template
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
         $collection->addCategoriesFilter(['in' => $id]);
-        $collection->setPageSize(4);
+        $collection->setPageSize(10);
         return $collection;
     }
 

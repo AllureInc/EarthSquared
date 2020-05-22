@@ -383,13 +383,111 @@ a:hover{
 	.checkout-cart-index .cart-summary{
 		width: 32%;
 	}
+	.wishtop{
+		position: relative;
+	}
+	.wishtop .counter.qty
+	{
+	    background: #EDB6BB;
+	    height: 16px;
+	    line-height: 16px;
+	    min-width: 16px;
+	    float: right;
+	    position: absolute;
+	    left: 27px;
+	    top: -6px;
+	    border-radius: 50px;
+	    font-size: 10px;
+	    color: #fff;
+	    text-align: center;		
+	}
+	.topwishlistitems{
+	    position: absolute;
+	    top: 70px;	 
+	    background: linear-gradient(0deg, #EDB6BB, #EDB6BB), linear-gradient(0deg, #5CA16C, #5CA16C), rgba(255, 255, 255, 0.5);
+	    z-index: 9;
+	    padding: 20px;	
+    	right: 150px;
+    	width: 420px;	    	
+	}
+	.stickymenu .topwishlistitems{
+		z-index:1;
+	}
+	.topwishlistitems .product-item{
+		    padding: 20px 0px;width:100%;float:left;
+		    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		    margin-bottom: 10px;
+	}
+	.topwishlistitems .product-item-info{width:100%;float:left;}
+	.topwishlistitems .product-item-photo{width: 25%;   float: left;}
+	.topwishlistitems .product-item-details{
+		width: 45%;
+    	float: left;
+	}
+	.topwishlistitems .price-addto{
+		width: 30%;
+		float: left;
+		text-align: right;
+	}
+	.topwishlistitems .block-title strong{
+		text-transform: uppercase;
+    	color: #4d4d4d;
+		font-size: 14px;
+    	font-family: 'Futura Bk BT Medium';    	
+	}
+	.topwishlistitems.block-wishlist .counter{
+		float: right;
+		color: #4d4d4d;
+		font-family: 'Futura Bk BT Medium';
+	}
+	.topwishlistitems .product-item-link{
+		color:#4D4D4D;
+	}
+	.topwishlistitems .product-item .price-box .price,.topwishlistitems .action.tocart.primary{
+		font-weight: normal;
+		color:#4d4d4d !important;
+		font-family: 'Futura Bk BT Medium';
+	}
+	.topwishlistitems .action.tocart.primary span:before{
+		content:'';
+		background:url('../images/shopping-bag.png') no-repeat;
+		background-size: 100%;
+		display: inline-block;
+		width:14px;
+		height:14px;
+		margin-right: 5px;
+	}	
+	.topwishlistitems .action.tocart.primary{
+		font-size:14px;
+		padding:0;		
+	}
+	.topwishlistitems .actions-toolbar .primary{
+		width: 100%;
+   	 	margin-top: 20px;
+	}
+	.topwishlistitems .actions-toolbar .primary .action.details
+	{
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    color: #fff !important;
+		    transition: 0.3s;
+		    text-decoration: none !important;
+		    width: 100%;
+		    float: left;
+		    padding: 15px;
+    		background: #4D4D4D !important;
+    		text-align: center;		    
+	}
 }
+
 
 .quickorder{
 	color:#616161;
 	font-family: 'Futura Bk BT Medium';
 }
-
+.checkout-cart-index .actions-toolbar .action-towishlist{display: none !important;}
+.quickorder img{width:16px;}
 header .block-search.active{
 	display:block !important;
 	position: absolute;
@@ -1663,6 +1761,32 @@ font-family:Futura Bk BT Medium;
 .product-social-links{
 	position: relative;
 }
+.catalog-product-view .product-options-bottom .box-tocart .field.qty{
+	position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #E0E0E0;
+    width: 120px;
+    padding-bottom: 10px;
+}
+.catalog-product-view .product-options-bottom .box-tocart .field.qty .label{
+	font-weight: normal;
+    color: #757575 !important;
+    padding-left: 20px;
+    margin: 10px 0px 2px 0px;
+}
+.catalog-product-view .product-options-bottom .box-tocart .field.qty #qty{
+	border: 0;
+    border-right: 1px solid #9E9E9E;
+    height: 14px;
+    font-size: 14px;
+    color: #4D4D4D;    
+    padding: 0px 0px 0px 14px;
+}
+.catalog-product-view .product-options-bottom .box-tocart .field.qty #qty:focus{
+	box-shadow: none;
+}
+
 /*--shopping cart ---*/
 .page-title .countitems{
 	font-size: 14px;
@@ -1755,7 +1879,7 @@ font-family:Futura Bk BT Medium;
     color: #4d4d4d;
     margin-bottom: 9px;
 }
-.cart-summary .cart-totals, .opc-block-summary .table-totals{
+.cart-summary .cart-totals{
 	border: 1px solid #ccc;
 	padding:20px;
 }

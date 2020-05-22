@@ -1,4 +1,8 @@
-<?php $_product = $block->getProduct(); ?>
+<?php $_product = $block->getProduct(); 
+$helper = $this->helper('Earthsquared\Customize\Helper\Data');
+$websiteid = $helper->getWebsiteId();
+?>
+<?php if($websiteid != 1): ?>
 <div class="share-medias desktopview"><a href="javascript:;" onclick="openForm()" class="openshare"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span></a>
 <div class="social-media-icons" id="socialmedia" style="display:none">
     <span class="btn cancel" onclick="closeForm()"><img src="<?php echo $this->getUrl('pub/media/icons/').'close.png'; ?>"/></span>
@@ -25,6 +29,7 @@
     </div>
 </div>
 </div>
+<?php endif; ?>
 <script>
     
     function openForm() {

@@ -1,12 +1,11 @@
 <?php
 $_product = $block->getProduct(); 
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$customerSession = $objectManager->create('Magento\Customer\Block\Account\AuthorizationLink');
-if($customerSession->isLoggedIn()){
-	$cSession = $objectManager->create('Magento\Customer\Model\Session');
-	$custid = $cSession->getCustomerId();	
-	$pid = $_product->getId();
-	$wish = $objectManager->create('Magento\Wishlist\Model\Wishlist')->loadByCustomerId($custid);
+$helper = $this->helper('Earthsquared\Customize\Helper\Data');
+$websiteid = $helper->getWebsiteId();
+if($helper->isCustomerLoggedIn()){  
+    $custid = $helper->getCustomerIdLoggedIn(); 
+    $pid = $_product->getId();
+    $wish = $helper->getWishlistItemcollection($custid);
     $items = $wish->getItemCollection();
     if(count($items) > 0){
 	?>
@@ -27,6 +26,7 @@ if ($_product->isSaleable()) { ?>
 		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
 	</div>
 <?php }	} ?>
+<?php if($websiteid != 1): ?>
 <div class="share-medias mobileview"><a href="javascript:;" onclick="openmForm()" class="opensharem"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span></a>
 <div class="social-media-icons" id="socialmediam" style="display:none">
     <span class="btn cancel" onclick="closemForm()"><img src="<?php echo $this->getUrl('pub/media/icons/').'close.png'; ?>"/></span>
@@ -53,6 +53,7 @@ if ($_product->isSaleable()) { ?>
     </div>
 </div>
 </div>
+<?php endif; ?>
 <script>
     
     function openmForm() {

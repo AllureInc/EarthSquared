@@ -4,20 +4,23 @@
 // get current store’s categories
 $categories = $block->getCategoryCollection();
 foreach ($categories as $category) { 	
-	$catimage = $category->getImage();	
+		$catimage = $category->getThumbnail();	
 	?>
-	<?php $image_url = $block->getCategoryResizeImage($catimage,381,301); ?>			
+	
 		<div class="col-md-6 box col-xs-12 col-sm-6">
 			<div class="col-md-12 nopadding col-xs-12 col-sm-12">
 				<div class="col-md-6 details col-xs-12 col-sm-6">					
 					<div class="sub-title-category"><?php echo $category->getName(); ?></div>
 					<p><?php echo $category->getDescription() ?></p>
 					<a href="<?php echo $category->getUrl(); ?>" class="readmore">View Range</a>
-				</div>
-				<div class="col-md-6 position-catimg col-sm-6">
-					<a href="<?php echo $category->getUrl(); ?>"><img src="<?php echo $image_url; ?>" /> </a>
 				</div>				
+				<div class="col-md-6 position-catimg col-sm-6">
+				<?php if($catimage != '') { ?>
+					<?php $image_url = $block->getCategoryResizeImage($catimage,381,301); ?>			
+					<a href="<?php echo $category->getUrl(); ?>"><img src="<?php echo $image_url; ?>" /> </a>						
+				<?php } ?>
+				</div>
 			</div>
-		</div>		   
+		</div> 
 <?php } ?>
 </div>

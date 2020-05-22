@@ -7,10 +7,19 @@ use \Magento\Framework\App\Helper\AbstractHelper;
 class Data extends AbstractHelper
 {
     protected $_storeManager;
+    protected $_registry;
     public function __construct(
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Registry $registry,
+        \Magento\Customer\Block\Account\AuthorizationLink $customerSession,
+        \Magento\Customer\Model\Session $session,
+        \Magento\Wishlist\Model\Wishlist $wishlist
     ) {
         $this->_storeManager = $storeManager;
+        $this->_registry = $registry;
+        $this->customerSession = $customerSession;
+        $this->session = $session;
+        $this->wishlist = $wishlist;
     }
     /**
      * Get store identifier
@@ -71,5 +80,25 @@ class Data extends AbstractHelper
     public function isStoreActive()
     {
         return $this->_storeManager->getStore()->isActive();
+    }
+
+    public function getCurrentProduct()
+    {
+        return $this->_registry->registry('current_product');
+    }
+
+    public function isCustomerLoggedIn()
+    {
+        return $this->customerSession->isLoggedIn();
+    }
+
+    public function getCustomerIdLoggedIn()
+    {
+        return $this->session->getCustomerId();
+    }
+    public function getWishlistItemcollection($cutsid)
+    {
+        $wishlist = $this->wishlist->loadByCustomerId($cutsid);
+        return $wishlist;
     }
 }

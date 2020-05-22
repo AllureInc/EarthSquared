@@ -56,6 +56,19 @@ foreach ($categoryProducts as $product) { ?>
 <script>		
 require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
 $(document).ready(function(){
+	var countproducts = '<?php echo count($categoryProducts); ?>';
+	if(countproducts > 4){
+ 		$('.featurep-collection').addClass('owl-carousel');
+ 		$('.featurep-collection').addClass('owl-theme');
+ 		$('.featurep-collection').owlCarousel({
+			stagePadding: 50,
+			loop:true,
+			margin:10,    		
+    		dots:true,
+    		nav:false,
+		    items:4
+ 		});		
+	}
  	if($(window).width() <= 767){
  		$('.featurep-collection').addClass('owl-carousel');
  		$('.featurep-collection').addClass('owl-theme');

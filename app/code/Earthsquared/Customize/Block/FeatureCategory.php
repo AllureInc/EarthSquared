@@ -64,29 +64,32 @@ class FeatureCategory extends \Magento\Framework\View\Element\Template
     public function getCategoryResizeImage($image, $width, $height)
     {
         $mediacategorypath = 'pub/media/catalog/category/';
+        $imagefile = '';
         if (strpos($image, $mediacategorypath) !== false) {
             $imagefile = str_replace($mediacategorypath, '', $image);
-            $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('catalog/category/') . $imagefile;
-
-            $imageResized = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('resized/' . $width . '/') . $imagefile;
-            //create image factory...
-            $imageResize = $this->_imageFactory->create();
-            $imageResize->open($absolutePath);
-            $imageResize->constrainOnly(true);
-            $imageResize->keepTransparency(true);
-            $imageResize->keepFrame(true);
-            $imageResize->keepAspectRatio(true);
-            $imageResize->backgroundColor([255, 255, 255]);
-            $imageResize->resize($width, $height);
-
-            //destination folder
-            $destination = $imageResized;
-            //save image
-            $imageResize->save($destination);
-
-            $resizedURL = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'resized/' . $width . '/' . $imagefile;
-            return $resizedURL;
+        } else {
+            $imagefile = $image;
         }
+        $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('catalog/category/') . $imagefile;
 
+        $imageResized = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('resized/' . $width . '/') . $imagefile;
+        //create image factory...
+        $imageResize = $this->_imageFactory->create();
+        $imageResize->open($absolutePath);
+        $imageResize->constrainOnly(true);
+        $imageResize->keepTransparency(true);
+        $imageResize->keepFrame(true);
+        $imageResize->keepAspectRatio(true);
+        $imageResize->backgroundColor([255, 255, 255]);
+        $imageResize->resize($width, $height);
+
+        //destination folder
+        $destination = $imageResized;
+        //save image
+        $imageResize->save($destination);
+
+        $resizedURL = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'resized/' . $width . '/' . $imagefile;
+        return $resizedURL;
     }
+
 }
