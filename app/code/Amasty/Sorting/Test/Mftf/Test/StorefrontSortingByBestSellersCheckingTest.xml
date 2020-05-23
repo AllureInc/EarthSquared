@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Sorting
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+
+    <test name="StorefrontSortingByBestSellersCheckingTest" extends="StorefrontSortingByPositionCheckingTest">
+
+        <annotations>
+            <features value="Amasty Improved Sorting"/>
+            <stories value="Sort by correct work checking"/>
+            <title value="Sort by Best Sellers checking"/>
+            <description
+                    value="Check that Sort by Best Sellers works correctly on Category Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="IMPSORT-4"/>
+            <group value="Amasty"/>
+            <group value="ImpSort"/>
+            <group value="ImpSortSmoke"/>
+            <group value="sortbybestsell"/>
+        </annotations>
+
+        <before>
+            <remove keyForRemoval="createSimpleProductA4"/>
+            <remove keyForRemoval="createSimpleProductA5"/>
+            <remove keyForRemoval="createSimpleProductA6"/>
+            <remove keyForRemoval="createSimpleProductA7"/>
+            <remove keyForRemoval="createSimpleProductA8"/>
+            <remove keyForRemoval="createSimpleProductA9"/>
+            <remove keyForRemoval="createSimpleProductB1"/>
+            <createData entity="TestCustomerA1" stepKey="createTestCustomerA1"/>
+            <actionGroup ref="LoginToStorefrontActionGroup" stepKey="logInFromCustomer">
+                <argument name="Customer" value="$$createTestCustomerA1$$"/>
+            </actionGroup>
+            <actionGroup ref="AddSimpleProductToCart" stepKey="gotoAndAddProductToCart1">
+                <argument name="product" value="$$createSimpleProductA2$$"/>
+            </actionGroup>
+            <actionGroup ref="GoToCheckoutFromMinicartActionGroup" stepKey="goToCheckout1"/>
+            <actionGroup ref="CheckoutSelectFlatRateShippingMethodActionGroup" stepKey="selectFlatRateShippingMethod1"/>
+            <waitForElementVisible selector="{{CheckoutShippingSection.next}}" time="30" stepKey="waitForNextButton1"/>
+            <click selector="{{CheckoutShippingSection.next}}" stepKey="clickNext1"/>
+            <waitForLoadingMaskToDisappear stepKey="waitForLoadingMaskAfterClickNext1"/>
+            <actionGroup ref="CheckoutSelectCheckMoneyOrderPaymentActionGroup" stepKey="selectPaymentMethod1"/>
+            <actionGroup ref="CheckoutPlaceOrderActionGroup" stepKey="customerPlaceOrder1">
+                <argument name="orderNumberMessage" value="CONST.successCheckoutOrderNumberMessage"/>
+                <argument name="emailYouMessage" value="CONST.successCheckoutEmailYouMessage"/>
+            </actionGroup>
+            <actionGroup ref="AddSimpleProductToCart" stepKey="gotoAndAddProductToCart2">
+                <argument name="product" value="$$createSimpleProductA2$$"/>
+            </actionGroup>
+            <actionGroup ref="GoToCheckoutFromMinicartActionGroup" stepKey="goToCheckout2"/>
+            <actionGroup ref="CheckoutSelectFlatRateShippingMethodActionGroup" stepKey="selectFlatRateShippingMethod2"/>
+            <waitForElementVisible selector="{{CheckoutShippingSection.next}}" time="30" stepKey="waitForNextButton2"/>
+            <click selector="{{CheckoutShippingSection.next}}" stepKey="clickNext2"/>
+            <waitForLoadingMaskToDisappear stepKey="waitForLoadingMaskAfterClickNext2"/>
+            <actionGroup ref="CheckoutSelectCheckMoneyOrderPaymentActionGroup" stepKey="selectPaymentMethod2"/>
+            <actionGroup ref="CheckoutPlaceOrderActionGroup" stepKey="customerPlaceOrder2">
+                <argument name="orderNumberMessage" value="CONST.successCheckoutOrderNumberMessage"/>
+                <argument name="emailYouMessage" value="CONST.successCheckoutEmailYouMessage"/>
+            </actionGroup>
+            <actionGroup ref="AddSimpleProductToCart" stepKey="gotoAndAddProductToCart3">
+                <argument name="product" value="$$createSimpleProductA1$$"/>
+            </actionGroup>
+            <actionGroup ref="GoToCheckoutFromMinicartActionGroup" stepKey="goToCheckout3"/>
+            <actionGroup ref="CheckoutSelectFlatRateShippingMethodActionGroup" stepKey="selectFlatRateShippingMethod3"/>
+            <waitForElementVisible selector="{{CheckoutShippingSection.next}}" time="30" stepKey="waitForNextButton3"/>
+            <click selector="{{CheckoutShippingSection.next}}" stepKey="clickNext3"/>
+            <waitForLoadingMaskToDisappear stepKey="waitForLoadingMaskAfterClickNext3"/>
+            <actionGroup ref="CheckoutSelectCheckMoneyOrderPaymentActionGroup" stepKey="selectPaymentMethod3"/>
+            <actionGroup ref="CheckoutPlaceOrderActionGroup" stepKey="customerPlaceOrder3">
+                <argument name="orderNumberMessage" value="CONST.successCheckoutOrderNumberMessage"/>
+                <argument name="emailYouMessage" value="CONST.successCheckoutEmailYouMessage"/>
+            </actionGroup>
+            <magentoCLI command="indexer:reindex" stepKey="reindex10"/>
+        </before>
+
+        <after>
+            <deleteData stepKey="deleteTestCustomerA1" createDataKey="createTestCustomerA1"/>
+            <remove keyForRemoval="deleteSimpleProductA4"/>
+            <remove keyForRemoval="deleteSimpleProductA5"/>
+            <remove keyForRemoval="deleteSimpleProductA6"/>
+            <remove keyForRemoval="deleteSimpleProductA7"/>
+            <remove keyForRemoval="deleteSimpleProductA8"/>
+            <remove keyForRemoval="deleteSimpleProductA9"/>
+            <remove keyForRemoval="deleteSimpleProductB1"/>
+        </after>
+
+        <!-- Navigate to Category Page and sort page by Best Sellers. Check the result/-->
+
+        <selectOption userInput="Best Sellers"
+                      selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                      stepKey="selectSortByOption1"/>
+        <seeElement
+                selector="{{StorefrontPageElementsSection.ProductsSequence('Product A2','Product A1','Product A3')}}"
+                stepKey="seeProductsSequence1"/>
+        <click selector="{{StorefrontCategoryTopToolbarSection.sortDirectionDesc}}"
+               stepKey="setAscDescConfiguration1"/>
+        <seeElement
+                selector="{{StorefrontPageElementsSection.ProductsSequence('Product A3','Product A1','Product A2')}}"
+                stepKey="seeProductsSequence2"/>
+
+    </test>
+</tests>
+

@@ -7,5 +7,10 @@
 <small class="copyright footerc">
 	<div class="max-width-section">
     	<span><?= $block->escapeHtml($block->getCopyright()) ?></span>
+    	<?php echo $this->getLayout()
+          ->createBlock('Magento\Cms\Block\Block')
+          ->setBlockId('footer_checkout')
+          ->toHtml(); ?>
 	</div>
+
 </small>
