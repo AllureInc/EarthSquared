@@ -411,7 +411,7 @@ a:hover{
     	width: 420px;	    	
 	}
 	.stickymenu .topwishlistitems{
-		z-index:1;
+		z-index:1;    display: none;
 	}
 	.topwishlistitems .product-item{
 		    padding: 20px 0px;width:100%;float:left;
@@ -817,10 +817,14 @@ body.cms-index-index .page-main{
 	margin-top: 50px;
 	text-align:center;
 }
-
+.featurep-collection.owl-carousel .item{
+	width:100%;
+}
 .cms-index-index #banner-slider-carousel
-{
-	margin-top: 0;
+{	
+	max-width: 1280px;
+    margin: 38px auto 0px;
+    padding: 0 20px;
 }
 .featureblock{
 	margin: 60px 0px 50px 0px;
@@ -1155,7 +1159,7 @@ font-family:Futura Bk BT Medium;
     height: 36px;	
     font-family: 'Futura Bk BT Medium';
     font-size:13px;
-    padding: 0;
+    padding: 0 10px;
 }
 .toolbar .action.sorter-action{
 	display:none;	 
@@ -2581,6 +2585,10 @@ font-family:Futura Bk BT Medium;
 		width: 100%;    		
     	text-align: center;
     	margin:20px 0px 0px 0px;
+	}
+	.cms-index-index #banner-slider-carousel
+	{
+		padding:0;
 	}
 }
 @media (max-width: 580px)

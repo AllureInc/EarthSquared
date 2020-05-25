@@ -5,6 +5,7 @@ use Magento\Framework\App\Action\Action;
 
 $id = [253];
 $categoryProducts = $block->getProductCollectionByCategory($id);
+//echo count($categoryProducts);
 ?>
 <div class="featurep-collection">
 <?php 
@@ -60,8 +61,7 @@ $(document).ready(function(){
 	if(countproducts > 4){
  		$('.featurep-collection').addClass('owl-carousel');
  		$('.featurep-collection').addClass('owl-theme');
- 		$('.featurep-collection').owlCarousel({
-			stagePadding: 50,
+ 		$('.featurep-collection').owlCarousel({			
 			loop:true,
 			margin:10,    		
     		dots:true,

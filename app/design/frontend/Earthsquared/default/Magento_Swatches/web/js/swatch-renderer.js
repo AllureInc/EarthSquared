@@ -764,7 +764,9 @@ define([
                 attributeId = $parent.attr('attribute-id'),
                 $input = $parent.find('.' + $widget.options.classes.attributeInput),
                 checkAdditionalData = JSON.parse(this.options.jsonSwatchConfig[attributeId]['additional_data']);
-
+            console.log($parent); 
+            console.log(attributeId);
+            console.log(checkAdditionalData);        
             if ($widget.inProductList) {
                 $input = $widget.productForm.find(
                     '.' + $widget.options.classes.attributeInput + '[name="super_attribute[' + attributeId + ']"]'

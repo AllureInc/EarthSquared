@@ -6,34 +6,35 @@
 
 /** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */
 ?>
+
 <?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $helper = $this->helper('Earthsquared\Customize\Helper\Data');
-$websiteid = $helper->getWebsiteId();
 $_product = $helper->getCurrentProduct(); 
+$websiteid = $helper->getWebsiteId();
 if($helper->isCustomerLoggedIn()){	
-	$custid = $helper->getCustomerIdLoggedIn();	
-	$pid = $_product->getId();
-	$wish = $helper->getWishlistItemcollection($custid);
-    $items = $wish->getItemCollection();
-    if(count($items) > 0){
-	?>		
-			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$pid ?>" class="action towishlist" data-action="add-to-wishlist">
-				<span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span>
-			</a>		
-	<?php
-	} else {
-		if ($_product->isSaleable()) { ?>				
-				<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
-					<?php if($websiteid == 1) { ?>
-						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
-					<?php } else { ?>
-						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
-					<?php } ?>
-				</a>			
-		<?php }		
-	} 
-} else {
-if ($_product->isSaleable()) { ?>		
+	$productId  = false;
+	$product = $_product->getSku();
+	$productId= $_product->getId();
+
+	$collection = $objectManager->create('Magento\Wishlist\Model\ResourceModel\Item\Collection');	
+	$collection->addCustomerIdFilter($objectManager->create('Magento\Customer\Model\Session')->getCustomerId());
+	$collection->addFieldToFilter('product_id',$productId);	
+	if(count($collection->getData()) > 0)
+		{ ?>
+		<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$pid ?>" class="action towishlist" data-action="add-to-wishlist">
+			<span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span>
+		</a>
+	<?php } else { ?>
+		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
+			<?php if($websiteid == 1) { ?>
+				<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
+			<?php } else { ?>
+				<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+			<?php } ?>
+		</a>
+	<?php }
+} else { ?>
 		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
 					<?php if($websiteid == 1) { ?>
 						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
@@ -41,5 +42,4 @@ if ($_product->isSaleable()) { ?>
 						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
 					<?php } ?>
 		</a>
-	
-<?php }	} ?>
+<?php }   
