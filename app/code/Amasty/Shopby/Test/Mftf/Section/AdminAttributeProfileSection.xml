@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -54,6 +54,11 @@
         <element name="OptionAttributeSettingsDeleteButtonLast" type="button"
                  selector="(//*[@id='{{var1}}_button_{{vat2}}']/span)[last()]"
                  parameterized="true"/>
+        <element name="PreconfOptionAttributeSettingsDeleteButtonLast" type="button"
+                 selector="(//input[@value='{{var1}}'])[last()]/following::button[2]"
+                 parameterized="true"/>
+
+        <element name="UrlAlias" type="input" selector="//*[@id='url_alias']"/>
         <element name="UseDefaultMetaTitle" type="checkbox" selector="#meta_title_default"/>
         <element name="MetaTitle" type="text" selector="#meta_title"/>
         <element name="MetaDescription" type="text" selector="#meta_description"/>
@@ -65,6 +70,7 @@
         <element name="Image" type="block" selector="#image"/>
         <element name="DeleteImage" type="checkbox" selector="#image_delete"/>
         <element name="TopCMSBlock" type="select" selector="#top_cms_block_id"/>
+        <element name="BottomCMSBlock" type="select" selector="#bottom_cms_block_id"/>
 
         <element name="ShowInBrandSliderSwitcher" type="select" selector="//*[@title='Show in Brand Slider']"/>
         <element name="PositionInSlider" type="text" selector="//*[@class='admin__field-control control']/*[@id='slider_position']"/>

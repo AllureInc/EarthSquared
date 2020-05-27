@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 
@@ -20,10 +20,6 @@ use Magento\Framework\Registry;
 use Magento\Backend\Block\Widget\Form\Element\Dependence;
 use Amasty\ShopbyBase\Helper\Data as BaseHelper;
 
-/**
- * Class AttributeFormTabBuildAfter
- * @package Amasty\ShopbySeo\Observer\Admin
- */
 class AttributeFormTabBuildAfter implements ObserverInterface
 {
     /**
@@ -80,16 +76,14 @@ class AttributeFormTabBuildAfter implements ObserverInterface
         /** @var Form $form */
         $form = $observer->getData('form');
 
-        if ($this->attribute->getFrontendInput() == 'price') {
-            return;
-        }
-
         $fieldset = $form->addFieldset(
             'shopby_fieldset_seo',
             ['legend' => __('SEO')]
         );
 
-        if ($this->attribute->getAttributeCode() != Category::ATTRIBUTE_CODE) {
+        if ($this->attribute->getAttributeCode() != Category::ATTRIBUTE_CODE
+            && $this->attribute->getFrontendInput() != 'price'
+        ) {
             $note = '';
             if ($this->baseHelper->getBrandAttributeCode() == $this->attribute->getAttributeCode()) {
                 $note = __('SEO URL is always generated for the brand.');
@@ -142,11 +136,6 @@ class AttributeFormTabBuildAfter implements ObserverInterface
         );
 
         $dependence = $observer->getData('dependence');
-        $dependence->addFieldsets(
-            $fieldset->getHtmlId(),
-            \Amasty\Shopby\Block\Adminhtml\Product\Attribute\Edit\Tab\Shopby::FIELD_FRONTEND_INPUT,
-            ['value' => 'price', 'negative' => false]
-        );
 
         if ($this->attribute->getAttributeCode() == Category::ATTRIBUTE_CODE) {
             $dependence->addFieldsets(

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -11,7 +11,6 @@
 
 $filterUniqId = $block->escapeId(uniqid());
 $filterCode = $block->escapeHtml($filterSetting->getFilterCode());
-$isRellNoFollow = $filterSetting->isAddNofollow();
 ?>
 
 <?php if ($filterSetting->isShowSearchBox(count($filterItems))): ?>
@@ -32,7 +31,8 @@ $isRellNoFollow = $filterSetting->isAddNofollow();
             <?php $optionLabel = $filterItem->getOptionLabel(); ?>
             <?php $inputType = !$filterSetting->isMultiselect() ||
             in_array($filterCode, ['rating', 'stock']) ? 'radio' : 'checkbox'?>
-        <li class="item" data-label="<?= $block->escapeHtml($optionLabel)?>">
+        <li class="item"
+            data-label="<?= /* @noEscape */ trim(preg_replace('/\s+/', ' ', $block->stripTags($optionLabel))) . ($filterCode == 'rating' ? __(' star(s)') : ''); ?>">
             <?php if ($filterItem->getCount() >= 0): ?>
 
                 <?php $style = ($inputType == 'radio' && !$block->getRadioAllowed())
@@ -49,13 +49,13 @@ $isRellNoFollow = $filterSetting->isAddNofollow();
                     class="am-filter-item-<?= /* @noEscape */ $block->escapeId(uniqid())?>"
                     data-am-js="filter-item-default"
                     href="<?= $block->escapeUrl($filterItem->getUrl()) ?>"
-                    <?=  /* @noEscape */ $isRellNoFollow ? ' rel="nofollow"' : '' ?>
+                    <?= /* @noEscape */ $filterSetting->isAddNofollow() ? ' rel="nofollow"' : '' ?>
                 >
 
                     <span class="label"><?= /* @noEscape */ $optionLabel;?></span>
                     <?php if ($filterSetting->isShowProductQuantities()): ?>
                         <?php //Delete spaces around counter ?>
-                        <span class="count"><?= /* @noEscape */ $filterItem->getCount()?><span class="filter-count-label">
+                        <span class="count"><?= /* @noEscape */ $filterItem->getCount(); ?><span class="filter-count-label">
                                 <?php $title = ($filterItem->getCount() == 1) ? __('item') : __('items');?><?= /* @noEscape */ $block->escapeHtml($title) ?></span></span>
                     <?php endif; ?>
                 </a>
@@ -63,7 +63,7 @@ $isRellNoFollow = $filterSetting->isAddNofollow();
                 <span class="label"><?= /* @noEscape */ $optionLabel;?></span>
                 <?php if ($filterSetting->isShowProductQuantities()): ?>
                     <?php //Delete spaces around counter ?>
-                    <span class="count"><?= /* @noEscape */ $filterItem->getCount()?><span class="filter-count-label">
+                    <span class="count"><?= /* @noEscape */ $filterItem->getCount(); ?><span class="filter-count-label">
                             <?php $title = ($filterItem->getCount() == 1) ? __('item') : __('items');?><?= $block->escapeHtml($title) ?></span></span>
                 <?php endif; ?>
             <?php endif; ?>
@@ -72,6 +72,6 @@ $isRellNoFollow = $filterSetting->isAddNofollow();
     </ol>
 </form>
 
-<?php if ($filterSetting->getAddFromToWidget() && isset($fromToConfig) && is_array($fromToConfig)):?>
+<?php if ($filterSetting->getAddFromToWidget() && isset($fromToConfig) && is_array($fromToConfig)): ?>
     <?= /* @noEscape */ $block->getFromToWidget('default') ?>
 <?php endif;?>

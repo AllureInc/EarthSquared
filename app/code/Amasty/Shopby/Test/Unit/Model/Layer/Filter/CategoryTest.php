@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -51,6 +51,8 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
                 'isMultiselect',
                 'getData',
                 'buildQueryRequest',
+                'getCategoriesTreeDept',
+                'getLayer',
                 'search'
             ])
             ->getMock();
@@ -68,17 +70,25 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
     public function testGetAlteredQueryResponse($value, $expectedResult = null)
     {
         $this->model->expects($this->any())->method('getRenderCategoriesLevel')->willReturn(3);
+        $this->model->expects($this->any())->method('getCategoriesTreeDept')->willReturn(1);
         $this->model->expects($this->any())->method('isRenderAllTree')->willReturn($value);
         $this->model->expects($this->any())->method('isMultiselect')->will($this->returnValue($value));
         $this->model->expects($this->any())->method('buildQueryRequest')->will($this->returnValue($this->request));
 
-        $category = $this->getObjectManager()->getObject(\Magento\Catalog\Model\Category::class);
-        $category->setData('id', 1);
+        $currentCategory = $this->getObjectManager()->getObject(\Magento\Catalog\Model\Category::class);
+        $currentCategory->setData('id', 2);
+
+
+        $layer = $this->createMock(\Magento\Catalog\Model\Layer::class);
+        $layer->expects($this->any())->method('getCurrentCategory')->will($this->returnValue($currentCategory));
+        $this->model->expects($this->any())->method('getLayer')->will($this->returnValue($layer));
 
         $searchEngine = $this->createMock(\Magento\Search\Model\SearchEngine::class);
         $searchEngine->expects($this->any())->method('search')->will($this->returnValue($expectedResult));
 
-        $this->model->expects($this->any())->method('getData')->with('root_category')->will($this->returnValue($category));
+        $rootCategory = $this->getObjectManager()->getObject(\Magento\Catalog\Model\Category::class);
+        $rootCategory->setData('id', 1);
+        $this->model->expects($this->any())->method('getData')->with('root_category')->will($this->returnValue($rootCategory));
         $this->setProperty($this->model, 'searchEngine', $searchEngine, Category::class);
 
         $resultOrigMethod = $this->invokeMethod($this->model, 'GetAlteredQueryResponse');

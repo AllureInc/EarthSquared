@@ -5,8 +5,7 @@ define([
     'uiLayout',
     'mage/translate',
     'ko',
-    'Magento_Ui/js/form/element/ui-select',
-    'jquery/ui'
+    'Magento_Ui/js/form/element/ui-select'
 ], function ($, _, utils, layout, $t, ko, Select) {
     'use strict';
 

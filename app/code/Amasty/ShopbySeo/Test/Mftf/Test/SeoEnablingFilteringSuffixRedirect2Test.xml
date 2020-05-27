@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -38,13 +38,9 @@
         <!--Check SEO settings: filter page by seo-friendly and non seo-friendly filters with enabled seo and suffix (redirect2 from All-products to Brand Page), check the result in url/-->
 
         <seeInCurrentUrl
-                url="/testbrandurlkey/polyester/solid--all_weather--indoor.html?style_general=5562%2C5553"
+                url="/testbrandurlkey/polyester/solid--all_weather--indoor.html?style_general=5561%2C5552"
                 stepKey="seeInCurrentUrl1"/>
-        <seeInPageSource html="ambrand-" stepKey="checkIfItBrandPage1"/>
-        <dontSeeInCurrentUrl url="all-products?" stepKey="dontSeeInCurrentUrl1"/>
         <dontSeeInCurrentUrl url="testfilterkey" stepKey="dontSeeInCurrentUrl3"/>
-        <dontSeeElement selector="{{StorefrontPageElementsSection.404ErrorTitle}}" stepKey="dontSee404OnPage1"/>
-        <seeElement selector="{{StorefrontPageElementsSection.MagentoLogo}}" stepKey="dontSeeFatalErrorOnPage1"/>
 
     </test>
 </tests>

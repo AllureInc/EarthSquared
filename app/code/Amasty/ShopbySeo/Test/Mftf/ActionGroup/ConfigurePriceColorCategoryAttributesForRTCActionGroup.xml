@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -10,12 +10,12 @@
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
 
-    <actionGroup name="ConfigurePriceColorCategoryAttributesForRTCActionGroup">
+    <actionGroup name="ConfigureAttributesForRTCActionGroup">
         <arguments>
             <argument name="RTC"/>
             <argument name="RTC2"/>
         </arguments>
-        <amOnPage url="{{AttributeProfilePage.url(RTC.ColorID)}}" stepKey="navigateToColorAttributePage1"/>
+        <amOnPage url="{{AttributeProfilePage.url(RTC.ID)}}" stepKey="navigateToColorAttributePage1"/>
         <click selector="{{AttributeProfileSection.ILNTab}}" stepKey="clickOnILNTab1"/>
         <selectOption selector="{{AttributeProfileSection.DisplayModeSwitcher}}"
                       userInput="{{RTC2.DisplayModeSwitcher}}" stepKey="setLabelsMode1"/>
@@ -36,6 +36,14 @@
         <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
         <waitForPageLoad stepKey="waitForPageLoad1"/>
         <magentoCLI command="cache:clean" stepKey="flushCache1"/>
+    </actionGroup>
+
+    <actionGroup name="ConfigurePriceForRTCActionGroup">
+        <arguments>
+            <argument name="RTC"/>
+            <argument name="RTC2"/>
+        </arguments>
+        <remove keyForRemoval="allowMultiSelect1"/>
     </actionGroup>
 
 </actionGroups>

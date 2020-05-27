@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -24,15 +24,20 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfiltercompatibility"/>
         </annotations>
 
         <!--Filter Search Result Page by Category Filter: select option on sidebar, check the result/-->
 
         <amOnPage url="{{SearchResultPage.url('black')}}"
                   stepKey="navigateToAllProducts1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="waitForPageLoad1"/>
         <grabTextFrom selector="{{StorefrontProductSection.FilterOptionCount('Tops')}}"
                       stepKey="grabQtyOfBagsProducts1"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('Tops')}}"
+        <click selector="{{StorefrontProductSection.FilterOptionCount('Tops')}}"
                stepKey="clickOnBagsOption1"/>
         <seeInSource html="catalogsearch-result"
                      stepKey="checkPageTitle1"/>

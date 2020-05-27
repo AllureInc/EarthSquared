@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 -->
@@ -10,7 +10,7 @@
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
 
-    <actionGroup name="AdminCreateCategoryPriceRuleActionGroup">
+    <actionGroup name="AdminCreateCatalogPriceRuleActionGroup">
         <arguments>
             <argument name="catalogRule1"/>
             <argument name="catalogRule2"/>
@@ -22,9 +22,10 @@
         <fillField selector="{{AdminNewCatalogPriceRule.ruleName}}"
                    userInput="{{catalogRule1.name}}"
                    stepKey="fillName"/>
-        <selectOption selector="{{AdminNewCatalogPriceRule.status}}"
-                      userInput="{{catalogRule1.is_active}}"
-                      stepKey="setActive"/>
+        <conditionalClick stepKey="defineStatus1"
+                          selector="{{AdminILNSettingsSection.CatalogPriceRuleEnablingSwitcher}}"
+                          dependentSelector="{{AdminILNSettingsSection.DependentToggle('0')}}"
+                          visible="true"/>
         <selectOption stepKey="selectSite"
                       selector="{{AdminNewCatalogPriceRule.websites}}"
                       userInput="{{catalogRule1.website_ids}}"/>
@@ -68,7 +69,6 @@
         </arguments>
         <amOnPage url="{{CatalogRulePage.url}}"
                   stepKey="navigateToCatPriceRuleGridPage1"/>
-<!--        <click stepKey="resetFilters" selector="{{AdminSecondaryGridSection.resetFilters}}"/>-->
         <fillField stepKey="fillIdentifier"
                    selector="{{searchInput}}"
                    userInput="{{ruleInformation.name}}"/>

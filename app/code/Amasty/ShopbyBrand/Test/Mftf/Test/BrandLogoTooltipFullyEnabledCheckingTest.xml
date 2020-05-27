@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -31,7 +31,7 @@
             <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
             <actionGroup ref="BrandAttributeConfigurationActionGroup"
                          stepKey="configureBrandAttribute1">
-                <argument name="brandAttribute" value="materialAsBrandAttribute"/>
+                <argument name="brandAttribute" value="materialAsBrandAttributeWithUrlKey"/>
             </actionGroup>
             <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
                          stepKey="configureAllBrandsPageLinks1">
@@ -61,9 +61,19 @@
                          ref="ConfigureAttributeOptionPageContent">
                 <argument name="Attributes" value="PolyesterTitleAndDescription"/>
             </actionGroup>
+            <actionGroup stepKey="SeoEnabling1"
+                         ref="SeoSettingsConfigurationActionGroup">
+                <argument name="seoScenario2" value="enableFullSeo"/>
+                <argument name="seoScenario" value="enableSeoDisableSuffix"/>
+            </actionGroup>
         </before>
 
         <after>
+            <actionGroup stepKey="SeoEnabling1"
+                         ref="SeoSettingsConfigurationActionGroup">
+                <argument name="seoScenario2" value="enableSeoDefault"/>
+                <argument name="seoScenario" value="enableSeoDisableSuffix"/>
+            </actionGroup>
             <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
                          stepKey="disableAllBrandsPageLinks1">
                 <argument name="brandsLink1" value="noDisplayBrandsLink"/>
@@ -101,11 +111,11 @@
 
         <!--Check that Brand Logo/Tooltip is displayed correctly on Product Listing/Product Detail Page/All Brands Page, Brand Logo's link work correctly-->
 
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage1"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage1"/>
         <seeNumberOfElements parameterArray="[1,100]"
-                             selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','/66x66/3.jpg','/66x66/3_')}}"
+                             selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','/66x66/1.jpg','/66x66/1_')}}"
                              stepKey="seeBrandLogoAndSize1"/>
-        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','/66x66/3.jpg','/66x66/3_')}}"
+        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','/66x66/1.jpg','/66x66/1_')}}"
                        stepKey="hoverOverBrandLogo1"/>
         <wait time="3" stepKey="waitSeconds1"/>
         <seeElementInDOM selector='{{StorefrontFilterElementsSection.TooltipInDOM}}'
@@ -113,7 +123,7 @@
         <seeElement
                 selector="{{StorefrontBrandElementsSection.BrandLogoTooltipContent('Test &lt;h3&gt;Polyester Test Page Title&lt;&#x0002F;h3&gt; Tooltip Content')}}"
                 stepKey="seeTooltipText1"/>
-        <click selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','/66x66/3.jpg','/66x66/3_')}}"
+        <click selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','/66x66/1.jpg','/66x66/1_')}}"
                stepKey="clickOnBrandLogo1"/>
         <dontSeeElement selector="{{StorefrontPageElementsSection.404ErrorTitle}}"
                         stepKey="dontSee404OnPage1"/>
@@ -121,12 +131,12 @@
                  stepKey="dontSeeGenerationContentError1"/>
         <seeElement selector="{{StorefrontPageElementsSection.MagentoLogo}}" stepKey="dontSeeFatalErrorOnPage1"/>
         <seeInPageSource html="ambrand-" stepKey="checkIfItBrandPage1"/>
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage2"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage2"/>
         <click selector="{{StorefrontCategoryMainSection.specifiedProductItemInfo('Short')}}"
                stepKey="openProductPage"/>
-        <waitForElement selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','3.jpg','3_')}}"
+        <waitForElement selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','1.jpg','1_')}}"
                         stepKey="waitForBrandLogo2"/>
-        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','3.jpg','3_')}}"
+        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','1.jpg','1_')}}"
                        stepKey="hoverOverBrandLogo2"/>
         <wait time="3" stepKey="waitSeconds2"/>
         <seeElementInDOM selector='{{StorefrontFilterElementsSection.TooltipInDOM}}'
@@ -135,7 +145,7 @@
                 selector="{{StorefrontBrandElementsSection.BrandLogoTooltipContent('Test &lt;h3&gt;Polyester Test Page Title&lt;&#x0002F;h3&gt; Tooltip Content')}}"
                 stepKey="seeTooltipText2"/>
         <reloadPage stepKey="reloadPage1"/>
-        <click selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','3.jpg','3_')}}"
+        <click selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','1.jpg','1_')}}"
                stepKey="clickOnBrandLogo2"/>
         <dontSeeElement selector="{{StorefrontPageElementsSection.404ErrorTitle}}"
                         stepKey="dontSee404OnPage2"/>
@@ -152,7 +162,7 @@
         <seeElement selector="{{StorefrontPageElementsSection.MagentoLogo}}"
                     stepKey="dontSeeFatalErrorOnPage3"/>
         <seeInSource html="&lt;title&gt;All Brands Page&lt;&#x0002F;title&gt;" stepKey="seeInSource1"/>
-        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandItemOnAllBrandsPage('Polyester','3.jpg','3_')}}"
+        <moveMouseOver selector="{{StorefrontBrandElementsSection.BrandItemOnAllBrandsPage('Polyester','polyester.html','1.jpg','1_')}}"
                        stepKey="hoverOverBrandItem1"/>
         <wait time="3" stepKey="waitSeconds4"/>
         <seeElementInDOM selector='{{StorefrontFilterElementsSection.TooltipInDOM}}'

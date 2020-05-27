@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -9,7 +9,7 @@
 /** @var \Amasty\Shopby\Block\Navigation\Widget\Tooltip $block */
 $content = $block->getContent();
 ?>
-<?php if ($content) : ?>
+<?php if ($content): ?>
     <script type="text/x-magento-init">
         {
             ".am-filter-items-<?= $block->escapeHtml($block->getFilterSetting()->getFilterCode()) ?>": {

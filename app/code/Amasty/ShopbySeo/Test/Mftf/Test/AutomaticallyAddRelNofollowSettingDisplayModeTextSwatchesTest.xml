@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -29,7 +29,7 @@
         </annotations>
 
         <before>
-            <actionGroup ref="ConfigurePriceColorCategoryAttributesForRTCActionGroup"
+            <actionGroup ref="ConfigureAttributesForRTCActionGroup"
                          stepKey="configureAttributesForRTC1">
                 <argument name="RTC" value="IndexFollowRelNoFollowDefault"/>
                 <argument name="RTC2" value="TextSwatchesMode"/>
@@ -38,7 +38,7 @@
 
         <!--Check RTC settings: navigate to All-Products Page, check Nofollow in Attribute's Option in Page Source/-->
 
-        <seeElement selector="{{StorefrontFilterElementsSection.FilterOptionWithNofollow2('Black')}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.FilterOptionWithNofollow('Black')}}"
                     stepKey="seeNofollowInOption1"/>
 
     </test>

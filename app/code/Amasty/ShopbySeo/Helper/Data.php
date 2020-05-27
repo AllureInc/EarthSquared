@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 
@@ -22,10 +22,6 @@ use Amasty\Shopby\Helper\Group;
 use Amasty\ShopbyBase\Model\ResourceModel\OptionSetting\CollectionFactory as OptionSettingCollectionFactory;
 use Magento\UrlRewrite\Service\V1\Data\UrlRewrite;
 
-/**
- * Class Data
- * @package Amasty\ShopbySeo\Helper
- */
 class Data extends AbstractHelper
 {
     const CANONICAL_ROOT = 'amasty_shopby_seo/canonical/root';
@@ -409,6 +405,7 @@ class Data extends AbstractHelper
 
         $identifier = ltrim($request->getOriginalPathInfo(), '/');
         if (!empty($identifier)) {
+            $this->skipXsearchIdentifier();
             foreach ($this->skipRequestIdentifiers as $skipRequestIdentifier) {
                 if (strpos($identifier, $skipRequestIdentifier) === 0) {
                     return false;
@@ -427,6 +424,15 @@ class Data extends AbstractHelper
         }
 
         return false;
+    }
+
+    private function skipXsearchIdentifier()
+    {
+        if ($this->configHelper->isModuleOutputEnabled('Amasty_Xsearch')
+            && $this->configHelper->getConfig('amasty_xsearch/general/enable_seo_url')
+        ) {
+            $this->skipRequestIdentifiers[] = $this->configHelper->getConfig('amasty_xsearch/general/seo_key');
+        }
     }
 
     /**

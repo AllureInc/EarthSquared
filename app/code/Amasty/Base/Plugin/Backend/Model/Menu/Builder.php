@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
@@ -68,6 +68,11 @@ class Builder
      */
     private $scopeConfig;
 
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         \Magento\Backend\Model\Menu\Config $menuConfig,
         \Magento\Backend\Model\Menu\Filter\IteratorFactory $iteratorFactory,
@@ -77,7 +82,8 @@ class Builder
         \Magento\Config\Model\Config\Structure $configStructure,
         \Magento\Framework\App\ProductMetadataInterface $metadata,
         ObjectFactory $objectFactory,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->menuConfig = $menuConfig;
         $this->iteratorFactory = $iteratorFactory;
@@ -88,6 +94,7 @@ class Builder
         $this->objectFactory = $objectFactory;
         $this->metadata = $metadata;
         $this->scopeConfig = $scopeConfig;
+        $this->logger = $logger;
     }
 
     /**
@@ -152,7 +159,10 @@ class Builder
                     'adminhtml/system_config/edit/section/' . $configItems[$installedModule]['id'],
                     __('Configuration')->render()
                 );
-                $itemsToAdd[] = $amastyItem;
+
+                if ($amastyItem) {
+                    $itemsToAdd[] = $amastyItem;
+                }
             }
 
             if (isset($moduleInfo['guide']) && $moduleInfo['guide']) {
@@ -163,7 +173,10 @@ class Builder
                     'adminhtml/system_config/edit/section/ambase',
                     __('User Guide')->render()
                 );
-                $itemsToAdd[] = $amastyItem;
+
+                if ($amastyItem) {
+                    $itemsToAdd[] = $amastyItem;
+                }
             }
 
             $parentNodeResource = '';
@@ -227,13 +240,17 @@ class Builder
             if ($amastyItem) {
                 $itemData = $amastyItem->toArray();
                 if (isset($itemData['id'], $itemData['resource'], $itemData['title'])) {
-                    $itemsToAdd[] = $this->generateMenuItem(
+                    $itemToAdd = $this->generateMenuItem(
                         $itemData['id'] . 'menu',
                         $this->getModuleFullName($itemData),
                         $itemData['resource'],
                         $itemData['action'],
                         $itemData['title']
                     );
+
+                    if ($itemToAdd) {
+                        $itemsToAdd[] = $itemToAdd;
+                    }
                 }
             }
         }
@@ -278,6 +295,7 @@ class Builder
                 ]
             );
         } catch (\Exception $ex) {
+            $this->logger->warning($ex);
             $item = false;
         }
 

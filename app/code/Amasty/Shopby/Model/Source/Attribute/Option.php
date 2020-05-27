@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -11,10 +11,6 @@ namespace Amasty\Shopby\Model\Source\Attribute;
 use Magento\Framework\Option\ArrayInterface;
 use Magento\Eav\Model\Config as EavConfig;
 
-/**
- * Class Option
- * @package Amasty\Shopby\Model\Source\Attribute
- */
 class Option implements ArrayInterface
 {
     const SWATCH = 1;
@@ -146,7 +142,7 @@ class Option implements ArrayInterface
         if ($item = $this->getSwatchByOptionId($optionId)) {
             $data['type'] = $item->getType();
             if ($item->getType() == self::SWATCH_IMAGE) {
-                $data['swatch'] = $this->swatchHelper->getSwatchMediaUrl();
+                $data['swatch'] = $this->swatchHelper->getSwatchAttributeImage('swatch_image', $item->getValue());
             } else {
                 $data['swatch'] = $item->getValue();
             }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -135,13 +135,13 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="Amasty\Shopby\Block\Navigation\CategoryTop" type="Magento\LayeredNavigation\Block\Navigation">
+    <virtualType name="Amasty\Shopby\Block\Navigation\CategoryTop" type="Amasty\Shopby\Block\Navigation\Top\Navigation">
         <arguments>
             <argument name="filterList" xsi:type="object">categoryFilterListTop</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="Amasty\Shopby\Block\Navigation\SearchTop" type="Magento\LayeredNavigation\Block\Navigation">
+    <virtualType name="Amasty\Shopby\Block\Navigation\SearchTop" type="Amasty\Shopby\Block\Navigation\Top\Navigation">
         <arguments>
             <argument name="filterList" xsi:type="object">searchFilterListTop</argument>
         </arguments>
@@ -153,7 +153,7 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="Amasty\Shopby\Block\Navigation\Cms" type="Magento\LayeredNavigation\Block\Navigation">
+    <virtualType name="Amasty\Shopby\Block\Navigation\Cms" type="Amasty\Shopby\Block\Navigation\Top\Navigation">
         <arguments>
             <argument name="filterList" xsi:type="object">categoryFilterList</argument>
         </arguments>
@@ -235,6 +235,9 @@
         </arguments>
     </type>
 
+    <type name="Magento\Swatches\Model\Plugin\FilterRenderer">
+        <plugin name="Amasty_Shopby::checkDisplayMode" type="Amasty\Shopby\Plugin\Swatches\Model\Plugin\FilterRendererPlugin"/>
+    </type>
     <type name="Magento\Catalog\Controller\Category\View">
         <plugin name="Amasty_Shopby::ajaxInject" type="Amasty\Shopby\Plugin\Ajax\CategoryViewAjax"/>
     </type>
@@ -266,10 +269,6 @@
         <plugin name="Amasty_Shopby::CmsControllerIndexIndex"
                 type="Amasty\Shopby\Plugin\Ajax\CmsControllerIndexIndexAjax"/>
     </type>
-    <type name="Magento\CatalogSearch\Model\Adapter\Mysql\Aggregation\DataProvider">
-        <plugin name="Amasty_Shopby::stockAndRatingAggregation"
-                type="Amasty\Shopby\Plugin\CatalogSearch\Model\Adapter\Mysql\Aggregation\DataProvider"/>
-    </type>
     <type name="\Magento\Catalog\Block\Product\View\Attributes">
         <plugin name="Amasty_Shopby::productViewAttributes"
                 type="\Amasty\Shopby\Plugin\Catalog\Block\Product\View\Attributes"/>
@@ -294,10 +293,6 @@
         <plugin name="Amasty_Shopby::CatalogProductCollection"
                 type="Amasty\Shopby\Plugin\Catalog\Model\ResourceModel\Product\Collection"/>
     </type>
-    <type name="Magento\CatalogSearch\Model\Adapter\Mysql\Filter\Preprocessor">
-        <plugin name="Amasty_Shopby::PrepareWhereCauseForCustomFilters"
-                type="Amasty\Shopby\Plugin\CatalogSearch\Model\Adapter\Mysql\Filter\Preprocessor"/>
-    </type>
     <type name="Magento\Cms\Helper\Page">
         <plugin name="Amasty_Shopby::cmsPageHelper" type="Amasty\Shopby\Plugin\Cms\Helper\Page" sortOrder="1"/>
     </type>
@@ -317,6 +312,12 @@
                 type="Amasty\Shopby\Plugin\Framework\Search\Request\Config" />
     </type>
 
+    <type name="Amasty\Shopby\Block\Navigation\Search">
+        <arguments>
+            <argument name="filterList" xsi:type="object">searchFilterList</argument>
+        </arguments>
+    </type>
+
     <!-- needed to be executed after Mirasvit's one -->
     <type name="Magento\Framework\Search\Request\Config\FilesystemReader">
         <plugin name="Amasty_Shopby::UseAndLogicFields"
@@ -325,10 +326,6 @@
     <type name="Magento\Catalog\Model\CategoryRepository">
         <plugin name="Amasty_Shopby::CategoryRepositoryGet"
                 type="Amasty\Shopby\Plugin\Catalog\Model\CategoryRepository"/>
-    </type>
-    <type name="Magento\CatalogSearch\Model\Search\IndexBuilder">
-        <plugin name="Amasty_Shopby::ApplyCustomFiltersToBaseSearchSelect"
-                type="Amasty\Shopby\Plugin\CatalogSearch\Model\Search\IndexBuilder"/>
     </type>
     <type name="Mirasvit\SearchSphinx\Model\Search\IndexBuilder">
         <plugin name="Amasty_Shopby::MirasvitSphinxAddStockTableToSelect"
@@ -392,7 +389,7 @@
         <plugin name="Amasty_Shopby::urlBuilderSeo" type="Amasty\Shopby\Plugin\ShopbySeo\Helper\Url" />
     </type>
     <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
-        <plugin name="Amasty_Shopby::urlBuilderPager" type="Amasty\Shopby\Plugin\Catalog\Block\Product\ProductList\Toolbar" />
+        <plugin name="Amasty_Shopby::ProductListToolbar" type="Amasty\Shopby\Plugin\Catalog\Block\Product\ProductList\Toolbar" />
     </type>
     <type name="Magento\Theme\Block\Html\Pager">
         <plugin name="Amasty_Shopby::urlBuilderPager" type="Amasty\Shopby\Plugin\Theme\Block\Html\Pager" />
@@ -400,5 +397,12 @@
     <type name="Magento\Framework\View\Page\Config\Renderer">
         <plugin name="Amasty_Shopby::CssResolver"
                 type="Amasty\Shopby\Plugin\View\Page\Config\Renderer"/>
+    </type>
+    <type name="Amasty\Shopby\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="add_catalog_permissions_information"
+                type="Amasty\Shopby\Plugin\ElasticsearchCatalogPermissions\Plugin\AddCategoryPermissionsToCollectionPlugin" />
+    </type>
+    <type name="Magento\Framework\Search\Request">
+        <plugin name="Amasty_Shopby::undefinedSearchFix" type="Amasty\ShopbyBase\Plugin\Framework\Search\RequestPlugin" />
     </type>
 </config>

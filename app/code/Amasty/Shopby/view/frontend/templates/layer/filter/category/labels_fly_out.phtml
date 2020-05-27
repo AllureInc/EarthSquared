@@ -1,20 +1,20 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
 <?php
     /** @var \Amasty\ShopbyBase\Model\FilterSetting $filterSetting */
     /** @var \Amasty\Shopby\Block\Navigation\FilterRenderer $block */
-    $filterUniqId = $block->escapeId(uniqid());
     $filterCode = $block->escapeHtml($filterSetting->getFilterCode());
+    $currentCategoryId = (int) $block->getCurrentCategoryId();
 ?>
 <form data-amshopby-filter="<?= /* @noEscape */ $filterCode; ?>"
       data-amshopby-filter-request-var="<?= /* @noEscape */ $block->getFilter()->getRequestVar(); ?>"
-        <?php if ($filterSetting->getEnableOverflowScroll() > 0) : ?>
-            style="max-height:<?= /* @noEscape */ $filterSetting->getEnableOverflowScroll() ?>px;
+        <?php if ($filterSetting->getEnableOverflowScroll() > 0): ?>
+            style="max-height:<?= /* @noEscape */ (int) $filterSetting->getEnableOverflowScroll(); ?>px;
             overflow-y: auto;
             overflow-x: hidden;"
         <?php endif; ?>>
@@ -23,18 +23,18 @@
             </ul>
 </form>
 <script>
-    require(["jquery", "jquery/ui"], function ($) {
-        $(window).load( function(){
-            $(document).trigger('baseCategory', <?= /* @noEscape */ $block->getCurrentCategoryId();?>);
+    require(["jquery", 'mage/menu'], function ($) {
+        $(window).on('load', function () {
+            $(document).trigger('baseCategory', <?= /* @noEscape */ $currentCategoryId; ?>);
             addFlyOut();
         });
-        $(document).ajaxComplete( function(){
+        $(document).ajaxComplete(function () {
             addFlyOut();
-            $(document).trigger('baseCategory', <?= /* @noEscape */ $block->getCurrentCategoryId();?>);
+            $(document).trigger('baseCategory', <?= /* @noEscape */ $currentCategoryId; ?>);
         });
 
         function addFlyOut() {
-            $(".am-filter-items-<?= /* @noEscape */ $filterCode;?>").menu({
+            $(".am-filter-items-<?= /* @noEscape */ $filterCode; ?>").menu({
                 position: { my: "left top", at: "center top+20" }
             });
         }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -20,10 +20,11 @@
                  selector="(//*[@id='narrow-by-list'])[last()]//div[contains(string(), '{{var1}}')]"
                  parameterized="true"/>
         <element name="FilterInDropdown" type="select"
-                 selector="div[class='items am-filter-items-{{var1}} am-dropdown']"
+                 selector="//option[contains(string(),'Select Option ...')]/ancestor::div[@class='items am-filter-items-{{var1}} am-dropdown']"
                  parameterized="true"/>
         <element name="FilterInDropdownLast" type="select"
-                 selector="(//*[@class='items am-filter-items-{{var1}} am-dropdown'])[last()]" parameterized="true"/>
+                 selector="(//option[contains(string(),'Select Option ...')]/ancestor::*[@class='items am-filter-items-{{var1}} am-dropdown'])[last()]"
+                 parameterized="true"/>
         <element name="CategoryFilterInDropdown" type="select"
                  selector="//*[@class='amshopby-category-dropdown']"/>
         <element name="CategoryFilterInDropdownLast" type="select"
@@ -40,8 +41,6 @@
         <element name="CategoryOptionImage" type="select"
                  selector="//*[@class='am-category-image'][@alt='{{var1}}'][contains(@src,'{{var2}}') or contains(@src,'{{var3}}')]"
                  parameterized="true"/>
-        <element name="ShowFoldedOptions" type="select"
-                 selector="//*[@class='am-show-more']"/>
         <element name="FilterOptionForCount" type="select"
                  selector="//*[@data-amshopby-filter='attr_{{var1}}']//*[@data-am-js='filter-item-{{var2}}']"
                  parameterized="true"/>
@@ -55,10 +54,7 @@
                  selector="//*[@id='narrow-by-list']//*[contains(@data-label,'{{var1}}')][not(contains(@data-label,'{{var2}}'))]"
                  parameterized="true"/>
         <element name="FilterOptionWithNofollow" type="select"
-                 selector="//*[@id='narrow-by-list']//*[contains(@data-label,'{{var1}}')]//*[contains(@rel,'nofollow')]"
-                 parameterized="true"/>
-        <element name="FilterOptionWithNofollow2" type="select"
-                 selector="//*[@id='narrow-by-list']//*[contains(@data-label,'{{var1}}')][contains(@rel,'nofollow')]"
+                 selector="(//*[@id='narrow-by-list']//*[contains(@data-label,'{{var1}}')]//*[contains(@rel,'nofollow')] | //*[@id='narrow-by-list']//*[contains(@data-label,'{{var1}}')][contains(@rel,'nofollow')])[1]"
                  parameterized="true"/>
         <element name="FilterOptionLast" type="select"
                  selector="(//*[@id='narrow-by-list'])[last()]//*[contains(@data-label,'{{var1}}')]"
@@ -89,7 +85,7 @@
         <element name="VerticalScroll" type="block"
                  selector="//*[@id='narrow-by-list']//ol[contains(@style,'{{var1}}')]" parameterized="true"/>
         <element name="ShowMoreAndLessButtons" type="button"
-                 selector="//*[@class='am-show-more'][contains(string(), '{{var1}}')]"
+                 selector="//*[@class='am-show-more -active'][contains(string(), '{{var1}}')]"
                  parameterized="true"/>
     </section>
 
@@ -130,7 +126,11 @@
                  selector="span[class='am-items -loading']"/>
         <element name="CMSBlockContent" type="text"
                  selector="//*[@class='category-cms'][contains(string(),'{{var1}}')]" parameterized="true"/>
-        <element name="ImageSource" type="text" selector="//img[contains(@src,'{{var1}}') or contains(@src,'{{var2}}')]" parameterized="true"/>
+        <element name="BottomCMSBlockContent" type="text"
+                 selector="//*[@class='amshopby-filters-bottom-cms'][contains(string(),'{{var1}}')]"
+                 parameterized="true"/>
+        <element name="ImageSource" type="text" selector="//img[contains(@src,'{{var1}}') or contains(@src,'{{var2}}')]"
+                 parameterized="true"/>
     </section>
 
     <section name="StorefrontProductSection">

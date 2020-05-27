@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -180,18 +180,20 @@ class BrandListTest extends \PHPUnit\Framework\TestCase
     public function testGetItemDataWithNotEmptyResult()
     {
         $result = [
+            'brandId' => 1,
             'label' => 'label',
             'url' => null,
             'img' => 'label',
             'image' => 'label',
             'description' => 'label',
             'short_description' => 'label',
-            'cnt' => null,
+            'cnt' => 0,
             'alt' => 'label'
         ];
-        $option = $this->createMock(\Magento\Eav\Model\Entity\Attribute\Option::class);
+        $option = $this->getObjectManager()->getObject(\Magento\Eav\Model\Entity\Attribute\Option::class);
         $optionSetting = $this->createMock(\Amasty\ShopbyBase\Api\Data\OptionSettingInterface::class);
-        $option->expects($this->any())->method('getLabel')->will($this->returnValue('label'));
+        $option->setLabel('label');
+        $option->setValue(1);
         $optionSetting->expects($this->any())->method('getSliderImageUrl')->will($this->returnValue('label'));
         $optionSetting->expects($this->any())->method('getImageUrl')->will($this->returnValue('label'));
         $optionSetting->expects($this->any())->method('getDescription')->will($this->returnValue('label'));

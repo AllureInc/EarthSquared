@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -25,12 +25,11 @@
                 <notice>{{widget type="Amasty\ShopbyBrand\Block\Widget\BrandList" columns="3" template="widget/brand_list/index.phtml"}}</notice>
                 <show_images>0</show_images>
                 <image_width>100</image_width>
-                <image_height></image_height>
                 <show_search>1</show_search>
                 <show_filter>1</show_filter>
                 <filter_display_all>1</filter_display_all>
                 <display_zero>1</display_zero>
-                <show_count>1</show_count>
+                <show_count>0</show_count>
             </brands_landing>
             <slider>
                 <notice>{{widget type="Amasty\ShopbyBrand\Block\Widget\BrandSlider" template="widget/brand_list/slider.phtml"}}</notice>
@@ -41,7 +40,6 @@
                 <slider_title>Featured Brands</slider_title>
                 <slider_width>800</slider_width>
                 <image_width>130</image_width>
-                <image_height></image_height>
                 <show_label>0</show_label>
                 <buttons_show>1</buttons_show>
                 <infinity_loop>1</infinity_loop>

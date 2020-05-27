@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -42,7 +42,7 @@
 
         <!--Check Add Page Number to Meta Description setting: navigate to Brand Page, check Page Number in Meta Description of Page Source, activate pagination, check Page Number in Meta Description of Page Source/-->
 
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
         <seeInPageSource
                 html="meta name=&quot;description&quot; content=&quot;Default Category Meta Description TST&quot;"
                 stepKey="seeInSource1"/>

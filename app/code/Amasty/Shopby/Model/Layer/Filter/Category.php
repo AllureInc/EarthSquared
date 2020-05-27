@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -16,7 +16,7 @@ use Amasty\Shopby\Model\Source\RenderCategoriesLevel;
 use Amasty\Shopby\Helper\Category as CategoryHelper;
 use Amasty\Shopby\Model\Layer\Filter\Traits\FilterTrait;
 use Amasty\Shopby\Model\Source\CategoryTreeDisplayMode;
-use Amasty\Shopby\Model\Source\RenderCategoriesTree;
+use Magento\Framework\App\ProductMetadata;
 
 /**
  * Layer category filter
@@ -392,7 +392,7 @@ class Category extends \Magento\Catalog\Model\Layer\Filter\AbstractFilter
     private function isAllowedOnEnterprise($category)
     {
         $isAllowed = true;
-        if ($this->productMetadata->getEdition() == 'Enterprise') {
+        if ($this->productMetadata->getEdition() !== ProductMetadata::EDITION_NAME) {
             $permissions = $category->getPermissions();
             $isAllowed = $permissions['grant_catalog_category_view'] !== self::DENY_PERMISSION;
         }
@@ -595,7 +595,7 @@ class Category extends \Magento\Catalog\Model\Layer\Filter\AbstractFilter
      */
     protected function getCategoryIdByLevel($isCurrentLevel)
     {
-        return !$this->isRenderAllTree() && $isCurrentLevel && $this->isMultiselect()
+        return ($isCurrentLevel && $this->isMultiselect() || $this->getCategoriesTreeDept() == self::MIN_CATEGORY_DEPTH)
             ? $this->getLayer()->getCurrentCategory()->getId()
             : $this->getRootCategory()->getId();
     }
@@ -716,5 +716,20 @@ class Category extends \Magento\Catalog\Model\Layer\Filter\AbstractFilter
     public function getPosition()
     {
         return $this->helper->getCategoryPosition();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAmpItems()
+    {
+        $data = parent::_getItemsData();
+        $items = [];
+        foreach ($data as $itemData) {
+            $items[] = parent::_createItem($itemData['label'], $itemData['value'], $itemData['count']);
+        }
+        $this->_items = $items;
+
+        return $items;
     }
 }

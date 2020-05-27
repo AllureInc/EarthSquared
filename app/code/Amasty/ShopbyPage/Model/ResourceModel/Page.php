@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 
@@ -11,11 +11,6 @@ namespace Amasty\ShopbyPage\Model\ResourceModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\AbstractModel;
 
-/**
- * Class Page
- *
- * @package Amasty\ShopbyPage\Model\ResourceModel
- */
 class Page extends AbstractDb
 {
     /**
@@ -63,6 +58,12 @@ class Page extends AbstractDb
     {
         list($oldStores, $newStores) = $this->resolveStoresInfo($object);
         $pageId = (int) $object->getId();
+        $newStores = array_map(
+            function ($store) {
+                return (int)$store;
+            },
+            $newStores
+        );
 
         if ($insert = array_diff($newStores, $oldStores)) {
             $this->insertByStores($pageId, $insert);

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -10,10 +10,6 @@ namespace Amasty\Shopby\Helper;
 
 use Magento\Framework\App\Helper\Context;
 
-/**
- * Class Group
- * @package Amasty\Shopby\Helper
- */
 class Group extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const LAST_POSSIBLE_OPTION_ID = (2 << 31) - 1;
@@ -295,8 +291,9 @@ class Group extends \Magento\Framework\App\Helper\AbstractHelper
      */
     private function chooseDefaultLabel($labels)
     {
-        return isset($labels[$this->storeManager->getDefaultStoreView()->getId()])
-            ? $labels[$this->storeManager->getDefaultStoreView()->getId()]
+        $storeId = $this->storeManager->getDefaultStoreView()->getId();
+        return isset($labels[$storeId]) && !empty($labels[$storeId])
+            ? $labels[$storeId]
             : array_shift($labels);
     }
 

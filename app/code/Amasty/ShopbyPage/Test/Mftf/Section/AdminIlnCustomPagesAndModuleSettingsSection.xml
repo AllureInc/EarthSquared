@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 -->
@@ -21,7 +21,8 @@
         <element name="SelectAttributeDropdown" type="select" selector="//*[@id='new_selection_filter']"/>
         <element name="SelectAttributeValueDropdown" type="select" selector="//*[@id='attribute_value_1_data']/select"/>
         <element name="DeleteButton" type="select" selector="//*[@id='delete']"/>
-        <element name="OkButton" type="button" selector="//*[@id='html-body']/div[4]/aside[2]/div[2]/footer/button[2]"/>
+        <element name="OkButton" type="button"
+                 selector="//*[@id='html-body']/div[{{var1}}]/aside[2]/div[2]/footer/button[2]" parameterized="true"/>
         <element name="SaveAndContinue" type="button" selector="#saveandcontinue"/>
         <element name="Save" type="button" selector="#save"/>
     </section>

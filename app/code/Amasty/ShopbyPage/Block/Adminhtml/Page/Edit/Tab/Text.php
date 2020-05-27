@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 
@@ -18,9 +18,6 @@ use Magento\Framework\Registry;
 use Magento\Catalog\Model\Category\Attribute\Source\Page as CategoryAttributeSourcePage;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 
-/**
- * @api
- */
 class Text extends Generic implements TabInterface
 {
     /**
@@ -38,6 +35,11 @@ class Text extends Generic implements TabInterface
      */
     private $sourcePosition;
 
+    /**
+     * @var \Magento\Cms\Model\Wysiwyg\Config
+     */
+    private $wysiwygConfig;
+
     public function __construct(
         Context $context,
         Registry $registry,
@@ -45,11 +47,13 @@ class Text extends Generic implements TabInterface
         CategoryAttributeSourcePage $categoryAttributeSourcePage,
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         SourcePosition $sourcePosition,
+        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         array $data = []
     ) {
         $this->categoryAttributeSourcePage = $categoryAttributeSourcePage;
         $this->extensibleDataObjectConverter = $extensibleDataObjectConverter;
         $this->sourcePosition = $sourcePosition;
+        $this->wysiwygConfig = $wysiwygConfig;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -135,11 +139,13 @@ class Text extends Generic implements TabInterface
 
         $fieldset->addField(
             'description',
-            'textarea',
+            'editor',
             [
                 'name'  => 'description',
                 'label' => __('Description'),
-                'title' => __('Description')
+                'title' => __('Description'),
+                'wysiwyg' => true,
+                'config' => $this->wysiwygConfig->getConfig(['add_variables' => false])
             ]
         );
 

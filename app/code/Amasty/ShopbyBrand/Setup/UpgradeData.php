@@ -1,13 +1,14 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
 
 namespace Amasty\ShopbyBrand\Setup;
 
+use Amasty\ShopbyBrand\Setup\Operation\DropStoreSpecificBrandAttributeSettings;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -16,11 +17,6 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Amasty\ShopbyBase\Api\Data\FilterSettingInterface;
 use Magento\UrlRewrite\Service\V1\Data\UrlRewrite;
 
-/**
- * Class UpgradeData
- *
- * @package Amasty\ShopbyBrand\Setup
- */
 class UpgradeData implements UpgradeDataInterface
 {
     /**
@@ -73,6 +69,11 @@ class UpgradeData implements UpgradeDataInterface
      */
     private $replaceListingSetting;
 
+    /**
+     * @var DropStoreSpecificBrandAttributeSettings
+     */
+    private $dropStoreSpecificBrandAttributeSettings;
+
     public function __construct(
         \Magento\Cms\Model\PageFactory $pageFactory,
         WriterInterface $configWriter,
@@ -83,7 +84,8 @@ class UpgradeData implements UpgradeDataInterface
         \Magento\UrlRewrite\Model\UrlFinderInterface $urlFinder,
         \Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface $filterSettingRepository,
         \Magento\Framework\App\State $appState,
-        \Amasty\ShopbyBrand\Setup\Operation\ReplaceProductListingSetting $replaceListingSetting
+        \Amasty\ShopbyBrand\Setup\Operation\ReplaceProductListingSetting $replaceListingSetting,
+        DropStoreSpecificBrandAttributeSettings $dropStoreSpecificBrandAttributeSettings
     ) {
         $this->_pageFactory = $pageFactory;
         $this->_configWriter = $configWriter;
@@ -95,6 +97,7 @@ class UpgradeData implements UpgradeDataInterface
         $this->filterSettingRepository = $filterSettingRepository;
         $this->appState = $appState;
         $this->replaceListingSetting = $replaceListingSetting;
+        $this->dropStoreSpecificBrandAttributeSettings = $dropStoreSpecificBrandAttributeSettings;
     }
 
     /**
@@ -136,6 +139,10 @@ class UpgradeData implements UpgradeDataInterface
 
         if (version_compare($context->getVersion(), '1.0.4', '<')) {
             $this->replaceListingSetting->execute($this->_configWriter);
+        }
+
+        if (version_compare($context->getVersion(), '2.10.3', '<')) {
+            $this->dropStoreSpecificBrandAttributeSettings->execute();
         }
 
         $setup->endSetup();

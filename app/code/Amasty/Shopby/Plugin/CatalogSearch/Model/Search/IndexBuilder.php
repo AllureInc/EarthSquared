@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -16,14 +16,8 @@ use Magento\Framework\Search\Request\Query\Filter;
 use Magento\Framework\Search\RequestInterface;
 use Magento\Framework\Search\Request\QueryInterface as RequestQueryInterface;
 use Magento\Framework\App\ResourceConnection;
-use Magento\Store\Model\Store;
-use Magento\Framework\Module\Manager;
-use Amasty\Shopby\Helper\Category;
+use Amasty\Shopby\Model\Source\StockFilterSource;
 
-/**
- * Class IndexBuilder
- * @package Amasty\Shopby\Plugin\CatalogSearch\Model\Search
- */
 class IndexBuilder
 {
     /**
@@ -61,11 +55,6 @@ class IndexBuilder
      */
     private $stockResource;
 
-    /**
-     * @var Manager
-     */
-    private $moduleManager;
-
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -73,8 +62,7 @@ class IndexBuilder
         ResourceConnection $resource,
         \Amasty\Shopby\Model\Layer\Cms\Manager $cmsManager,
         CustomExclusionStrategy $customExclusionStrategy,
-        \Magento\CatalogInventory\Model\ResourceModel\Stock\Status $stockResource,
-        Manager $moduleManager
+        \Magento\CatalogInventory\Model\ResourceModel\Stock\Status $stockResource
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
@@ -83,7 +71,6 @@ class IndexBuilder
         $this->cmsManager = $cmsManager;
         $this->customExclusionStrategy = $customExclusionStrategy;
         $this->stockResource = $stockResource;
-        $this->moduleManager = $moduleManager;
     }
 
     /**
@@ -99,12 +86,16 @@ class IndexBuilder
     {
         $select = $proceed($request);
         $filters = $this->getFilters($request->getQuery());
+        $isStock = false;
         foreach ($filters as $filter) {
             $this->customExclusionStrategy->apply($filter, $select);
+            if ($filter->getField() == StockFilterSource::STOCK_STATUS) {
+                $isStock = true;
+            }
         }
 
         if ($this->isEnabledShowOutOfStock() && $this->isEnabledStockFilter()) {
-            if ($this->shopbyRequest->getParam('stock')) {
+            if ($this->shopbyRequest->getParam('stock') || $isStock) {
                 $this->addStockDataToSelect($select);
             }
         }
@@ -199,14 +190,8 @@ class IndexBuilder
             'search_index.entity_id = e.entity_id',
             []
         );
-        if ($this->moduleManager->isEnabled('Magento_Inventory')) {
-            $website = $this->storeManager->getStore()->getWebsite();
-        } else {
-            // in old versions stock saved only for default website
-            $website = $this->storeManager->getStore(Store::DEFAULT_STORE_ID)->getWebsite();
-        }
 
-        $this->stockResource->addStockStatusToSelect($select, $website);
+        $this->stockResource->addStockStatusToSelect($select, $this->storeManager->getStore()->getWebsite());
 
         $this->renameStockTable($select);
     }

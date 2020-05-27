@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -18,10 +18,6 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Catalog\Model\Category as CategoryModel;
 use Magento\Framework\App\Helper\AbstractHelper;
 
-/**
- * Class Content
- * @package Amasty\Shopby\Helper
- */
 class Content extends AbstractHelper implements CategoryDataSetterInterface
 {
     const APPLY_TO_HEADING = 'am_apply_to_heading';
@@ -93,9 +89,19 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
     private $amshopbyRequest;
 
     /**
+     * @var Group
+     */
+    private $groupHelper;
+
+    /**
      * @var \Amasty\ShopbyBase\Helper\Meta
      */
     private $metaHelper;
+
+    /**
+     * @var \Amasty\ShopbyBase\Helper\Data
+     */
+    private $baseHelper;
 
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -107,6 +113,8 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
         \Amasty\ShopbyBase\Helper\OptionSetting $optionHelper,
         \Amasty\Shopby\Model\Request $amshopbyRequest,
         Data $dataHelper,
+        Group $groupHelper,
+        \Amasty\ShopbyBase\Helper\Data $baseHelper,
         \Amasty\ShopbyBase\Helper\Meta $metaHelper
     ) {
         parent::__construct($context);
@@ -118,7 +126,9 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
         $this->_helper = $dataHelper;
         $this->_optionHelper = $optionHelper;
         $this->amshopbyRequest = $amshopbyRequest;
+        $this->groupHelper = $groupHelper;
         $this->metaHelper = $metaHelper;
+        $this->baseHelper = $baseHelper;
         $this->initCategoryDataSettings();
     }
 
@@ -190,7 +200,10 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
                 $filter = $row['filter'];
                 /** @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute $attributeModel */
                 $attributeModel = $filter->getData('attribute_model');
-                if ($attributeModel === null) {
+
+                if ($attributeModel === null
+                    || $this->baseHelper->getBrandAttributeCode() == $attributeModel->getAttributeCode()
+                ) {
                     continue;
                 }
                 $filterApplicableTo = $this->getFilterDataApplicable($attributeModel->getAttributeId());
@@ -203,6 +216,14 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
                 foreach ($values as $v) {
                     $option = $this->_optionHelper
                         ->getSettingByValue($v, $filterSetting->getFilterCode(), $this->_storeId);
+                    if (!$option->getId()) {
+                        $label = $this->groupHelper->getGroupLabel($attributeModel->getAttributeId(), $v);
+                        if ($label) {
+                            $label = $this->groupHelper->chooseGroupLabel($label);
+                            $option->setTitle($label);
+                            $option->setValue($v);
+                        }
+                    }
                     foreach ($filterApplicableTo as $applyTo) {
                         $option->setData($applyTo, true);
                     }
@@ -265,33 +286,41 @@ class Content extends AbstractHelper implements CategoryDataSetterInterface
         ];
 
         foreach ($this->getAppliedOptionSettings() as $opt) {
-            if ($opt->getValue() == $appliedBrandVal) {
+            if ($opt->getValue() === $appliedBrandVal) {
                 continue;
             }
+
             if ($opt->getData(Content::APPLY_TO_HEADING)) {
                 if ($opt->getTitle()) {
                     $result['title'][] = $opt->getTitle();
                 }
+
                 if ($opt->getDescription()) {
                     $result['description'][] = $opt->getDescription(true);
                 }
+
                 if ($opt->getTopCmsBlockId() && $result['cms_block'] === null) {
                     $result['cms_block'] = $opt->getTopCmsBlockId();
                 }
+
                 if ($opt->getBottomCmsBlockId() && $result['bottom_cms_block'] === null) {
                     $result['bottom_cms_block'] = $opt->getBottomCmsBlockId();
                 }
+
                 if ($opt->getImageUrl() && $result['img_url'] === null) {
                     $result['img_url'] = $opt->getImageUrl();
                 }
             }
+
             if ($opt->getData(Content::APPLY_TO_META)) {
                 if ($opt->getMetaTitle()) {
                     $result['meta_title'][] = $opt->getMetaTitle();
                 }
+
                 if ($opt->getMetaDescription()) {
                     $result['meta_description'][] = $opt->getMetaDescription();
                 }
+
                 if ($opt->getMetaKeywords()) {
                     $result['meta_keywords'][] = $opt->getMetaKeywords();
                 }

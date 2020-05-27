@@ -107,8 +107,11 @@ select.admin__control-select, table.admin__control-table {
     width:50%;
 }
 
-.swatch_option {
+.swatch_option-cursor {
     cursor: pointer;
+}
+
+.swatch_option {
     overflow: visible !important;
     position: relative;
     display: inline-block;
@@ -131,4 +134,15 @@ select.admin__control-select, table.admin__control-table {
 
 .am-search-input:focus {
     border-color: #007bdb;
+}
+
+.data-table .swatches-visual-col.unavailable:after {
+    top: calc(50% - 2px);
+}
+
+/*Magento styles override*/
+.swatch_window {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -23,6 +23,7 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfiltercompatibility"/>
         </annotations>
 
         <before>
@@ -60,7 +61,7 @@
              stepKey="checkPageTitle1"/>
         <remove keyForRemoval="clickOnCategoryFilter2"/>
         <see selector="{{StorefrontProductSection.ItemsCountLast}}"
-             userInput="9"
+             userInput="11"
              stepKey="checkQtyOfBagsProducts2"/>
         <click selector="{{StorefrontPageElementsSection.FilterState('Bags')}}"
                stepKey="removeSelectedFilterOptionFromState1"/>

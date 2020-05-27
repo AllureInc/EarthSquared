@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -10,17 +10,12 @@ namespace Amasty\ShopbyBrand\Block;
 
 use Amasty\ShopbyBase\Helper\Data;
 
-/**
- * Class BrandsPopup
- *
- * @package Amasty\ShopbyBrand\Block
- */
 class BrandsPopup extends \Amasty\ShopbyBrand\Block\Widget\BrandList
 {
     /**
      * @var string
      */
-    protected $_template = 'brands_popup.phtml';
+    protected $_template = 'Amasty_ShopbyBrand::brands_popup.phtml';
 
     /**
      * @var bool
@@ -51,7 +46,7 @@ class BrandsPopup extends \Amasty\ShopbyBrand\Block\Widget\BrandList
      */
     public function isShowPopup()
     {
-        return $this->brandHelper->getModuleConfig('general/brands_popup');
+        return (bool)$this->brandHelper->getModuleConfig('general/brands_popup');
     }
 
     /**

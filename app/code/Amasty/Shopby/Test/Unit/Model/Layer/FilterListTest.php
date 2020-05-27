@@ -1,10 +1,12 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
+
+namespace Amasty\Shopby\Test\Unit\Model\Layer;
 
 use Amasty\Shopby\Model\Layer\FilterList;
 use Amasty\Shopby\Test\Unit\Traits;
@@ -85,12 +87,8 @@ class FilterListTest extends \PHPUnit\Framework\TestCase
     public function testFilterByPlace($filterName, $place)
     {
         $category = $this->createMock(\Magento\Catalog\Model\Category::class);
-        $category->expects($this->at(0))->method('getData')
-            ->with('page_layout')
-            ->willReturn('1column');
-        $category->expects($this->at(1))->method('getData')
-            ->with('page_layout')
-            ->willReturn('2column');
+        $category->expects($this->any())->method('getData')
+            ->with('page_layout')->willReturnOnConsecutiveCalls('1column', '1column', '2column', '2column');
         $this->layer->expects($this->any())->method('getCurrentCategory')->willReturn($category);
 
         $this->filterList->expects($this->any())->method('getFilterBlockPosition')->willReturn(1);

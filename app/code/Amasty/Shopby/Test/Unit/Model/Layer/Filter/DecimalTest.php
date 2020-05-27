@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -270,19 +270,31 @@ class DecimalTest extends \PHPUnit\Framework\TestCase
         $settingFilter->setPositionLabel(0)->setData('units_label', '$');
 
         $this->assertEquals(
-            '$10 - $20',
-            (string)$this->invokeMethod($this->model, 'getRangeForState', ['10', '20', $settingFilter])
+            '$10 - $19.99',
+            (string)$this->invokeMethod($this->model, 'getRangeLabel', ['10', '20', $settingFilter])
         );
 
         $settingFilter->setPositionLabel(1)->setData('units_label', '$');
         $this->assertEquals(
-            '10$ - 20$',
-            (string)$this->invokeMethod($this->model, 'getRangeForState', ['10', '20', $settingFilter])
+            '10$ - 19.99$',
+            (string)$this->invokeMethod($this->model, 'getRangeLabel', ['10', '20', $settingFilter])
         );
 
         $this->assertEquals(
             '10$ and above',
-            (string)$this->invokeMethod($this->model, 'getRangeForState', ['10', '', $settingFilter])
+            (string)$this->invokeMethod($this->model, 'getRangeLabel', ['10', '', $settingFilter])
+        );
+
+        $settingFilter->setDisplayMode(\Amasty\Shopby\Model\Source\DisplayMode::MODE_SLIDER);
+        $this->assertEquals(
+            '10$ - 20$',
+            (string)$this->invokeMethod($this->model, 'getRangeLabel', ['10', '20', $settingFilter])
+        );
+
+        $settingFilter->setDisplayMode(\Amasty\Shopby\Model\Source\DisplayMode::MODE_FROM_TO_ONLY);
+        $this->assertEquals(
+            '10$ - 20$',
+            (string)$this->invokeMethod($this->model, 'getRangeLabel', ['10', '20', $settingFilter])
         );
     }
 

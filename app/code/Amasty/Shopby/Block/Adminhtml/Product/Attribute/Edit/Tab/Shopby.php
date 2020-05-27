@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -32,13 +32,10 @@ use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\Form\Element\Fieldset;
 use Amasty\Shopby\Model\Source\FilterPlacedBlock;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Swatches\Model\Swatch;
 
-/**
- * Class Shopby
- * @package Amasty\Shopby\Block\Adminhtml\Product\Attribute\Edit\Tab
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- */
 class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
 {
     const MAX_ATTRIBUTE_OPTIONS_COUNT = 500;
@@ -47,6 +44,11 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
 
     const YES_NO_NEGATIVE_VALUE = '0';
     const YES_NO_POSITIVE_VALUE = '1';
+
+    const DISPLAY_MODE_FRONTEND_INPUT_MAP = [
+        'visual' => DisplayMode::MODE_IMAGES,
+        'text' => DisplayMode::MODE_TEXT_SWATCH
+    ];
 
     /**
      * @var Yesno
@@ -158,6 +160,13 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
      */
     private $expandSource;
 
+    /**
+     * Serializer that allow convert arrays to string.
+     *
+     * @var Json
+     */
+    private $serializer;
+
     public function __construct(
         Context $context,
         Registry $registry,
@@ -183,6 +192,7 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
         FilterSettingHelper $filterSettingHelper,
         \Amasty\Shopby\Model\Source\Expand $expandSource,
         VisibleInCategory $visibleInCategory,
+        Json $serializer,
         array $data = []
     ) {
         $this->yesNo = $yesNo;
@@ -208,6 +218,7 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
         $this->positionLabelSource = $positionLabelSource;
         $this->expandSource = $expandSource;
         $this->visibleInCategory = $visibleInCategory;
+        $this->serializer = $serializer;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -597,7 +608,9 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
                 'name' => 'limit_options_show_search_box',
                 'label' => __('Show the searchbox if the number of options more than'),
                 'title' => __('Show the searchbox if the number of options more than'),
-                'note' => __('Customers will be able to search for the filter option in the searchbox. Leave the field empty to hide the searchbox.')
+                'note' => __(
+                    'Customers will be able to search for the filter option in the searchbox.'
+                )
             ]
         );
 
@@ -715,12 +728,14 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
             ['value' => 'price', 'negative' => false]
         );
 
-        $multiselectNote = $this->attributeObject->getAttributeCode() == Category::ATTRIBUTE_CODE
-            ? __(
-                'When multiselect option is disabled it follows the '
-                . 'category page (except the filtering from the search page)'
-            )
-            : null;
+        if ($this->attributeObject->getAttributeCode() == Category::ATTRIBUTE_CODE) {
+            $multiselectNote = __(
+                'When multiselect option is disabled it follows the category page '
+                . '(except the filtering from the search page)'
+            );
+        } else {
+            $multiselectNote = null;
+        }
 
         $multiselectField = $fieldsetFiltering->addField(
             'is_multiselect',
@@ -817,6 +832,8 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
         if (isset($data['slider_step'])) {
             $data['slider_step'] = round($data['slider_step'], 4);
         }
+
+        $data['display_mode'] = $data['display_mode'] ?? $this->getPreselectDisplayMode();
 
         $form->setValues($data);
         return parent::_prepareForm();
@@ -1142,5 +1159,20 @@ class Shopby extends \Magento\Backend\Block\Widget\Form\Generic
                 $this->setting->addData($this->filterSettingHelper->getCustomDataForCategoryFilter());
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function getPreselectDisplayMode()
+    {
+        $preselectValue = '';
+        if ($this->attributeObject->getFrontendInput() === 'select' && $this->attributeObject->getAdditionalData()) {
+            $additionalData = $this->serializer->unserialize($this->attributeObject->getAdditionalData());
+            $frontendInput = $additionalData[Swatch::SWATCH_INPUT_TYPE_KEY] ?? '';
+            $preselectValue = self::DISPLAY_MODE_FRONTEND_INPUT_MAP[$frontendInput] ?? '';
+        }
+
+        return $preselectValue;
     }
 }

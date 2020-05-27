@@ -44,6 +44,15 @@ define([
                     modalListSettings = alert({
                         title: config.modalHeadText,
                         content: $('#loader-spinner-html').html(),
+                        actions: {
+                            always: function() {
+                                if(typeof tinyMceEditors != 'undefined'
+                                    && tinyMceEditors.get('description') != undefined
+                                ) {
+                                    tinyMceEditors.get('description').turnOff();
+                                }
+                            }
+                        },
                         buttons: [
                             {
                                 text: 'Save',

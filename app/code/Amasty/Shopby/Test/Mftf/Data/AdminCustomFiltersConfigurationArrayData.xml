@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -78,6 +78,14 @@
     </entity>
     <entity name="StockFilterLabelTest" type="customFilter3">
         <data key="CustomFilterLabelField">StockTest</data>
+    </entity>
+
+    <entity name="StockFilterMSIQtyScenario1" type="customFilter4">
+        <data key="Stock1">0</data>
+        <data key="Stock2">0</data>
+    </entity>
+    <entity name="StockFilterMSIQtyScenario2" type="customFilter4" extends="StockFilterMSIQtyScenario1">
+        <data key="Stock2">1</data>
     </entity>
 
 </entities>

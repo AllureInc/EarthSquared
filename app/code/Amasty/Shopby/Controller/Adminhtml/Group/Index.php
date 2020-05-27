@@ -1,17 +1,13 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
 
 namespace Amasty\Shopby\Controller\Adminhtml\Group;
 
-/**
- * Class Index
- * @package Amasty\Shopby\Controller\Adminhtml\Group
- */
 class Index extends \Amasty\Shopby\Controller\Adminhtml\Group
 {
     /**
@@ -24,8 +20,8 @@ class Index extends \Amasty\Shopby\Controller\Adminhtml\Group
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Amasty_Shopby::group_attributes')
-            ->addBreadcrumb(__('Manage Group Attribute Options'), __('Manage Group Attribute Options'));
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Group Attribute Options'));
+            ->addBreadcrumb(__('Manage Group Attributes'), __('Manage Group Attributes'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Group Attributes'));
         return $resultPage;
     }
 

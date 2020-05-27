@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -30,14 +30,15 @@
 </form>
 
 <?php
-if ($filterSetting->getSubcategoriesExpand() == \Amasty\Shopby\Model\Source\SubcategoriesExpand::BY_CLICK):?>
+if ($filterSetting->getSubcategoriesExpand() == \Amasty\Shopby\Model\Source\SubcategoriesExpand::BY_CLICK): ?>
     <script>
-        require(["jquery", "jquery/ui"], function ($) {
+        require(["jquery"], function ($) {
             var collapseSelector = "<?= ($block->isTopNav() ? '.amasty-catalog-topnav' : '.sidebar') ?>"
                 + " .am-collapse-icon";
             if (!$(collapseSelector).length) {
                 collapseSelector = '.am-collapse-icon';
             }
+
             $(collapseSelector).nextAll('ul').each(function() {
                 if($(this).find('input[checked]').length === 0) {
                     if ($(this).siblings(".amshopby-filter-parent")
@@ -49,6 +50,7 @@ if ($filterSetting->getSubcategoriesExpand() == \Amasty\Shopby\Model\Source\Subc
                     $(this).prevAll('.am-collapse-icon').toggleClass('_active');
                 }
             });
+
             $(collapseSelector).click(function (e) {
                 $(this).nextAll('ul').toggle();
                 $(this).toggleClass('_active');

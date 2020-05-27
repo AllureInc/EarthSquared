@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 
@@ -51,12 +51,18 @@ class PageTest extends \PHPUnit\Framework\TestCase
      */
     private $amshopbyRequest;
 
+    /**
+     * @var \Amasty\ShopbyBase\Helper\FilterSetting
+     */
+    private $filterSettingHelper;
+
     public function setUp()
     {
         $this->shopbyHelper = $this->createMock(\Amasty\Shopby\Helper\Data::class);
         $this->scopeConfig = $this->createMock(\Magento\Framework\App\Config\ScopeConfigInterface::class);
         $this->catalogConfig = $this->createMock(\Magento\Catalog\Model\Config::class);
         $this->amshopbyRequest = $this->createMock(\Amasty\Shopby\Model\Request::class);
+        $this->filterSettingHelper = $this->createMock(\Amasty\ShopbyBase\Helper\FilterSetting::class);
 
         $this->model = $this->getObjectManager()->getObject(
             Page::class,
@@ -65,6 +71,7 @@ class PageTest extends \PHPUnit\Framework\TestCase
                 'scopeConfig' => $this->scopeConfig,
                 'catalogConfig' => $this->catalogConfig,
                 'amshopbyRequest' => $this->amshopbyRequest,
+                'filterSettingHelper' => $this->filterSettingHelper
             ]
         );
     }
@@ -83,6 +90,10 @@ class PageTest extends \PHPUnit\Framework\TestCase
         $attribute = $this->createMock(\Magento\Eav\Model\Entity\Attribute\AbstractAttribute::class);
         $this->catalogConfig->expects($this->any())->method('getAttribute')->willReturn($attribute);
         $attribute->expects($this->any())->method('getId')->willReturn(1);
+        $filterSetting = $this->createMock(\Amasty\ShopbyBase\Model\FilterSetting::class);
+        $filterSetting->expects($this->any())->method('isMultiselect')->willReturn(false);
+        $this->filterSettingHelper->expects($this->any())->method('getSettingByAttribute')->with($attribute)
+            ->willReturn($filterSetting);
 
         $this->assertFalse($this->invokeMethod($this->model, 'matchCurrentFilters', [$pageData]));
         $this->assertFalse($this->invokeMethod($this->model, 'matchCurrentFilters', [$pageData]));
@@ -100,6 +111,11 @@ class PageTest extends \PHPUnit\Framework\TestCase
         $attribute = $this->createMock(\Magento\Eav\Model\Entity\Attribute\AbstractAttribute::class);
         $this->catalogConfig->expects($this->any())->method('getAttribute')->willReturn($attribute);
         $attribute->expects($this->any())->method('getId')->willReturn(false);
+
+        $filterSetting = $this->createMock(\Amasty\ShopbyBase\Model\FilterSetting::class);
+        $filterSetting->expects($this->any())->method('isMultiselect')->willReturn(false);
+        $this->filterSettingHelper->expects($this->any())->method('getSettingByAttribute')->with($attribute)
+            ->willReturn($filterSetting);
 
         $pageData = $this->createMock(\Amasty\ShopbyPage\Api\Data\PageInterface::class);
         $pageData->expects($this->any())->method('getConditions')
@@ -119,13 +135,14 @@ class PageTest extends \PHPUnit\Framework\TestCase
         $attribute = $this->createMock(\Magento\Eav\Model\Entity\Attribute\AbstractAttribute::class);
         $this->catalogConfig->expects($this->any())->method('getAttribute')->willReturn($attribute);
         $this->amshopbyRequest->expects($this->any())->method('getParam')->willReturn('test');
-        $attribute->expects($this->any())->method('getId')->will($this->onConsecutiveCalls(false, 1, 1));
-        $attribute->expects($this->any())->method('getFrontendInput')
-            ->will($this->onConsecutiveCalls('test', 'multiselect'));
+        $attribute->expects($this->any())->method('getId')->willReturn(1);
+        $filterSetting = $this->createMock(\Amasty\ShopbyBase\Model\FilterSetting::class);
+        $filterSetting->expects($this->any())->method('isMultiselect')->willReturn(false);
+        $this->filterSettingHelper->expects($this->any())->method('getSettingByAttribute')->with($attribute)
+            ->willReturn($filterSetting);
 
         $this->assertFalse($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', 'test']));
-        $this->assertFalse($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', 'test']));
-        $this->assertTrue($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', 'test']));
+        $this->assertTrue($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', 'code']));
     }
 
     /**
@@ -137,8 +154,10 @@ class PageTest extends \PHPUnit\Framework\TestCase
         $this->amshopbyRequest->expects($this->any())->method('getParam')->willReturn('code');
         $this->catalogConfig->expects($this->any())->method('getAttribute')->willReturn($attribute);
         $attribute->expects($this->any())->method('getId')->willReturn(1);
-        $attribute->expects($this->any())->method('getFrontendInput')
-            ->will($this->onConsecutiveCalls('test', 'multiselect'));
+        $filterSetting = $this->createMock(\Amasty\ShopbyBase\Model\FilterSetting::class);
+        $filterSetting->expects($this->any())->method('isMultiselect')->willReturn(true);
+        $this->filterSettingHelper->expects($this->any())->method('getSettingByAttribute')->with($attribute)
+            ->willReturn($filterSetting);
 
         $this->assertTrue($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', 'test']));
         $this->assertFalse($this->invokeMethod($this->model, 'isConditionNotMatched', ['test', ['code']]));
@@ -149,8 +168,12 @@ class PageTest extends \PHPUnit\Framework\TestCase
      */
     public function testCheckMultiselectAttribute()
     {
-        $this->assertTrue($this->invokeMethod($this->model, 'checkMultiselectAttribute', ['test', 'test']));
-        $this->assertFalse($this->invokeMethod($this->model, 'checkMultiselectAttribute', ['test', ['test']]));
+        $this->assertTrue(
+            $this->invokeMethod($this->model, 'checkMultiselectAttribute', ['test', ['test', 'code'], false])
+        );
+        $this->assertFalse(
+            $this->invokeMethod($this->model, 'checkMultiselectAttribute', ['test', 'test', false])
+        );
     }
 
     /**
@@ -181,7 +204,11 @@ class PageTest extends \PHPUnit\Framework\TestCase
         $filter = $this->createMock(\Magento\Catalog\Model\Layer\Filter\AbstractFilter::class);
         $attribute = $this->createMock(\Magento\Eav\Model\Entity\Attribute\AbstractAttribute::class);
         $attribute->expects($this->any())->method('getAttributeId')->willReturn(1);
-        $attribute->expects($this->any())->method('getFrontendInput')->will($this->onConsecutiveCalls('select', 'multiselect'));
+        $filterSetting = $this->createMock(\Amasty\ShopbyBase\Model\FilterSetting::class);
+        $filterSetting->expects($this->any())->method('isMultiselect')
+            ->will($this->onConsecutiveCalls(false, true));
+        $this->filterSettingHelper->expects($this->any())->method('getSettingByAttribute')->with($attribute)
+            ->willReturn($filterSetting);
         $filter->expects($this->any())->method('getAttributeModel')->willReturn($attribute);
 
         $this->assertTrue($this->invokeMethod($this->model, 'matchAppliedFilter', [$filter, []]));

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -42,7 +42,7 @@
 
         <!--Check Prev/Next Tags settings: navigate to Brand Page, check Prev/Next Tags in Page Source, activate pagination, check Prev/Next Tags in Page Source/-->
 
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
 
     </test>
 </tests>

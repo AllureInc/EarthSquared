@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -56,7 +56,7 @@
         <amOnPage url="{{AllProductsPageWithAllProducts.url}}" stepKey="navigateToAllProducts1"/>
         <click selector="{{StorefrontFilterElementsSection.Filter('Rating')}}"
                stepKey="expandRatingFilter1"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('width:100')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOption('5 star(s)')}}"
                stepKey="selectRatingOption1"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('100')}}"
                         stepKey="checkRatingOfProducts1"/>
@@ -68,7 +68,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.Filter('Rating')}}"
                stepKey="expandRatingFilter2"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('width:80')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOption('4 &amp; up star(s)')}}"
                stepKey="selectRatingOption2"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('80')}}"
                         stepKey="checkRatingOfProducts2"/>
@@ -80,7 +80,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.Filter('Rating')}}"
                stepKey="expandRatingFilter3"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('width:60')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOption('3 &amp; up star(s)')}}"
                stepKey="selectRatingOption3"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('60')}}"
                         stepKey="checkRatingOfProducts3"/>
@@ -88,7 +88,7 @@
 
         <!--Filter by Rating Filter: select 2 stars option on sidebar in labels, check the result, remove selected option from state/-->
 
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('width:40')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOption('2 &amp; up star(s)')}}"
                stepKey="selectRatingOption4"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('40')}}"
                         stepKey="checkRatingOfProducts4"/>
@@ -100,7 +100,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.Filter('Rating')}}"
                stepKey="expandRatingFilter5"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOption('width:20')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOption('1 &amp; up star(s)')}}"
                stepKey="selectRatingOption5"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('20')}}"
                         stepKey="checkRatingOfProducts5"/>

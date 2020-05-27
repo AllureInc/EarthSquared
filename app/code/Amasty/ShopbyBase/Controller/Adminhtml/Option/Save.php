@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 
@@ -14,9 +14,6 @@ use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
 
-/**
- * Class Save
- */
 class Save extends \Amasty\ShopbyBase\Controller\Adminhtml\Option
 {
     /**
@@ -60,11 +57,13 @@ class Save extends \Amasty\ShopbyBase\Controller\Adminhtml\Option
                 $this->_session->setPageData(false);
 
                 if ($this->getRequest()->getParam('back')) {
-                    $this->_forward(
-                        'edit',
-                        null,
-                        null,
-                        ['filter_code' => $filterCode, 'option_id' => $optionId, 'store' => $storeId]
+                    $this->_redirect(
+                        '*/*/edit',
+                        [
+                            'filter_code' => $filterCode,
+                            'option_id' => $optionId,
+                            'store' => $storeId
+                        ]
                     );
 
                     return;

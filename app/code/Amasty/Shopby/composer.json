@@ -3,15 +3,18 @@
     "description": "Improved Layered Navigation by Amasty",
     "require": {
         "php": "7.0.2|7.0.4|~7.0.6|^7.1.0",
-        "amasty/base": ">=1.9.7",
+        "amasty/base": ">=1.10.1",
         "magento/module-layered-navigation": ">=100.0",
-        "amasty/module-shop-by-base": ">=2.13.1",
-        "amasty/module-shop-by-brand": ">=2.10.2",
-        "amasty/shopby-seo": ">=2.11.1",
-        "amasty/module-improved-layered-navigation-page": ">=2.7.1"
+        "amasty/module-shop-by-base": ">=2.13.6",
+        "amasty/module-shop-by-brand": ">=2.10.9",
+        "amasty/shopby-seo": ">=2.11.6",
+        "amasty/module-improved-layered-navigation-page": ">=2.7.5"
+    },
+    "suggest": {
+        "amasty/shopby-graphql": "Install shopby-graph-ql module to activate GraphQl and Shopby integration."
     },
     "type": "magento2-module",
-    "version": "2.13.2",
+    "version": "2.14.2",
     "license": [
         "Commercial"
     ],

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -35,8 +35,8 @@
 
         <!-- Check Brand Image: check Brand Image, filter page by attribute, check that Brand Image isn't replaced by Attribute Option Image/-->
 
-        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('3.jpg','3_')}}" stepKey="checkCategoryImage2"/>
-        <dontSeeElement selector="{{StorefrontPageElementsSection.ImageSource('2.png','2_')}}"
+        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('1.jpg','1_')}}" stepKey="checkCategoryImage2"/>
+        <dontSeeElement selector="{{StorefrontPageElementsSection.ImageSource('3.png','3_')}}"
                         stepKey="checkCategoryImage3"/>
 
     </test>

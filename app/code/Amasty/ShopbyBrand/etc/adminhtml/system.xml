@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -24,26 +24,26 @@
                 <frontend_model>Amasty\ShopbyBrand\Block\Adminhtml\System\Config\Information</frontend_model>
             </group>
             
-            <group id="general" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="general" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
-                <field id="attribute_code" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="attribute_code" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Brand Attribute</label>
                     <comment>Creates SEO-friendly brand pages. Every page contains all your products filtered by particular brand and contains unique content that you assigned for the option of brand attribute.</comment>
                     <source_model>Amasty\ShopbyBrand\Model\Source\BrandAttribute</source_model>
                 </field>
                 <field id="url_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>URL Key</label>
-                    <comment>Adds a key before brand name in URL like /[key]/brand-name.html</comment>
+                    <comment>Adds a key before brand name in URL like /[key]/brand-name.html.</comment>
                 </field>
                 <field id="brands_page" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Choose CMS Page</label>
-                    <comment>Please make sure the CMS page is enabled (Content -> Elements -> Pages)</comment>
+                    <comment>Please make sure the CMS page is enabled (Content -> Elements -> Pages).</comment>
                     <source_model>Amasty\ShopbyBrand\Model\Source\Page</source_model>
                 </field>
                 <field id="topmenu_enabled" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Add Brands Link to Top Menu</label>
                     <source_model>Amasty\ShopbyBrand\Model\Source\TopmenuLink</source_model>
-                    <comment>Display Link to All Brands Page in Top Menu</comment>
+                    <comment>Display Link to All Brands Page in Top Menu.</comment>
                 </field>
                 <field id="brands_popup" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Show Brands List</label>
@@ -51,16 +51,16 @@
                     <depends>
                         <field id="topmenu_enabled" separator=",">1,2</field>
                     </depends>
-                    <comment>Displays Brands List and Filter By Character in Top Menu Item</comment>
+                    <comment>Displays Brands List and Filter By Character in Top Menu Item.</comment>
                 </field>
                 <field id="top_links" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Add Brands to Account Top Links</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Display Link to All Brands Page in Account Top Links</comment>
+                    <comment>Display Link to All Brands Page in Account Top Links.</comment>
                 </field>
                 <field id="menu_item_label" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Brands Item Label</label>
-                    <comment>Used in top menu and account links</comment>
+                    <comment>Used in top menu and account links.</comment>
                 </field>
                 <field id="tooltip_enabled" translate="label comment" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <label>Display tooltip</label>
@@ -68,7 +68,7 @@
                 </field>
                 <field id="tooltip_content" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Tooltip content</label>
-                    <comment>Possible variables: {title}, {small_image}, {image}, {description}, {short_description}</comment>
+                    <comment>Possible variables: {title}, {small_image}, {image}, {description}, {short_description}.</comment>
                     <depends>
                         <field id="tooltip_enabled" separator=",">all_brands,product_page,listing_page</field>
                     </depends>
@@ -86,11 +86,11 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="image_width" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image Max Width</label>
+                    <label>Image Max Width, px</label>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
                 <field id="image_height" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image Max Height</label>
+                    <label>Image Max Height, px</label>
                     <validate>validate-greater-than-zero</validate>
                     <comment>Optional.</comment>
                 </field>
@@ -113,11 +113,12 @@
                 <field id="show_count" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Products Quantity</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Show the number of products next to Brand name.</comment>
+                    <comment>Show the number of products next to Brand name. Please note that this setting may affect performance.</comment>
                 </field>
-                <field id="display_zero" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show Brands Without Products</label>
+                <field id="display_zero" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Brands without Products</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Please note that this setting may affect performance.</comment>
                 </field>
             </group>
             <group id="slider" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -147,16 +148,16 @@
                     <label>Header Title</label>
                 </field>
                 <field id="slider_width" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Slider Max Width</label>
+                    <label>Slider Max Width, px</label>
                     <comment>Optional.</comment>
                     <validate>validate-greater-than-zero</validate>
                 </field>
                 <field id="image_width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image Max Width</label>
+                    <label>Image Max Width, px</label>
                     <validate>validate-greater-than-zero required-entry</validate>
                 </field>
                 <field id="image_height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image Max Height</label>
+                    <label>Image Max Height, px</label>
                     <validate>validate-greater-than-zero</validate>
                     <comment>Optional.</comment>
                 </field>
@@ -213,11 +214,17 @@
                 </field>
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
-                    <comment>Default: More from {brand_name}</comment>
+                    <comment>Default: More from {brand_name}.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
                 <field id="count" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Max Product Count</label>
-                    <comment>Please set the quantity of the products displayed. Default value is 7</comment>
+                    <comment>Please set the quantity of the products displayed. Default value is 7.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
                 </field>
             </group>
 

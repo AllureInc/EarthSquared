@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -35,6 +35,10 @@
         <!--Check RTC settings: navigate to Search Result Page, check Follow in Page Source after pagination/-->
 
         <amOnPage url="{{SearchResultPage.url('red')}}" stepKey="navigateToAllProducts1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="navigateToAllProducts1"/>
         <seeInPageSource
                 html="&quot;noindex,FOLLOW"
                 stepKey="seeInSource1"/>

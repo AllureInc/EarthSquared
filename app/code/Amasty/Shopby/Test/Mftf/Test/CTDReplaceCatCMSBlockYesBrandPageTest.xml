@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -38,6 +38,16 @@
                 <argument name="CMSblock1" value="CMSBlockData2"/>
                 <argument name="widgetCode" value="allBrandsPageWidgetCode"/>
             </actionGroup>
+            <actionGroup stepKey="createCMSBlock3"
+                         ref="AdminCreateCMSBlockActionGroup">
+                <argument name="CMSblock1" value="CMSBlockData4"/>
+                <argument name="widgetCode" value="allBrandsPageWidgetCode"/>
+            </actionGroup>
+            <actionGroup stepKey="createCMSBlock4"
+                         ref="AdminCreateCMSBlockActionGroup">
+                <argument name="CMSblock1" value="CMSBlockData5"/>
+                <argument name="widgetCode" value="allBrandsPageWidgetCode"/>
+            </actionGroup>
             <actionGroup stepKey="ConfigureClimateAttributeOptionPageContent1"
                          ref="ConfigureAttributeOptionPageContent">
                 <argument name="Attributes" value="AllWeatherAttrWithCMSBlockData"/>
@@ -65,6 +75,14 @@
                          ref="AmDeleteCMSBlockActionGroup">
                 <argument name="CMSblock1" value="CMSBlockData2"/>
             </actionGroup>
+            <actionGroup stepKey="deleteCMSBlock3"
+                         ref="AmDeleteCMSBlockActionGroup">
+                <argument name="CMSblock1" value="CMSBlockData4"/>
+            </actionGroup>
+            <actionGroup stepKey="deleteCMSBlock4"
+                         ref="AmDeleteCMSBlockActionGroup">
+                <argument name="CMSblock1" value="CMSBlockData5"/>
+            </actionGroup>
             <actionGroup stepKey="ConfigureClimateAttributeOptionPageContent2"
                          ref="ConfigureDefaultAttributeOptionPageContent">
                 <argument name="Attributes" value="DefaultAllWeatherAttributeData"/>
@@ -87,13 +105,19 @@
         <!-- Check Brand CMS Block: check Brand CMS Block, filter page by attribute, check that Brand CMS Block is replaced by Attribute Option CMS Block/-->
 
         <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
-        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 2')}}" stepKey="checkCMSBlockContent1"/>
+        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 2')}}"
+                    stepKey="checkCMSBlockContent1"/>
+        <seeElement selector="{{StorefrontPageElementsSection.BottomCMSBlockContent('Test CMS Block 5')}}"
+                    stepKey="checkCMSBlockContent3"/>
         <waitForElement selector="{{StorefrontFilterElementsSection.Filter('Climate')}}" stepKey="waitForElement1"/>
         <click selector="{{StorefrontFilterElementsSection.Filter('Climate')}}"
                stepKey="clickClimateFilter1"/>
         <click selector="{{StorefrontFilterElementsSection.FilterOption('All-Weather')}}"
                stepKey="clickAllWeatherOption1"/>
-        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 1')}}" stepKey="checkCMSBlockContent2"/>
+        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 1')}}"
+                    stepKey="checkCMSBlockContent2"/>
+        <seeElement selector="{{StorefrontPageElementsSection.BottomCMSBlockContent('Test CMS Block 4')}}"
+                    stepKey="checkCMSBlockContent4"/>
 
     </test>
 </tests>

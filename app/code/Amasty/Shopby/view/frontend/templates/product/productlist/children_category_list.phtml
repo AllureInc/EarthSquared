@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -15,30 +15,30 @@ $size = $block->getImageSize();
 $swiperPrefix = $block->isSliderEnabled() ? 'swiper-' : '';
 ?>
 
-<?php if (count($categories)) : ?>
+<?php if (count($categories)): ?>
     <div class="amslider-container <?= $block->isSliderEnabled() ? 'am-swiper-slider' : ''?>">
         <div class="amslider" id="category-carousel" >
-            <?php if ((count($categories) > $block->getItemsCountPerSlide()) && $block->isSliderEnabled()) : ?>
+            <?php if ((count($categories) > $block->getItemsCountPerSlide()) && $block->isSliderEnabled()): ?>
                 <div class="swiper-button-prev"></div>
                 <div  class="swiper-button-next"></div>
             <?php endif; ?>
             <div class="children-category-container <?= /* @noEscape */ $swiperPrefix; ?>container">
                 <div class="<?= /* @noEscape */ $swiperPrefix; ?>wrapper">
-                    <?php foreach ($categories as $category) : ?>
+                    <?php foreach ($categories as $category): ?>
                         <?php $imgUrl = $block->getCategoryImageUrl($category, $size);?>
-                        <?php if ($imgUrl) : ?>
+                        <?php if ($imgUrl): ?>
                         <a title="<?= $block->escapeHtml($category->getName())?>"
                            href="<?= $block->escapeUrl($category->getUrl()) ?>"
                            class="<?= /* @noEscape */ $swiperPrefix; ?>slide">
                             <div class="<?= /* @noEscape */ $swiperPrefix ?>category-item
                                 <?= /* @noEscape */ ($block->showLabels()) ? ' category-item-label' : ''; ?>">
-                                <?php if (!$block->isOnlyLabels()) : ?>
+                                <?php if (!$block->isOnlyLabels()): ?>
                                     <img height="<?= /* @noEscape */ $size?>"
                                          width="<?= /* @noEscape */ $size ?>"
                                          src="<?= $block->escapeUrl($imgUrl); ?>" />
                                 <?php endif; ?>
 
-                                <?php if ($block->showLabels() || $block->isOnlyLabels()) : ?>
+                                <?php if ($block->showLabels() || $block->isOnlyLabels()): ?>
                                     <div class="category-item-title"
                                         <?php $style = 'style="max-width: '. $size . 'px"'; ?>
                                         <?= /* @noEscape */ $block->isSliderEnabled() ? '' : $style?>
@@ -54,7 +54,7 @@ $swiperPrefix = $block->isSliderEnabled() ? 'swiper-' : '';
             </div>
         </div>
     </div>
-    <?php if ($block->isSliderEnabled()) : ?>
+    <?php if ($block->isSliderEnabled()): ?>
         <script type="text/javascript">
             require([
                 'jquery',

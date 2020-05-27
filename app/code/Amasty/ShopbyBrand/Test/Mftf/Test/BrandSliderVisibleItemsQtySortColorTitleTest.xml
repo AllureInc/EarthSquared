@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -56,6 +56,17 @@
         </before>
 
         <after>
+            <actionGroup ref="ConfigureAllBrandsPageActionGroup"
+                         stepKey="disableAllBrandsPage1">
+            </actionGroup>
+            <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
+                         stepKey="configureAllBrandsPageLinks1">
+                <argument name="brandsLink1" value="noDisplayBrandsLink"/>
+            </actionGroup>
+            <actionGroup ref="ConfigureBrandSliderQtySortColorTitleSizeActionGroup"
+                         stepKey="configureBrandSliderQtySortColorTitleSize1">
+                <argument name="brandSlider1" value="brandSliderQtySortColorTitleSizeDefault"/>
+            </actionGroup>
             <actionGroup ref="ProductsInBrandSliderConfigurationActionGroup"
                          stepKey="configureBrandOptionsInSlider1">
                 <argument name="AttrOptionInBrandSlider1" value="polyesterInSliderNo"/>
@@ -65,19 +76,8 @@
                 <argument name="AttrOptionInBrandSlider5" value="RemoveFromTheSliderMassAction"/>
                 <argument name="attributeSeoScenario4" value="nonSeoFriendlySingleSelectBrand"/>
             </actionGroup>
-            <actionGroup ref="ConfigureAllBrandsPageActionGroup"
-                         stepKey="disableAllBrandsPage1">
-            </actionGroup>
-            <actionGroup ref="ConfigureBrandSliderQtySortColorTitleSizeActionGroup"
-                         stepKey="configureBrandSliderQtySortColorTitleSize1">
-                <argument name="brandSlider1" value="brandSliderQtySortColorTitleSizeDefault"/>
-            </actionGroup>
             <actionGroup ref="BrandAttributeConfigurationActionGroup" stepKey="disableBrandAttribute1">
                 <argument name="brandAttribute" value="noBrandAttribute"/>
-            </actionGroup>
-            <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
-                         stepKey="configureAllBrandsPageLinks1">
-                <argument name="brandsLink1" value="noDisplayBrandsLink"/>
             </actionGroup>
             <actionGroup ref="logout" stepKey="logout"/>
         </after>
@@ -93,15 +93,20 @@
         <seeElement
                 selector="{{StorefrontBrandElementsSection.BrandSliderItemsSequence('burlap','cocona')}}"
                 stepKey="seeBrandSliderSequence1"/>
+        <dontSeeElement
+                selector="{{StorefrontBrandElementsSection.BrandSliderItemsSequence('burlap.html','cocona.html')}}"
+                stepKey="checkSuffixInBrandSliderItem1"/>
         <seeElement
                 selector="{{StorefrontBrandElementsSection.BrandSliderHeaderColors('#F58C12;','#E2E2E2;')}}"
                 stepKey="seeHeaderColors1"/>
         <see selector="{{StorefrontBrandElementsSection.BrandSliderHeaderColors('#F58C12;','#E2E2E2;')}}"
              userInput="Featured Brands Test Title"
              stepKey="checkBrandSliderTitle1"/>
-        <seeInSource html="#amslider_id1 { max-width: 680px; padding: 0 40px; }"
+        <grabTextFrom selector="~amslider_id(\d+)~"
+                      stepKey="grabDuplicateOptionName1"/>
+        <seeInSource html="amslider_id$grabDuplicateOptionName1 { max-width: 680px; padding: 0 40px; }"
                      stepKey="checkBrandSliderWidth1"/>
-        <seeInSource html="#amslider_id1 .swiper-brand .am-image-wrapper{ max-width: 150px; max-height: 100px; }"
+        <seeInSource html="amslider_id$grabDuplicateOptionName1 .swiper-brand .am-image-wrapper > .am-image { max-width: 150px; max-height: 100px; }"
                      stepKey="checkBrandSliderImageHeightWidth1"/>
 
     </test>

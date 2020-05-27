@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -24,6 +24,7 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfilterdispprop"/>
         </annotations>
 
         <before>
@@ -57,14 +58,14 @@
                              selector="{{StorefrontFilterElementsSection.FilterOptionForCount('category_ids','category-amShopbyFilterCategoryLabelsFolding')}}"
                              stepKey="seeNoMoreThanTenOptions1"
                              after="clickOnCategoryFilter1"/>
-        <seeElement selector="{{StorefrontFilterElementsSection.ShowFoldedOptions}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.ShowMoreAndLessButtons('more')}}"
                     stepKey="checkShowMoreElement1"
                     after="seeNoMoreThanTenOptions1"/>
         <seeNumberOfElements parameterArray="[1,10]"
                              selector="{{StorefrontFilterElementsSection.FilterOptionForCount('category_ids','category-amShopbyFilterCategoryLabelsFolding')}}"
                              stepKey="seeNoMoreThanTenOptions2"
                              after="clickOnCategoryFilter2"/>
-        <dontSeeElement selector="{{StorefrontFilterElementsSection.ShowFoldedOptions}}"
+        <dontSeeElement selector="{{StorefrontFilterElementsSection.ShowMoreAndLessButtons('more')}}"
                         stepKey="checkShowMoreElement2"
                         after="seeNoMoreThanTenOptions2"/>
 

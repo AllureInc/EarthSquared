@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -76,5 +76,12 @@
         <data key="FilterKeyField">testfilterkey</data>
     </entity>
 
+    <entity name="magentoURLSuffixDefault" type="magurlsuffix">
+        <data key="value">.html</data>
+        <data key="path">catalog/seo/category_url_suffix</data>
+    </entity>
+    <entity name="magentoURLSuffixEmpty" type="magurlsuffix" extends="magentoURLSuffixDefault">
+        <data key="value">''</data>
+    </entity>
 </entities>
 

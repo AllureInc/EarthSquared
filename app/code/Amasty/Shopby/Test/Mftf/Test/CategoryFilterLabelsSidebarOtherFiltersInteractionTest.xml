@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -16,13 +16,15 @@
             <features value="Category filter"/>
             <stories value="Category filter checking"/>
             <title value="Checking of Category filter filtering"/>
-            <description value="Checking of Category filter filtering on sidebar in labels mode in interaction with other Filters"/>
+            <description
+                    value="Checking of Category filter filtering on sidebar in labels mode in interaction with other Filters"/>
             <severity value="AVERAGE"/>
             <testCaseId value="CATEGORYFILTER-29"/>
             <group value="Amasty"/>
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfiltercompatibility"/>
         </annotations>
 
         <before>

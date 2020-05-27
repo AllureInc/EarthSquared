@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -12,14 +12,23 @@
     </head>
     <body>
         <referenceContainer name="sidebar.main">
-            <block class="Amasty\Shopby\Block\Navigation\FilterCollapsing\Search" name="catalog.navigation.collapsing" after="catalogsearch.leftnav" template="Amasty_Shopby::layer/filter_collapsing.phtml"/>
-            <block class="Amasty\Shopby\Block\Navigation\SwatchesChoose\Search" name="catalog.navigation.swatches.choose" after="catalog.navigation.collapsing" template="Amasty_Shopby::layer/filter_swatches_choose.phtml"/>
+            <block class="Amasty\Shopby\Block\Navigation\Search" name="catalogsearch.leftnav"
+                   before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+                <block class="Amasty\Shopby\Block\Navigation\State"
+                       name="catalogsearch.navigation.state" as="state" />
+                <block class="Amasty\Shopby\Block\Navigation\FilterRenderer"
+                       name="catalogsearch.navigation.renderer" as="renderer"
+                       template="Magento_LayeredNavigation::layer/filter.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Amasty\Shopby\Block\Navigation\FilterCollapsing\Search" name="catalog.navigation.collapsing"
+                   template="Amasty_Shopby::layer/filter_collapsing.phtml"/>
+            <block class="Amasty\Shopby\Block\Navigation\SwatchesChoose\Search" name="catalog.navigation.swatches.choose"
+                   after="catalog.navigation.collapsing" template="Amasty_Shopby::layer/filter_swatches_choose.phtml"/>
 
-            <block
-                    class="Amasty\Shopby\Block\Navigation\ApplyButton"
-                    name="amasty.shopby.applybutton.sidebar"
-                    after="catalog.leftnav"
-                    >
+            <block class="Amasty\Shopby\Block\Navigation\ApplyButton"
+                   name="amasty.shopby.applybutton.sidebar">
                 <action method="setNavigationSelector">
                     <argument name="selector" xsi:type="string">.sidebar</argument>
                 </action>
@@ -27,9 +36,6 @@
                     <argument name="position" xsi:type="string">sidebar</argument>
                 </action>
             </block>
-        </referenceContainer>
-        <referenceContainer name="content">
-
             <container name="amshopby.catalog.topnav.container" htmlTag="div" htmlClass="catalog-topnav amasty-catalog-topnav" before="-">
                 <block class="Amasty\Shopby\Block\Navigation\SearchTop" name="amshopby.catalog.topnav" template="Magento_LayeredNavigation::layer/view.phtml">
                     <block class="Amasty\Shopby\Block\Navigation\Top\State" name="amshopby.catalog.topnav.state" as="state" />

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -10,10 +10,6 @@ namespace Amasty\Shopby\Controller\Adminhtml\Group;
 
 use Magento\Framework\Exception\NoSuchEntityException;
 
-/**
- * Class Edit
- * @package Amasty\Shopby\Controller\Adminhtml\Group
- */
 class Edit extends \Amasty\Shopby\Controller\Adminhtml\Group
 {
     /**
@@ -44,12 +40,12 @@ class Edit extends \Amasty\Shopby\Controller\Adminhtml\Group
 
         // 5. Build edit form
         $resultPage->setActiveMenu('Amasty_Shopby::group_attributes')
-            ->addBreadcrumb(__('Manage Group Attribute Options'), __('Manage Group Attribute Options'))
+            ->addBreadcrumb(__('Manage Group Attributes'), __('Manage Group Attributes'))
             ->addBreadcrumb(
                 $id ? __('Edit Group') : __('New Group'),
                 $id ? __('Edit Group') : __('New Group')
             );
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Group Attribute Options'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Group Attributes'));
         $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Group'));
 
         return $resultPage;

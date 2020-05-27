@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 
@@ -16,9 +16,6 @@ use Magento\Framework\View\Element\BlockFactory;
 use Amasty\ShopbyBase\Api\Data\OptionSettingInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
-/**
- * Class BlockHtmlTitlePluginAbstract
- */
 abstract class BlockHtmlTitlePluginAbstract
 {
     const IMAGE_URL = 'image_url';
@@ -199,12 +196,20 @@ abstract class BlockHtmlTitlePluginAbstract
                 $childProducts = $this->configurableType->getUsedProducts($product);
                 foreach ($childProducts as $childProduct) {
                     $childAttrValue = $childProduct->getData($code);
-                    if ($childAttrValue && is_string($childAttrValue)) {
-                        $values += explode(',', $childAttrValue);
+                    if ($childAttrValue) {
+                        if (is_string($childAttrValue)) {
+                            $childAttrValue = explode(',', $childAttrValue);
+                        }
+                        // phpcs:ignore
+                        $values = array_merge($values, $childAttrValue);
                     }
                 }
             } elseif ($data) {
-                $values += explode(',', $data);
+                if (is_string($data)) {
+                    $data = explode(',', $data);
+                }
+                // phpcs:ignore
+                $values = array_merge($values, $data);
             }
         }
 

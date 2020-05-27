@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -25,6 +25,7 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfiltertree"/>
         </annotations>
 
         <before>
@@ -36,7 +37,7 @@
 
         <!--Filter All-Products Page by Category Filter: select option on sidebar, check the result/-->
 
-        <seeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','3.jpg','3_')}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','1.jpg','1_')}}"
                     stepKey="checkCategoryOptionImage1"
                     after="clickOnCategoryFilter1"/>
         <dontSee selector="{{StorefrontFilterElementsSection.FilterOption('Women')}}"
@@ -46,7 +47,7 @@
         <click selector="{{StorefrontFilterElementsSection.CategoryFilterExpandTree('Women')}}"
                stepKey="expandCategoryTree1"
                after="grabQtyOfProducts1"/>
-        <seeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','3.jpg','3_')}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','1.jpg','1_')}}"
                     stepKey="checkCategoryOptionImage2"
                     after="clickOnCategoryFilter2"/>
         <dontSee selector="{{StorefrontFilterElementsSection.FilterOption('Women')}}"

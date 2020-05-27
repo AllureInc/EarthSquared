@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -63,7 +63,7 @@
         <seeInPageSource
                 html="meta name=&quot;title&quot; content=&quot;Default Category Meta Title TST - All-Weather Meta Title TST | Page 2&quot;"
                 stepKey="seeInSource2"/>
-        <selectOption userInput="30" selector="{{StorefrontPageElementsSection.ShowPerPageQuantity}}"
+        <selectOption userInput="36" selector="{{StorefrontPageElementsSection.ShowPerPageQuantity}}"
                       stepKey="selectProductQuantity1"/>
         <seeInPageSource
                 html="meta name=&quot;title&quot; content=&quot;Default Category Meta Title TST - All-Weather Meta Title TST | "

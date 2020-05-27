@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -20,20 +20,22 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Element\BlockFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
-/**
- * Class BlockHtmlTitlePlugin
- * @package Amasty\Shopby\Plugin\Catalog\Block\Product\View
- */
 class BlockHtmlTitlePlugin extends BlockHtmlTitlePluginAbstract
 {
     /**
      * @var \Amasty\ShopbyBase\Model\ResourceModel\FilterSetting\Collection
      */
     private $filterCollection;
+
     /**
      * @var \Amasty\ShopbyBase\Helper\Data
      */
     private $baseHelper;
+
+    /**
+     * @var \Amasty\Shopby\Helper\Data
+     */
+    private $helper;
 
     /**
      * @var \Amasty\ShopbyBase\Api\UrlBuilderInterface
@@ -48,12 +50,14 @@ class BlockHtmlTitlePlugin extends BlockHtmlTitlePluginAbstract
         Configurable $configurableType,
         FilterCollectionFactory $filterCollectionFactory,
         \Amasty\ShopbyBase\Helper\Data $baseHelper,
-        \Amasty\ShopbyBase\Api\UrlBuilderInterface $urlBuilder
+        \Amasty\ShopbyBase\Api\UrlBuilderInterface $urlBuilder,
+        \Amasty\Shopby\Helper\Data $helper
     ) {
         parent::__construct($optionCollectionFactory, $registry, $storeManager, $blockFactory, $configurableType);
         $this->filterCollection = $filterCollectionFactory->create();
         $this->baseHelper = $baseHelper;
         $this->urlBuilder = $urlBuilder;
+        $this->helper = $helper;
     }
 
     /**
@@ -61,10 +65,10 @@ class BlockHtmlTitlePlugin extends BlockHtmlTitlePluginAbstract
      */
     protected function getAttributeCodes()
     {
+        $attributeCodes = [];
         $filtersToShow = $this->filterCollection
             ->addFieldToSelect(OptionSetting::FILTER_CODE)
             ->addFieldToFilter(FilterSettingInterface::SHOW_ICONS_ON_PRODUCT, true);
-        $attributeCodes = [];
         foreach ($filtersToShow as $filter) {
             /** @var FilterSetting $filter */
             $attributeCodes[] = substr($filter->getFilterCode(), strlen(FilterHelper::ATTR_PREFIX));
@@ -91,7 +95,8 @@ class BlockHtmlTitlePlugin extends BlockHtmlTitlePluginAbstract
 
         $attrCode = str_replace(\Amasty\ShopbyBase\Helper\FilterSetting::ATTR_PREFIX, '', $fCode);
         $value = $setting->getOptionId() ?: $setting->getValue();
-        return $this->urlBuilder->getUrl(
+
+        return !$this->helper->isAllProductsEnabled() ? '#' : $this->urlBuilder->getUrl(
             'amshopby/index/index',
             [
                 '_query' => [$attrCode => $value],

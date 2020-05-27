@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -11,11 +11,16 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/dataSchema.xsd">
 
     <entity name="DefaultCategoryTitleAndDescription" type="CatTitleAndDescriptILNSettings">
+        <data key="AttributeName">Climate</data>
         <data key="AddFilterTitle">after</data>
         <data key="SeparateCategoryNameAndTitleWith"> - </data>
         <data key="AddFilterDescription">after</data>
         <data key="ReplaceCategoryImage">1</data>
         <data key="ReplaceCategoryCMSBlock">1</data>
+    </entity>
+    <entity name="CategoryTitleAndDescriptionAllAttributesOption" type="CatTitleAndDescriptILNSettings"
+            extends="DefaultCategoryTitleAndDescription">
+        <data key="AttributeName">All Attributes</data>
     </entity>
     <entity name="ReplaceCatImageCMSBlockNo" type="CatTitleAndDescriptILNSettings"
             extends="DefaultCategoryTitleAndDescription">

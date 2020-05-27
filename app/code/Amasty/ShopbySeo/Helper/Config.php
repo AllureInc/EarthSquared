@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 
@@ -11,9 +11,6 @@ namespace Amasty\ShopbySeo\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
-/**
- * Class Config
- */
 class Config extends AbstractHelper
 {
     const MODULE_PATH = 'amasty_shopby_seo/';
@@ -28,6 +25,21 @@ class Config extends AbstractHelper
     {
         return $this->scopeConfig->getValue(
             self::MODULE_PATH . $path,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    /**
+     * @param $path
+     * @param int $storeId
+     *
+     * @return mixed
+     */
+    public function getConfig($path, $storeId = null)
+    {
+        return $this->scopeConfig->getValue(
+            $path,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );

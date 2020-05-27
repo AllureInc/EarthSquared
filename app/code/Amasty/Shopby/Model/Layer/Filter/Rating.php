@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -14,13 +14,17 @@ use Magento\Catalog\Model\Layer\Filter\AbstractFilter;
 use Magento\Framework\View\Element\BlockFactory;
 use Amasty\Shopby\Model\Layer\Filter\Traits\CustomTrait;
 
-/**
- * Class Rating
- * @package Amasty\Shopby\Model\Layer\Filter
- */
 class Rating extends AbstractFilter
 {
     use CustomTrait;
+
+    const STARS = [
+        1 => 20,
+        2 => 40,
+        3 => 60,
+        4 => 80,
+        5 => 100
+    ];
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
@@ -41,18 +45,6 @@ class Rating extends AbstractFilter
      * @var \Amasty\Shopby\Model\Request
      */
     private $shopbyRequest;
-
-    /**
-     * @var array
-     */
-    private $stars = [
-        1 => 20,
-        2 => 40,
-        3 => 60,
-        4 => 80,
-        5 => 100,
-        //6 => -1
-    ];
 
     /**
      * @var \Amasty\Shopby\Model\Search\Adapter\Mysql\AggregationAdapter
@@ -110,11 +102,11 @@ class Rating extends AbstractFilter
         }
 
         $filter = $this->shopbyRequest->getFilterParam($this);
-        if (!isset($this->stars[$filter])) {
+        if (!isset(self::STARS[$filter])) {
             return $this;
         }
         $this->setCurrentValue($filter);
-        $condition = $this->stars[$filter];
+        $condition = self::STARS[$filter];
 
         if ($filter == 6) {
             $condition = new \Zend_Db_Expr("IS NULL");

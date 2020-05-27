@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
@@ -9,6 +9,7 @@
 namespace Amasty\Base\Observer;
 
 use Amasty\Base\Helper\Module;
+use Amasty\Base\Plugin\Backend\Model\Menu\Item;
 use Magento\Framework\Event\ObserverInterface;
 
 class GenerateInformationTab implements ObserverInterface
@@ -100,7 +101,12 @@ class GenerateInformationTab implements ObserverInterface
     protected function getLogoHtml()
     {
         $src = $this->assetRepo->getUrl('Amasty_Base::images/amasty_logo.svg');
-        $href = 'https://amasty.com' . $this->getSeoParams() . 'amasty_logo_' . $this->getModuleCode();
+        if ($this->moduleHelper->isOriginMarketplace()) {
+            $href = Item::MAGENTO_MARKET_URL;
+        } else {
+            $href = 'https://amasty.com' . $this->getSeoParams() . 'amasty_logo_' . $this->getModuleCode();
+        }
+
         $html = '<a target="_blank" href="' . $href . '"><img class="amasty-logo" src="' . $src . '"/></a>';
 
         return $html;
@@ -154,7 +160,7 @@ class GenerateInformationTab implements ObserverInterface
                 . $this->getLogoHtml()
                 . '</div>';
 
-            if (!$isVersionLast) {
+            if (!$isVersionLast && !$this->moduleHelper->isOriginMarketplace()) {
                 $html .=
                     '<div><span class="upgrade-error message message-warning">'
                     . __(

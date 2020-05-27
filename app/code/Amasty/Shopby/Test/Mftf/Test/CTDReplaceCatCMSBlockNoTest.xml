@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -37,8 +37,8 @@
 
         <dontSeeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 1')}}"
                         stepKey="checkCMSBlockContent2"/>
-<!--        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 2')}}"
-                    stepKey="checkCMSBlockContent3"/>-->
+        <seeElement selector="{{StorefrontPageElementsSection.CMSBlockContent('Test CMS Block 2')}}"
+                    stepKey="checkCMSBlockContent3"/>
 
     </test>
 </tests>

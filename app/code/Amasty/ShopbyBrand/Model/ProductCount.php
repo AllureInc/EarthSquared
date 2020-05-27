@@ -1,18 +1,13 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
 
 namespace Amasty\ShopbyBrand\Model;
 
-/**
- * Class ProductCount
- *
- * @package Amasty\ShopbyBrand\Model
- */
 class ProductCount
 {
     /**
@@ -26,11 +21,6 @@ class ProductCount
     private $storeManager;
 
     /**
-     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
-     */
-    private $collection;
-
-    /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
     private $messageManager;
@@ -41,24 +31,27 @@ class ProductCount
     private $brandHelper;
 
     /**
-     * @var \Magento\Framework\Api\Search\SearchCriteriaBuilder
+     * @var \Magento\Catalog\Api\CategoryRepositoryInterface
      */
-    private $builder;
+    private $categoryRepository;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    private $collectionFactory;
 
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository,
-        \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $collection,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory,
         \Amasty\ShopbyBrand\Helper\Data $brandHelper,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Magento\Framework\Api\Search\SearchCriteriaBuilder $builder
+        \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->storeManager = $storeManager;
+        $this->collectionFactory = $collectionFactory;
         $this->categoryRepository = $categoryRepository;
-        $this->collection = $collection;
         $this->messageManager = $messageManager;
         $this->brandHelper = $brandHelper;
-        $this->builder = $builder;
     }
 
     /**
@@ -99,9 +92,10 @@ class ProductCount
     {
         $rootCategoryId = $this->storeManager->getStore()->getRootCategoryId();
         $category = $this->categoryRepository->get($rootCategoryId);
-        $this->collection->setSearchCriteriaBuilder($this->builder);
+        /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $collection**/
+        $collection = $this->collectionFactory->create();
 
-        return $this->collection->addAttributeToSelect($attrCode)
+        return $collection->addAttributeToSelect($attrCode)
             ->setVisibility([2,4])
             ->addCategoryFilter($category)
             ->getFacetedData($attrCode);

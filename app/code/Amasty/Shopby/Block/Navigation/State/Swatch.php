@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -11,10 +11,6 @@ namespace Amasty\Shopby\Block\Navigation\State;
 use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
 use Magento\Framework\View\Element\Template;
 
-/**
- * Class Swatch
- * @package Amasty\Shopby\Block\Navigation\State
- */
 class Swatch extends \Magento\Framework\View\Element\Template
 {
     /**

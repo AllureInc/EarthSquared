@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -31,7 +31,7 @@
             <actionGroup stepKey="RTCEnabling1" ref="RobotsTagControlConfigurationActionGroup">
                 <argument name="rtcscenario" value="robotsTagControlDefault"/>
             </actionGroup>
-            <actionGroup ref="ConfigurePriceColorCategoryAttributesForRTCActionGroup"
+            <actionGroup ref="ConfigureAttributesForRTCActionGroup"
                          stepKey="configureAttributesForRTC1">
                 <argument name="RTC" value="IndexFollowRelNoFollowDefault"/>
                 <argument name="RTC2" value="AllowMultiSelectLabelsMode"/>
@@ -39,7 +39,7 @@
         </before>
 
         <after>
-            <actionGroup ref="ConfigurePriceColorCategoryAttributesForRTCActionGroup"
+            <actionGroup ref="ConfigureAttributesForRTCActionGroup"
                          stepKey="configureAttributesForRTC1">
                 <argument name="RTC" value="IndexFollowRelNoFollowDefault"/>
                 <argument name="RTC2" value="SingleSelectDefault"/>

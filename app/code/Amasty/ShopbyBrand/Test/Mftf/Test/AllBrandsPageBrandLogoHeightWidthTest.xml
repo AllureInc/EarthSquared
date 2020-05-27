@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -83,7 +83,7 @@
                  stepKey="dontSeeGenerationContentError2"/>
         <seeElement selector="{{StorefrontPageElementsSection.MagentoLogo}}" stepKey="dontSeeFatalErrorOnPage2"/>
         <seeInSource html="&lt;title&gt;All Brands Page&lt;&#x0002F;title&gt;" stepKey="seeInSource2"/>
-        <seeElement selector="{{StorefrontBrandElementsSection.BrandItemOnAllBrandsPage('Polyester','3.jpg','3_')}}"
+        <seeElement selector="{{StorefrontBrandElementsSection.BrandItemOnAllBrandsPage('Polyester','polyester','1.jpg','1_')}}"
                     stepKey="seeBrandLogo1"/>
         <seeInSource html=".bare-list .ambrands-image { max-width: 145px; max-height: 195px; }" stepKey="checkBrandLogoSize1"/>
 

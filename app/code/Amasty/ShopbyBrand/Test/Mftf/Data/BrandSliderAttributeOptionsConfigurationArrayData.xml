@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -20,7 +20,7 @@
         <data key="PositionInSlider">0</data>
     </entity>
     <entity name="organicCottonInSliderYes" type="AttrOptionInBrandSlider2">
-        <data key="OptionName">5581</data>
+        <data key="OptionName">5580</data>
         <data key="ShowInBrandSliderSwitcher">1</data>
         <data key="PositionInSlider">2</data>
     </entity>
@@ -38,7 +38,7 @@
         <data key="PositionInSlider">0</data>
     </entity>
     <entity name="spandexInSliderYes" type="AttrOptionInBrandSlider4">
-        <data key="AttributeOptionID">5578</data>
+        <data key="AttributeOptionID">5577</data>
         <data key="ShowInBrandSliderSwitcher">1</data>
         <data key="PositionInSlider">4</data>
     </entity>

@@ -1,20 +1,20 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
 
 namespace Amasty\Shopby\Plugin\View\Page\Config;
 
-use Magento\Framework\App\ProductMetadataInterface;
+use Amasty\Base\Model\MagentoVersion;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Page\Config;
 use Magento\Framework\View\Page\Config\Renderer as MagentoRenderer;
 
 class Renderer
 {
-
     const SWATCHES_FILE = 'Magento_Swatches::css/swatches.css';
 
     const UNSUPPORTED_VERSION = '2.3.0';
@@ -25,22 +25,22 @@ class Renderer
     private $config;
 
     /**
-     * @var ProductMetadataInterface
+     * @var MagentoVersion
      */
-    private $productMetadata;
+    private $magentoVersion;
 
     /**
-     * @var \Magento\Framework\App\Request\Http
+     * @var RequestInterface
      */
     private $request;
 
     public function __construct(
         Config $config,
-        ProductMetadataInterface $productMetadata,
-        \Magento\Framework\App\Request\Http $request
+        MagentoVersion $magentoVersion,
+        RequestInterface $request
     ) {
         $this->config = $config;
-        $this->productMetadata = $productMetadata;
+        $this->magentoVersion = $magentoVersion;
         $this->request = $request;
     }
 
@@ -54,9 +54,8 @@ class Renderer
     public function beforeRenderAssets(
         MagentoRenderer $subject,
         $resultGroups = []
-    )
-    {
-        if ($this->isSupportedVersion() && $this->isNeededAction()) {
+    ) {
+        if ($this->isNeededAction() && $this->isSupportedVersion()) {
             $this->config->addPageAsset(self::SWATCHES_FILE);
         }
 
@@ -68,7 +67,7 @@ class Renderer
      */
     private function isSupportedVersion()
     {
-        $version = $this->productMetadata->getVersion();
+        $version = $this->magentoVersion->get();
         $version = str_replace(['-develop', 'dev-'], '', $version);
 
         return version_compare($version, self::UNSUPPORTED_VERSION, '<');
@@ -79,7 +78,9 @@ class Renderer
      */
     private function isNeededAction()
     {
-        return in_array($this->request->getFullActionName(), [
+        return in_array(
+            $this->request->getFullActionName(),
+            [
                 'amshopby_cms_navigation',
                 'amshopby_option_group_edit'
             ]

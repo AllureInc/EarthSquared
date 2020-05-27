@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -11,7 +11,7 @@
           xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/dataSchema.xsd">
 
     <entity name="SeoFriendlySingleSelect" type="attributeSeoScenario1">
-        <data key="PatternID">153</data>
+        <data key="PatternID">155</data>
         <data key="AllowMultiSelectSwitcher">0</data>
         <data key="enableSeoSwitcher">1</data>
         <data key="showFilterOnSRPSwitcher">1</data>
@@ -21,7 +21,7 @@
         <data key="showFilterOnSRPSwitcher">0</data>
     </entity>
     <entity name="nonSeoFriendlyMultiSelect" type="attributeSeoScenario2">
-        <data key="StyleGeneralID">150</data>
+        <data key="StyleGeneralID">152</data>
         <data key="AllowMultiSelectSwitcher">1</data>
         <data key="enableSeoSwitcher">0</data>
         <data key="showFilterOnSRPSwitcher">1</data>
@@ -31,7 +31,7 @@
         <data key="showFilterOnSRPSwitcher">0</data>
     </entity>
     <entity name="SeoFriendlyAllowMultiSelect" type="attributeSeoScenario3">
-        <data key="ClimateID">154</data>
+        <data key="ClimateID">156</data>
         <data key="AllowMultiSelectSwitcher">1</data>
         <data key="enableSeoSwitcher">1</data>
         <data key="showFilterOnSRPSwitcher">1</data>
@@ -42,7 +42,7 @@
         <data key="showFilterOnSRPSwitcher">0</data>
     </entity>
     <entity name="nonSeoFriendlySingleSelectBrand" type="attributeSeoScenario4">
-        <data key="MaterialID">137</data>
+        <data key="MaterialID">139</data>
         <data key="AllowMultiSelectSwitcher">0</data>
         <data key="enableSeoSwitcher">0</data>
         <data key="showFilterOnSRPSwitcher">0</data>
@@ -52,11 +52,29 @@
         <data key="enableSeoSwitcher">1</data>
         <data key="showFilterOnSRPSwitcher">1</data>
     </entity>
-    <entity name="nonSeoFriendlyMultiSelectBrand" type="attributeSeoScenario4" extends="nonSeoFriendlySingleSelectBrand">
+    <entity name="nonSeoFriendlyMultiSelectBrand" type="attributeSeoScenario4"
+            extends="nonSeoFriendlySingleSelectBrand">
         <data key="AllowMultiSelectSwitcher">1</data>
     </entity>
-    <entity name="nonSeoFriendlySingleSelectBrand2" type="attributeSeoScenario4" extends="nonSeoFriendlySingleSelectBrand">
+    <entity name="nonSeoFriendlySingleSelectBrand2" type="attributeSeoScenario4"
+            extends="nonSeoFriendlySingleSelectBrand">
         <data key="showFilterOnSRPSwitcher">1</data>
+    </entity>
+
+    <entity name="IndexFollowRelNoFollowDefault" type="RTC">
+        <data key="ID">93</data>
+        <data key="IndexModeSwitcher">0</data>
+        <data key="FollowModeSwitcher">0</data>
+        <data key="RelNoFollowSwitcher">1</data>
+    </entity>
+    <entity name="IndexFollowRelNoFollowDefaultCategory" type="RTC" extends="IndexFollowRelNoFollowDefault">
+        <data key="ID">105</data>
+    </entity>
+    <entity name="IndexFollowRelNoFollowDefaultSize" type="RTC" extends="IndexFollowRelNoFollowDefault">
+        <data key="ID">144</data>
+    </entity>
+    <entity name="IndexFollowRelNoFollowDefaultPrice" type="RTC" extends="IndexFollowRelNoFollowDefault">
+        <data key="ID">77</data>
     </entity>
 
     <entity name="IndexFollowRelNoFollowDefault" type="RTC">
@@ -82,8 +100,8 @@
         <data key="showFilterOnSRPSwitcher">1</data>
     </entity>
     <entity name="SingleSelectDefault" type="RTC2" extends="AllowMultiSelectLabelsMode">
-    <data key="AllowMultiSelectSwitcher">0</data>
-    <data key="showFilterOnSRPSwitcher">0</data>
+        <data key="AllowMultiSelectSwitcher">0</data>
+        <data key="showFilterOnSRPSwitcher">0</data>
     </entity>
     <entity name="DropdownMode" type="RTC2" extends="AllowMultiSelectLabelsMode">
         <data key="DisplayModeSwitcher">1</data>

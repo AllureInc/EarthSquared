@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -25,6 +25,7 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfilterdispprop"/>
         </annotations>
 
         <before>
@@ -34,9 +35,9 @@
 
         <!--Filter All-Products Page by Category Filter: check position and tooltip wuth image, select option on sidebar, check the result/-->
 
-        <seeElement selector="{{StorefrontFilterElementsSection.FilterTooltipImage('21','2.png','2_')}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.FilterTooltipImage('21','3.png','3_')}}"
                     stepKey="seeTooltipImage1"/>
-        <seeElement selector="{{StorefrontFilterElementsSection.FilterTooltipImage('21','2.png','2_')}}"
+        <seeElement selector="{{StorefrontFilterElementsSection.FilterTooltipImage('21','3.png','3_')}}"
                     stepKey="seeTooltipImage2"/>
 
     </test>

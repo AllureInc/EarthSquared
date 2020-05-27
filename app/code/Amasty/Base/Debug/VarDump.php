@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
@@ -179,8 +179,9 @@ class VarDump
     public static function amastyExit($code = 0)
     {
         if (self::isAllowed()) {
-            //phpcs:ignore
-            exit($code);
+            if (class_exists(\Zend\Console\Response::class)) {
+                (new \Zend\Console\Response())->send();
+            }
         }
     }
 
@@ -190,8 +191,7 @@ class VarDump
     public static function amastyEcho($string)
     {
         if (self::isAllowed()) {
-            //phpcs:ignore
-            echo $string;
+            printf('%s', $string);
         }
     }
 }

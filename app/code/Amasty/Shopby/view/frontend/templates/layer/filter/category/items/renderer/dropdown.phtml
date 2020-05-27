@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -14,7 +14,8 @@ $filterItems = $block->getFilter()->getItems();
 <?php foreach ($filterItems->getItems($block->getPath()) as $filterItem): ?>
     <?php $uniqId = uniqid(); ?>
     <?php $currentPath = ($block->getPath() ?: $filterItems->getStartPath()) . '/' . $filterItem->getValueString(); ?>
-    <li class="item" data-label="<?= $block->escapeHtml($filterItem->getOptionLabel()) ?>">
+    <li class="item"
+        data-label="<?= /* @noEscape */ $block->stripTags($filterItem->getOptionLabel()) ?>">
         <?php if ($filterItems->getItemsCount($currentPath)): ?>
             <span class="am-collapse-icon"></span>
         <?php endif; ?>
@@ -30,8 +31,8 @@ $filterItems = $block->getFilter()->getItems();
                 <?php if ($block->getFilter()->getItemsCount($currentPath)): ?>
                     <?= "amshopby-filter-parent"; ?>
                 <?php endif; ?>"
-               data-am-js="filter-item-default"
-               href="<?= $block->escapeUrl($filterItem->getUrl()) ?>"
+                data-am-js="filter-item-default"
+                href="<?= $block->escapeUrl($filterItem->getUrl()) ?>"
                 <?= $filterItem->isAddNofollow() ? ' rel="nofollow"' : '' ?>>
                 <?= /* @noEscape */ $filterItem->getOptionLabel() ?>
                 <?php if ($block->getFilterSetting()->isShowProductQuantities()): ?>

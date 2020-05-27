@@ -1,13 +1,14 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
 
 namespace Amasty\Base\Block;
 
+use Amasty\Base\Helper\Module;
 use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\App\State;
 use Magento\Framework\Data\Form\Element\AbstractElement;
@@ -44,6 +45,11 @@ class Info extends \Magento\Config\Block\System\Config\Form\Fieldset
      */
     protected $fieldRenderer;
 
+    /**
+     * @var Module
+     */
+    private $moduleHelper;
+
     public function __construct(
         \Magento\Backend\Block\Context $context,
         \Magento\Backend\Model\Auth\Session $authSession,
@@ -51,6 +57,7 @@ class Info extends \Magento\Config\Block\System\Config\Form\Fieldset
         \Magento\Cron\Model\ResourceModel\Schedule\CollectionFactory $cronFactory,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\App\DeploymentConfig\Reader $reader,
+        Module $moduleHelper,
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         ProductMetadataInterface $productMetadata,
         array $data = []
@@ -62,6 +69,7 @@ class Info extends \Magento\Config\Block\System\Config\Form\Fieldset
         $this->resourceConnection = $resourceConnection;
         $this->productMetadata = $productMetadata;
         $this->reader = $reader;
+        $this->moduleHelper = $moduleHelper;
     }
 
     /**
@@ -175,19 +183,21 @@ class Info extends \Magento\Config\Block\System\Config\Form\Fieldset
         if ($crontabCollection->count() === 0) {
             $value = '<div class="red">';
             $value .= __('No cron jobs found') . '</div>';
-            $value .=
-                '<a target="_blank"
+            if (!$this->moduleHelper->isOriginMarketplace()) {
+                $value .=
+                    '<a target="_blank"
                   href="https://support.amasty.com/index.php?/Knowledgebase/Article/View/72/24/magento-cron">' .
-                __('Learn more') .
-                '</a>';
+                    __('Learn more') .
+                    '</a>';
+            }
         } else {
             $value = '<table>';
             foreach ($crontabCollection as $crontabRow) {
                 $value .=
                     '<tr>' .
-                        '<td>' . $crontabRow['job_code'] . '</td>' .
-                        '<td>' . $crontabRow['status'] . '</td>' .
-                        '<td>' . $crontabRow['created_at'] . '</td>' .
+                    '<td>' . $crontabRow['job_code'] . '</td>' .
+                    '<td>' . $crontabRow['status'] . '</td>' .
+                    '<td>' . $crontabRow['created_at'] . '</td>' .
                     '</tr>';
             }
             $value .= '</table>';

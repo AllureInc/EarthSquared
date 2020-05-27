@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -89,6 +89,9 @@
         <element name="CustomFilterLabelField" type="input" selector="#amshopby_{{var1}}_filter_label"
                  parameterized="true"/>
         <element name="CustomFilterExpandSwitcher" type="select" selector="#amshopby_{{var1}}_filter_is_expanded"
+                 parameterized="true"/>
+        <element name="CatalogPriceRuleEnablingSwitcher" type="select" selector="//label[@class='admin__actions-switch-label']"/>
+        <element name="DependentToggle" type="select" selector="input[name='is_active'][value='{{var1}}']"
                  parameterized="true"/>
 
         <element name="TooltipTab" type="button" selector="#amshopby_tooltips-head"/>

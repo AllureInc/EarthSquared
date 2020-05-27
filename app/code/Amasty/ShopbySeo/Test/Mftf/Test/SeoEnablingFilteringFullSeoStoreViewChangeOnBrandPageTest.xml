@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -61,13 +61,13 @@
 
         <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
         <seeInCurrentUrl
-                url="/default/testbrandurlkey/polyester/testfilterkey/pattern-solid-climate-all-weather-indoor.html?style_general=5562%2C5553"
+                url="/default/testbrandurlkey/polyester/testfilterkey/pattern-solid-climate-all-weather-indoor.html?style_general=5561%2C5552"
                 stepKey="seeInCurrentUrl1"/>
         <seeInPageSource html="ambrand-" stepKey="checkIfItBrandPage1" after="seeInCurrentUrl1"/>
         <actionGroup ref="StorefrontSwitchStoreViewActionGroup" stepKey="switchStoreView1">
             <argument name="storeView" value="storeViewILN"/>
         </actionGroup>
-         <seeInCurrentUrl url="/tsv2/testbrandurlkey/polyester/testfilterkey/pattern-solid-climate-all-weather-indoor.html?style_general=5562%2C5553"
+         <seeInCurrentUrl url="/tsv2/testbrandurlkey/polyester/testfilterkey/pattern-solid-climate-all-weather-indoor.html?style_general=5561%2C5552"
                           stepKey="seeInCurrentUrl2"/>
         <seeInPageSource html="ambrand-" stepKey="checkIfItBrandPage2"/>
         <click selector="{{StorefrontPageElementsSection.MagentoLogo}}"

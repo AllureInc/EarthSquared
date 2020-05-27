@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 
@@ -13,9 +13,6 @@ use Magento\Framework\View\Asset\File;
 use Magento\Framework\View\Page\Config\Renderer as MagentoRenderer;
 use Magento\Framework\Module\Manager as ModuleManager;
 
-/**
- * Class Renderer
- */
 class Renderer
 {
     const CACHE_KEY = 'amasty_should_load_css_file';
@@ -65,9 +62,9 @@ class Renderer
         }
 
         if ($shouldLoad) {
-            $this->config->addPageAsset('Amasty_ShopbyBase::css/source/mkcss/am-shopby-base.css');
+            $this->config->addPageAsset('Amasty_ShopbyBase::css/source/mkcss/am-shopby-base.min.css');
             if ($this->moduleManager->isEnabled('Amasty_Shopby')) {
-                $this->config->addPageAsset('Amasty_Shopby::css/source/mkcss/am-shopby.css');
+                $this->config->addPageAsset('Amasty_Shopby::css/source/mkcss/am-shopby.min.css');
             }
         }
 

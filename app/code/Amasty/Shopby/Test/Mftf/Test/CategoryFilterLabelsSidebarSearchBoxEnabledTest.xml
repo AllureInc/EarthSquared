@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -24,12 +24,13 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfilterdispprop"/>
         </annotations>
 
         <before>
             <actionGroup stepKey="ConfigureCategoryIDSCategoryTree1"
                          ref="ConfigureCategoryIDSCategoryTreeNoDepthTwoActionGroup">
-                <argument name="categoryIDS3" value="CategoryIDSCategoryTreeNoDepthTwoCurCatLevImagesLabels"/>
+                <argument name="categoryIDS3" value="CategoryIDSCategoryTreeNoDepthThreeCurCatLevImagesLabels"/>
             </actionGroup>
             <actionGroup stepKey="ConfigureCategoryIDSDisplayMode1"
                          ref="ConfigureCategoryIDSOtherElementsActionGroup">
@@ -56,6 +57,26 @@
         <seeElement selector="{{StorefrontFilterElementsSection.FilterSearchBox('category_ids')}}"
                     stepKey="checkSearchBox1"
                     after="clickOnCategoryFilter1"/>
+        <seeElement
+                selector="{{StorefrontFilterElementsSection.CategoryTreeSequence('Jackets','Hoodies &amp; Sweatshirts','Tees','Bras &amp; Tanks')}}"
+                stepKey="checkCategoryTreeSequence1"
+                after="checkSearchBox1"/>
+        <fillField userInput="n"
+                   selector="{{StorefrontFilterElementsSection.FilterSearchBox('category_ids')}}"
+                   stepKey="fillField1"
+                   after="checkCategoryTreeSequence1"/>
+        <dontSee
+                userInput="Jackets"
+                selector="{{StorefrontFilterElementsSection.FilterOptionLast('Jackets')}}"
+                stepKey="checkCategoryTreeSequence2"
+                after="fillField1"/>
+        <clearField selector="{{StorefrontFilterElementsSection.FilterSearchBox('category_ids')}}"
+                    stepKey="clearField1"
+                    after="checkCategoryTreeSequence2"/>
+        <pressKey selector="{{StorefrontFilterElementsSection.FilterSearchBox('category_ids')}}"
+                  parameterArray="[\Facebook\WebDriver\WebDriverKeys::ENTER]"
+                  stepKey="pressKeyEnter1"
+                  after="clearField1"/>
         <dontSeeElement selector="{{StorefrontFilterElementsSection.FilterSearchBox('category_ids')}}"
                         stepKey="checkSearchBox2"
                         after="clickOnCategoryFilter2"/>

@@ -7,8 +7,8 @@ define([
     "jquery",
     'amShopbyTopFilters',
     "productListToolbarForm",
-    "jquery/ui",
-    "amShopbyFilterAbstract"
+    "amShopbyFilterAbstract",
+    "Magento_PageCache/js/page-cache"
 ], function ($, amShopbyTopFilters) {
     'use strict';
     $.widget('mage.amShopbyAjax', {
@@ -344,16 +344,16 @@ define([
         replaceCategoryView: function (data) {
             var imageElement = $(".category-image"),
                 descrElement = $(".category-description");
-
             if (data.image) {
                  if (imageElement.length !== 0) {
                      imageElement.replaceWith(data.image);
                  } else {
-                     $(data.image).insertBefore($(this.selectors.products_wrapper));
+                     imageElement.prependTo("column.main");
                  }
             } else {
                 imageElement.remove();
             }
+
 
             if (data.description) {
                 if (descrElement.length !== 0) {
@@ -362,7 +362,7 @@ define([
                     if (imageElement.length !== 0) {
                         $(data.description).insertAfter(imageElement.selector);
                     } else {
-                        $(data.description).insertBefore($(this.selectors.products_wrapper));
+                        descrElement.prependTo("column.main");
                     }
                 }
             } else {

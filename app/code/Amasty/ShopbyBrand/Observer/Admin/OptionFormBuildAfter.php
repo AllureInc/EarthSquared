@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -13,11 +13,6 @@ use Magento\Catalog\Model\Category\Attribute\Source\Page;
 use Magento\Framework\Data\Form;
 use Magento\Framework\Event\ObserverInterface;
 
-/**
- * Class OptionFormBuildAfter
- *
- * @package Amasty\ShopbyBrand\Observer\Admin
- */
 class OptionFormBuildAfter implements ObserverInterface
 {
     /**
@@ -139,7 +134,7 @@ class OptionFormBuildAfter implements ObserverInterface
                 'label' => __('Description'),
                 'title' => __('Description'),
                 'wysiwyg' => true,
-                'config' => $this->wysiwygConfig->getConfig(),
+                'config' => $this->wysiwygConfig->getConfig(['add_variables' => false]),
             ]
         );
 
@@ -202,10 +197,7 @@ class OptionFormBuildAfter implements ObserverInterface
                 'name' => 'bottom_cms_block_id',
                 'label' => __('Bottom CMS Block'),
                 'title' => __('Bottom CMS Block'),
-                'values' => $listCmsBlocks,
-                'note' => __("Please make sure the attribute is selected in the following setting: STORES -> 
-                Configuration -> Improved Layered Navigation -> Category Title and Description -> 
-                'Add the title & description of the selected filters'")
+                'values' => $listCmsBlocks
             ]
         );
     }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -24,6 +24,7 @@
             <group value="ILN"/>
             <group value="ILNregression"/>
             <group value="catfilter"/>
+            <group value="catfiltertree"/>
         </annotations>
 
         <before>
@@ -73,7 +74,7 @@
         <waitForPageLoad stepKey="waitForPageLoad1"/>
         <click selector="{{StorefrontFilterElementsSection.Filter('Category')}}"
                stepKey="clickOnCategoryFilter1"/>
-        <dontSeeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','3.jpg','3_')}}"
+        <dontSeeElement selector="{{StorefrontFilterElementsSection.CategoryOptionImage('Women','1.jpg','1_')}}"
                         stepKey="checkCategoryOptionImage1"/>
         <see selector="{{StorefrontFilterElementsSection.FilterOption('Women')}}"
              userInput="Women"

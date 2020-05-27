@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -76,6 +76,10 @@ class MoreFrom extends \Magento\Catalog\Block\Product\AbstractProduct
      */
     public function getItemCollection()
     {
+        if (!$this->_itemCollection && $this->isEnabled()) {
+            $this->_prepareData();
+        }
+
         return $this->_itemCollection;
     }
 

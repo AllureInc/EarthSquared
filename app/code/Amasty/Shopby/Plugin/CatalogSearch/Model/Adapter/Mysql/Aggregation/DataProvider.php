@@ -1,27 +1,25 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
 
 namespace Amasty\Shopby\Plugin\CatalogSearch\Model\Adapter\Mysql\Aggregation;
 
+use Amasty\Shopby\Model\Inventory\Resolver as InventoryResolver;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\App\ScopeResolverInterface;
 use Magento\Framework\DB\Ddl\Table;
+use Magento\Framework\DB\Select;
 use Magento\Framework\Search\Request\BucketInterface;
 use Magento\Framework\Module\Manager;
 use Magento\Store\Model\Store;
 use Magento\CatalogInventory\Api\StockConfigurationInterface as StockConfigurationInterface;
 
-/**
- * Class DataProvider
- * @package Amasty\Shopby\Plugin\CatalogSearch\Model\Adapter\Mysql\Aggregation
- */
 class DataProvider
 {
     /**
@@ -70,9 +68,9 @@ class DataProvider
     private $stockResource;
 
     /**
-     * @var Manager
+     * @var InventoryResolver
      */
-    private $moduleManager;
+    private $inventoryResolver;
 
     /**
      * @var StockConfigurationInterface
@@ -89,7 +87,7 @@ class DataProvider
         \Magento\Eav\Model\Config $eavConfig,
         ScopeConfigInterface $scopeConfig,
         \Magento\CatalogInventory\Model\ResourceModel\Stock\Status $stockResource,
-        Manager $moduleManager,
+        InventoryResolver $inventoryResolver,
         StockConfigurationInterface $stockConfiguration
     ) {
         $this->resource = $resource;
@@ -101,7 +99,7 @@ class DataProvider
         $this->scopeConfig = $scopeConfig;
         $this->eavConfig = $eavConfig;
         $this->stockResource = $stockResource;
-        $this->moduleManager = $moduleManager;
+        $this->inventoryResolver = $inventoryResolver;
         $this->stockConfiguration = $stockConfiguration;
     }
 
@@ -204,16 +202,23 @@ class DataProvider
                 'e.entity_id  = entities.entity_id',
                 []
             );
-            $stockStatusColumn = 'stock_status';
-            if ($this->moduleManager->isEnabled('Magento_Inventory')) {
-                $website = $this->scopeResolver->getScope()->getWebsite();
+
+            $this->stockResource->addStockStatusToSelect($derivedTable, $this->scopeResolver->getScope()->getWebsite());
+
+            $catalogInventoryTable = $this->stockResource->getMainTable();
+            $fromTables = $derivedTable->getPart(Select::FROM);
+            if ($this->inventoryResolver->isMsiEnabled()
+                && $fromTables['stock_status']['tableName'] != $catalogInventoryTable
+            ) {
                 $stockStatusColumn = 'is_salable';
             } else {
-                // in old versions stock saved only for default website
-                $website = $this->scopeResolver->getScope(Store::DEFAULT_STORE_ID)->getWebsite();
+                $stockStatusColumn = 'stock_status';
+                $fromTables['stock_status']['joinCondition'] = $this->inventoryResolver->replaceWebsiteWithDefault(
+                    $fromTables['stock_status']['joinCondition']
+                );
+                $derivedTable->setPart(Select::FROM, $fromTables);
             }
 
-            $this->stockResource->addStockStatusToSelect($derivedTable, $website);
             $derivedTable->columns(['value' => 'stock_status.' . $stockStatusColumn]);
         }
 

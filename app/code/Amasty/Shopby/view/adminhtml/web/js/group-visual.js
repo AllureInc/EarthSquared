@@ -5,8 +5,7 @@ define(
         'mage/translate',
         'mage/template',
         'jquery/colorpicker/js/colorpicker',
-        'prototype',
-        'jquery/ui'
+        'prototype'
     ], function (jQuery, _, $t, mageTemplate) {
         return function(config) {
                 var swatchVisualOption = {
@@ -108,7 +107,7 @@ define(
                 if (type.value == 2) {
                     console.log(config.mediaHelper);
                    var fullMediaUrl = config.mediaHelper + general.value;
-                    visual = 'background-image:url(' + fullMediaUrl + ');background-size:cover';
+                    visual = 'background-image:url(' + fullMediaUrl + ');';
                 }
                 var data = {swatch0: visual, display: 'block'};
                 if (data.swatch0.length) {
@@ -191,12 +190,9 @@ define(
                         iframeHandler = function () {
                             var imageParams = $.parseJSON($(this).contents().find('body').html()),
                                 fullMediaUrl = imageParams['swatch_path'] + imageParams['file_path'];
-                          //  jQuery('#group_visual').val('background-image: url(' + fullMediaUrl + ');background-size:cover');
+
                             jQuery('#group_visual').val(imageParams['file_path']);
-                            jQuery('.swatch_window').css({
-                                'background-image': 'url(' + fullMediaUrl + ')',
-                                'background-size': 'cover'
-                            });
+                            jQuery('.swatch_window').css({'background-image': 'url(' + fullMediaUrl + ')'});
                             jQuery('.swatch_window_unvailable').hide();
                             jQuery('#group_type').val(2);
                         };

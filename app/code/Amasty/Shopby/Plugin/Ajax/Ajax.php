@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -16,14 +16,11 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Layout\Element;
 
-/**
- * Class Ajax
- * @package Amasty\Shopby\Plugin\Ajax
- */
 class Ajax
 {
     const OSN_CONFIG = 'amasty.xnotif.config';
     const QUICKVIEW_CONFIG = 'amasty.quickview.config';
+    const SORTING_CONFIG = 'amasty.sorting.direction';
 
     /**
      * @var array
@@ -80,6 +77,16 @@ class Ajax
      */
     private $pageConfig;
 
+    /**
+     * @var \Magento\Framework\DataObjectFactory
+     */
+    private $dataObjectFactory;
+
+    /**
+     * @var \Magento\Framework\Event\ManagerInterface
+     */
+    private $eventManager;
+
     public function __construct(
         \Amasty\Shopby\Helper\Data $helper,
         \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
@@ -90,7 +97,9 @@ class Ajax
         ActionFlag $actionFlag,
         \Amasty\Shopby\Model\Layer\Cms\Manager $cmsManager,
         \Magento\Framework\View\LayoutInterface $layout,
-        \Magento\Framework\View\Page\Config $pageConfig
+        \Magento\Framework\View\Page\Config $pageConfig,
+        \Magento\Framework\DataObjectFactory $dataObjectFactory,
+        \Magento\Framework\Event\ManagerInterface $eventManager
     ) {
         $this->helper = $helper;
         $this->resultRawFactory = $resultRawFactory;
@@ -102,6 +111,8 @@ class Ajax
         $this->cmsManager = $cmsManager;
         $this->layout = $layout;
         $this->pageConfig = $pageConfig;
+        $this->dataObjectFactory = $dataObjectFactory;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -155,7 +166,7 @@ class Ajax
         $jsInit = $layout->getBlock('amasty.shopby.jsinit');
         $tags = $this->addXTagCache($jsInit, $tags);
 
-        $categoryProducts = $products ? $products->toHtml() : '';
+        $categoryProducts = $products ? $this->applyEventChanges($products->toHtml()) : '';
 
         $navigationTop = null;
         if (strpos($categoryProducts, 'amasty-catalog-topnav') === false) {
@@ -365,6 +376,7 @@ class Ajax
         $html = '';
         $html .= $this->getBlockHtml($layout, self::OSN_CONFIG);
         $html .= $this->getBlockHtml($layout, self::QUICKVIEW_CONFIG);
+        $html .= $this->getBlockHtml($layout, self::SORTING_CONFIG);
 
         return $html;
     }
@@ -383,5 +395,27 @@ class Ajax
     public function getActionFlag()
     {
         return $this->actionFlag;
+    }
+
+    /**
+     * Compatibility with Google Page SpeedOptimizer
+     * @param string $html
+     *
+     * @return string|mixed
+     */
+    protected function applyEventChanges(string $html)
+    {
+        $dataObject = $this->dataObjectFactory->create(
+            [
+                'data' => [
+                    'page' => $html,
+                    'pageType' => 'catalog_category_view'
+                ]
+            ]
+        );
+        $this->eventManager->dispatch('amoptimizer_process_ajax_page', ['data' => $dataObject]);
+        $html = $dataObject->getData('page');
+
+        return $html;
     }
 }

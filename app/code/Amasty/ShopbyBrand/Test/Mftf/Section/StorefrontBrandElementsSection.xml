@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -23,13 +23,13 @@
                  selector="//*[@id='ui-id-2']//a[contains(string(), '{{var1}}')]"
                  parameterized="true"/>
         <element name="BrandLogo" type="block"
-                 selector="//div[@class='amshopby-option-link']/a/img[contains(@title, '{{var1}}')][contains(@src,'{{var2}}') or contains(@src,'{{var3}}')]"
+                 selector="//div[@class='amshopby-option-link']/a[contains(@href,'{{var1}}')]/img[contains(@title, '{{var2}}')][contains(@src,'{{var3}}') or contains(@src,'{{var4}}')]"
                  parameterized="true"/>
         <element name="BrandLogoTooltipContent" type="block"
                  selector="//div[@class='amshopby-option-link']/a[contains(@data-tooltip-content, '{{var1}}')]"
                  parameterized="true"/>
         <element name="BrandItemOnAllBrandsPage" type="block"
-                 selector="//li[@class='brand-item']/a[contains(@title, '{{var1}}')]//img[contains(@src,'{{var2}}') or contains(@src,'{{var3}}')]"
+                 selector="//li[@class='brand-item']/a[contains(@title, '{{var1}}')][contains(@href, '{{var2}}')]//img[contains(@src,'{{var3}}') or contains(@src,'{{var4}}')]"
                  parameterized="true"/>
         <element name="BrandItemTooltipContent" type="block"
                  selector="//li[@class='brand-item'][contains(@data-tooltip-content, '{{var1}}')]"

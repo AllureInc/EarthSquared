@@ -29,7 +29,6 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
     .ambrands-list-popup {
         position: absolute;
-        display: block;
         .lib-css(width, @ambrands-popup__width);
         .lib-css(height, @ambrands-popup__height);
         background: #fff;
@@ -39,7 +38,9 @@
         pointer-events: none;
     }
 
-    .ambrands-menu-item:hover .ambrands-list-popup {
+    .ambrands-menu-item:hover .ambrands-list-popup,
+    .ammenu-item:hover .ambrands-list-popup {
+        display: block;
         opacity: 1;
         pointer-events: auto;
     }

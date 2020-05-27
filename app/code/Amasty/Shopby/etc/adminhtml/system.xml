@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -189,16 +189,10 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>If you want to show out of stock products, please configure it here: Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products</comment>
+                    <comment><![CDATA[If set to ‘Yes’, please make sure that displaying of out of stock products is configured accordingly
+                    (Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products -> Yes).
+                    Otherwise, stock filter won’t appear on storefront.]]></comment>
                 </field>
-<!--                <field id="stock_source" translate="label" type="select" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Identify Out of Stock Products by</label>
-                    <source_model>Amasty\Shopby\Model\Source\StockFilterSource</source_model>
-                    <comment>"Quantity threshold" method works only for simple products. Products with other types are considered as "In Stock".</comment>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field> -->
                 <field id="block_position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show in the Block</label>
                     <source_model>Amasty\Shopby\Model\Source\FilterPlacedBlock</source_model>

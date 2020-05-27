@@ -1,10 +1,12 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 
+
+namespace Amasty\ShopbySeo\Test\Unit\Helper;
 
 use Amasty\ShopbySeo\Helper\Meta;
 use Amasty\ShopbySeo\Test\Unit\Traits;
@@ -49,6 +51,11 @@ class MetaTest extends \PHPUnit\Framework\TestCase
      */
     private $filter;
 
+    /**
+     * @var \Amasty\Shopby\Helper\Data
+     */
+    private $dataHelper;
+
     public function setUp()
     {
         $this->meta = $this->getMockBuilder(Meta::class)
@@ -65,6 +72,10 @@ class MetaTest extends \PHPUnit\Framework\TestCase
         $this->filter = $this->createMock(\Magento\Catalog\Model\Layer\Filter\FilterInterface::class);
 
         $this->setProperty($this->meta, '_request', $this->request, Meta::class);
+
+        $this->dataHelper = $this->createMock(\Amasty\Shopby\Helper\Data::class);
+        $this->dataHelper->expects($this->any())->method('getSelectedFiltersSettings')->willReturn([]);
+
     }
 
     /**
@@ -74,6 +85,7 @@ class MetaTest extends \PHPUnit\Framework\TestCase
     public function testGetTagByData($tagKey, $settingMode, $tagValue, $expected)
     {
         $scopeConfig = $this->createMock(\Magento\Framework\App\Config\ScopeConfigInterface::class);
+        $this->setProperty($this->meta, 'dataHelper', $this->dataHelper, Meta::class);
         $this->filter->expects($this->any())->method('getRequestVar')->willReturn(self::REQUEST_VAR);
         $scopeConfig->expects($this->any())->method('isSetFlag')->willReturn(true);
         $this->request->setParam(self::REQUEST_VAR, self::TEST_VALUES);

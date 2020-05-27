@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -134,15 +134,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         $fieldset->addField(
             'position',
             'text',
-            [
-                'name' => 'position',
-                'label' => __('Position'),
-                'title' => __('Position'),
-                'note' => __('Takes action only if there are more than one Grouped Attribute Options for 
-                    the same product attribute, and is used for sorting of these Grouped Attribute Options in 
-                    navigation filter. Note: current setting doesn\'t correlate with "Sort Options By" setting from 
-                    product attribute configuration page.')
-            ]
+            ['name' => 'position', 'label' => __('Position'), 'title' => __('Position')]
         );
 
         $fieldset->addField(

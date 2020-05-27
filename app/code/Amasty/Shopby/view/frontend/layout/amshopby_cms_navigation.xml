@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -53,7 +53,7 @@
                    name="catalog.navigation.swatches.choose" after="catalog.navigation.collapsing"
                    template="Amasty_Shopby::layer/filter_swatches_choose.phtml"/>
             <block class="Amasty\Shopby\Block\Navigation\ApplyButton" name="amasty.shopby.applybutton.sidebar"
-                   after="catalog.leftnav">
+                   after="-">
                 <action method="setNavigationSelector">
                     <argument name="selector" xsi:type="string">.sidebar</argument>
                 </action>

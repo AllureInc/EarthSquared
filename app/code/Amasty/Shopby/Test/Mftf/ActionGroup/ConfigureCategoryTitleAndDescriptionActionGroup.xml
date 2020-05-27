@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -22,10 +22,11 @@
         <wait time="3" stepKey="waitSeconds001"/>
         <click selector="{{AdminILNSettingsSection.AddTitleAndDescriptionOfTheSelectedFilters}}"
                stepKey="ClickTitleAndDescriptionOfSelectedFilters"/>
-        <waitForElement selector="{{AdminILNSettingsSection.SelectTitleAndDescriptionOfTheSelectedFilters('Climate')}}"
-                        stepKey="waitForElement1"/>
-        <click selector="{{AdminILNSettingsSection.SelectTitleAndDescriptionOfTheSelectedFilters('Climate')}}"
-               stepKey="clickClimate"/>
+        <waitForElement
+                selector="{{AdminILNSettingsSection.SelectTitleAndDescriptionOfTheSelectedFilters(CatTitleAndDescriptILNSettings.AttributeName)}}"
+                stepKey="waitForElement1"/>
+        <click selector="{{AdminILNSettingsSection.SelectTitleAndDescriptionOfTheSelectedFilters(CatTitleAndDescriptILNSettings.AttributeName)}}"
+               stepKey="clickAttributeOption"/>
         <selectOption selector="{{AdminILNSettingsSection.AddFilterTitle}}"
                       userInput="{{CatTitleAndDescriptILNSettings.AddFilterTitle}}"
                       stepKey="SetAddFilterTitle"/>
@@ -50,8 +51,8 @@
         <arguments>
             <argument name="CatTitleAndDescriptILNSettings"/>
         </arguments>
-        <click selector="{{AdminILNSettingsSection.UnSelectTitleAndDescriptionOfTheSelectedFilters('Climate')}}"
-               stepKey="clickClimate"/>
+        <click selector="{{AdminILNSettingsSection.UnSelectTitleAndDescriptionOfTheSelectedFilters(CatTitleAndDescriptILNSettings.AttributeName)}}"
+               stepKey="clickAttributeOption"/>
     </actionGroup>
 
 </actionGroups>

@@ -1,10 +1,12 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 
+
+namespace Amasty\ShopbyPage\Test\Unit\Controller\Adminhtml\Page;
 
 use Amasty\ShopbyPage\Controller\Adminhtml\Page\Edit;
 use Amasty\ShopbyPage\Test\Unit\Traits;
@@ -18,7 +20,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  * phpcs:ignoreFile
  */
-class OptionSettingTest extends \PHPUnit\Framework\TestCase
+class EditTest extends \PHPUnit\Framework\TestCase
 {
     use Traits\ObjectManagerTrait;
     use Traits\ReflectionTrait;

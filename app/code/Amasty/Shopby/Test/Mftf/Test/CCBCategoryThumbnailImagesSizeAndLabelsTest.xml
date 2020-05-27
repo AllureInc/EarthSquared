@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -46,7 +46,7 @@
 
         <!-- Check that Category Thumbnail Images Size and Show Image Labels settings work correctly on the Storefront/-->
 
-        <seeElement selector="{{StorefrontPageElementsSection.ChildrenCategoryWithImages('200','200','3.jpg','3_')}}"
+        <seeElement selector="{{StorefrontPageElementsSection.ChildrenCategoryWithImages('200','200','1.jpg','1_')}}"
                     stepKey="CheckCCBElements1"/>
         <seeNumberOfElements selector="{{StorefrontPageElementsSection.ChildrenCategoryWithoutIMGorLabel}}"
                              userInput="4"

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -15,10 +15,6 @@ use Amasty\Shopby\Model\Source\DisplayMode;
 use Magento\Catalog\Model\Layer\Filter\Dynamic\AlgorithmFactory;
 use Amasty\Shopby\Api\Data\FromToFilterInterface;
 
-/**
- * Class Price
- * @package Amasty\Shopby\Model\Layer\Filter
- */
 class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements FromToFilterInterface
 {
     const NUMBERS_AFTER_POINT = 4;
@@ -304,7 +300,8 @@ class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements F
      */
     private function getFacetedData()
     {
-        if ($this->coreRegistry->registry('price_facets') === null) {
+        $key = 'price_facets' . $this->_requestVar;
+        if ($this->coreRegistry->registry($key) === null) {
             /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $productCollection */
             $productCollection = $this->getLayer()->getProductCollection();
             $alteredQueryResponse = $this->getAlteredQueryResponse();
@@ -325,10 +322,10 @@ class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements F
                 $facets = [];
             }
 
-            $this->coreRegistry->register('price_facets', $facets);
+            $this->coreRegistry->register($key, $facets);
         }
 
-        return $this->coreRegistry->registry('price_facets');
+        return $this->coreRegistry->registry($key);
     }
 
     /**
@@ -339,16 +336,6 @@ class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements F
     {
         return $this->isSliderOrFromTo($filterSetting->getDisplayMode())
             || $filterSetting->getAddFromToWidget() === '1';
-    }
-
-    /**
-     * @param $displayMode
-     * @return bool
-     */
-    private function isSliderOrFromTo($displayMode)
-    {
-        return $displayMode == \Amasty\Shopby\Model\Source\DisplayMode::MODE_SLIDER ||
-            $displayMode == \Amasty\Shopby\Model\Source\DisplayMode::MODE_FROM_TO_ONLY;
     }
 
     /**

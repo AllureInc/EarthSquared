@@ -4,7 +4,6 @@ define(
         'mage/template',
         'mage/translate',
         'underscore',
-        'jquery/ui',
         'prototype',
         'form',
         'validation'
@@ -28,23 +27,26 @@ define(
             init: function (options, values) {
                 this.options = options;
                 this.selected = values.length ? jQuery.parseJSON(values) : '';
+
                 if (attributeOption.rendered) {
                     return false;
                 }
+
                 this.createData('#group_attribute_id');
             },
             add: function (data, render) {
                 var element;
                 var template;
+
                 if (this.selectType == 'price') {
                    template = this.templatePrice;
                 } else {
                     template = this.templateSelect;
                 }
+
                 element = template({
                     data: data
                 });
-
                 this.itemCount++;
                 this.elements += element;
 
@@ -67,6 +69,7 @@ define(
                 } else {
                     Element.insert($$('[data-role=options-container]')[0], this.elements);
                 }
+
                 this.elements = '';
             },
 
@@ -89,6 +92,7 @@ define(
                         self.selectItem(element);
                     }
                 });
+
                 if (this.config.isSortable) {
                     jQuery(function ($) {
                         $('[data-role=options-container]').sortable({
@@ -112,6 +116,11 @@ define(
                 this.selectedAttribute = attribute;
                 this.scope(attribute);
                 this.renderWithDelay(this.config.attributesData);
+
+                if (this.config.attributesData[0].swatch) {
+                    jQuery('.swatch_option').addClass('swatch_option-cursor');
+                }
+
                 this.viewTable();
                 jQuery(element).on('change', this.changeOptions.bind(this));
             },
@@ -120,17 +129,19 @@ define(
                 var data = this.options[attribute].options;
                 this.selectType = this.options[attribute].type;
                 this.config.attributesData = [];
+
                 if (this.selectType == 'price') {
                     var sortData = this.scopePrice();
                 } else {
                     var sortData = _.sortBy(this.scopeSelect(data), 'sort_order');
                 }
+
                 this.config.attributesData = sortData;
             },
 
             changeOptions: function(el)
             {
-               var attribute = jQuery(el.target).val();
+                var attribute = jQuery(el.target).val();
                 this.selected = [];
                 this.scope(attribute);
                 _.each($$('[data-role=options-container]')[0].childElements(),function(value, index) {
@@ -142,6 +153,10 @@ define(
                 this.viewTable();
 
                 this.renderWithDelay(this.config.attributesData);
+
+                if (this.config.attributesData[0].swatch) {
+                    jQuery('.swatch_option').addClass('swatch_option-cursor');
+                }
             },
 
             getSelected: function(option_id)
@@ -162,15 +177,18 @@ define(
                 _.each(data, function(value, index) {
                     if (value.value.length > 0) {
                         var swatch = value.swatch;
-                        value.swatch = '';
+                        var swatchValue;
+
                         if (value.type == 1) {
-                            value.swatch = 'style=background:'+swatch;
+                            swatchValue = 'style=background:'+swatch;
                         }
+
                         if (value.type == 2) {
-                            value.swatch = 'style=background-image:url('+swatch +');background-size:cover';
+                            swatchValue = 'style=background-image:url('+swatch +');background-size:cover';
                         }
+
                         var select = self.getSelected(value.id);
-                        newData[value.value] = {'id': value.id, 'sort_order': (select.find) ? select.sort_order : index, 'is_active': (select.find) ? 1 : 0, 'value': value.label, swatch:value.swatch}
+                        newData[value.value] = {'id': value.id, 'sort_order': (select.find) ? select.sort_order : index, 'is_active': (select.find) ? 1 : 0, 'value': value.label, swatch:swatchValue}
                     }
                 });
 

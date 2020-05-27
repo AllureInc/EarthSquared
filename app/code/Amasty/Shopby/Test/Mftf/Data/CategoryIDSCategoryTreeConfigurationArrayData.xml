@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -89,6 +89,13 @@
         <data key="RenderCategoriesLevelSwitcher">2</data>
         <data key="CategoryTreeDisplayModeSwitcher">2</data>
     </entity>
+    <entity name="CategoryIDSCategoryTreeNoDepthThreeCurCatLevImagesLabels" type="categoryIDS3"
+            extends="CategoryIDSCategoryTreeNoDepthTwoRootCat">
+        <data key="CategoryTreeDepthField">3</data>
+        <data key="RenderCategoriesLevelSwitcher">2</data>
+        <data key="CategoryTreeDisplayModeSwitcher">2</data>
+    </entity>
+
     <entity name="CategoryIDSCategoryTreeNoDepthTwoCurCatLevLabelsByClick" type="categoryIDS3"
             extends="CategoryIDSCategoryTreeNoDepthTwoRootCat">
         <data key="RenderCategoriesLevelSwitcher">2</data>

@@ -1,13 +1,14 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
 
 namespace Amasty\Base\Test\Unit\Observer;
 
+use Amasty\Base\Helper\Module;
 use Amasty\Base\Observer\GenerateInformationTab;
 use Amasty\Base\Test\Unit\Traits;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -67,6 +68,8 @@ class GenerateInformationTabTest extends \PHPUnit\Framework\TestCase
             GenerateInformationTab::class,
             ['getCurrentVersion', 'isLastVersion', 'getModuleName', 'getLogoHtml', 'getChangeLogLink']
         );
+        $moduleHelper = $this->createMock(Module::class);
+        $this->setProperty($this->observer, 'moduleHelper', $moduleHelper, GenerateInformationTab::class);
         $this->observer->expects($this->any())->method('getCurrentVersion')->willReturn('2.2.2');
         $this->observer->expects($this->any())->method('isLastVersion')->willReturn(false);
         $this->observer->expects($this->any())->method('getModuleName')->willReturn('test');

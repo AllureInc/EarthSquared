@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -69,13 +69,13 @@
         <!-- Check Brand Image: check Brand Image, filter page by attribute, check that Brand Image is replaced by Attribute Option Image/-->
 
         <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
-        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('3.jpg','3_')}}" stepKey="checkCategoryImage1"/>
+        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('1.jpg','1_')}}" stepKey="checkCategoryImage1"/>
         <waitForElement selector="{{StorefrontFilterElementsSection.Filter('Climate')}}" stepKey="waitForElement1"/>
         <click selector="{{StorefrontFilterElementsSection.Filter('Climate')}}"
                stepKey="clickClimateFilter1"/>
         <click selector="{{StorefrontFilterElementsSection.FilterOption('All-Weather')}}"
                stepKey="clickAllWeatherOption1"/>
-        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('2.png','2_')}}" stepKey="checkCategoryImage2"/>
+        <seeElement selector="{{StorefrontPageElementsSection.ImageSource('3.png','3_')}}" stepKey="checkCategoryImage2"/>
 
     </test>
 </tests>

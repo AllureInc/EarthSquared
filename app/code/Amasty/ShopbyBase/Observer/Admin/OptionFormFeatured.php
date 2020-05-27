@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 
@@ -12,10 +12,6 @@ use Magento\Framework\Data\Form;
 use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Event\ObserverInterface;
 
-/**
- * Class OptionFormFeatured
- * @package Amasty\ShopbyBase\Observer\Admin
- */
 class OptionFormFeatured implements ObserverInterface
 {
     /**
@@ -65,7 +61,11 @@ class OptionFormFeatured implements ObserverInterface
                 'name'      => 'is_featured',
                 'label'     => __('Is Featured'),
                 'title'     => __('Is Featured'),
-                'values'    => $this->yesNoSource->toOptionArray()
+                'values'    => $this->yesNoSource->toOptionArray(),
+                'note'      => __(
+                    'Not featured options will be hidden under ‘show more’ element (if at least one '
+                    . 'attribute\'s option is marked as ‘Is Featured’). '
+                )
             ]
         );
 

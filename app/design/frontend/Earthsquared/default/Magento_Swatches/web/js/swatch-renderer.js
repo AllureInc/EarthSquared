@@ -315,36 +315,37 @@ define([
                 this._sortAttributes();
                 this._RenderControls();
                 //this is additional code for select first attribute value
-                if (this.options.jsonConfig.attributes.length > 0) {
+                // if (this.options.jsonConfig.attributes.length > 0) {
               
-                    var selectswatch = this.element.find('.' + this.options.classes.attributeClass + ' .' + this.options.classes.attributeOptionsWrapper);
-                    $.each(selectswatch, function (index, item) {
-                        var swatchOption = $(item).find('div.swatch-option').first();
+                //     var selectswatch = this.element.find('.' + this.options.classes.attributeClass + ' .' + this.options.classes.attributeOptionsWrapper);
+                //     $.each(selectswatch, function (index, item) {
+                //         var swatchOption = $(item).find('div.swatch-option').first();
                       
-                        if (swatchOption.length && !$(item).find('div.swatch-option').hasClass('selected')) {
-                            swatchOption.trigger('mouseenter');
-                        }
-                    });
-                } 
-                if(!$("body").hasClass("catalog-product-view")){   
-                // added code for hide swatches when length > 3    
-                    var total_swatch = $(".swatch-attribute-options .swatch-option").size();
+                //         if (swatchOption.length && !$(item).find('div.swatch-option').hasClass('selected')) {
+                //             swatchOption.trigger('mouseenter');
+                //         }
+                //     });
+                // } 
+                // added code for hide swatches when length > 3 
+                if(!$("body").hasClass("catalog-product-view")){  
+                   
+                    var total_swatch = $(".products-grid .swatch-attribute-options .swatch-option").size();
                     //console.log(total_swatch);
                     var x=3;
                     var moreswatch =  total_swatch - x;    
                     //console.log(moreswatch);
                     if(total_swatch > 3){                            
                         x=(x-total_swatch<0) ? 3 : x-total_swatch;    
-                        $('.swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
-                        $('#loadMore').text('+'+moreswatch);                       
-                        $('.swatch-attribute .swatch-option:lt('+x+')').show();                        
-                        $('#loadMore').click(function () {                            
+                        $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
+                        $('.products-grid #loadMore').text('+'+moreswatch);                       
+                        $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
+                        $('.products-grid  #loadMore').click(function () {                            
                                 x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
-                                $('.swatch-attribute .swatch-option:lt('+x+')').show();                                 
-                                $('#loadMore').hide();                                               
+                                $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
+                                $('.products-grid  #loadMore').hide();                                               
                         });                                                
                     } 
-                    $('#loadMore').insertAfter('.swatch-attribute-options .swatch-option:last');
+                    $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
                 }
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');

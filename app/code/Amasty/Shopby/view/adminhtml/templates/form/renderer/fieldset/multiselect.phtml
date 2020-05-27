@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -27,16 +27,16 @@ $fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
     . ($element->getFieldExtraAttributes() ? ' ' . $element->getFieldExtraAttributes() : '');
 ?>
 
-<?php if (!$element->getNoDisplay()) : ?>
-    <?php if ($element->getType() == 'hidden') : ?>
+<?php if (!$element->getNoDisplay()): ?>
+    <?php if ($element->getType() == 'hidden'): ?>
         <?= $element->getElementHtml() ?>
-    <?php else : ?>
+    <?php else: ?>
         <div <?= /* @noEscape */ $fieldAttributes ?>>
-            <?php if ($elementBeforeLabel) : ?>
+            <?php if ($elementBeforeLabel): ?>
                 <?= $element->getElementHtml() ?>
                 <?= $element->getLabelHtml('', $element->getScopeLabel()) ?>
                 <?= /* @noEscape */ $note ?>
-            <?php else : ?>
+            <?php else: ?>
                 <?= $element->getLabelHtml('', $element->getScopeLabel()) ?>
                 <div class="admin__field-control control">
                     <?= /* @noEscape */ ($addOn) ?

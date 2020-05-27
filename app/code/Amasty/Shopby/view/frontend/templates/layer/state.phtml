@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -10,8 +10,8 @@
 $filters = $block->getActiveFilters();
 $value = [];
 ?>
-<?php if (!empty($filters)) : ?>
-    <div class="filter-current am-filter-current" id="am-shopby-container" data-am-js="shopby-container"
+<?php if (!empty($filters)): ?>
+    <div id="am-shopby-container" class="amshopby-filter-current filter-current" data-am-js="shopby-container"
          data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
         <span class="block-subtitle filter-current-subtitle"
                 role="heading"
@@ -20,8 +20,8 @@ $value = [];
                 data-count="<?= /* @noEscape */ count($filters); ?>">
             <?= $block->escapeHtml(__('Now Shopping by')) ?>
         </span>
-        <ol class="items">
-            <?php foreach ($filters as $filter) : ?>
+        <ol class="amshopby-items items">
+            <?php foreach ($filters as $filter): ?>
                 <?php
                     /** @var \Magento\Catalog\Model\Layer\Filter\Item $filter */
                     $filterSetting = $block->getFilterSetting($filter->getFilter());
@@ -31,15 +31,11 @@ $value = [];
                     $currentFilterName = __('Remove') . " " . __($filter->getName())
                         . " " . $block->stripTags($filter->getLabel());
                 ?>
-                <li class="item am-shopby-item"
+                <li class="item amshopby-item"
                     data-am-js="shopby-item"
                     data-container="<?= /* @noEscape */ $filter->getFilter()->getRequestVar() ?>"
-                    data-value="<?= /* @noEscape */ $block->getDataValue($resultValue) ?>"
-                >
-                    <span class="filter-label"><?= $block->escapeHtml(__($filter->getName())); ?></span>
-                    <span class="filter-value am-filter-value"><?= /* @noEscape */ $block->viewLabel($filter);?></span>
-
-                    <?php if ($clearLinkUrl) :?>
+                    data-value="<?= /* @noEscape */ $block->getDataValue($resultValue) ?>">
+                    <?php if ($clearLinkUrl): ?>
                         <a class="action previous"
                            href="<?= $block->escapeUrl($filter->getRemoveUrl()) ?>"
                            title="<?= $block->escapeHtml(__('Previous')) ?>">
@@ -50,19 +46,24 @@ $value = [];
                            href="<?= $block->escapeUrl($clearLinkUrl) ?>">
                             <span><?= $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?></span>
                         </a>
-                    <?php else : ?>
-                        <a class="action remove"
+                    <?php else: ?>
+                        <a class="amshopby-remove"
                            href="<?= $block->escapeUrl($filter->getRemoveUrl($resultValue)) ?>"
                            title="<?= $block->escapeHtml($currentFilterName);?>">
-                            <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
                         </a>
                     <?php endif; ?>
+                    <span class="amshopby-filter-name">
+                        <?= $block->escapeHtml(__($filter->getName())); ?>
+                    </span>
+                    <div class="amshopby-filter-value">
+                        <?= /* @noEscape */ $block->viewLabel($filter);?>
+                    </div>
                 </li>
 
                 <?php $value = $block->changeValueForMultiselect($filter->getFilter(), $value); ?>
             <?php endforeach; ?>
-            <li class="am-shopby-item">
-                <?php if ($block->getUnfoldedCount() && $block->getUnfoldedCount() < count($filters)) : ?>
+            <li class="amshopby-button">
+                <?php if ($block->getUnfoldedCount() && $block->getUnfoldedCount() < count($filters)): ?>
                     <?= /* @noEscape */ $block->createShowMoreButtonBlock() ?>
                 <?php endif; ?>
             </li>

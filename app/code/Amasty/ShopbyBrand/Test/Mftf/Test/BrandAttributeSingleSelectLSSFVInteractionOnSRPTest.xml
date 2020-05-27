@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -53,6 +53,10 @@
         <!--Filter by Brand Attribute (Material): filter Search Result Page Page by Brand Attribute Filter (Material), check the result/-->
 
         <amOnPage url="{{SearchResultPage.url('red')}}" stepKey="navigateToCategoryPage1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="navigateToCategoryPage1"/>
         <see userInput="30"
              selector=" {{StorefrontProductSection.ItemsCountLast}}"
              stepKey="checkQtyOfProductsAfterFiltration1"/>

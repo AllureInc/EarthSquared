@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -60,7 +60,9 @@ class ProductCountTest extends \PHPUnit\Framework\TestCase
     {
         $this->brandHelper = $this->createMock(\Amasty\ShopbyBrand\Helper\Data::class);
         $this->storeManager = $this->createMock(\Magento\Store\Model\StoreManagerInterface::class);
+        $collectionFactory = $this->createMock(\Magento\Catalog\Model\ResourceModel\Product\CollectionFactory::class);
         $this->collection = $this->createMock(\Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection::class);
+        $collectionFactory->expects($this->any())->method('create')->willReturn($this->collection);
         $this->categoryRepository = $this->createMock(\Magento\Catalog\Api\CategoryRepositoryInterface::class);
         $this->storeMock = $this->getMockBuilder(StoreInterface::class)
             ->setMethods(['getRootCategoryId'])
@@ -71,7 +73,7 @@ class ProductCountTest extends \PHPUnit\Framework\TestCase
             [
                 'brandHelper' => $this->brandHelper,
                 'storeManager' => $this->storeManager,
-                'collection' => $this->collection,
+                'collectionFactory' => $collectionFactory,
                 'categoryRepository' => $this->categoryRepository,
             ]
         );

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -30,6 +30,10 @@
         <!--Check Prev/Next Tags settings: navigate to Search Result Page Page, check Prev/Next Tags in Page Source, activate pagination, check Prev/Next Tags in Page Source/-->
 
         <amOnPage url="{{SearchResultPage.url('red')}}" stepKey="navigateToAllProducts1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="navigateToAllProducts1"/>
 
     </test>
 </tests>

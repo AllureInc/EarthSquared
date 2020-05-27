@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 -->
@@ -44,5 +44,7 @@
         </arguments>
     </type>
 
-
+    <type name="Magento\Framework\Search\Request">
+        <plugin name="Amasty_Shopby::undefinedSearchFix" type="Amasty\ShopbyBase\Plugin\Framework\Search\RequestPlugin" />
+    </type>
 </config>

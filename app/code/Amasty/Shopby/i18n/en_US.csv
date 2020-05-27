@@ -1,5 +1,5 @@
 "Category Filter Settings","Category Filter Settings"
-"Manage Group Attribute Options","Manage Group Attribute Options"
+"Manage Group Attributes","Manage Group Attributes"
 "Add New Group","Add New Group"
 "Save Group","Save Group"
 "Delete Group","Delete Group"
@@ -16,13 +16,6 @@ Disabled,Disabled
 Swatch,Swatch
 Alias,Alias
 Position,Position
-"Takes action only if there are more than one Grouped Attribute Options for 
-                    the same product attribute, and is used for sorting of these Grouped Attribute Options in 
-                    navigation filter. Note: current setting doesn't correlate with ""Sort Options By"" setting from 
-                    product attribute configuration page.","Takes action only if there are more than one Grouped Attribute Options for 
-                    the same product attribute, and is used for sorting of these Grouped Attribute Options in 
-                    navigation filter. Note: current setting doesn't correlate with ""Sort Options By"" setting from 
-                    product attribute configuration page."
 Attribute,Attribute
 "Attribute Options","Attribute Options"
 "Display Properties","Display Properties"
@@ -41,7 +34,7 @@ Attribute,Attribute
 "Show Product Quantities","Show Product Quantities"
 "Show Search Box","Show Search Box"
 "Show the searchbox if the number of options more than","Show the searchbox if the number of options more than"
-"Customers will be able to search for the filter option in the searchbox. Leave the field empty to hide the searchbox.","Customers will be able to search for the filter option in the searchbox. Leave the field empty to hide the searchbox."
+"Customers will be able to search for the filter option in the searchbox.","Customers will be able to search for the filter option in the searchbox."
 "Number of Unfolded Options","Number of Unfolded Options"
 "Other options will be shown after a customer clicks the ""More"" button.","Other options will be shown after a customer clicks the ""More"" button."
 Expand,Expand
@@ -171,6 +164,7 @@ Edit,Edit
 Delete,Delete
 "Delete ""${ $.$data.name }""","Delete ""${ $.$data.name }"""
 "Are you sure you wan't to delete a ""${ $.$data.name }"" record?","Are you sure you wan't to delete a ""${ $.$data.name }"" record?"
+"All Store Views","All Store Views"
 Selected,Selected
 "Select options for this attribute group","Select options for this attribute group"
 Search,Search
@@ -181,17 +175,17 @@ Clear,Clear
 Remove,Remove
 item,item
 items,items
+" star(s)"," star(s)"
 "Select Option ...","Select Option ..."
 "&amp; up","&amp; up"
 "Now Shopping by","Now Shopping by"
 Previous,Previous
-"Remove This Item","Remove This Item"
 From,From
 To,To
 "Apply filter","Apply filter"
 Go,Go
 "Show more","Show more"
-"Show (<span class='am-counter' data-am-counter='counter']></span>) more","Show (<span class='am-counter' data-am-counter='counter']></span>) more"
+"Show (<span class='am-counter' data-am-counter='counter'></span>) more","Show (<span class='am-counter' data-am-counter='counter'></span>) more"
 Less,Less
 "Apply Filters","Apply Filters"
 Show,Show
@@ -239,7 +233,11 @@ General,General
 "Add Filter Title to Meta-Keywords","Add Filter Title to Meta-Keywords"
 "Category Filter","Category Filter"
 "Stock Filter","Stock Filter"
-"If you want to show out of stock products, please configure it here: Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products","If you want to show out of stock products, please configure it here: Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products"
+"If set to ‘Yes’, please make sure that displaying of out of stock products is configured accordingly
+                    (Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products -> Yes).
+                    Otherwise, stock filter won’t appear on storefront.","If set to ‘Yes’, please make sure that displaying of out of stock products is configured accordingly
+                    (Stores -> Configuration -> Catalog -> Inventory -> Stock Options -> Display Out of Stock Products -> Yes).
+                    Otherwise, stock filter won’t appear on storefront."
 Label,Label
 "Rating Filter","Rating Filter"
 "New Filter","New Filter"

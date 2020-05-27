@@ -1,7 +1,6 @@
 define([
     "underscore",
     "jquery",
-    "jquery/ui",
     "amShopbyFilterAbstract",
     "mage/translate"
 ], function (_, $) {
@@ -235,7 +234,10 @@ define([
                 "display": "block"
             });
 
-            self.changePositionOnScroll(top, left, leftPosition);
+            //temporary fix for apply button on 1column
+            if (leftPosition.length) {
+                self.changePositionOnScroll(top, left, leftPosition);
+            }
         },
 
         changePositionOnScroll: function (buttonTop, buttonLeft, leftPosition) {

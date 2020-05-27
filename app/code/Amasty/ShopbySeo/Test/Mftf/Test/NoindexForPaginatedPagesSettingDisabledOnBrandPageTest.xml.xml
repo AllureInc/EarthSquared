@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -44,7 +44,7 @@
 
         <!--Check RTC settings: navigate to Brand Page, check Follow in Page Source after pagination/-->
 
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToAllProducts1"/>
         <seeInPageSource
                 html="&quot;INDEX,FOLLOW"
                 stepKey="seeInSource2"/>

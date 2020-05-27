@@ -5,7 +5,7 @@
  */
 define([
     "jquery",
-    "jquery/ui",
+    "Magento_Ui/js/modal/modal",
     "mage/tooltip",
     'mage/validation',
     'mage/translate',
@@ -19,15 +19,22 @@ define([
         filters: {},
         options: {
             isAjax: 0,
-            collectFilters: 0
+            collectFilters: 0,
+            activeClass: '-active',
+            selectors: {
+                filterItem: '[data-am-js="shopby-item"]'
+            }
         },
+
         getFilter: function () {
             var filter = {
                 'code': this.element.attr('amshopby-filter-code'),
                 'value': this.element.attr('amshopby-filter-value')
             };
+
             return filter;
         },
+
         apply: function (link, clearFilter) {
             try {
                 if ($.mage.amShopbyAjax) {
@@ -36,6 +43,7 @@ define([
 
                 this.options.isAjax = $.mage.amShopbyAjax != undefined;
                 var linkParam = clearFilter ? link : null;
+
                 if (!this.options.collectFilters && this.options.isAjax == true) {
                     this.prepareTriggerAjax(this.element, linkParam, clearFilter);
                 } else {
@@ -52,6 +60,7 @@ define([
 
         prepareTriggerAjax: function (element, clearUrl, clearFilter, isSorting) {
             var forms = $('form[data-amshopby-filter]');
+
             if (typeof this.element !== 'undefined' && clearFilter) {
                 var attributeName = this.element.closest(".filter-options-content").find('form').data('amshopby-filter');
                 var excludedFormSelector = ((this.element.closest("div.sidebar").length === 0)
@@ -61,14 +70,17 @@ define([
 
             var existFields = [],
                 savedFilters = [];
+
             forms.each(function (index, item) {
                 var $item = $(item);
                 var className = '';
+
                 if ($item.closest('[class*="am-filter-items"]').length) {
                     className = $item.closest('[class*="am-filter-items"]')[0].className;
                 } else if ($item.find('[class*="am-filter-items"]').length) {
                     className = $item.find('[class*="am-filter-items"]')[0].className;
                 }
+
                 var startPos = className.indexOf('am-filter-items'),
                     endPos = className.indexOf(' ', startPos + 1) == -1 ? 100 : className.indexOf(' ', startPos + 1),
                     filterClass = className.substring(startPos, endPos),
@@ -105,6 +117,7 @@ define([
             data.clearUrl = data.clearUrl ? data.clearUrl : clearUrl;
             element = element ? element : document;
             $(element).trigger('amshopby:submit_filters', {data: data, clearFilter: clearFilter, isSorting: isSorting});
+
             return data;
         },
 
@@ -164,7 +177,7 @@ define([
         },
 
         getSignsCount: function (step, isPrice) {
-            if (step < 1 && step > 0) {
+            if (step > 0) {
                 return step.toString().length - step.toString().indexOf(".") - 1;
             }
 
@@ -190,6 +203,7 @@ define([
 
         getFixed: function (value, isPrice) {
             var fixed = 2;
+
             if (value) {
                 fixed = this.getSignsCount(this.options.step, isPrice);
             }
@@ -213,7 +227,6 @@ define([
                 element.checked = !element.checked;
                 parent.trigger('click');
                 e.stopPropagation();
-                e.preventDefault();
             });
         }
     });
@@ -259,10 +272,12 @@ define([
                         href = e.data.link.prop('href');
                     element.prop('checked', !element.prop('checked'));
                     self.triggerSync(element, !element.prop('checked'));
+
                     if (self.isFinderAndCategory(element[0])) {
                         location.href = href;
                         return;
                     }
+
                     $.mage.amShopbyFilterAbstract.prototype.renderShowButton(e, element);
                     self.apply(href);
 
@@ -305,7 +320,7 @@ define([
         },
         markAsSelected: function (checkbox) {
             checkbox.closest('form').find('a').each(function () {
-                if (!$(this).find('input').prop("checked")) {
+                if (!$(this).siblings('input').prop("checked")) {
                     $(this).removeClass('am_shopby_link_selected');
                 } else {
                     $(this).addClass('am_shopby_link_selected');
@@ -331,10 +346,12 @@ define([
                 parent.bind('click', params, function (e) {
                     var element = e.data.checkbox,
                         href = e.data.link.prop('href');
+
                     if ($(this).find('input[type=radio]')[0] && location.href.indexOf('find=') !== -1) {
                         location.href = href;
                         return;
                     }
+
                     element.prop('checked', !element.prop('checked'));
                     self.toggleCheckParentAndChildrenCheckboxes(e.data.parent, element.prop('checked'));
                     self.triggerSync(element, !element.prop('checked'));
@@ -363,7 +380,7 @@ define([
         },
         markAsSelected: function (checkbox) {
             checkbox.closest('form').find('a').each(function () {
-                if (!$(this).find('input').prop("checked")) {
+                if (!$(this).siblings('input').prop("checked")) {
                     $(this).removeClass('am_shopby_link_selected');
                 } else {
                     $(this).addClass('am_shopby_link_selected');
@@ -389,10 +406,12 @@ define([
                 parent.bind('click', params, function (e) {
                     var element = e.data.checkbox,
                         href = e.data.link.prop('href');
+
                     if ($(this).find('input[type=radio]')[0] && location.href.indexOf('find=') !== -1) {
                         location.href = href;
                         return;
                     }
+
                     element.prop('checked', !element.prop('checked'));
                     self.triggerSync(element, !element.prop('checked'));
                     $.mage.amShopbyFilterAbstract.prototype.renderShowButton(e, element);
@@ -424,7 +443,7 @@ define([
 
         markAsSelected: function (checkbox) {
             checkbox.closest('form').find('a').each(function () {
-                if (!$(this).find('input').prop("checked")) {
+                if (!$(this).siblings('input').prop("checked")) {
                     $(this).removeClass('am_shopby_link_selected');
                 } else {
                     $(this).addClass('am_shopby_link_selected');
@@ -600,8 +619,9 @@ define([
 
         onSyncChange: function (event, values) {
             var value = values[0].split('-');
+
             if (value.length === 2) {
-                var fixed = 2,
+                var fixed = this.getSignsCount(this.options.step, 0),
                     from = (parseFloat(value[0])).toFixed(fixed),
                     to = parseFloat(value[1]).toFixed(fixed);
 
@@ -613,7 +633,7 @@ define([
             }
         },
         setValue: function (from, to, apply, rate) {
-            var fixed = 2;
+            var fixed = this.getSignsCount(this.options.step, 0);
             from = (parseFloat(from)).toFixed(fixed);
             to = (parseFloat(to)).toFixed(fixed);
 
@@ -621,6 +641,7 @@ define([
                 changed = this.value.val() != newVal;
 
             this.value.val(newVal);
+
             if (changed) {
                 this.value.trigger('change');
                 this.value.trigger('sync');
@@ -635,8 +656,8 @@ define([
             }
         },
         setValueWtihoutChange: function (from, to) {
-            var fixed = this.getSignsCount(this.options.step, 0);
-            var newVal = parseFloat(from) + '-' + parseFloat(to);
+            var fixed = this.getSignsCount(this.options.step, 0),
+                newVal = parseFloat(from).toFixed(fixed) + '-' + parseFloat(to).toFixed(fixed);
             this.value.val(newVal);
         },
         getLabel: function (from, to) {
@@ -665,23 +686,10 @@ define([
                 this.go = this.element.find('[data-amshopby-fromto="go"]');
 
                 this.value.on('amshopby:sync_change', this.onSyncChange.bind(this));
-                var priceSelector = '.am-filter-items-attr_price';
-
-                if (this.value.val()
-                    && !this.element.parent().find(priceSelector).length
-                    && !this.element.closest(priceSelector).find('[data-am-js="slider-container"]').length
-                    && !this.element.closest(priceSelector + '.am-dropdown').length
-                ) {
-                    var values = this.value.val().split('-'),
-                        from = values[0],
-                        to = values[1];
-                    this.value.trigger('amshopby:sync_change', [[values ? from + '-' + to : '', true]]);
-                } else {
-                    var fromValue = this.options.from ? parseFloat(this.options.from).toFixed(2) : '',
-                        toValue = this.options.to ? parseFloat(this.options.to).toFixed(2) : '',
-                        newValue = fromValue + '-' + toValue;
-                    this.value.trigger('amshopby:sync_change', [[this.value.val() ? this.value.val() : newValue, true]]);
-                }
+                var fromValue = this.options.from ? parseFloat(this.options.from).toFixed(2) : '',
+                    toValue = this.options.to ? parseFloat(this.options.to).toFixed(2) : '',
+                    newValue = fromValue + '-' + toValue;
+                this.value.trigger('amshopby:sync_change', [[this.value.val() ? this.value.val() : newValue, true]]);
 
                 if (this.go.length > 0) {
                     this.go.on('click', this.applyFilter.bind(this));
@@ -689,7 +697,6 @@ define([
 
                 this.changeEvent(this.from, this.onChange.bind(this));
                 this.changeEvent(this.to, this.onChange.bind(this));
-
                 this.element.find('form').mage('validation', {
                     errorPlacement: function (error, element) {
                         var parent = element.parent();
@@ -726,17 +733,17 @@ define([
                 from = this.options.min;
             }
 
-            var fromToInterval = this.checkFromTo(parseFloat(from), parseFloat(to)),
+            var fromToInterval = this.checkFromTo(parseFloat(from).toFixed(fixed), parseFloat(to).toFixed(fixed)),
                 oldVal = this.value.val(),
                 oldValValues = oldVal.split('-'),
-                newVal = Number(fromToInterval.from).toFixed(fixed) + '-' + Number(fromToInterval.to).toFixed(fixed),
+                newVal = fromToInterval.from.toFixed(fixed) + '-' + fromToInterval.to.toFixed(fixed),
                 changed = !((fromToInterval.from == Number(oldValValues[0]))
                     && (fromToInterval.to == Number(oldValValues[1])));
 
             this.value.val(newVal);
 
             if (changed) {
-                newVal = fromToInterval.from + '-' + fromToInterval.to;
+                newVal = fromToInterval.from.toFixed(fixed) + '-' + fromToInterval.to.toFixed(fixed);
                 this.value.val(newVal);
                 this.value.trigger('change');
                 this.value.trigger('sync');
@@ -751,7 +758,7 @@ define([
             var to = this.to.val(),
                 from = this.from.val(),
                 isPrice = this.isPrice(),
-                fromToInterval = this.checkFromTo(parseFloat(from), parseFloat(to)),
+                fromToInterval = this.checkFromTo(from, to),
                 linkHref = this.options.url
                     .replace('amshopby_slider_from', fromToInterval.from)
                     .replace('amshopby_slider_to', fromToInterval.to);
@@ -771,8 +778,8 @@ define([
                 to = max, from = min, rate = this.element.find('.range').data('rate');
 
             if (value.length === 2 && (value[0] || value[1])) {
-                from = value[0] == '' ? 0 : parseFloat(value[0]);
-                to = (value[1] == 0 || value[1] == '') ? this.options.max : parseFloat(value[1]);
+                from = value[0] == '' ? 0 : parseFloat(value[0]).toFixed(fixed);
+                to = (value[1] == 0 || value[1] == '') ? this.options.max : parseFloat(value[1]).toFixed(fixed);
 
                 if (this.isDropDown()) {
                     to = Math.ceil(to);
@@ -785,6 +792,8 @@ define([
 
         checkFromTo: function (from, to) {
             var interval = {};
+            from = parseFloat(from);
+            to = parseFloat(to);
 
             interval.from = from < this.options.min ? this.options.min : from;
             interval.from = interval.from > this.options.max ? this.options.min : interval.from;
@@ -798,6 +807,9 @@ define([
                 interval.to = fromOld;
             }
 
+            interval.from = Number(interval.from);
+            interval.to = Number(interval.to);
+
             return interval;
         },
         /**
@@ -810,6 +822,7 @@ define([
                 if (this.timer != null) {
                     clearTimeout(this.timer);
                 }
+
                 if (this.go.length == 0) {
                     this.timer = setTimeout(callback(event), 1000);
                 } else {
@@ -837,7 +850,7 @@ define([
 
         _create: function () {
             var self = this;
-            var $items = $(this.options.itemsSelector + " .item");
+            var $items = $(this.options.itemsSelector + " .item, " + this.options.itemsSelector + " .am-swatch-link");
             $(self.element).keyup(function () {
                 self.search(this.value, $items);
             });
@@ -847,9 +860,11 @@ define([
             var self = this;
 
             searchText = searchText.toLowerCase();
+
             if (searchText == this.previousSearch) {
                 return;
             }
+
             this.previousSearch = searchText;
 
             if (searchText != '') {
@@ -859,12 +874,14 @@ define([
             $items.each(function (key, li) {
                 if (li.hasAttribute('data-label')) {
                     var val = li.getAttribute('data-label').toLowerCase();
+
                     if (!val || val.indexOf(searchText) > -1) {
                         if (searchText != '' && val.indexOf(searchText) > -1) {
                             self.hightlight(li, searchText);
                         } else {
                             self.unhightlight(li);
                         }
+
                         $(li).show();
                         var parentSelector = !self.options.isState ? '.filter-options-content' : '[data-am-js="shopby-container"]';
                         $(li).parentsUntil(parentSelector).show();
@@ -897,34 +914,44 @@ define([
         options: {
             numberUnfoldedOptions: 0,
             _hideCurrent: false,
-            buttonSelector: ""
+            activeClass: '-active',
+            disabledClass: '-disabled',
+            selectors: {
+                button: ''
+            }
         },
 
         _create: function () {
             var self = this,
-                button = $(self.options.buttonSelector);
+                button = $(self.options.selectors.button);
 
-            self.options.parentSelector = !self.options.isState ? '.filter-options-content' : '[data-am-js="shopby-container"]';
-            var filters = button.closest(self.options.parentSelector);
-            if ((filters.find(".item").length / filters.length) > self.options.numberUnfoldedOptions) {
-                button.show();
-            } else {
-                button.hide();
-                return;
-            }
+            self.options.selectors.parentSelector = !self.options.isState ? '.filter-options-content' : '[data-am-js="shopby-container"]';
+            self.options.selectors.filterItem = !self.options.isState ? '.item' : '[data-am-js="shopby-item"]';
 
-            $(this.element).parents('.filter-options-content').on('search_active', function () {
-                if (self.options._hideCurrent) {
-                    self.toggle(self.options.buttonSelector);
+            button.each(function() {
+                if ($(this).closest(self.options.selectors.parentSelector).find(self.options.selectors.filterItem).length > self.options.numberUnfoldedOptions) {
+                    $(this).addClass(self.options.activeClass);
+                } else {
+                    $(this).addClass(self.options.disabledClass);
                 }
-                button.hide();
             });
 
-            $(this.element).parents('.filter-options-content').on('search_inactive', function () {
-                if (!self.options._hideCurrent) {
-                    self.toggle(self.options.buttonSelector);
+            $(this.element).closest('.filter-options-content').on('search_active', function () {
+                if (self.options._hideCurrent) {
+                    self.toggle(self.options.selectors.button);
                 }
-                button.show();
+
+                button.removeClass(self.options.activeClass);
+            });
+
+            $(this.element).closest('.filter-options-content').on('search_inactive', function () {
+                if (!button.hasClass(self.options.disabledClass)) {
+                    if (!self.options._hideCurrent) {
+                        self.toggle(self.options.selectors.button);
+                    }
+
+                    button.addClass(self.options.activeClass);
+                }
             });
 
             button.unbind('click').click(function () {
@@ -942,33 +969,34 @@ define([
 
         toggle: function (button) {
             var $button = $(button);
+
             if ($(button)[0]._hideCurrent) {
                 this.showAll($button);
                 $button.html($button.attr('data-text-less'));
-                $($button).attr({
+                $button.attr({
                     'data-is-hide': 'false',
-                    title: $button.attr('data-text-less')
+                    title: $button.text()
                 });
                 $(button)[0]._hideCurrent = false;
             } else {
                 var count = this.hideAll($button);
+
                 $button.html($button.attr('data-text-more'));
-                $($button).attr({
+                $button.find("[data-am-counter='counter']").html(count);
+                $button.attr({
                     'data-is-hide': 'true',
-                    title: $($button[0]).text()
+                    title: $button.text()
                 });
                 $(button)[0]._hideCurrent = true;
-                $($button).find("[data-am-counter='counter']").html(count);
             }
         },
-
         hideAll: function ($button) {
             var self = this,
                 count = 0,
                 hideCount = 0;
-            $($button).closest(self.options.parentSelector).find(".item").each(function () {
-                count++;
-                if (count > self.options.numberUnfoldedOptions) {
+
+            $button.closest(self.options.selectors.parentSelector).find(self.options.selectors.filterItem).each(function () {
+                if (++count > self.options.numberUnfoldedOptions) {
                     hideCount++;
                     $(this).hide();
                 }
@@ -977,8 +1005,7 @@ define([
             return hideCount;
         },
         showAll: function ($button) {
-            var self = this;
-            $($button).closest(self.options.parentSelector).find(".item").show();
+            $button.closest(this.options.selectors.parentSelector).find(this.options.selectors.filterItem).show();
         }
     });
 
@@ -990,8 +1017,8 @@ define([
         _create: function () {
             var template = this.options.tooltipTemplate.replace('{content}', this.options.content);
             var $template = $(template);
-
             var $place = $(this.element).parents('.filter-options-item').find('.filter-options-title');
+
             if ($place.length == 0) {
                 $place = $(this.element).parents('dd').prev('dt');
             }
@@ -1041,16 +1068,19 @@ define([
 
     $.widget('mage.amShopbyFilterContainer', {
         options: {
-            collectFilters: 0
+            collectFilters: 0,
+            selectors: {
+                filterItem: '[data-am-js="shopby-item"]'
+            }
         },
 
         _create: function () {
             var self = this;
             $(function () {
-                var $element = $(self.element[0]);
-                var links = $element.find('[data-am-js="shopby-item"]');
-                var allClear = $element.siblings('.filter-actions');
-                var filters = [];
+                var $element = $(self.element[0]),
+                    links = $element.find(self.options.selectors.filterItem),
+                    filters = [];
+
                 if (links.length) {
                     $(links).each(function (index, value) {
                         var filter = {
@@ -1068,6 +1098,7 @@ define([
                                 e.preventDefault();
                             }
                         });
+
                         if (filters.length) {
                             $.each(filters, function (index, filter) {
                                 self.checkInForm(filter);
@@ -1093,12 +1124,12 @@ define([
         },
 
         apply: function (filter) {
-            var link = $('li[data-container="' + filter.attribute + '"][data-value="' + filter.value + '"] a.remove').attr('href');
+            var link = $('li[data-container="' + filter.attribute + '"][data-value="' + filter.value + '"] .amshopby-remove').attr('href');
 
             try {
-                var self = this;
+                var self = this,
+                    value = filter.value;
 
-                var value = filter.value;
                 if (filter.attribute == 'price') {
                     var attrSelector = '[data-amshopby-filter="attr_' + filter.attribute + '"]';
                     //TODO For not price filters - there are no selectors -> no sync
@@ -1148,6 +1179,7 @@ define([
                         break;
                     case 'INPUT' :
                         var selected = '';
+
                         if ($(filter).attr("type") != 'text' && $(filter).attr("type") != 'hidden') {
                             selected = $(valueSelector + '[value="' + value + '"]');
                             selected.removeAttr("checked");
@@ -1165,6 +1197,7 @@ define([
         isEquals: function (name, filterValue, value) {
             var values = value.split('-'),
                 filterValues = filterValue.split('-');
+
             if (values.length > 1) {
                 filterValue = this.toValidView(filterValues);
                 value = this.toValidView(values);
@@ -1183,6 +1216,7 @@ define([
         sliderDefault: function (name) {
             var valueSelector = '[name="amshopby[' + name + '][]"]',
                 slider = $(valueSelector).siblings('[data-amshopby-slider-id="slider"]');
+
             if (slider.length) {
                 var $parent = $(valueSelector).parent();
                 $(slider[0]).slider("values", [$parent.attr('data-min'), $parent.attr('data-max')]);
@@ -1192,6 +1226,7 @@ define([
 
         fromToDefault: function (name) {
             var range = $('[name="amshopby[' + name + '][]"]').siblings('.range');
+
             if (range.length) {
                 var from = range.find('[data-amshopby-fromto="from"]'),
                     to = range.find('[data-amshopby-fromto="to"]'),
@@ -1210,6 +1245,7 @@ define([
 
             if (this.checkIfValueNotExist(name, value)) {
                 var block = $('#layered-filter-block');
+
                 if (!block.length) {
                     block = $('.block.filter');
                 }

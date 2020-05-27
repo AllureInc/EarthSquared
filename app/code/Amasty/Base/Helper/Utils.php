@@ -14,13 +14,15 @@ class Utils extends AbstractHelper
 {
     public function _exit($code = 0)
     {
-        //phpcs:ignore
+        /** @codingStandardsIgnoreStart */
         exit($code);
+        /** @codingStandardsIgnoreEnd */
     }
 
     public function _echo($a)
     {
-        //phpcs:ignore
+        /** @codingStandardsIgnoreStart */
         echo $a;
+        /** @codingStandardsIgnoreEnd */
     }
 }

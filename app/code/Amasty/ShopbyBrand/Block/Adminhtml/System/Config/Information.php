@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -10,11 +10,6 @@ namespace Amasty\ShopbyBrand\Block\Adminhtml\System\Config;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
-/**
- * Class Information
- *
- * @package Amasty\ShopbyBrand\Block\Adminhtml\System\Config
- */
 class Information extends \Magento\Config\Block\System\Config\Form\Fieldset
 {
     /**
@@ -31,6 +26,45 @@ class Information extends \Magento\Config\Block\System\Config\Form\Fieldset
      * @var string
      */
     private $content;
+
+    /**
+     * @var \Magento\Framework\Module\Manager
+     */
+    private $moduleManager;
+
+    public function __construct(
+        \Magento\Backend\Block\Context $context,
+        \Magento\Backend\Model\Auth\Session $authSession,
+        \Magento\Framework\View\Helper\Js $jsHelper,
+        \Magento\Framework\Module\Manager $moduleManager,
+        array $data = []
+    ) {
+        parent::__construct($context, $authSession, $jsHelper, $data);
+        $this->moduleManager = $moduleManager;
+    }
+
+    /**
+     * @return array|string
+     */
+    public function getAdditionalModuleContent()
+    {
+        $result = [];
+        if ($this->moduleManager->isEnabled('Magento_GraphQl')
+            && !$this->moduleManager->isEnabled('Amasty_ShopbyBrandGraphQl')
+        ) {
+            $message = [
+                'type' => 'message-notice',
+                'text' => __('Enable shop-by-brand-graphql module to '
+                    . 'activate GraphQl and Shop by Brand integration. '
+                    . 'Please, run the following command in the SSH: '
+                    . 'composer require amasty/module-shop-by-brand-graphql')
+            ];
+
+            $result[] = $message;
+        }
+
+        return $result;
+    }
 
     /**
      * Render fieldset html

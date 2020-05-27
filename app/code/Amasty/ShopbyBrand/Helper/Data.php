@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -284,7 +284,9 @@ class Data extends AbstractHelper
         if (isset($aliases[$option->getValue()])) {
             $brandAlias = $aliases[$option->getValue()];
             $urlKey = $this->getBrandUrlKey();
-            $url = $this->_urlBuilder->getBaseUrl() . (!!$urlKey ? $urlKey . '/' . $brandAlias : $brandAlias);
+            $urlSuffix = $this->getSuffix();
+            $url = $this->_urlBuilder->getBaseUrl()
+                . (!!$urlKey ? $urlKey . '/' . $brandAlias : $brandAlias) . $urlSuffix;
         }
 
         return $url;
@@ -327,6 +329,14 @@ class Data extends AbstractHelper
             'amshopby_brand/' . $path,
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    /**
+     * @return int|string
+     */
+    public function isTopmenuEnabled()
+    {
+        return $this->getModuleConfig('general/topmenu_enabled');
     }
 
     /**
@@ -417,6 +427,22 @@ class Data extends AbstractHelper
             'amshopby_brand/brands_landing/display_zero',
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getLogoProductPageWidth()
+    {
+        return $this->getModuleConfig('product_page/width');
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getLogoProductPageHeight()
+    {
+        return $this->getModuleConfig('product_page/height');
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -12,14 +12,11 @@ use Amasty\Shopby\Model\Layer\Filter\Category;
 use Amasty\Shopby\Model\Source\FilterPlacedBlock;
 use Amasty\ShopbyBase\Api\Data\FilterSettingInterface;
 use Magento\Catalog\Model\Layer;
+use Magento\Catalog\Model\Layer\Search;
 use Magento\Catalog\Model\Layer\Filter\FilterInterface;
 use Amasty\Shopby\Model\Source\VisibleInCategory;
 use Amasty\ShopbyBase\Model\ResourceModel\FilterSetting\CollectionExtendedFactory;
 
-/**
- * Class FilterList
- * @package Amasty\Shopby\Model\Layer
- */
 class FilterList extends Layer\FilterList
 {
     const PLACE_SIDEBAR = 'sidebar';
@@ -77,6 +74,11 @@ class FilterList extends Layer\FilterList
      */
     private $config;
 
+    /**
+     * @var \Magento\Framework\View\LayoutInterface
+     */
+    private $layout;
+
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
         Layer\FilterableAttributeListInterface $filterableAttributes,
@@ -86,6 +88,7 @@ class FilterList extends Layer\FilterList
         CollectionExtendedFactory $collectionExtendedFactory,
         \Amasty\Shopby\Model\Request $shopbyRequest,
         \Amasty\Shopby\Helper\Config $config,
+        \Magento\Framework\View\LayoutInterface $layout,
         array $filters = [],
         $place = self::PLACE_SIDEBAR
     ) {
@@ -96,6 +99,7 @@ class FilterList extends Layer\FilterList
         $this->collectionExtendedFactory = $collectionExtendedFactory;
         $this->shopbyRequest = $shopbyRequest;
         $this->config = $config;
+        $this->layout = $layout;
         parent::__construct($objectManager, $filterableAttributes, $filters);
     }
 
@@ -205,7 +209,18 @@ class FilterList extends Layer\FilterList
      */
     protected function isOneColumnLayout(Layer $layer)
     {
-        return $layer->getCurrentCategory()->getData('page_layout') == self::ONE_COLUMN_LAYOUT;
+        return $this->getPageLayout($layer) == self::ONE_COLUMN_LAYOUT;
+    }
+
+    /**
+     * @param Layer $layer
+     * @return string
+     */
+    private function getPageLayout(Layer $layer)
+    {
+        return !$layer instanceof Search && $layer->getCurrentCategory()->getData('page_layout')
+            ? $layer->getCurrentCategory()->getData('page_layout')
+            : $this->layout->getUpdate()->getPageLayout();
     }
 
     /**
@@ -451,5 +466,20 @@ class FilterList extends Layer\FilterList
         }
 
         return $position;
+    }
+
+    /**
+     * @param \Magento\Catalog\Model\ResourceModel\Eav\Attribute $attribute
+     * @return string
+     */
+    protected function getAttributeFilterClass(\Magento\Catalog\Model\ResourceModel\Eav\Attribute $attribute)
+    {
+        $filterClassName = parent::getAttributeFilterClass($attribute);
+
+        if ($attribute->getBackendType() === 'decimal' && $attribute->getAttributeCode() !== 'price') {
+            $filterClassName = $this->filterTypes[self::DECIMAL_FILTER];
+        }
+
+        return $filterClassName;
     }
 }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -17,7 +17,7 @@
                           dependentSelector="{{AdminILNSettingsSection.TooltipImageUploader}}"
                           visible="false"/>
         <attachFile selector="{{AdminILNSettingsSection.TooltipImageUploader}}"
-                    userInput="2.png"
+                    userInput="3.png"
                     stepKey="uploadFile1"/>
         <wait time="1" stepKey="waitSeconds1"/>
         <click selector="{{AdminILNSettingsSection.Save}}" stepKey="clickSaveConfig1"/>

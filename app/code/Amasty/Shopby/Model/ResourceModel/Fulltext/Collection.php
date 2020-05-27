@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -85,43 +85,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     private $memRequestBuilder;
 
-    /**
-     * @var \Magento\Framework\App\ProductMetadataInterface
-     */
-    private $productMetadata;
-
-    /**
-     * Collection constructor.
-     * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Eav\Model\Config $eavConfig
-     * @param \Magento\Framework\App\ResourceConnection $resource
-     * @param \Magento\Eav\Model\EntityFactory $eavEntityFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper
-     * @param \Magento\Framework\Validator\UniversalFactory $universalFactory
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Module\Manager $moduleManager
-     * @param \Magento\Catalog\Model\Indexer\Product\Flat\State $catalogProductFlatState
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Catalog\Model\Product\OptionFactory $productOptionFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Url $catalogUrl
-     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Framework\Stdlib\DateTime $dateTime
-     * @param \Magento\Customer\Api\GroupManagementInterface $groupManagement
-     * @param \Magento\Search\Model\QueryFactory $queryFactory
-     * @param \Amasty\Shopby\Model\Request\BuilderFactory $requestBuilderFactory
-     * @param \Magento\Search\Model\SearchEngine $searchEngine
-     * @param \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory
-     * @param \Amasty\Shopby\Model\Layer\Cms\Manager $cmsManager
-     * @param \Magento\Framework\App\ProductMetadataInterface $productMetadata
-     * @param Stock $stockHelper
-     * @param Group $groupHelper
-     * @param null $connection
-     * @param string $searchRequestName
-     */
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
         \Psr\Log\LoggerInterface $logger,
@@ -147,7 +110,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         \Magento\Search\Model\SearchEngine $searchEngine,
         \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory,
         \Amasty\Shopby\Model\Layer\Cms\Manager $cmsManager,
-        \Magento\Framework\App\ProductMetadataInterface $productMetadata,
         Stock $stockHelper,
         Group $groupHelper,
         $connection = null,
@@ -184,7 +146,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         $this->temporaryStorageFactory = $temporaryStorageFactory;
         $this->cmsManager = $cmsManager;
         $this->stockHelper = $stockHelper;
-        $this->productMetadata = $productMetadata;
     }
 
     /**
@@ -336,10 +297,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         if (!is_array($condition) || !in_array(key($condition), ['from', 'to'], true)) {
             // See app/code/Magento/Catalog/Model/ResourceModel/Product/Indexer/Eav/AbstractEav::_getIndexableAttributesCondition()
             // Visibility filter wasn't in index before 2.2
-            if ($field != 'visibility'
-                || version_compare($this->productMetadata->getVersion(), '2.2.0', '>=')) {
-                $this->requestBuilder->bind($field, $condition);
-            }
+            $this->requestBuilder->bind($field, $condition);
         } else {
             if (!empty($condition['from'])) {
                 $this->requestBuilder->bind("{$field}.from", $condition['from']);

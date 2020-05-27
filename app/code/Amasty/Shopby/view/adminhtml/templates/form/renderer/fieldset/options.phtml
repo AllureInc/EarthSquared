@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -27,16 +27,16 @@ $fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
     . ($element->getFieldExtraAttributes() ? ' ' . $element->getFieldExtraAttributes() : '');
 ?>
 
-<?php if (!$element->getNoDisplay()) : ?>
-    <?php if ($element->getType() == 'hidden') : ?>
+<?php if (!$element->getNoDisplay()): ?>
+    <?php if ($element->getType() == 'hidden'): ?>
         <?= /* @noEscape */ $element->getElementHtml() ?>
-    <?php else : ?>
+    <?php else: ?>
 <div <?= /* @noEscape */ $fieldAttributes ?>>
-        <?php if ($elementBeforeLabel) : ?>
+        <?php if ($elementBeforeLabel): ?>
             <?= $element->getElementHtml() ?>
             <?= $element->getLabelHtml('', $element->getScopeLabel()) ?>
 
-        <?php else : ?>
+        <?php else: ?>
             <?= $element->getLabelHtml('', $element->getScopeLabel()) ?>
         <div class="admin__field-control control">
             <div class="admin__field">
@@ -116,13 +116,15 @@ $fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
                                name="attribute_values[<%- data.id %>][sort_order][value]"
                                data-ui-id="text-attribute_options-<%- data.id %>-sort_order-value"
                                id="<?= $block->getElement()->getHtmlId() ?>_<%- data.id %>_sort_order"
-                               value="<%- data.sort_order %>"/>
+                               value="<%- data.sort_order %>"
+                               class="required-entry _required"/>
                         <div class="option_value"><%- data.text %></div>
                         <input type="text"
                                name="attribute_values[<%- data.id %>][is_active][value]"
                                data-ui-id="text-attribute_options-<%- data.id %>-is_active-value"
                                id="<?= $block->getElement()->getHtmlId() ?>_<%- data.id %>_is_active"
-                               value="<%- data.value %>"/>
+                               value="<%- data.value %>"
+                               class="required-entry _required"/>
                     </td>
                 </script>
                 <script type="text/javascript">

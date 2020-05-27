@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -11,10 +11,6 @@ namespace Amasty\Shopby\Controller;
 use Magento\Framework\App\RequestInterface;
 use Magento\Store\Model\ScopeInterface;
 
-/**
- * Class Router
- * @package Amasty\Shopby\Controller
- */
 class Router implements \Magento\Framework\App\RouterInterface
 {
     /**
@@ -45,10 +41,15 @@ class Router implements \Magento\Framework\App\RouterInterface
             return false;
         }
 
-        $identifier = rtrim(
-            trim($request->getPathInfo(), '/'),
-            $this->helper->getCatalogSeoSuffix()
-        );
+        $identifier = trim($request->getPathInfo(), '/');
+
+        $seoSuffix = $this->helper->getCatalogSeoSuffix();
+        if ($seoSuffix) {
+            $suffixPosition = strpos($identifier, $seoSuffix);
+            if ($suffixPosition !== false) {
+                $identifier = substr($identifier, 0, $suffixPosition);
+            }
+        }
 
         if ($this->checkMatchExpressions($request, $identifier)) {
             $request->setModuleName('amshopby')

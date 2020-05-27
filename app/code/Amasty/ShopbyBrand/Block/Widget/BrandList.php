@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -9,40 +9,23 @@
 namespace Amasty\ShopbyBrand\Block\Widget;
 
 use Amasty\ShopbyBase\Api\Data\OptionSettingInterface;
+use Amasty\ShopbyBase\Model\ResourceModel\OptionSetting\CollectionFactory as OptionSettingCollectionFactory;
+use Amasty\ShopbyBrand\Helper\Data as DataHelper;
 use Amasty\ShopbyBrand\Model\Source\Tooltip;
 use Magento\Catalog\Model\Product\Attribute\Repository;
-use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\View\Element\Template as Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Catalog\Model\ResourceModel\Layer\Filter\Attribute as FilterAttributeResource;
 use \Magento\Eav\Model\Entity\Attribute\Option;
-use Amasty\ShopbyBrand\Helper\Data as DataHelper;
-use Amasty\ShopbyBase\Model\ResourceModel\OptionSetting\CollectionFactory as OptionSettingCollectionFactory;
-use Magento\Search\Model\SearchEngine;
+use Magento\Framework\App\Request\DataPersistorInterface;
 
-/**
- * Class BrandList
- *
- * @package Amasty\ShopbyBrand\Block\Widget
- */
 class BrandList extends BrandListAbstract implements \Magento\Widget\Block\BlockInterface
 {
     const CONFIG_VALUES_PATH = 'amshopby_brand/brands_landing';
 
     /**
-     * @var FilterAttributeResource
+     * @var bool
      */
-    protected $filterAttributeResource;
-
-    /**
-     * @var \Magento\CatalogInventory\Helper\Stock
-     */
-    protected $stockHelper;
-
-    /**
-     * @var \Magento\Catalog\Model\Product\Visibility
-     */
-    protected $catalogProductVisibility;
+    protected $isDisplayZero;
 
     /**
      * @var DataHelper
@@ -50,11 +33,8 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
     protected $brandHelper;
 
     /**
-     * @var SearchEngine
-     */
-    protected $searchEngine;
-
-    /**
+     * used for BrandsPopup
+     *
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
@@ -67,14 +47,10 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
         \Magento\CatalogSearch\Model\Layer\Category\ItemCollectionProvider $collectionProvider,
         \Magento\Catalog\Model\Product\Url $productUrl,
         \Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository,
-        FilterAttributeResource $filterAttributeResource,
-        \Magento\CatalogInventory\Helper\Stock $stockHelper,
-        \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
         DataHelper $dataHelper,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Amasty\ShopbyBase\Api\UrlBuilderInterface $amUrlBuilder,
         \Amasty\ShopbyBrand\Helper\Data $brandHelper,
-        SearchEngine $searchEngine,
         \Amasty\ShopbyBrand\Model\ProductCount $productCount,
         DataPersistorInterface $dataPersistor,
         array $data = []
@@ -93,11 +69,8 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
             $productCount,
             $data
         );
-        $this->filterAttributeResource = $filterAttributeResource;
-        $this->stockHelper = $stockHelper;
-        $this->catalogProductVisibility = $catalogProductVisibility;
+
         $this->brandHelper = $brandHelper;
-        $this->searchEngine = $searchEngine;
         $this->dataPersistor = $dataPersistor;
     }
 
@@ -125,7 +98,6 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
     private function sortByLetters($items)
     {
         $this->sortItems($items);
-
         $letters = $this->items2letters($items);
 
         return $letters;
@@ -166,22 +138,48 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
     protected function getItemData(Option $option, OptionSettingInterface $setting)
     {
         $count = $this->_getOptionProductCount($setting->getValue());
-        if (!$this->helper->isDisplayZero() && !$count) {
-            $result = [];
-        } else {
+        if ($this->isDisplayZero() || $count) {
             $result = [
+                'brandId' => $option->getData('value'),
                 'label' => $setting->getLabel() ?: $option->getLabel(),
-                'url' => $this->getBrandUrl($option),
+                'url' => $this->brandHelper->getBrandUrl($option),
                 'img' => $setting->getSliderImageUrl(),
                 'image' => $setting->getImageUrl(),
                 'description' => $setting->getDescription(true),
-                'short_description' => $setting->getShortDescription(true),
+                'short_description' => $setting->getShortDescription(),
                 'cnt' => $count,
                 'alt' => $setting->getSmallImageAlt() ?: $setting->getLabel()
             ];
         }
 
-        return $result;
+        return $result ?? [];
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isDisplayZero()
+    {
+        if ($this->isDisplayZero === null) {
+            $this->isDisplayZero = (bool)$this->helper->isDisplayZero();
+        }
+
+        return $this->isDisplayZero;
+    }
+
+    /**
+     * Get brand product count
+     *
+     * @param int $optionId
+     * @return int
+     */
+    protected function _getOptionProductCount($optionId)
+    {
+        if ($this->getData('show_count') || !$this->isDisplayZero()) {
+            return parent::_getOptionProductCount($optionId);
+        }
+
+        return 0;
     }
 
     /**
@@ -204,10 +202,12 @@ class BrandList extends BrandListAbstract implements \Magento\Widget\Block\Block
             if (!isset($letters[$letter]['items'])) {
                 $letters[$letter]['items'] = [];
             }
+
             $letters[$letter]['items'][] = $item;
             if (!isset($letters[$letter]['count'])) {
                 $letters[$letter]['count'] = 0;
             }
+
             $letters[$letter]['count']++;
         }
 

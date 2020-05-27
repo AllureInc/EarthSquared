@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -11,10 +11,6 @@ namespace Amasty\Shopby\Plugin\Store;
 use \Magento\Framework\App\ActionInterface;
 use \Magento\Framework\App\ProductMetadataInterface;
 
-/**
- * Class Switcher
- * @package Amasty\Shopby\Plugin\Store
- */
 class Switcher
 {
     const STORE_PARAM_NAME = '___store';
@@ -40,22 +36,22 @@ class Switcher
     private $storeManager;
 
     /**
-     * @var ProductMetadataInterface
+     * @var \Amasty\Base\Model\MagentoVersion
      */
-    private $productMetadata;
+    private $magentoVersion;
 
     public function __construct(
         \Amasty\ShopbyBase\Api\UrlBuilderInterface $urlBuilder,
         \Magento\Framework\Url\EncoderInterface $encoder,
         \Magento\Framework\Data\Helper\PostHelper $postHelper,
-        ProductMetadataInterface $productMetadata,
+        \Amasty\Base\Model\MagentoVersion $magentoVersion,
         \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->urlBuilder = $urlBuilder;
         $this->encoder = $encoder;
         $this->postHelper = $postHelper;
         $this->storeManager = $storeManager;
-        $this->productMetadata = $productMetadata;
+        $this->magentoVersion = $magentoVersion;
     }
 
     /**
@@ -95,6 +91,6 @@ class Switcher
      */
     protected function isOldMagentoVersion()
     {
-        return version_compare($this->productMetadata->getVersion(), '2.2.6', '<');
+        return version_compare($this->magentoVersion->get(), '2.2.6', '<');
     }
 }

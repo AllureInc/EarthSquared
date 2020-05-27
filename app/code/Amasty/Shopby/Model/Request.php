@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -13,10 +13,6 @@ use Magento\Catalog\Model\Layer\Filter\AbstractFilter;
 use Magento\Framework\App\RequestInterface;
 use Amasty\Shopby\Model\Layer\Filter\Price;
 
-/**
- * Class Request
- * @package Amasty\Shopby\Model
- */
 class Request extends \Magento\Framework\DataObject
 {
     /**
@@ -64,10 +60,11 @@ class Request extends \Magento\Framework\DataObject
      */
     private function getParams($filter)
     {
-        if ($filter->getRequestVar() == \Amasty\Shopby\Model\Source\DisplayMode::ATTRUBUTE_PRICE) {
-            $param = $this->getParam(Price::AM_BASE_PRICE) ?: $this->getParam($filter->getRequestVar());
-        } else {
-            $param = $this->getParam($filter->getRequestVar());
+        $param = $this->getParam($filter->getRequestVar());
+        if ($filter->getRequestVar() == \Amasty\Shopby\Model\Source\DisplayMode::ATTRUBUTE_PRICE
+            && $param
+        ) {
+            $param = $this->getParam(Price::AM_BASE_PRICE) ?: $param;
         }
 
         return $param;

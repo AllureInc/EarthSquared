@@ -112,7 +112,11 @@
         }
 
         .swiper-slide .brand-title {
-            .lib-css(color, @am-brand-slider-title__color);
+            margin-top: 10px;
+            min-height: 40px;
+            color: @am-brand-slider-title__color;
+            word-break: break-all;
+            word-break: break-word;
             font-size: 15px;
             line-height: 1.2;
         }
@@ -417,11 +421,10 @@
 
         .am-image-wrapper {
             & {
-                .lib-vendor-prefix-flex-grow(1);
-                .lib-vendor-prefix-display(flex);
-                .lib-css(justify-content, center, 1);
-                .lib-vendor-box-align(center);
-                margin: auto;
+                .am-flex(center, center);
+
+                flex-grow: 1;
+                margin: 0 auto;
             }
 
             .am-image {
@@ -526,8 +529,8 @@
 
         .swiper-brand .no-img {
             display: inline-block;
-            margin-bottom: 15px;
-            .lib-css(color, @am-brand-item-noimg__color);
+            margin: 0 auto;
+            color: @am-brand-item-noimg__color;
         }
     }
 

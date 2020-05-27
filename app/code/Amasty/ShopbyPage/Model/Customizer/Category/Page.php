@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyPage
  */
 
@@ -21,6 +21,7 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Registry;
 use Magento\Store\Model\ScopeInterface;
+use Amasty\ShopbyBase\Helper\FilterSetting;
 
 class Page implements CustomizerInterface
 {
@@ -54,13 +55,19 @@ class Page implements CustomizerInterface
      */
     private $scopeConfig;
 
+    /**
+     * @var FilterSetting
+     */
+    private $filterSettingHelper;
+
     public function __construct(
         PageRepositoryInterface $pageRepository,
         CatalogConfig $catalogConfig,
         Registry $registry,
         \Amasty\Shopby\Model\Request $amshopbyRequest,
         ScopeConfigInterface $scopeConfig,
-        ShopbyHelper $shopbyHelper
+        ShopbyHelper $shopbyHelper,
+        FilterSetting $filterSettingHelper
     ) {
         $this->pageRepository = $pageRepository;
         $this->catalogConfig = $catalogConfig;
@@ -68,6 +75,7 @@ class Page implements CustomizerInterface
         $this->amshopbyRequest = $amshopbyRequest;
         $this->shopbyHelper = $shopbyHelper;
         $this->scopeConfig = $scopeConfig;
+        $this->filterSettingHelper = $filterSettingHelper;
     }
 
     /**
@@ -145,12 +153,13 @@ class Page implements CustomizerInterface
     {
         $result = false;
         $attribute = $this->catalogConfig->getAttribute(Product::ENTITY, $attributeCode);
+        $filterSetting = $this->filterSettingHelper->getSettingByAttribute($attribute);
 
         if ($attribute->getId()) {
             $paramValue = $this->amshopbyRequest->getParam($attribute->getAttributeCode());
 
             //compare with array for multiselect attributes
-            if ($attribute->getFrontendInput() === 'multiselect') {
+            if ($filterSetting->isMultiselect()) {
                 $result = $this->checkMultiselectAttribute($paramValue, $attributeValue);
             } else {
                 $result = !$this->checkSingleSelectAttribute($paramValue, $attributeValue);
@@ -163,15 +172,21 @@ class Page implements CustomizerInterface
     /**
      * @param string $currentValue
      * @param string|array $expectedValue
+     * @param bool $useStrict
      *
      * @return bool
      */
-    private function checkMultiselectAttribute($currentValue, $expectedValue)
+    private function checkMultiselectAttribute($currentValue, $expectedValue, $useStrict = false)
     {
         $result = false;
         $currentValue = explode(',', $currentValue);
+        sort($currentValue);
+        if (!is_array($expectedValue)) {
+            $expectedValue = [$expectedValue];
+        }
+        $strictCondition = $useStrict ? $expectedValue != $currentValue : array_diff($expectedValue, $currentValue);
 
-        if (!is_array($expectedValue) || array_diff($expectedValue, $currentValue)) {
+        if ($strictCondition) {
             $result = true;
         }
 
@@ -186,6 +201,10 @@ class Page implements CustomizerInterface
      */
     private function checkSingleSelectAttribute($currentValue, $expectedValue)
     {
+        if (is_array($expectedValue)) {
+            $expectedValue = implode(',', $expectedValue);
+        }
+
         $result = $currentValue == $expectedValue;
 
         if (!$result && strpos($currentValue, ',') !== false) {
@@ -213,7 +232,7 @@ class Page implements CustomizerInterface
                 /** @var AbstractFilter $filter */
                 $filter = $item['filter'];
                 if (!$filter->hasData('attribute_model') ||
-                    !$this->matchAppliedFilter($filter, $conditions)
+                    !$this->matchAppliedFilter($filter, $conditions, true)
                 ) {
                     $strict = false;
                     break;
@@ -250,20 +269,22 @@ class Page implements CustomizerInterface
     /**
      * @param AbstractFilter $filter
      * @param array $conditions
+     * @param bool $useStrict
      *
      * @return bool
      */
-    private function matchAppliedFilter($filter, $conditions)
+    private function matchAppliedFilter($filter, $conditions, $useStrict = false)
     {
         $result = true;
         $attribute = $filter->getAttributeModel();
         $paramValue = $this->amshopbyRequest->getParam($filter->getRequestVar());
+        $filterSetting = $this->filterSettingHelper->getSettingByAttribute($attribute);
 
         foreach ($conditions as $condition) {
             if ($condition['filter'] == $attribute->getAttributeId()) {
-                if ($attribute->getFrontendInput() === 'multiselect') {
+                if ($filterSetting->isMultiselect()) {
                     if (!isset($condition['value'])
-                        || $this->checkMultiselectAttribute($paramValue, $condition['value'])
+                        || $this->checkMultiselectAttribute($paramValue, $condition['value'], $useStrict)
                     ) {
                         $result = false;
                         break;

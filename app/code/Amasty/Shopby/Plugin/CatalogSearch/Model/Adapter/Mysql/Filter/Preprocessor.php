@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -30,22 +30,15 @@ class Preprocessor
     private $connection;
 
     /**
-     * @var ProductMetadataInterface
-     */
-    private $productMetadata;
-
-    /**
      * @var Manager
      */
     private $moduleManager;
 
     public function __construct(
         ResourceConnection $resource,
-        ProductMetadataInterface $productMetadata,
         Manager $moduleManager
     ) {
         $this->connection = $resource->getConnection();
-        $this->productMetadata = $productMetadata;
         $this->moduleManager = $moduleManager;
     }
 
@@ -79,12 +72,6 @@ class Preprocessor
             return $this->resolveAlias($query, 'store_id', 'store_id');
         } elseif ($filter->getField() === Category::ATTRIBUTE_CODE && is_array($filter->getValue())) {
             return $this->resolveAlias($query, 'category_ids', 'category_id');
-        } elseif ($filter->getField() === 'stock_status' && $this->moduleManager->isEnabled('Magento_Inventory')) {
-            return str_replace(
-                $this->connection->quoteIdentifier($filter->getField()),
-                $this->connection->quoteIdentifier('stock_status_filter.is_salable'),
-                $query
-            );
         }
         return $proceed($filter, $isNegation, $query);
     }
@@ -98,11 +85,6 @@ class Preprocessor
     private function resolveAlias($query, $column1, $column2)
     {
         $alias = 'category_ids_index';
-        if (version_compare($this->productMetadata->getVersion(), '2.2.0', '<')
-            && version_compare($this->productMetadata->getVersion(), '2.1.13', '>=')) {
-            //See \Magento\CatalogSearch\Model\Adapter\Mysql\Filter\AliasResolver
-            $alias = 'category_products_index';
-        }
 
         return str_replace(
             $this->connection->quoteIdentifier($column1),

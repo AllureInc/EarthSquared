@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -56,6 +56,17 @@
         </before>
 
         <after>
+            <actionGroup ref="ConfigureAllBrandsPageActionGroup"
+                         stepKey="disableAllBrandsPage1">
+            </actionGroup>
+            <actionGroup ref="ConfigureBrandSliderElementsActionGroup"
+                         stepKey="configureBrandSliderElements1">
+                <argument name="brandSlider2" value="brandSliderConfigurationDefault"/>
+            </actionGroup>
+            <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
+                         stepKey="configureAllBrandsPageLinks1">
+                <argument name="brandsLink1" value="noDisplayBrandsLink"/>
+            </actionGroup>
             <actionGroup ref="ProductsInBrandSliderConfigurationActionGroup"
                          stepKey="configureBrandOptionsInSlider1">
                 <argument name="AttrOptionInBrandSlider1" value="polyesterInSliderNo"/>
@@ -65,19 +76,8 @@
                 <argument name="AttrOptionInBrandSlider5" value="RemoveFromTheSliderMassAction"/>
                 <argument name="attributeSeoScenario4" value="nonSeoFriendlySingleSelectBrand"/>
             </actionGroup>
-            <actionGroup ref="ConfigureAllBrandsPageActionGroup"
-                         stepKey="disableAllBrandsPage1">
-            </actionGroup>
-            <actionGroup ref="ConfigureBrandSliderElementsActionGroup"
-                         stepKey="configureBrandSliderElements1">
-                <argument name="brandSlider2" value="brandSliderConfigurationDefault"/>
-            </actionGroup>
             <actionGroup ref="BrandAttributeConfigurationActionGroup" stepKey="disableBrandAttribute1">
                 <argument name="brandAttribute" value="noBrandAttribute"/>
-            </actionGroup>
-            <actionGroup ref="AllBrandsPageLinkConfigurationActionGroup"
-                         stepKey="configureAllBrandsPageLinks1">
-                <argument name="brandsLink1" value="noDisplayBrandsLink"/>
             </actionGroup>
             <actionGroup ref="logout" stepKey="logout"/>
         </after>

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -29,7 +29,7 @@
 
         <before>
             <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
-<!--            <actionGroup stepKey="RTCConfiguring1" ref="RobotsTagControlConfigurationActionGroup">
+            <actionGroup stepKey="RTCConfiguring1" ref="RobotsTagControlConfigurationActionGroup">
                 <argument name="rtcscenario" value="robotsTagControlDefault"/>
             </actionGroup>
             <actionGroup stepKey="ConfigureCanonicalURL1" ref="CanonicalURLConfigurationActionGroup">
@@ -50,7 +50,7 @@
                 <argument name="attributeSeoScenario3" value="SeoFriendlyAllowMultiSelect"/>
                 <argument name="attributeSeoScenario4" value="seoFriendlyMultiSelectBrand"/>
                 <argument name="RTC" value="IndexFollowSingleSelection"/>
-            </actionGroup>-->
+            </actionGroup>
         </before>
 
         <after>

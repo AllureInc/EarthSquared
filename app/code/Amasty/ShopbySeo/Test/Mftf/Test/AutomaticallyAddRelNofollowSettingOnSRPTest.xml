@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -29,6 +29,10 @@
         <!--Check RTC settings: navigate to Category Page, check Nofollow in Attribute's Option in Page Source/-->
 
         <amOnPage url="{{SearchResultPage.url('red')}}" stepKey="navigateToAllProducts1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="navigateToAllProducts1"/>
 
     </test>
 </tests>

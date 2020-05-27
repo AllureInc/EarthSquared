@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -9,12 +9,7 @@
 namespace Amasty\Shopby\Block\Navigation\Widget;
 
 use Amasty\ShopbyBase\Api\Data\FilterSettingInterface;
-use Amasty\Shopby\Model\Source\DisplayMode;
 
-/**
- * Class HideMoreOptions
- * @package Amasty\Shopby\Block\Navigation\Widget
- */
 class HideMoreOptions extends \Magento\Framework\View\Element\Template implements WidgetInterface
 {
     /**
@@ -50,13 +45,7 @@ class HideMoreOptions extends \Magento\Framework\View\Element\Template implement
      */
     public function toHtml()
     {
-        $forbidenDisplayModes = [DisplayMode::MODE_DROPDOWN, DisplayMode::MODE_FROM_TO_ONLY, DisplayMode::MODE_SLIDER];
-        $isShowInState = $this->getIsState() && $this->getUnfoldedOptions();
-        $isShowInFilter = $this->filterSetting
-            && !in_array($this->filterSetting->getDisplayMode(), $forbidenDisplayModes)
-            && $this->filterSetting->getNumberUnfoldedOptions();
-
-        return $isShowInState || $isShowInFilter
+        return ($this->getIsState() && $this->getUnfoldedOptions()) || $this->filterSetting->getNumberUnfoldedOptions()
             ? parent::toHtml()
             : '';
     }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBase
  */
 
@@ -10,9 +10,6 @@ namespace Amasty\ShopbyBase\Block\Product\ProductList;
 
 use Magento\Framework\View\Element\Template;
 
-/**
- * Class Bottom list block
- */
 class Bottom extends Template
 {
     /**
@@ -35,11 +32,14 @@ class Bottom extends Template
     public function getCmsBlockHtml()
     {
         $currentCategory = $this->registry->registry('current_category');
-        $blockId = $currentCategory ? $currentCategory->getBottomCmsBlock() : '';
-
-        return $this->getLayout()
+        $blockId = $currentCategory ? $currentCategory->getBottomCmsBlock() : 0;
+        if ($blockId) {
+            $html = $this->getLayout()
             ->createBlock(\Magento\Cms\Block\Block::class)
             ->setBlockId($blockId)
             ->toHtml();
+        }
+
+        return $html ?? '';
     }
 }

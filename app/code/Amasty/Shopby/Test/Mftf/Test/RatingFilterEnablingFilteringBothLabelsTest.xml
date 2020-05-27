@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -51,7 +51,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.FilterLast('Rating')}}"
                stepKey="expandRatingFilter6"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('width:100')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('5 star(s)')}}"
                stepKey="selectRatingOption6"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('100')}}"
                         stepKey="checkRatingOfProducts6"/>
@@ -63,7 +63,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.FilterLast('Rating')}}"
                stepKey="expandRatingFilter7"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('width:80')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('4 &amp; up star(s)')}}"
                stepKey="selectRatingOption7"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('80')}}"
                         stepKey="checkRatingOfProducts7"/>
@@ -75,7 +75,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.FilterLast('Rating')}}"
                stepKey="expandRatingFilter8"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('width:60')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('3 &amp; up star(s)')}}"
                stepKey="selectRatingOption8"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('60')}}"
                         stepKey="checkRatingOfProducts8"/>
@@ -83,7 +83,7 @@
 
         <!--Filter by Rating Filter: select 2 stars option on sidebar in labels, check the result, remove selected option from state/-->
 
-        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('width:40')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('2 &amp; up star(s)')}}"
                stepKey="selectRatingOption9"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('40')}}"
                         stepKey="checkRatingOfProducts9"/>
@@ -95,7 +95,7 @@
 
         <click selector="{{StorefrontFilterElementsSection.FilterLast('Rating')}}"
                stepKey="expandRatingFilter10"/>
-        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('width:20')}}"
+        <click selector="{{StorefrontFilterElementsSection.FilterOptionLast('1 &amp; up star(s)')}}"
                stepKey="selectRatingOption10"/>
         <dontSeeElement selector="{{StorefrontProductSection.ProductRatingNotLessThan('20')}}"
                         stepKey="checkRatingOfProducts10"/>

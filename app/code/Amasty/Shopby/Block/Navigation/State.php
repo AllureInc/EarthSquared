@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -11,10 +11,6 @@ namespace Amasty\Shopby\Block\Navigation;
 use Amasty\Shopby\Model\Layer\Filter\Item;
 use Amasty\Shopby\Helper\Data as ShopbyHelper;
 
-/**
- * Class State
- * @package Amasty\Shopby\Block\Navigation
- */
 class State extends \Magento\LayeredNavigation\Block\Navigation\State
 {
     /**
@@ -125,8 +121,10 @@ class State extends \Magento\LayeredNavigation\Block\Navigation\State
         $filterSetting = $this->getFilterSetting($filter->getFilter());
 
         switch ($filterSetting->getDisplayMode()) {
-            case \Amasty\Shopby\Model\Source\DisplayMode::MODE_TEXT_SWATCH:
             case \Amasty\Shopby\Model\Source\DisplayMode::MODE_IMAGES:
+                $value =  $this->getSwatchHtml($filter);
+                break;
+            case \Amasty\Shopby\Model\Source\DisplayMode::MODE_TEXT_SWATCH:
                 $value =  $this->getSwatchHtml($filter);
                 break;
             case \Amasty\Shopby\Model\Source\DisplayMode::MODE_IMAGES_LABELS:
@@ -178,9 +176,6 @@ class State extends \Magento\LayeredNavigation\Block\Navigation\State
         }
 
         $currencySymbol = $this->escapeHtml($filter->getCurrencySymbol());
-
-        $arguments[0] = str_replace($currencySymbol, '', $arguments[0]);
-        $arguments[1] = str_replace($currencySymbol, '', $arguments[1]);
 
         $arguments[0] = preg_replace("/[^,.0-9]/", '', $arguments[0]);
         $arguments[1] = preg_replace("/[^,.0-9]/", '', $arguments[1]);

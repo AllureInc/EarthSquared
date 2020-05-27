@@ -1,19 +1,15 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
 
-namespace Amasty\Shopby\Test\Model\Source;
+namespace Amasty\Shopby\Test\Unit\Model\Source;
 
 use Amasty\Shopby\Test\Unit\Traits;
 
-/**
- * Class DisplayModeTest
- * @package Amasty\Shopby\Test\Model\Source
- */
 class DisplayModeTest extends \PHPUnit\Framework\TestCase
 {
     use Traits\ObjectManagerTrait;

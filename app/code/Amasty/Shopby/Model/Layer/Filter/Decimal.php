@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 
@@ -15,13 +15,12 @@ use Amasty\Shopby\Model\Source\DisplayMode;
 use Amasty\Shopby\Api\Data\FromToFilterInterface;
 use Amasty\Shopby\Model\Source\PositionLabel;
 
-/**
- * Class Decimal
- * @package Amasty\Shopby\Model\Layer\Filter
- */
 class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implements FromToFilterInterface
 {
     use FromToDecimal;
+
+    const DECIMAL_DELTA = 0.001;
+    const LABEL_RANGE = 0.01;
 
     /**
      * @var \Amasty\Shopby\Helper\FilterSetting
@@ -114,19 +113,22 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
      */
     public function apply(\Magento\Framework\App\RequestInterface $request)
     {
+        if ($this->isApplied()) {
+            return $this;
+        }
+
         $filter = $this->shopbyRequest->getFilterParam($this);
         $noValidate = 0;
         if (!empty($filter) && !is_array($filter)) {
+            $filter = $this->getFromToValues($filter);
             $filterParams = explode(',', $filter);
             $validateFilter = $this->dataProvider->validateFilter($filterParams[0]);
+
             if (!$validateFilter) {
                 $noValidate = 1;
             } else {
                 $this->setFromTo($validateFilter[0], $validateFilter[1]);
             }
-        }
-        if ($this->isApplied()) {
-            return $this;
         }
 
         if ($noValidate) {
@@ -145,6 +147,21 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
         }
 
         return $apply;
+    }
+
+    /**
+     * @param string $filter
+     * @return string
+     */
+    private function getFromToValues($filter)
+    {
+        $filterSetting = $this->settingHelper->getSettingByLayerFilter($this);
+        list($from, $to) = explode('-', $filter);
+        $displayMode = $filterSetting->getDisplayMode();
+        $includeBorders = $this->isSliderOrFromTo($displayMode) ? self::DECIMAL_DELTA : 0;
+        $to = (float)$to ? ($to + $includeBorders) : $to;
+
+        return $from . '-' . $to;
     }
 
     /**
@@ -179,7 +196,7 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
 
             $label = $this->renderRangeLabel(
                 empty($from) ? 0 : $from,
-                empty($to) ? $to : $to
+                $to
             );
 
             $value = $from . '-' . $to;
@@ -271,7 +288,7 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
             return $defaultLabel;
         }
 
-        $stateLabel = $this->getRangeForState($fromPrice, $toPrice, $filterSetting);
+        $stateLabel = $this->getRangeLabel($fromPrice, $toPrice, $filterSetting);
 
         return $stateLabel;
     }
@@ -305,7 +322,8 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
     {
         $result = '';
         if ($filterSetting->getUnitsLabelUseCurrencySymbol()) {
-            $toPrice = (!$toPrice) ? null : (float)$toPrice;
+            $displayMode = $filterSetting->getDisplayMode();
+            $toPrice = $this->isSliderOrFromTo($displayMode) && $toPrice ? $toPrice + self::LABEL_RANGE : $toPrice;
             $result = parent::renderRangeLabel($fromPrice, $toPrice);
         }
 
@@ -318,12 +336,15 @@ class Decimal extends \Magento\CatalogSearch\Model\Layer\Filter\Decimal implemen
      * @param $filterSetting
      * @return \Magento\Framework\Phrase
      */
-    private function getRangeForState($fromPrice, $toPrice, $filterSetting)
+    private function getRangeLabel($fromPrice, $toPrice, $filterSetting)
     {
         $formattedFromPrice = $this->formatLabelForStateAndRange($fromPrice, $filterSetting);
         if ($toPrice === '') {
             $result = __('%1 and above', $formattedFromPrice);
         } else {
+            if (!$this->isSliderOrFromTo($filterSetting->getDisplayMode()) && $fromPrice != $toPrice) {
+                $toPrice -= self::LABEL_RANGE;
+            }
             $result =  __(
                 '%1 - %2',
                 $formattedFromPrice,

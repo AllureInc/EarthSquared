@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 
@@ -57,6 +57,7 @@ abstract class BrandListAbstract extends \Magento\Framework\View\Element\Templat
      * @var \Magento\Catalog\Api\CategoryRepositoryInterface
      */
     protected $categoryRepository;
+
     /**
      * @var DataHelper
      */
@@ -101,7 +102,6 @@ abstract class BrandListAbstract extends \Magento\Framework\View\Element\Templat
         \Amasty\ShopbyBrand\Model\ProductCount $productCount,
         array $data = []
     ) {
-        parent::__construct($context, $data);
         $this->repository = $repository;
         $this->collectionProvider = $collectionProvider;
         $this->productUrl = $productUrl;
@@ -112,6 +112,7 @@ abstract class BrandListAbstract extends \Magento\Framework\View\Element\Templat
         $this->optionSettingFactory = $optionSettingFactory;
         $this->amUrlBuilder = $amUrlBuilder;
         $this->productCount = $productCount;
+        parent::__construct($context, $data);
     }
 
     /**
@@ -122,7 +123,7 @@ abstract class BrandListAbstract extends \Magento\Framework\View\Element\Templat
         if ($this->items === null) {
             $this->items = [];
             $attributeCode = $this->helper->getBrandAttributeCode();
-            if ($attributeCode == '') {
+            if (!$attributeCode) {
                 return $this->items;
             }
 

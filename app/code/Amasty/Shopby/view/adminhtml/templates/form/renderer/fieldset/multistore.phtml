@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 ?>
@@ -37,16 +37,16 @@ $fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
                     <table class="admin__control-table" id="attribute-labels-table">
                         <thead>
                             <tr>
-                                <?php foreach ($block->getStores() as $store) : ?>
+                                <?php foreach ($block->getStores() as $store): ?>
                                     <th class="col-store-view">
-                                        <?= /* @noEscape */ $block->isDefaultStore($store) ? __('Default') : $store->getName() ?>
+                                        <?= /* @noEscape */ $block->isDefaultStore($store) ? __('All Store Views') : $store->getName() ?>
                                     </th>
                                 <?php endforeach; ?>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <?php foreach ($block->getStores() as $store) : ?>
+                                <?php foreach ($block->getStores() as $store): ?>
                                     <?php $nameAttr = $block->getName() . '[' . $store->getId() . ']' ?>
                                     <td class="col-store-view">
                                         <input

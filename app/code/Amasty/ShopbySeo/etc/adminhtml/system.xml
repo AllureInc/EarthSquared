@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -122,7 +122,7 @@
                 <field id="prev_next" translate="label comment" type="select" sortOrder="10" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>Use Prev/Next Tags for Improved Navigation Pages</label>
-                    <comment><![CDATA[Set 'Yes' to use rel=“next” and rel=“prev” tags and point Google where the next or the previous pages are. Please click <a target="blank" href="https://support.google.com/webmasters/answer/1663744">here</a> to learn more details.]]></comment>
+                    <comment><![CDATA[Set 'Yes' to use rel=“next” and rel=“prev” tags and point Google where the next or the previous pages are. Please click <a target="blank" href="https://webmasters.googleblog.com/2011/09/pagination-with-relnext-and-relprev.html">here</a> to learn more details.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 

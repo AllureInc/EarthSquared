@@ -23,10 +23,15 @@ if($helper->isCustomerLoggedIn()){
     }
     if(in_array($productId,$productIds))
     { ?>
+    	 <?php 
+        if ($_product->isSaleable()) { ?>  
 			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist">
-				<span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span>
+				<span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span>				
 			</a>
+		<?php } ?>	
     <?php }  else { ?>
+    	<?php 
+        if ($_product->isSaleable()) { ?> 
 			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
 					<?php if($websiteid == 1) { ?>
 						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
@@ -34,8 +39,11 @@ if($helper->isCustomerLoggedIn()){
 						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
 					<?php } ?>
 			</a>
+		<?php } ?>	
     <?php }   
 } else { ?>
+	<?php 
+        if ($_product->isSaleable()) { ?> 
 		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
 					<?php if($websiteid == 1) { ?>
 						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
@@ -43,4 +51,4 @@ if($helper->isCustomerLoggedIn()){
 						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
 					<?php } ?>
 		</a>
-<?php }   
+<?php }   }

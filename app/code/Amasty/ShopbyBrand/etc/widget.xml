@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -26,10 +26,11 @@
             </parameter>
         </parameters>
     </widget>
+
     <widget id="amshopby_brand_slider" class="Amasty\ShopbyBrand\Block\Widget\BrandSlider" is_email_compatible="false"
             placeholder_image="Magento_Cms::images/widget_block.png">
         <label translate="true">Amasty Brand Slider</label>
-        <description translate="true">Brand Slider/</description>
+        <description translate="true">Brand Slider</description>
         <parameters>
             <parameter name="items_number" xsi:type="text" visible="true">
                 <label translate="true">Visible Items Quantity</label>

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_Shopby
  */
 -->
@@ -59,9 +59,10 @@
         <waitForPageLoad stepKey="waitForPageLoad2"/>
         <amOnPage url="{{AdminCatalogPriceRuleProfilePage.url('1')}}" stepKey="amOnCatalogPriceRulePage1"/>
         <waitForElement selector="{{AdminNewCatalogPriceRule.status}}" stepKey="waitForElement3"/>
-        <selectOption selector="{{AdminNewCatalogPriceRule.status}}"
-                      userInput="Inactive"
-                      stepKey="defineStatus1"/>
+        <conditionalClick stepKey="defineStatus1"
+                          selector="{{AdminILNSettingsSection.CatalogPriceRuleEnablingSwitcher}}"
+                          dependentSelector="{{AdminILNSettingsSection.DependentToggle('1')}}"
+                          visible="true"/>
         <click selector="{{AdminNewCatalogPriceRule.saveAndApply}}" stepKey="saveAndApply"/>
         <see selector="{{AdminCategoryMessagesSection.SuccessMessage}}"
              userInput="You saved the rule."
@@ -81,9 +82,10 @@
                       userInput="{{customFilter.CustomFilterEnableSwitcher('am_on_sale')}}"
                       stepKey="enableDisableOnSaleFilter1"
                       after="fillLabelField1"/>
-        <selectOption selector="{{AdminNewCatalogPriceRule.status}}"
-                      userInput="Active"
-                      stepKey="defineStatus1"/>
+        <conditionalClick stepKey="defineStatus1"
+                          selector="{{AdminILNSettingsSection.CatalogPriceRuleEnablingSwitcher}}"
+                          dependentSelector="{{AdminILNSettingsSection.DependentToggle('0')}}"
+                          visible="true"/>
     </actionGroup>
 
     <actionGroup name="OnSaleFilterExpandActionGroup" extends="OnSaleFilterEnablingActionGroup">
@@ -116,9 +118,10 @@
         <click selector="{{AdminILNSettingsSection.Save}}"
                stepKey="clickSaveConfig3"
                after="enableDisableOnSaleFilter1"/>
-        <selectOption selector="{{AdminNewCatalogPriceRule.status}}"
-                      userInput="Active"
-                      stepKey="defineStatus1"/>
+        <conditionalClick stepKey="defineStatus1"
+                          selector="{{AdminILNSettingsSection.CatalogPriceRuleEnablingSwitcher}}"
+                          dependentSelector="{{AdminILNSettingsSection.DependentToggle('0')}}"
+                          visible="true"/>
     </actionGroup>
 
 </actionGroups>

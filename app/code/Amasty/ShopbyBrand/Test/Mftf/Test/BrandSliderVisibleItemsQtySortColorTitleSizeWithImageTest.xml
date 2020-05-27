@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -47,7 +47,7 @@
         <!--Check that Brands Slider qty of visible elements, Sorting, Color Configuration, Title and uploaded Images/Slider Size displayed correctly on All Brands Page/-->
 
         <seeElement
-                selector="{{StorefrontBrandElementsSection.BrandSliderItemsImage('3.jpg','3_')}}"
+                selector="{{StorefrontBrandElementsSection.BrandSliderItemsImage('1.jpg','1_')}}"
                 stepKey="seeBrandSliderImage1"/>
 
     </test>

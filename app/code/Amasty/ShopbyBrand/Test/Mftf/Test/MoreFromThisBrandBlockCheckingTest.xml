@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -43,7 +43,7 @@
                      stepKey="noBrandAttribute1">
             <argument name="brandAttribute" value="noBrandAttribute"/>
         </actionGroup>
-        <actionGroup ref="MoreFromThisBrandConfigurationActionGroup"
+        <actionGroup ref="MoreFromThisBrandConfigurationDefaultActionGroup"
                      stepKey="configureMoreFromThisBrandBlock1">
             <argument name="moreFTBBlock1" value="MoreFromThisBrandDefault"/>
         </actionGroup>

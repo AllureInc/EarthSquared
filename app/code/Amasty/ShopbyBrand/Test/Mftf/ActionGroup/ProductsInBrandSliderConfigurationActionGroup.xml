@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -21,11 +21,9 @@
         </arguments>
         <amOnPage url="{{AttributeProfilePage.url(attributeSeoScenario4.MaterialID)}}"
                   stepKey="OpenAttributeProfilePagePage1"/>
+        <reloadPage stepKey="reloadPage1"/>
         <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
         <waitForPageLoad stepKey="waitForPageLoad1"/>
-         <scrollTo
-         selector="{{AttributeProfileSection.OptionAttributeSettingsDeleteButton('settings','5464')}}"
-         stepKey="scrollToAnchor1"/>
         <click selector="{{AttributeProfileSection.OptionAttributeSettingsDeleteButton('settings',AttrOptionInBrandSlider1.OptionName)}}"
                stepKey="clickSettingsButton1"/>
         <waitForAjaxLoad stepKey="waitForAjaxLoad2"/>
@@ -40,11 +38,9 @@
         <waitForAjaxLoad stepKey="waitForAjaxLoad3"/>
         <amOnPage url="{{AttributeProfilePage.url(attributeSeoScenario4.MaterialID)}}"
                   stepKey="OpenAttributeProfilePagePage2"/>
+        <reloadPage stepKey="reloadPage2"/>
         <waitForAjaxLoad stepKey="waitForAjaxLoad4"/>
         <waitForPageLoad stepKey="waitForPageLoad2"/>
-        <scrollTo
-                selector="{{AttributeProfileSection.OptionAttributeSettingsDeleteButton('settings','5468')}}"
-                stepKey="scrollToAnchor2"/>
         <click selector="{{AttributeProfileSection.OptionAttributeSettingsDeleteButton('settings',AttrOptionInBrandSlider2.OptionName)}}"
                stepKey="clickSettingsButton2"/>
         <waitForAjaxLoad stepKey="waitForAjaxLoad5"/>

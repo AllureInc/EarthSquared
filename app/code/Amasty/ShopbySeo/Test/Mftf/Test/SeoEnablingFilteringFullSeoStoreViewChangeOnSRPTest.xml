@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -60,12 +60,18 @@
         <!--Check SEO settings: filter page by seo-friendly and non seo-friendly filters with full seo in Store View changing scenario on Search Result Page, check the result in url/-->
 
         <amOnPage url="{{SearchResultPage.url('red')}}" stepKey="navigateToAllProducts1"/>
+        <seeOptionIsSelected userInput="relevance"
+                             selector="{{StorefrontCategoryTopToolbarSection.sortByDropdown}}"
+                             stepKey="checkDefaultSorting1"
+                             after="navigateToAllProducts1"/>
         <click selector="{{StorefrontFilterElementsSection.Filter('Material')}}"
-               stepKey="clickMaterialFilter1" after="navigateToAllProducts1"/>
+               stepKey="clickMaterialFilter1"
+               after="checkDefaultSorting1"/>
         <click selector="{{StorefrontFilterElementsSection.FilterOption('Polyester')}}"
-               stepKey="clickPolyesterOption1" after="clickMaterialFilter1"/>
+               stepKey="clickPolyesterOption1"
+               after="clickMaterialFilter1"/>
         <seeInCurrentUrl
-                url="/default/catalogsearch/result/index/?climate=5629%2C5632&amp;material=5465&amp;pattern=5624&amp;q=red&amp;style_general=5562%2C5553"
+                url="/default/catalogsearch/result/index/?climate=5628%2C5631&amp;material=5465&amp;pattern=5623&amp;q=red&amp;style_general=5561%2C5552"
                 stepKey="seeInCurrentUrl1"/>
         <dontSeeInCurrentUrl url="ambrand-" stepKey="checkIfItBrandPage1" after="seeInCurrentUrl1"/>
         <dontSeeInCurrentUrl url=".html" stepKey="dontSeeInCurrentUrl3" after="checkIfItBrandPage1"/>
@@ -74,7 +80,7 @@
         <actionGroup ref="StorefrontSwitchStoreViewActionGroup" stepKey="switchStoreView1">
             <argument name="storeView" value="storeViewILN"/>
         </actionGroup>
-         <seeInCurrentUrl url="/tsv2/catalogsearch/result/index/?climate=5629%2C5632&amp;material=5465&amp;pattern=5624&amp;q=red&amp;style_general=5562%2C5553"
+         <seeInCurrentUrl url="/tsv2/catalogsearch/result/index/?climate=5628%2C5631&amp;material=5465&amp;pattern=5623&amp;q=red&amp;style_general=5561%2C5552"
                           stepKey="seeInCurrentUrl2"/>
         <dontSeeInCurrentUrl url="ambrand-" stepKey="checkIfItBrandPage2"/>
         <dontSeeInCurrentUrl url=".html" stepKey="dontSeeInCurrentUrl6"/>

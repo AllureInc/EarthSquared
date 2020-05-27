@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbyBrand
  */
 -->
@@ -31,7 +31,7 @@
             <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
             <actionGroup ref="BrandAttributeConfigurationActionGroup"
                          stepKey="configureBrandAttribute1">
-                <argument name="brandAttribute" value="materialAsBrandAttribute"/>
+                <argument name="brandAttribute" value="materialAsBrandAttributeWithUrlKey"/>
             </actionGroup>
             <actionGroup stepKey="ConfigureProductPageBrandContent1"
                          ref="ConfigureProductPageBrandActionGroup">
@@ -41,9 +41,19 @@
                          ref="ConfigureBrandAttributeOptionPageContent">
                 <argument name="Attributes" value="PolyesterTitleAndDescription"/>
             </actionGroup>
+            <actionGroup stepKey="SeoEnabling1"
+                         ref="SeoSettingsConfigurationActionGroup">
+                <argument name="seoScenario2" value="enableFullSeo"/>
+                <argument name="seoScenario" value="enableSeoDisableSuffix"/>
+            </actionGroup>
         </before>
 
         <after>
+            <actionGroup stepKey="SeoEnabling1"
+                         ref="SeoSettingsConfigurationActionGroup">
+                <argument name="seoScenario2" value="enableSeoDefault"/>
+                <argument name="seoScenario" value="enableSeoDisableSuffix"/>
+            </actionGroup>
             <actionGroup stepKey="ConfigureProductPageBrandContentDefault1"
                          ref="ConfigureProductPageBrandDefaultActionGroup">
                 <argument name="brandLogoShortDescOnPDP1" value="productPageBrandSettingsDefault"/>
@@ -61,11 +71,12 @@
 
         <!--Check that Brand Logo Size and Short Description is displayed correctly and have defined content on Product Detail Page-->
 
-        <amOnPage url="{{StorefrontBrandWithoutURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage1"/>
+        <amOnPage url="{{StorefrontBrandWithURLKeyPage.url('polyester')}}" stepKey="navigateToBrandPage1"/>
         <click selector="{{StorefrontCategoryMainSection.specifiedProductItemInfo('Short')}}"
                stepKey="openProductPage"/>
-        <waitForElement selector="{{StorefrontBrandElementsSection.BrandLogo('Polyester','3.jpg','3_')}}"
-                        stepKey="waitForBrandLogo2"/>
+        <waitForElement
+                selector="{{StorefrontBrandElementsSection.BrandLogo('/testbrandurlkey/polyester.html','Polyester','/60x60/1.jpg','/60x60/1_')}}"
+                stepKey="waitForBrandLogo2"/>
         <seeInSource html="/60x60/"
                      stepKey="checkBrandLogoSizeOnPDP1"/>
         <seeElement

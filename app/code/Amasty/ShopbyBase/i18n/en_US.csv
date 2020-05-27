@@ -19,6 +19,7 @@ Yes,Yes
 No,No
 "Featured Options","Featured Options"
 "Is Featured","Is Featured"
+"Not featured options will be hidden under ‘show more’ element (if at least one attribute's option is marked as ‘Is Featured’). ","Not featured options will be hidden under ‘show more’ element (if at least one attribute's option is marked as ‘Is Featured’). "
 SEO,SEO
 "URL alias","URL alias"
 Loading...,Loading...

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
  * @package Amasty_ShopbySeo
  */
 -->
@@ -28,7 +28,6 @@
         <click selector="{{AdminILNSeoSettingsSection.Save}}" stepKey="clickSaveConfig1"/>
         <magentoCLI command="cache:clean" stepKey="flushCache1"/>
     </actionGroup>
-
 
     <actionGroup name="SeoSettingsConfigurationActionGroup" extends="ConfigureSeoAndSuffixActionGroup">
         <arguments>
@@ -57,6 +56,16 @@
         <wait time="2" stepKey="waitSeconds2"/>
         <click selector="{{AdminILNSeoSettingsSection.Save}}" stepKey="clickSaveConfig3"/>
         <magentoCLI command="cache:clean" stepKey="flushCache2"/>
+    </actionGroup>
+
+    <actionGroup name="ConfigureCategoryURLSuffixActionGroup">
+        <arguments>
+            <argument name="magurlsuffix"/>
+        </arguments>
+        <magentoCLI
+                command="config:set {{magurlsuffix.path}} {{magurlsuffix.value}}"
+                stepKey="configureMagentoURLSuffix1"/>
+        <magentoCLI command="cache:clean" stepKey="flushCache1"/>
     </actionGroup>
 
 </actionGroups>
