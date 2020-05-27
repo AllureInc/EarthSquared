@@ -140,8 +140,6 @@ src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
-
-
 @font-face {
     font-family: 'Tiempos Headline Regular';
     src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.eot');
@@ -215,9 +213,6 @@ src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
     font-style: normal;
 }
 
-
-
-
 body{
 	font-family: 'Futura Bk BT' !important;
 }
@@ -258,10 +253,15 @@ a:hover{
 	text-decoration: none !important;
 }
 /*-- header footer css --*/
-@media (min-width: 768px){
+@media (min-width: 768px){	
 	body .navigation, .breadcrumbs, body .page-header .header.panel, body .header.content, body .footer.content, body .page-wrapper > .widget, body .page-wrapper > .page-bottom, body .block.category.event, body .top-container, body .page-main{
 		max-width: 1264px;
-	}	
+	}		
+	.sw-megamenu.navigation li.level0.fullwidth .submenu a{
+		text-align: left;		
+		color:#4d4d4d;
+		font-weight: normal;
+	}
 	header .panel.header{
 		display:none;
 	}
@@ -352,11 +352,18 @@ a:hover{
 		width:30%;
 		float:left;
 	}
+	.amsearch-results #amasty-shopby-product-list{
+		width:70%;
+		float: right;
+	}
 	header .amsearch-products.product
 	{
 		width:70%;
 		float:right;
 	}	
+	.amsearch-form-container .search-autocomplete .amsearch-leftside .amsearch-products{
+		width: 100%;
+	}
 	.page-wrapper.stickymenu .nav-sections.sections{
 	    position: fixed;
 	    top: 0px;
@@ -539,6 +546,7 @@ header .minicart-wrapper .product.options.list .label{
     justify-content: center;
     font-size: 14px;
     color: #4D4D4D;
+    min-height: 38px;
 }
 .cms-index-index .news_bar{
 	display: flex;
@@ -611,6 +619,10 @@ header .block-search .label.active + .control input:focus{
 	text-transform: uppercase;
     letter-spacing: 0.5px;	
 }
+header .amsearch-close, header .amasty-xsearch-loader, header .search .amsearch-loupe
+{
+	top: 36%;
+}
 .amsearch-form-container .input-text:focus{
 	box-shadow: none !important	
 }
@@ -624,6 +636,9 @@ header .block-search .search-autocomplete
 {
 	top:50px;
 	border-top:1px solid #EEEEEE;
+}
+.stickymenu header .block-search .search-autocomplete{
+	display: none;
 }
 header .amsearch-item-container > .amasty-xsearch-block-header:before{
 	display:none;
@@ -814,7 +829,7 @@ body.cms-index-index .page-main{
 	padding:0;
 }
 .insta{
-	margin-top: 50px;
+	margin-top: 100px;
 	text-align:center;
 }
 .featurep-collection.owl-carousel .item{
@@ -844,7 +859,7 @@ body.cms-index-index .page-main{
 	font-size: 32px !important;
 	color: #4D4D4D !important;
 	margin-top:5px !important;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 .insta .content-title{margin-bottom: 0px;}
 .featureblock .content-title{
@@ -854,12 +869,22 @@ body.cms-index-index .page-main{
 	margin-top: 100px;
 }
 .featurecategories .box{
-	margin-bottom:50px;
+	margin-bottom:44px;	
+	padding: 0 22px;
+}
+.featurecategories .box .boxinner{
 	background: #F6F6F8;
 	padding: 20px;
 }
-.featurecategories .box:hover{
+.featurecategories .box .boxinner:hover{
 	background: #EEEEF8;
+}
+.featurecategories .box:first-child,.featurecategories .box:nth-child(3n){
+	padding-left:0;
+}
+.featurecategories .box:nth-child(2n),.featurecategories .box:last-child
+{
+	padding-right: 0;
 }
 .content-right{
 	font-size:15px;
@@ -904,43 +929,59 @@ body.cms-index-index .page-main{
 .featurep-collection .product-detail{
 	margin-top: 14px;
 }
+.our-story{
+    background: linear-gradient(90deg, #FFF1F2 0%, rgba(255, 241, 242, 0) 74.97%);	
+}
 .benefits{
 	margin: 100px 0px;
 }
 .benefits img{
 	height:70px;
-	margin-bottom: 17px;
+	margin-bottom: 15.36px;
 }
 .benefit-title{
-font-size: 15px;
-color: #4D4D4D;
-font-family:Futura Bk BT Medium;
+	font-size: 15px;
+	color: #4D4D4D;
+	font-family:Futura Bk BT Medium;
+	margin-bottom: 8px;
 }
 .benefit-desc{
 	color: rgba(0, 0, 0, 0.5);
 	font-size: 13px;
 	font-family: Futura Bk BT;
 }
-.benefits .box1,.benefits .box2,.benefits .box3{
-	border-right: 1px solid #EFA8E4;
-    padding: 10px;
+.benefits .box1,.benefits .box2,.benefits .box3,.benefits .box4{ transition: transform .2s;padding: 43px 20px;background: #FFF7FA;
+	width:24.5%;
+	float: left;
+	position: relative;
 }
-.benefits .box1,.benefits .box2,.benefits .box3,.benefits .box4{ transition: transform .2s;padding: 40px 20px;}
 .benefits .box1:hover,.benefits .box2:hover,.benefits .box3:hover,.benefits .box4:hover{
 	background: #EDB6BB;
 	transform: scale(1.1); 
 	border-radius: 4px;
+	z-index: 1;
+}
+.benefits .box1:after,.benefits .box2:after,.benefits .box3:after{
+    content: '';
+    border-right: 1px solid #EFA8E4;
+    float: right;
+    height: 158px;
+    width: 1px;
+    position: absolute;
+    top: 35px;
+    right: 0;	
 }
 .sub-title-category{
 	font-size: 26px;
 	font-family: 'Tiempos Headline Semibold';	
 	color: #4D4D4D;
-	margin-bottom: 10px;
+	margin-bottom: 17px;
 }
 .featurecategories p{
 	font-size: 15px;
 	font-family: Futura Bk BT;
 	color: #4D4D4D;
+	margin-bottom: 25px;
 }
 .featurecategories a{
 	color: #4D4D4D;
@@ -949,32 +990,37 @@ font-family:Futura Bk BT Medium;
 }
 .featurecategories .details
 {
-	padding:20px;
+	padding:20px;	
 }
 .sub-desc .titlemain{
     font-size: 32px;
     color: #4d4d4d;
     margin-bottom: 29px;	
     position:relative;
+    font-family: 'Futura Bk BT Medium';
 }
 .titlemain{
 	content:'';
 	background: url('../images/PinkBlob.svg') no-repeat;
-    height: 50px;    
+    height: 60px;    
     display: inline-block;
     position: absolute;
     top: 0;
     left: 0;        
-    background-size: 50px;        
-    padding-left: 5px;
+    background-size: 60px;
+    padding: 6px 0px 0px 13px;
 }
 .story-desc{    
 	padding-right: 200px;
 }
+.our-story .story-desc{
+	padding: 0 25px;
+}
 .sub-desc p{
 	font-size: 16px;
 	color: #616161;
-	margin-bottom: 29px;
+	margin-bottom: 30px;
+	padding-left: 0;
 }
 .transparent-button{
 	font-size: 15px;
@@ -996,8 +1042,13 @@ font-family:Futura Bk BT Medium;
 	display: flex;
     align-items: flex-end;
 }
-.awards-brands,.max-newsletter,.brochure{
+.awards-brands,.max-newsletter{
 	margin-top: 100px;
+}
+.brochure{
+	margin-top: 68px;
+    border-top: 1px solid #E0E0E0;
+    padding-top: 50px;	
 }
 .awards-brands .item
 {
@@ -1143,7 +1194,7 @@ font-family:Futura Bk BT Medium;
 }
 .page-products .toolbar .toolbar-sorter.sorter{
     border: 1px solid #E0E0E0;
-    width: 210px;    
+    width: 230px;    
 }
 .toolbar .toolbar-sorter.sorter .sorter-label{
 	    font-family: 'Futura Bk BT';
@@ -1159,7 +1210,7 @@ font-family:Futura Bk BT Medium;
     height: 36px;	
     font-family: 'Futura Bk BT Medium';
     font-size:13px;
-    padding: 0 10px;
+    padding: 0 25px 0px 0px;
 }
 .toolbar .action.sorter-action{
 	display:none;	 
@@ -1362,9 +1413,9 @@ font-family:Futura Bk BT Medium;
 .bottom-toolbar .limiter,.bottom-toolbar .toolbar-sorter.sorter{
 	display: none !important;
 }
-.product-item-info .product-image-photo{
+/*.product-item-info .product-image-photo{
 	width: 100% !important;
-}
+}*/
 .product-item-photo:focus {
     outline: none !important;
 }
@@ -1702,12 +1753,14 @@ font-family:Futura Bk BT Medium;
     font-family: fontAwesome;
     color: #4d4d4d;
     font-size: 15px;
+   	float: right;
 }
 .fotorama__arr--prev .fotorama__arr__arr:after{
 	content: '\f053';
     font-family: fontAwesome;
     color: #4d4d4d;
-    font-size: 15px;	
+    font-size: 15px;
+    float: right;	
 }
 .block-minicart .items-total,.block-minicart #top-cart-btn-checkout{
 	display:none !important;
@@ -2016,7 +2069,12 @@ font-family:Futura Bk BT Medium;
     float: right;
     z-index: 1;
 }
-
+.gallery-placeholder .fotorama__stage{
+    padding: 0 20px;
+}
+.fotorama-item.fotorama .fotorama__nav--thumbs .fotorama__nav__frame {
+    padding: 20px 0 0 0px;    
+}
 @media (max-width: 1230px)
 {
 	header .section1{width:30%;}
@@ -2024,10 +2082,25 @@ font-family:Futura Bk BT Medium;
 	header .section3{width:20%;}	
 
 }
+@media (max-width: 1200px)
+{
+	.box-tocart .action.primary.tocart.grey-btn{
+		width: 100% !important;
+	}
+	.product-addto-links,.product-addto-links .action.towishlist{
+		width: 100%;
+	}	
+}
 @media (max-width: 1175px)
 {
+	.benefits-ul li{
+		   padding: 0 25px;
+	}
 	.header-topicons li{
 	    padding: 0 10px;	    
+	}
+	.catalog-product-view .product-options-bottom .box-tocart .field.qty{
+		position: relative;
 	}
 }
 @media (max-width: 1024px)
@@ -2303,7 +2376,7 @@ font-family:Futura Bk BT Medium;
 	}
 	.catalog-category-view.page-products .products-grid .product-item {
 	    width: 48%;
-	    margin: 0 1% !important;
+	    margin: 0 1% 20px !important;
 	}	
 	.bottom-toolbar{
 		position: relative;
@@ -2371,7 +2444,9 @@ font-family:Futura Bk BT Medium;
     	border: 0;    
 	}
 	.toolbar .toolbar-sorter.sorter select{
-		height:40px;
+		height:39px;
+		padding: 0 25px;
+		margin:0;
 	}
 	#layered-filter-block .filter-title strong:before{
 		content:'';
@@ -2590,14 +2665,17 @@ font-family:Futura Bk BT Medium;
 	{
 		padding:0;
 	}
+	.price-box.price-final_price{
+		padding-left: 0px !important;		
+	}
 }
 @media (max-width: 580px)
 {
 	.toolbar .toolbar-sorter.sorter .sorter-label{
 		display:none;
 	}
-	.page-products .sorter{
-		width: 50%;
+	.page-products .toolbar .toolbar-sorter.sorter{
+		width: 48%;
 	}
 	.toolbar .toolbar-sorter.sorter select{
 		width: 100%;

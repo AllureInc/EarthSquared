@@ -56,39 +56,54 @@ foreach ($categoryProducts as $product) { ?>
 </div>
 <script>		
 require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
-$(document).ready(function(){
+$(document).ready(function () {
 	var countproducts = '<?php echo count($categoryProducts); ?>';
-	if(countproducts > 4){
- 		$('.featurep-collection').addClass('owl-carousel');
- 		$('.featurep-collection').addClass('owl-theme');
- 		$('.featurep-collection').owlCarousel({			
-			loop:true,
-			margin:10,    		
-    		dots:true,
-    		nav:false,
-		    items:4
- 		});		
-	}
- 	if($(window).width() <= 767){
- 		$('.featurep-collection').addClass('owl-carousel');
- 		$('.featurep-collection').addClass('owl-theme');
- 		$('.featurep-collection').owlCarousel({
-			stagePadding: 50,
-			loop:true,
-			margin:10,    		
-    		dots:true,
-    		nav:false,
-		    responsive:{
-		        0:{
-		            items:1
-		        },
-		        600:{
-		            items:3
-		        }		        
-		    }
- 		});
- 	}
- });
+    $(window).on("resize", function (e) {
+        checkScreenSize();
+    });
+
+    checkScreenSize();
+
+    function checkScreenSize(){
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth <= 767) {
+	 		$('.featurep-collection').addClass('owl-carousel');
+	 		$('.featurep-collection').addClass('owl-theme');
+	 		$('.featurep-collection').owlCarousel({
+				stagePadding: 50,
+				loop:true,
+				margin:10,    		
+	    		dots:true,
+	    		nav:false,
+			    responsive:{
+			        0:{
+			            items:1
+			        },
+			        600:{
+			            items:3
+			        }		        
+			    }
+	 		});
+        }
+        else
+        {
+            if(countproducts > 4){
+				$('.featurep-collection').addClass('owl-carousel');
+				$('.featurep-collection').addClass('owl-theme');
+				$('.featurep-collection').owlCarousel({			
+							loop:true,
+							margin:10,    		
+				    		dots:true,
+				    		nav:false,
+						    items:4
+				});	
+            } else {
+            	 $('.featurep-collection').owlCarousel('destroy');
+                 $('.featurep-collection').removeClass('owl-carousel');
+            }
+        }
+    }
+}); 
 });
 </script>
 

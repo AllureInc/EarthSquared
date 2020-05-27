@@ -45,5 +45,6 @@
         <block class="Magento\Catalog\Block\Product\View" name="product.info.mobile.wish" template="Magento_Catalog::product/view/mobilewishlist.phtml" /> 
         <move element="product.info.mobile.wish" destination="product.info.main" after="product.info.price" />
         <referenceBlock name="product.info.details" remove="true" />
+        <referenceBlock name="product.info.upsell" remove="true" />
 	</body>
 </page>	

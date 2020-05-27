@@ -1,31 +1,37 @@
 <?php
-$_product = $block->getProduct(); 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $helper = $this->helper('Earthsquared\Customize\Helper\Data');
+$_product = $block->getProduct();
 $websiteid = $helper->getWebsiteId();
-if($helper->isCustomerLoggedIn()){  
-    $custid = $helper->getCustomerIdLoggedIn(); 
-    $pid = $_product->getId();
-    $wish = $helper->getWishlistItemcollection($custid);
-    $items = $wish->getItemCollection();
-    if(count($items) > 0){
-	?>
-		<div class="mobileview wishlistp">
-			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$pid ?>" class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
-		</div>
-	<?php
-	} else {
-		if ($_product->isSaleable()) { ?>	
-			<div class="mobileview wishlistp">
-				<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
-			</div>
-		<?php }		
-	} 
-} else {
-if ($_product->isSaleable()) { ?>	
-	<div class="mobileview wishlistp">
-		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
-	</div>
-<?php }	} ?>
+if($helper->isCustomerLoggedIn()){      
+    $productId= $_product->getId();
+    $custid = $helper->getCustomerIdLoggedIn();
+    $collection = $objectManager->create('Magento\Wishlist\Model\ResourceModel\Item\Collection');   
+    $collection->addCustomerIdFilter($custid);
+    $productIds = null;
+    foreach ($collection as $item) {
+        $productIds[] = $item->getProductId();   
+    }
+    if(in_array($productId,$productIds)){ ?>
+        <?php 
+        if ($_product->isSaleable()) { ?>   
+        <div class="mobileview wishlistp">
+            <a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart-fill.png' ?>" /></a>
+        </div>
+    <?php } } else { ?>
+       <?php 
+        if ($_product->isSaleable()) { ?>   
+            <div class="mobileview wishlistp">
+                <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+            </div>
+        <?php } ?>
+    <?php } ?>   
+<?php } else { ?>
+<?php if ($_product->isSaleable()) { ?>   
+    <div class="mobileview wishlistp">
+        <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+    </div>
+<?php } } ?>
 <?php if($websiteid != 1): ?>
 <div class="share-medias mobileview"><a href="javascript:;" onclick="openmForm()" class="opensharem"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span></a>
 <div class="social-media-icons" id="socialmediam" style="display:none">

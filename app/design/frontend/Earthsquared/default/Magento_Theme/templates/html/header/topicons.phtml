@@ -5,7 +5,11 @@
 <ul class="header-topicons">
 	<li><a href="javascript:void(0)" class="search-toggle-icon"><img src="<?php echo $this->getUrl('pub/media/icons/').'loupe.png' ?>" /></a></li>
 	<li><a href="<?php echo $this->getUrl('contact-us') ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'call.png' ?>" /></a></li>  
-	<li><a href="<?php echo $this->getUrl().'customer/account/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
+  <?php if($helper->isCustomerLoggedIn()) { ?>
+	<li><a href="<?php echo $this->getUrl().'customer/account/logout/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
+  <?php } else { ?>
+  <li><a href="<?php echo $this->getUrl().'customer/account/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
+  <?php } ?>
   <?php echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Link")->setTemplate("Magento_Wishlist::topwishlink.phtml")->toHtml(); ?>  
 
 </ul>
@@ -14,7 +18,7 @@
             require([
               'jquery'   
             ], function ($) {
-              $(document).ready(function(){
+              $(document).ready(function(event){
                   $('.search-toggle-icon,.search-toggle-icon1').on('click',function(){  
                     if($('.block-search').hasClass('active'))                
                     {
@@ -26,7 +30,7 @@
                   });
                   $('.wishtop').on('click',function(){ 
                       $('.topwishlistitems').toggle();
-                  });
+                  });                                    
               });
             });
 

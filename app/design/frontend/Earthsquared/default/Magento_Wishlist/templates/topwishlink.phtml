@@ -2,7 +2,7 @@
   $helper = $this->helper('Earthsquared\Customize\Helper\Data');
   $websiteid = $helper->getWebsiteId();
   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-  $customerSession = $objectManager->create('Magento\Customer\Block\Account\AuthorizationLink');
+  $customerSession = $objectManager->create('Magento\Customer\Model\Session');
   /* @var \Magento\Wishlist\Block\Link $block */
 ?>
   <?php if($websiteid == 1) { ?>
@@ -14,7 +14,11 @@
     </a>
   </li>
   <?php } else { ?>
-	 <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" /><?php if($customerSession->isLoggedIn()){ ?><span data-bind="text: wishlist().items.length" class="counter qty"></span><?php } ?></a></li>
+	 <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
+    <?php if($customerSession->isLoggedIn()){ ?>
+      <span data-bind="text: wishlist().items.length" class="counter qty"></span>
+    <?php } ?></a>
+  </li>
   <?php } ?>  
   <?php
   if($customerSession->isLoggedIn()){

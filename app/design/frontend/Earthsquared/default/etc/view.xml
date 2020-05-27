@@ -24,24 +24,24 @@
                 <height>248</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
-                <width>165</width>
-                <height>165</height>
+                <width>150</width>
+                <height>150</height>                
             </image>
             <image id="category_page_grid" type="small_image">
-                <width>255</width>
-                <height>255</height>
+                <width>314</width>
+                <height>314</height>
             </image>
-            <image id="category_page_grid-hover" type="thumbnail">
-                <width>255</width>
-                <height>255</height>
+            <image id="category_page_grid-hover" type="lifestyle_image">
+                <width>314</width>
+                <height>314</height>
             </image>
             <image id="category_page_list" type="small_image">
-                <width>255</width>
-                <height>255</height>
+                <width>314</width>
+                <height>314</height>
             </image>
             <image id="category_page_list-hover" type="thumbnail">
-                <width>255</width>
-                <height>255</height>
+                <width>314</width>
+                <height>314</height>
             </image>
             <image id="customer_account_my_tags_tag_view" type="small_image">
                 <width>100</width>
@@ -125,10 +125,19 @@
                 <width>135</width>
                 <height>135</height>
             </image>
+            <image id="product_small_image_hover" type="lifestyle_image">
+                <width>135</width>
+                <height>135</height>
+            </image>            
             <image id="product_thumbnail_image" type="thumbnail">
                 <width>100</width>
                 <height>100</height>
             </image>
+            <image id="product_swatch_image_large" type="image"/>
+            <image id="product_swatch_image_medium" type="image">
+                <width>314</width>
+                <height>314</height>
+            </image>                      
             <image id="recently_compared_products_grid_content_widget" type="small_image">
                 <width>255</width>
                 <height>255</height>
@@ -213,7 +222,7 @@
             <var name="arrows">true</var> <!-- Turn on/off arrows on the sides preview (true/false) -->
             <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
             <var name="allowfullscreen">true</var> <!-- Turn on/off fullscreen (true/false) -->
-            <var name="navdir">horizontal</var> <!-- Sliding direction of thumbnails (horizontal/vertical) -->
+            <var name="navdir">vertical</var> <!-- Sliding direction of thumbnails (horizontal/vertical) -->
             <var name="navarrows">true</var> <!-- Turn on/off on the thumbs navigation sides (true/false) -->
             <var name="navtype">slides</var> <!-- Sliding type of thumbnails (slides/thumbs) -->
             <var name="transition">
@@ -226,7 +235,7 @@
                 <var name="keyboard">true</var> <!-- Turn on/off keyboard arrows navigation (true/false/null) -->
                 <var name="arrows">false</var> <!-- Turn on/off arrows on the sides preview (true/false/null) -->
                 <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
-                <var name="navdir">horizontal</var> <!--Sliding direction of thumbnails in full screen(horizontal/vertical)  -->
+                <var name="navdir">vertical</var> <!--Sliding direction of thumbnails in full screen(horizontal/vertical)  -->
                 <var name="thumbwidth">100</var> <!-- Width of thumbnails in fullscreen -->
                 <var name="thumbheight">100</var> <!-- Height of thumbnails in fullscreen -->
                 <var name="navigation_carousel">true</var> <!-- Display navigation thumbs as carousel (true/false) -->
