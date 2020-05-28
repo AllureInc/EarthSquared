@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+    <referenceContainer name="content">
+        <block class="Magento\Sales\Block\Adminhtml\Order\Create\Billing\Method" template="Magento_Sales::order/create/abstract.phtml" name="billing_method">
+            <block class="Magento\Sales\Block\Adminhtml\Order\Create\Billing\Method\Form" template="IWD_OrderManager::order/create/billing/method/form.phtml" name="iwd.order.create.billing.method.form" as="form"/>
+        </block>
+        <block name="iwd_braintree_payment_script" template="IWD_OrderManager::payment/script.phtml" class="Magento\Braintree\Block\Payment" after="billing_method">
+            <arguments>
+                <argument name="is_allow" xsi:type="helper" helper="IWD\OrderManager\Helper\Handle::isAllow"/>
+            </arguments>
+        </block>
+    </referenceContainer>
+</body>
+</page>

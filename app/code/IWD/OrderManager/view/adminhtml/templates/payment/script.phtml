@@ -1,0 +1,32 @@
+<?php
+
+$code = $block->escapeHtml($block->getCode());
+$isAllow = $block->getData('is_allow');
+
+?>
+
+<?php if($isAllow): ?>
+<script>
+    //<![CDATA[
+    require(
+        [
+            'IWD_OrderManager/js/order/view/braintree',
+            'Magento_Braintree/js/vault',
+            'jquery',
+            'domReady!'
+        ], function(Braintree, $) {
+
+            var config = <?= /* @noEscape */ $block->getPaymentConfig() ?>,
+                payment,
+                form = $('#payment_form_<?= /* @noEscape */ $code ?>');
+            config.active = true;
+            payment = new Braintree(config);
+
+            jQuery('#om-edit-payment-update').on('click',function () {
+                payment.submitOrder();
+            });
+
+        });
+    //]]>
+</script>
+<?php endif; ?>

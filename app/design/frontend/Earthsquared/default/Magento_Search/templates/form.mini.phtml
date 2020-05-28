@@ -33,7 +33,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            type="text"
                            name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
                            value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
-                           placeholder="<?= $block->escapeHtmlAttr(__('Search by products or category')) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Search by products or category...')) ?>"
                            class="input-text"
                            maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
                            role="combobox"

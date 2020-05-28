@@ -202,7 +202,7 @@ define([
                 this.searchForm.find('.search-autocomplete').css('width', defaultSearchBlock);
             }
 
-            this.searchForm.addClass('-opened').find('.input-text').attr('placeholder', $.mage.__('Search by products or category'));
+            this.searchForm.addClass('-opened').find('.input-text').attr('placeholder', $.mage.__('Search by products or category...'));
             this.searchForm.keydown(function(eventObject){
                 if (eventObject.which == 27) {
                     self.hidePopup();
@@ -280,8 +280,8 @@ define([
                 this.searchLabel.removeClass('active');
             }
 
-            $('[data-amsearch-js="close"], [data-amsearch-js="loupe"]').hide();
-            this.searchForm.find('.input-text').attr('placeholder', $.mage.__('Search entire store here...'));
+            $('[data-amsearch-js="loupe"]').hide();
+            this.searchForm.find('.input-text').attr('placeholder', $.mage.__('Search by products or category...'));
             this.searchForm.removeClass('-opened');
             this.searchForm.removeClass('amsearch-form-container');
 
@@ -321,7 +321,7 @@ define([
             }
 
             this.searchForm.addClass('amsearch-form-container');
-            this.searchForm.addClass('-opened').find('.input-text').attr('placeholder', $.mage.__('Search by products or category'));
+            this.searchForm.addClass('-opened').find('.input-text').attr('placeholder', $.mage.__('Search by products or category...'));
             this.defineExistencePopup();
         },
 

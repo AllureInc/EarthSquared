@@ -38,14 +38,15 @@ foreach ($categoryProducts as $product) { ?>
 				        <?php echo $block->getBlockHtml('formkey')?>
 				        <?php $storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Store\Model\StoreManagerInterface'); ?>
 				            <button type="submit"
-				                    title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+				                    title="<?php echo $block->escapeHtml(__('Add to Bag')); ?>"
 				                    class="tocart">
+				                <span><?php echo $block->escapeHtml(__('Add to Bag')); ?></span>    
 				               <img src="<?php echo $this->getUrl('pub/media/icons/').'shopping-bag.png' ?>" />
 				            </button>
 				    </form>
 				</div>
 				<div class="action-button">					
-					<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+					<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>' class="action towishlist" data-action="add-to-wishlist"><span><?php echo $block->escapeHtml(__('Add to Wishlist')); ?></span>    <img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
 				</div>
 		</div>
 		
