@@ -160,6 +160,7 @@ if($helper->isCustomerLoggedIn()){
                                             <button type="submit"
                                                     title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
                                                     class="tocart">
+                                                <span><?= $block->escapeHtmlAttr(__('Add to Bag')) ?></span>    
                                                 <img src="<?php echo $this->getUrl('pub/media/icons/').'shopping-bag.png' ?>" />
                                             </button>
                                         </form>
@@ -178,7 +179,10 @@ if($helper->isCustomerLoggedIn()){
                                               $custid = $helper->getCustomerIdLoggedIn();
                                           ?>                             
                                                 <?php if(in_array($productId,$productIds)) { ?>
-                                                    <a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart-fill.png' ?>" /></a>                                               
+                                                    <a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist">
+                                                        <span><?= $block->escapeHtmlAttr(__('Add to Wishlist')) ?></span> 
+                                                        <img src="<?php echo $this->getUrl('pub/media/icons/').'heart-fill.png' ?>" />
+                                                    </a>                                               
                                                 <?php } else { ?> 
                                                 <?php if ($addToBlock = $block->getChildBlock('addto')) :?>
                                                     <?= $addToBlock->setProduct($_product)->getChildHtml() ?>

@@ -13,30 +13,37 @@ if ($block->getIsState()) {
     $buttonSelector = sprintf($dataAmJsAttribute, 'show-more_button_state');
     $itemSelector = '[' . sprintf($dataAmJsAttribute, 'shopby-container') . ']';
     $numberUnfoldedOptions = $block->getUnfoldedOptions();
+    $isModeDropdown = false;
 } else {
     $filterSetting = $block->getFilterSetting();
+    $isModeDropdown = $filterSetting->getDisplayMode()
+        == \Amasty\Shopby\Model\Source\DisplayMode::MODE_DROPDOWN;
     $filterCode = $block->escapeHtml($filterSetting->getFilterCode());
     $buttonSelector = sprintf($dataAmJsAttribute, 'am-filter-items-'.  $filterCode. '-show-more');
     $itemSelector = '.am-filter-items-' . $filterCode;
     $numberUnfoldedOptions = $filterSetting->getNumberUnfoldedOptions();
 }
 ?>
+<?php if (!$isModeDropdown): ?>
+    <a class="am-show-more"
+            title="<?= $block->escapeHtml(__("Show more"))?>" <?= $block->escapeHtml($buttonSelector) ?>
+            data-text-more="<?= $block->escapeHtml(__("+ <span class='am-counter' data-am-counter='counter']></span> more"))?>"
+            data-text-less="<?= $block->escapeHtml(__("- Less"))?>"
+            data-is-hide="false">
+        <?= $block->escapeHtml(__("Less"))?>
+    </a>
 
-<a class="am-show-more"
-        title="<?= $block->escapeHtml(__("Show more"))?>" <?= $block->escapeHtml($buttonSelector) ?>
-        data-text-more="<?= $block->escapeHtml(__("+ <span class='am-counter' data-am-counter='counter']></span> more"))?>"
-        data-text-less="<?= $block->escapeHtml(__("- Less"))?>"
-        data-is-hide="false">
-    <?= $block->escapeHtml(__("Less"))?>
-</a>
-<script type="text/x-magento-init">
-    {
-        "<?= /* @noEscape */ $itemSelector ?>": {
-            "amShopbyFilterHideMoreOptions": {
-                "numberUnfoldedOptions": <?= $block->escapeHtml($numberUnfoldedOptions) ?>,
-                "buttonSelector": "[<?= /* @noEscape */ $buttonSelector ?>]",
-                "isState": "<?= /* @noEscape */ $block->getIsState() ?>"
+    <script type="text/x-magento-init">
+        {
+            "<?= /* @noEscape */ $itemSelector ?>": {
+                "amShopbyFilterHideMoreOptions": {
+                    "numberUnfoldedOptions": <?= $block->escapeHtml($numberUnfoldedOptions) ?>,
+                    "selectors": {
+                        "button": "[<?= /* @noEscape */ $buttonSelector ?>]"
+                    },
+                    "isState": "<?= /* @noEscape */ $block->getIsState() ?>"
+                }
             }
         }
-    }
-</script>
+    </script>
+<?php endif; ?>

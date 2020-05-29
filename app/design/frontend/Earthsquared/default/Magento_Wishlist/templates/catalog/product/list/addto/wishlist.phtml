@@ -14,6 +14,7 @@
        data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($block->getProduct()) ?>'
        data-action="add-to-wishlist"
        role="button">
+       <span><?= $block->escapeHtmlAttr(__('Add to Wishlist')) ?></span> 
         <img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" />
     </a>
 <?php endif; ?>

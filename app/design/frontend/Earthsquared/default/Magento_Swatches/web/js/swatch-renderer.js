@@ -327,26 +327,26 @@ define([
                 //     });
                 // } 
                 // added code for hide swatches when length > 3 
-                if(!$("body").hasClass("catalog-product-view")){  
+                // if(!$("body").hasClass("catalog-product-view")){ 
                    
-                    var total_swatch = $(".products-grid .swatch-attribute-options .swatch-option").size();
-                    //console.log(total_swatch);
-                    var x=3;
-                    var moreswatch =  total_swatch - x;    
-                    //console.log(moreswatch);
-                    if(total_swatch > 3){                            
-                        x=(x-total_swatch<0) ? 3 : x-total_swatch;    
-                        $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
-                        $('.products-grid #loadMore').text('+'+moreswatch);                       
-                        $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
-                        $('.products-grid  #loadMore').click(function () {                            
-                                x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
-                                $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
-                                $('.products-grid  #loadMore').hide();                                               
-                        });                                                
-                    } 
-                    $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
-                }
+                //     var total_swatch = $(".products-grid .swatch-attribute-options .swatch-option").size();
+                //     //console.log(total_swatch);
+                //     var x=3;
+                //     var moreswatch =  total_swatch - x;    
+                //     //console.log(moreswatch);
+                //     if(total_swatch > 3){                            
+                //         x=(x-total_swatch<0) ? 3 : x-total_swatch;    
+                //         $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
+                //         $('.products-grid #loadMore').text('+'+moreswatch);                       
+                //         $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
+                //         $('.products-grid  #loadMore').click(function () {                            
+                //                 x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
+                //                 $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
+                //                 $('.products-grid  #loadMore').hide();                                               
+                //         });                                                
+                //     } 
+                //     $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
+                // }
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
@@ -479,6 +479,28 @@ define([
                 $widget.optionsMap[item.id] = {};
 
                 // Aggregate options array to hash (key => value)
+                console.log(item.options.length);
+                //if(!$("body").hasClass("catalog-product-view")){ 
+                   
+                    //var total_swatch = item.options.length;
+                    //console.log(total_swatch);
+                    //var x=3;
+                    //var moreswatch =  total_swatch - x;    
+                    //console.log(moreswatch);
+                    //if(total_swatch > 3){                            
+                     //   x=(x-total_swatch<0) ? 3 : x-total_swatch;    
+
+                        // $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
+                        // $('.products-grid #loadMore').text('+'+moreswatch);                       
+                        // $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
+                        // $('.products-grid  #loadMore').click(function () {                            
+                        //         x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
+                        //         $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
+                        //         $('.products-grid  #loadMore').hide();                                               
+                        // });                                                
+                    //} 
+                   // $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
+                //}                
                 $.each(item.options, function () {
                     if (this.products.length > 0) {
                         $widget.optionsMap[item.id][this.id] = {
@@ -490,6 +512,7 @@ define([
                         };
                     }
                 });
+
             });
 
             if (showTooltip === 1) {

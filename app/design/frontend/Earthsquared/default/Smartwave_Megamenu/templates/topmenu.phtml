@@ -23,7 +23,8 @@
 <div class="mobileview">
     <a href="javascript:;" class="closeicon"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'close-i.png' ?>" /></a> 
     <ul class="wishcart">        
-        <?php echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Link")->setTemplate("Magento_Wishlist::link.phtml")->toHtml(); ?>            
+        <?php echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Link")->setTemplate("Magento_Wishlist::link.phtml")->toHtml(); ?>   
+        <?php echo $this->getLayout()->createBlock("Magento\Checkout\Block\Cart\Sidebar")->setTemplate("Magento_Checkout::cart/minicart-mobile.phtml")->toHtml(); ?>           
     </ul>
 </div>
 <nav class="navigation sw-megamenu" role="navigation">
