@@ -32,23 +32,27 @@ if($helper->isCustomerLoggedIn()){
     <?php }  else { ?>
     	<?php 
         if ($_product->isSaleable()) { ?> 
-			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
-					<?php if($websiteid == 1) { ?>
-						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
-					<?php } else { ?>
-						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
-					<?php } ?>
+			<?php if($websiteid == 1) { ?>
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist trade" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>					
 			</a>
+		<?php } else { ?>
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>					
+			</a>
+		<?php } ?>
 		<?php } ?>	
     <?php }   
 } else { ?>
 	<?php 
         if ($_product->isSaleable()) { ?> 
-		<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">
-					<?php if($websiteid == 1) { ?>
-						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>
-					<?php } else { ?>
-						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
-					<?php } ?>
-		</a>
+			<?php if($websiteid == 1) { ?>
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist trade" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>					
+			</a>
+			<?php } else { ?>
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>					
+			</a>
+			<?php } ?>
 <?php }   }

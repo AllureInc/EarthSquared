@@ -325,28 +325,7 @@ define([
                 //             swatchOption.trigger('mouseenter');
                 //         }
                 //     });
-                // } 
-                // added code for hide swatches when length > 3 
-                // if(!$("body").hasClass("catalog-product-view")){ 
-                   
-                //     var total_swatch = $(".products-grid .swatch-attribute-options .swatch-option").size();
-                //     //console.log(total_swatch);
-                //     var x=3;
-                //     var moreswatch =  total_swatch - x;    
-                //     //console.log(moreswatch);
-                //     if(total_swatch > 3){                            
-                //         x=(x-total_swatch<0) ? 3 : x-total_swatch;    
-                //         $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
-                //         $('.products-grid #loadMore').text('+'+moreswatch);                       
-                //         $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
-                //         $('.products-grid  #loadMore').click(function () {                            
-                //                 x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
-                //                 $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
-                //                 $('.products-grid  #loadMore').hide();                                               
-                //         });                                                
-                //     } 
-                //     $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
-                // }
+                // }             
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
@@ -479,29 +458,29 @@ define([
                 $widget.optionsMap[item.id] = {};
 
                 // Aggregate options array to hash (key => value)
-                console.log(item.options.length);
-                //if(!$("body").hasClass("catalog-product-view")){ 
-                   
-                    //var total_swatch = item.options.length;
-                    //console.log(total_swatch);
-                    //var x=3;
-                    //var moreswatch =  total_swatch - x;    
-                    //console.log(moreswatch);
-                    //if(total_swatch > 3){                            
-                     //   x=(x-total_swatch<0) ? 3 : x-total_swatch;    
+	                if(!$("body").hasClass("catalog-product-view")){ 
+	                   
+	                    var total_swatch = item.options.length;                    
+	                    var x=3;
+	                    var moreswatch =  total_swatch - x;    
 
-                        // $('.products-grid .swatch-attribute-options .swatch-option').not(':lt('+x+')').hide();                                             
-                        // $('.products-grid #loadMore').text('+'+moreswatch);                       
-                        // $('.products-grid .swatch-attribute .swatch-option:lt('+x+')').show();                        
-                        // $('.products-grid  #loadMore').click(function () {                            
-                        //         x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
-                        //         $('.products-grid  .swatch-attribute .swatch-option:lt('+x+')').show();                                 
-                        //         $('.products-grid  #loadMore').hide();                                               
-                        // });                                                
-                    //} 
-                   // $('#loadMore').insertAfter('.products-grid  .swatch-attribute-options .swatch-option:last');
-                //}                
-                $.each(item.options, function () {
+	                    if(total_swatch > 3){                            
+	                       x=(x-total_swatch<0) ? 3 : x-total_swatch;    
+	                       	console.log(container);	                                                
+	                        $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').not(':lt('+x+')').hide();                                             	                        
+	                        $(container.context).children('#loadMore').text('+'+moreswatch);                     
+	                        $(container.context).children('#loadMore').addClass('swatchitem'+item.id);
+	                        $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();	                        
+	                        $('.products-grid  #loadMore').click(function () {                            
+	                                x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;	                                
+	                                $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();                                 
+	                                $('.products-grid  #loadMore').hide();                                               
+	                        });                                                
+	                       	$(container.context).children('.swatchitem'+item.id).insertAfter('.swatch-attribute .swatch-attribute-options .swatch-option:last');
+	                    } 
+	                   
+	                }                               
+                $.each(item.options, function () {                	
                     if (this.products.length > 0) {
                         $widget.optionsMap[item.id][this.id] = {
                             price: parseInt(
@@ -510,6 +489,7 @@ define([
                             ),
                             products: this.products
                         };
+
                     }
                 });
 

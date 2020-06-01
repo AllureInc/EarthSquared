@@ -12,7 +12,7 @@ $websiteid = $helper->getWebsiteId();
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to my Bag'); ?>
 <?php if ($_product->isSaleable()) :?>
-<div class="box-tocart">
+<div class="box-tocart <?php if($websiteid == 1) { ?> trade <?php } ?>">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()) :?>        
           <?php if($websiteid == 1) { ?>

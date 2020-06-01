@@ -15,6 +15,7 @@
        data-action="add-to-wishlist"
        role="button">
        <span><?= $block->escapeHtmlAttr(__('Add to Wishlist')) ?></span> 
-        <img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" />
+        <img class="nhover-wish" src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" />
+        <img class="hover-wish" src="<?php echo $this->getUrl('pub/media/icons/').'heart-white.png' ?>" />
     </a>
 <?php endif; ?>

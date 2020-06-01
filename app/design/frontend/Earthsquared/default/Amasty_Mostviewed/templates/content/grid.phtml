@@ -69,7 +69,8 @@
                                             <div class="actions-primary action-button">
                                                 <?php if ($item->isSaleable()) : ?>
                                                     <?php if ($item->getTypeInstance()->hasRequiredOptions($item)) : ?>
-                                                        <button class="tocart" data-mage-init='{"redirectUrl":{"url":"<?= $block->escapeUrl($block->getAddToCartUrl($item)) ?>"}}' type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+                                                        <button class="tocart" data-mage-init='{"redirectUrl":{"url":"<?= $block->escapeUrl($block->getAddToCartUrl($item)) ?>"}}' type="button" title="<?= $block->escapeHtml(__('Add to Bag')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Bag')) ?></span>
                                                              <img src="<?php echo $this->getUrl('pub/media/icons/').'shopping-bag.png' ?>" />
                                                         </button>
                                                     <?php else : ?>
@@ -77,7 +78,8 @@
                                                         $postDataHelper = $this->helper(\Magento\Framework\Data\Helper\PostHelper::class);
                                                         $postData = $postDataHelper->getPostData($block->getAddToCartUrl($item), ['product' => $item->getEntityId()])
                                                         ?>
-                                                        <button class="tocart" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+                                                        <button class="tocart" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?= $block->escapeHtml(__('Add to Bag')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Bag')) ?></span>
                                                             <img src="<?php echo $this->getUrl('pub/media/icons/').'shopping-bag.png' ?>" />
                                                         </button>
                                                     <?php endif; ?>
@@ -102,6 +104,7 @@
                                                        class="action towishlist"
                                                        data-action="add-to-wishlist"
                                                        title="<?= $block->escapeHtml(__('Add to Wish List')) ?>">
+                                                        <span><?= $block->escapeHtml(__('Add to WishList')) ?></span>
                                                         <img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" />
                                                     </a>
                                                 <?php endif; ?>
