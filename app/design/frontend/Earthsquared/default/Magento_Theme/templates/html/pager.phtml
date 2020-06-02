@@ -38,8 +38,8 @@
                     <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
                     <a class="<?= $block->escapeHtmlAttr($text ? 'link ' : 'action ') ?> previous"
                        href="<?= $block->escapeUrl($block->getPreviousPageUrl()) ?>"
-                       title="<?= $block->escapeHtmlAttr($text ? $text : __('Previous')) ?>">                        
-                        <span><?= $block->escapeHtml($text ? $text : __('Previous')) ?></span>
+                       title="<?= $block->escapeHtmlAttr($text ? $text : __('Prev')) ?>">                        
+                        <span><?= $block->escapeHtml($text ? $text : __('Prev')) ?></span>
                     </a>
                 </div>
             <?php endif;?>            

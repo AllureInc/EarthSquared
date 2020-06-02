@@ -21,6 +21,7 @@
         <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */
         echo $filtered; ?>">
             <strong data-role="title"><?= $block->escapeHtml(__('Filter')) ?></strong>
+             <a href="<?= $block->escapeUrl($block->getClearUrl()) ?>" class="action clear filter-clear active-clear-filter"><span><img src="<?php echo $this->getUrl('pub/media/icons').'clearall.png' ?>" /> <?= $block->escapeHtml(__('Clear Filters')) ?></span></a>
         </div> 
 
         <div class="block-content filter-content">

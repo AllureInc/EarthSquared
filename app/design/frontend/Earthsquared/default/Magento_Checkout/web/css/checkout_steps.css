@@ -1,0 +1,4 @@
+/*--- checkout steps --*/
+.opc-progress-bar-item._active:before,.opc-progress-bar-item._active>span:before,.opc-progress-bar-item._active>span:after,.opc-progress-bar-item:last-child:before,.opc-progress-bar-item>span:before, .opc-progress-bar-item>span:after{
+	display: none !important;
+}
