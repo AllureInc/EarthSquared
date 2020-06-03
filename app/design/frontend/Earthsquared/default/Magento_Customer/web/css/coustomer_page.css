@@ -1,6 +1,7 @@
 /* customer login us page */
 
-.customer-account-login main#maincontent {    max-width: 340px;margin-top: 35px;padding: 0;}
+.customer-account-login main#maincontent {    max-width: 340px;    margin-top: 35px !important;
+    padding: 0;    margin: auto;}
 .customer-account-login .page-title-wrapper {    display: none;}
 .login-container .block.block-customer-login {    width: 100%;margin: 0;}
 .block.block-customer-login .block-title {    text-align: center;    border: none;margin-bottom: 5px;}
@@ -13,7 +14,7 @@ span.msg_note {    font-size: 11px;    font-family: Futura Bk BT Medium;    colo
 .login-container .fieldset>.field>.control {    width: 100% !important;}
 .customer-account-login .field.password {    margin-bottom: 0;}
 .customer-account-login .actions-toolbar .primary {    width: 100%;    margin-top: 20px;}
-.customer-account-login .actions-toolbar .secondary {    float: right;}
+.customer-account-login .actions-toolbar .secondary { width: auto;   float: right;}
 .customer-account-login a.action.remind {    font-size: 11px;    font-family: Futura Bk BT Medium; color: #4D4D4D;}
 .customer-account-login .actions-toolbar .primary button {    background: #4D4D4D !important;    width: 100%;
     height: 44px;}
@@ -22,6 +23,7 @@ span.msg_note {    font-size: 11px;    font-family: Futura Bk BT Medium;    colo
 .customer-account-login .block.block-new-customer {    float: left;    width: 100%;}
 .block.block-new-customer p {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
 .block.block-new-customer p a {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    margin-left: 5px;}
+.customer-account-login header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
 .customer-account-login footer.page-footer {    display: none;}
 .customer-account-login ul.footer-checkout {    display: block;    float: right;padding: 0;margin-bottom: 0;}
 .customer-account-login ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
@@ -37,7 +39,15 @@ a.backlink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: 
 
 
 /* create account */
-.customer-account-create main#maincontent {    max-width: 340px;margin-top: 35px;padding: 0;}
+.customer-account-create main#maincontent {    margin-top: 0;    padding: 0;    max-width: 100%;}
+.customer-account-create .form.create.account {  padding: 0;}
+.form_main_part {    clear: both;    max-width: 340px;    margin: 0 auto;}
+.customer_account_create_top_part .customer_account_create_top_part_max {   max-width: 900px;
+    padding: 3px 20px 1.42px;    margin: 0 auto;}
+.customer_account_create_top_part .part1 {    display: inline-block;    margin-left: 60px;}
+.customer_account_create_top_part .part1 img {    margin-right: 10px;}
+.customer_account_create_top_part {    text-align: center;    padding-bottom: 20px;    margin-bottom: 30px;
+    float: left;    padding-top: 20px;    width: 100%;    background: #FAFAFA;}
 .customer-account-create .form.create.account {    min-width: 100%;}
 .customer-account-create .page-title-wrapper {    display: none;}
 .customer-account-create footer.page-footer {    display: none;}
@@ -45,4 +55,107 @@ a.backlink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: 
 .customer-account-create ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
 .customer-account-create ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
 .customer-account-create  header .section3 {    display: none;}
+.customer-account-create header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
+.customer_account_create_top_part .item a.firest:before {content: '';    background: url(../images/call.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;    display: inline-block;float: left;
+    margin-right: 15px;    background-position: 0;}
+.customer_account_create_top_part .item a.second:before {content: '';    background: url(../images/call.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;
+    margin-right: 15px;    background-position: 0;}
+.customer_account_create_top_part .item a.third:before {content: '';    background: url(../images/call.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;
+    margin-right: 15px;    background-position: 0;}
+.customer_account_create_top_part .item span{    font-size: 14px;    color: #4D4D4D;float: left;
+    font-family: Futura Bk BT Medium;}
+.customer-account-create .form.create.account h3 {   font-size: 13px;    text-transform: uppercase;
+    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
+    position: relative;    text-align: center;}
+.customer-account-create .form.create.account input {    height: 60px;    background: #FFFFFF;
+    padding: 20px;    border: 1px solid #E0E0E0;}
+.customer-account-create .form.create.account .field.field-name-firstname {    width: 161px;    float: left;}
+.customer-account-create .form.create.account .field.field-name-lastname {    width: 161px;  float: right;}
+.customer-account-create .form.create.account .field.choice.newsletter {    float: left;    width: 100%;}
+.customer-account-create .form.create.account .field {    margin-bottom: 30px;}
+.customer-account-create .form.create.account .field.choice.newsletter input#is_subscribed {    height: 20px;
+    float: left;    width: 20px;    margin-top: 0;}
+.customer-account-create .form.create.account fieldset {    margin-bottom: 0!important;}
+.password-strength-meter {    background: none;}
+.field.choice.terms input#is_terms {    height: 20px;    float: left;    width: 20px;   margin-top: 0;}
+.field.choice.terms label.label {    font-size: 14px;    color: #4D4D4D;  font-family: Futura Bk BT Medium;}
+.field.choice.terms label.label a {    font-size: 14px;    color: #4D4D4D;  text-decoration: underline;
+    margin-left: 5px;}
+.customer-account-create .form.create.account .field.choice.newsletter span {
+    color: #757575;    font-size: 14px;    font-family: Futura Bk BT Medium;}
+.form-create-account .fieldset.create.account:after {display:none;}
+.customer-account-create .actions-toolbar .primary {    width: 100%;}
+.customer-account-create .actions-toolbar button {    background: #4D4D4D !important;    width: 100% !important;
+    height: 44px;    margin: 0 !important;}
+.block.block-new-login {    float: left;    width: 100%;    margin-top: 30px;    margin-bottom: 0;}
+.customer-account-create .actions-toolbar button span {    font-size: 15px;    font-weight: normal;
+    letter-spacing: 0.04em;    font-family: Futura Bk BT Medium;}
+.customer-account-create .actions-toolbar {    margin-top: 10px;}
+.block.block-new-login p {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
+.block.block-new-login p a {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;
+    margin-left: 5px;}
+
+@media screen and (max-width: 1260px) {	
+.section_phone {    right: 15px;}
+}
+@media screen and (max-width: 576px) {
+.customer-account-login .max-width-section {    display: grid;}
+.customer-account-login .max-width-section ul.footer-checkout {    order: 1;padding-bottom: 10px;
+    border-bottom: 1px solid #4D4D4D;    margin-bottom: 10px;}
+.customer-account-login .max-width-section span {    order: 2;}
+
+.customer-account-create .max-width-section {    display: grid;}
+.customer-account-create .max-width-section ul.footer-checkout {    order: 1;padding-bottom: 10px;
+    border-bottom: 1px solid #4D4D4D;    margin-bottom: 10px;}
+.customer-account-create .max-width-section span {    order: 2;}
+}
+@media screen and (max-width: 480px) {	
+
+.customer-account-login header.page-header {    background: #fff;}
+.customer-account-login a.search-toggle-icon1.mobileview {   display: none !important;}
+.customer-account-login .header.content .section1 {    display: block;}
+.customer-account-login span.action.nav-toggle {    display: none;}
+.customer-account-login .header.content .section1 {    display: block;    width: auto;
+    float: left;    position: absolute;    top: 20px;}
+	
+.customer-account-login main#maincontent {    max-width: 100%;    margin-top: 35px !important;
+    padding-left: 15px;    margin: initial;    padding-right: 15px;}
+	
+.customer-account-create header.page-header {    background: #fff;}
+.section_phone {    display: none;}
+.customer-account-create a.search-toggle-icon1.mobileview {   display: none !important;}
+.customer-account-create .header.content .section1 {    display: block;}
+.customer-account-create span.action.nav-toggle {    display: none;}
+.customer-account-create .header.content .section1 {    display: block;    width: auto;
+    float: left;    position: absolute;    top: 20px;}
+}
+
+@media screen and (max-width: 339px) {	
+.form_main_part {    clear: both;    max-width: 320px;    margin: 0 auto;}
+.customer-account-create .form.create.account {    min-width: 100%;    padding-left: 15px;  padding-right: 15px;}
+.block.block-new-login {    margin-top: 0;    margin-bottom: 0;}
+.customer-account-create .form.create.account .field {    margin-bottom: 20px;}
+.customer-account-create .form.create.account .field.field-name-lastname {    width: 138px;    float: right;}
+.customer-account-create .form.create.account .field.field-name-firstname {    width: 138px;    float: left;}
+}	
+
 /* end create account */
+
+/* my account page */
+
+.block-collapsible-nav .content {    background: #FFFFFF;padding: 0;    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.08);}
+.block-collapsible-nav .content li.nav.item.current {    background: #EDB6BB;}
+.block-collapsible-nav .item.current a, .block-collapsible-nav .item.current>strong {    border: none;
+    font-family: Futura Bk BT;font-weight: normal;    font-size: 14px;    color: #4D4D4D;}
+.block-collapsible-nav .content li.nav.item a {    font-family: Futura Bk BT;    font-size: 14px;
+    color: #4D4D4D;}
+.block-collapsible-nav .content li.nav.item {    height: 56px;    line-height: 46px;    margin: 0;}
+.account .table-wrapper thead {    background: #FCFCFC;    border: 1px solid #E0E0E0;}
+.account .table-wrapper table#my-orders-table {    border: 1px solid #E0E0E0;    font-family: Futura Bk BT;
+    font-size: 12px;    color: #4D4D4D;}
+.account .table-wrapper thead tr th {    border: none;    font-family: Futura Bk BT;border-right: 1px solid #E0E0E0;
+    font-size: 12px;    font-weight: normal;    color: #616161;}
+.account .data.table .col.actions a {    font-family: Futura Bk BT;    font-size: 12px; color: #4D4D4D !important;}
+.account .table-wrapper tbody tr td {    border-right: 1px solid #E0E0E0;}
+
+/* end my account page */

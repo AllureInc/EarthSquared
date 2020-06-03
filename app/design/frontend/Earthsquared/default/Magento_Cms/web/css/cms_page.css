@@ -1,0 +1,114 @@
+/* contact us page */
+.cms-contact-us .breadcrumbs {    display: none;}
+.cms-contact-us .page-title-wrapper {    display: none;}
+.cms-contact-us main#maincontent {    margin-top: 35px;}
+.contact_info h1 {    font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
+    color: #4D4D4D;    font-family: 'Tiempos Headline Medium';}
+.contact_info p {    font-style: normal;    font-weight: normal;    font-size: 15px;    line-height: 180%;
+    color: #4D4D4D;    font-family: Futura Bk BT;}
+.addresspart h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;    letter-spacing: 0.04em;}
+.contact_info {    width: 50%;    float: left;    padding-left: 8%;    padding-right: 9%;}
+form#contact-form {    width: 563px;    float: left;}
+form#contact-form h2 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;    letter-spacing: 0.04em;	position: relative;	margin-bottom: 25px;}
+form#contact-form span.title_bg {    position: absolute;    width: 45px;    height: 45px;
+    left: -6px;    top: -17px;    background: rgba(237, 182, 187, 0.3);    border: 1px solid rgba(237, 182, 187, 0.3);    border-radius: 50px;}
+form#contact-form input {  padding: 20px;  height: 60px;}
+form#contact-form .fieldset .lname {    width: 271px;    float: left;    margin-left: 18px;}
+form#contact-form .fieldset .name {    width: 271px;    float: left;}
+form#contact-form button span {    font-style: normal;    font-weight: normal;    font-size: 15px;
+    color: #fff;    font-family: Futura Bk BT Medium;}
+form#contact-form button {    background: #4D4D4D !important;    width: 270px;    height: 60px;    margin: 0;}
+form#contact-form .actions-toolbar .primary {    float: right;}
+form#contact-form .fieldset > div {	position: relative;	float: left;    width: 100%;    margin-bottom: 40px;}
+form#contact-form .fieldset .field.comment {    margin-bottom: 0;}
+form#contact-form fieldset.fieldset {    margin-bottom: 0;}
+.floating-label em {    color: #e02b27;}
+form#contact-form .fieldset div textarea#comment {    padding: 20px;}
+
+@media screen and (max-width: 1024px) {
+form#contact-form {    width: 563px;    float: left;}
+.contact_info {    width: 100%;    float: left;    padding-left: 0;    padding-right: 0;}
+}
+
+@media screen and (max-width: 768px) {
+.cms-contact-us .breadcrumbs {    display: block;    padding: 15px !important;    float: left;
+	margin: initial !important;}
+.cms-contact-us main#maincontent {    margin-top: 0;}
+.contact_info {    padding-left: 0;    padding-right: 19%;}
+form#contact-form {    width: 100%;    float: left;}
+form#contact-form .actions-toolbar .primary {    float: right;    width: 100%;}
+form#contact-form .fieldset div {    margin-bottom: 30px;}
+.contact_info h1 {    margin-bottom: 32px;}
+form#contact-form .fieldset .name {    width: 100%;    float: left;}
+form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-left: 0;}
+}
+
+/* end contact us */
+
+/* terms page */
+
+.cms-terms-conditions .breadcrumbs {    max-width: 810px;margin-top: 15px !important;
+    padding-left: 20px !important;margin-bottom: 0 !important;    padding-right: 20px !important;}
+.cms-terms-conditions main#maincontent {    max-width: 810px;}
+.cms-terms-conditions h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;margin-top: 0;  margin-bottom: 10px;}
+.cms-terms-conditions p {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
+    margin-top: 0;    margin-bottom: 10px;}
+.cms-terms-conditions address {    margin-bottom: 0;    font-size: 14px;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;}
+	
+@media screen and (max-width: 767px) {
+.cms-terms-conditions .breadcrumbs {    margin: unset !important;    margin-top: 15px !important;}
+.cms-terms-conditions .page-title-wrapper .page-title {    margin-bottom: 40px;}	
+}
+
+/* end terms page */
+
+/* about us */
+.cms-about-us main#maincontent {    padding: 0;    max-width: 100%;}
+.cms-about-us .breadcrumbs {    display: none;}
+.cms-about-us .page-title-wrapper {    display: none;}
+.cms-about-us img.mobile {    display: none;}
+.about_banner {    margin-bottom: 50px;}
+.about_us_main {    max-width: 810px;    margin: 0 auto;    padding-left: 20px;  padding-right: 20px;}
+.about_us_main p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 20px;}
+.about_info {    float: left;    width: 100%;}
+.about_info ul li a {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;
+    margin-bottom: 20px;}
+.about_info h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;    letter-spacing: 0.04em;}
+.about_info ul {    margin-top: 15px;    padding: 0;}
+.about_info ul li {    list-style-type: none;    display: inline-block;    border: 1px solid #000;
+    height: 100px;    width: calc(33.33% - 20px);    float: left;    margin-right: 20px;    padding: 20px;}
+.about_info .call:before {    content: '';    background: url(../images/phone_icon.png) no-repeat;
+    height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 10px;}
+.about_info .email:before {    content: '';    background: url(../images/email_icon.png) no-repeat;    height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 7px;
+    background-position: 0px 2px;}
+.about_us_main p.add_location:before {    content: '';    background: url(../images/map_location.jpg) no-repeat;    height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 7px;
+    background-position: 0px 2px;}
+.about_info ul li a.call {    margin-top: 15px;    float: left;}
+.about_info ul li a.email {    margin-top: 15px;    float: left;}
+
+@media screen and (max-width: 767px) {
+.cms-about-us .breadcrumbs {  display: none !important;}
+.cms-about-us  .page-title {    margin-bottom: 40px;}	
+.about_info ul li {    padding: 12px;}
+}
+
+@media screen and (max-width: 576px) {
+.cms-about-us img.desktop {    display: none;}
+.cms-about-us img.mobile {    display: block !IMPORTANT;width: 100%;}
+p.add_location {    float: left;    margin-top: 15px;}
+.about_info ul li {    width: 100%;margin-bottom: 25px;    padding: 20px;}
+}
+@media screen and (max-width: 420px) {
+p.add_location {
+    margin-top: 0;
+}
+}
+/* end about us */
+
+
+

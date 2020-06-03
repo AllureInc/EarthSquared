@@ -30,16 +30,16 @@
         <referenceBlock name="footer_links" remove="true" />  
 		
 		<referenceBlock name="footer" remove="true" />
+	
+        <referenceContainer name="footer-container"> 
 		
-        <referenceContainer name="footer-container">       
-	        	
-				<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>	
-				
-				<block class="Magento\Cms\Block\Block" name="footer_checkout">
+	        	<block class="Magento\Cms\Block\Block" name="footer_checkout">
 					<arguments>
 						<argument name="block_id" xsi:type="string">footer_checkout</argument>
 					</arguments>
-				</block>		
+				</block>
+				
+				<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>	
 				
         </referenceContainer> 
     </body>
