@@ -1,0 +1,19 @@
+<?php 
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+?>
+<li class="mobilecart">
+    <a class="action showcart1" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>" data-bind="scope: 'minicart_content'">         
+        <span class="counter qty empty"
+              data-bind="css: { empty: !!getCartParam('summary_count') == false && !isLoading() }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>          
+            <!-- ko if: getCartParam('subtotal') -->
+            <span class="total-price subtotal" data-bind="html: getCartParam('subtotal')"></span>
+            <!-- /ko -->            
+        </span>
+    </a>	
+</li>
