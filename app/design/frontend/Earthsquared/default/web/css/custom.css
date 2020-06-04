@@ -1,5 +1,5 @@
 /*-- fonts css --*/
-/* @font-face {
+@font-face {
 font-family: 'Tiempos Headline Regular';
 font-style: normal;
 font-weight: normal;
@@ -113,7 +113,7 @@ font-style: normal;
 font-weight: normal;
 src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
 }
-*/
+/*
  @font-face {
     font-family: 'Futura Bk BT Medium';
     src: url('../fonts/futura/FuturaBT-Medium.eot');
@@ -211,7 +211,7 @@ src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
         url('../fonts/tiempos-headline/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
     font-weight: 500;
     font-style: normal;
-}
+} */
 
 body{
 	font-family: 'Futura Bk BT' !important;
@@ -504,6 +504,11 @@ a:hover{
 .checkout-cart-index .actions-toolbar .action-towishlist{
 	display: none !important;
 }
+#cart-totals .totals.shipping .label{
+	padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+} 
 .quickorder img{width:16px;}
 header .block-search.active{
 	display:block !important;

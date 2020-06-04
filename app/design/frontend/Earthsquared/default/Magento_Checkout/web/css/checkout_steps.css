@@ -100,7 +100,7 @@
     position: relative;	
     margin-bottom: 10px;
 }
-.action-show-popup{
+.action-show-popup,.action-show-popup:hover{
     box-shadow: none;
     width: 216px;
     height: 144px;
@@ -108,6 +108,7 @@
     border-radius: 0px;
     background: transparent;	
 }
+
 .opc-wrapper .action-show-popup>span:before{
     content: '+';
     padding-right: 5px;    
@@ -237,6 +238,11 @@
 	order:2;
 	border: 1px solid #E0E0E0;
 	border-bottom: 0px;
+    margin-bottom: 0px;
+}
+#checkout .opc-payment-additional.discount-code
+{
+    order:4;
 }
 #checkout .opc-block-summary{
     background: #fff;
@@ -317,19 +323,136 @@
 	    padding: 2px 15px 0 0;
 	    margin: 0 -8px 0 0;
 }
-#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"]
+#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"], #checkout select
 {
     height: 60px;
     font-size: 12px;
     color: #9E9E9E;
     border: 1px solid #E0E0E0;
     border-radius: 0px;
+    width: 100%;
+    opacity: 1;
+}
+#checkout input[type="text"]::-webkit-input-placeholder{ 
+  font-size: 12px;  
+  line-height: 100%;
+  color: #9E9E9E;
+  font-style: normal;
+}
+#checkout input[type="text"]:-ms-input-placeholder{
+  font-size: 12px;  
+  line-height: 100%;
+  color: #9E9E9E;
+  font-style: normal;
+}
+#checkout input[type="text"]::placeholder{
+  font-size: 12px;  
+  line-height: 100%;
+  color: #9E9E9E;
+  font-style: normal;
 }
 #checkout .opc-wrapper .form-login{
 	border-bottom:0px;
 	margin-bottom: 0;
     padding-bottom: 0;
+    max-width: 100%;
+    width: 97.71%;
+    margin: 0 1% 0 0%;
 }
 #checkout .opc-wrapper .form-shipping-address{
 	margin-top:0;
+    max-width: 100%;
+    width: 100%;
+    float: left;
+}
+#checkout #shipping-new-address-form .label,#checkout #billing-new-address-form .label{
+    display: none;
+}
+#checkout #tooltip,#checkout .form-login .note,#checkout .mandatory,#checkout .mandatory{
+    display: none !important;
+}
+#shipping-new-address-form .field,#billing-new-address-form .field{
+    width:47.71%;
+    display: inline-block;
+    margin: 20px 18px 20px 0;
+    float: left;
+}
+#shipping-new-address-form .field[name="shippingAddress.lastname"],#billing-new-address-form .field[name="billingAddress.company"]{
+    width:97.71%;
+}
+#shipping-new-address-form .field.street,#billing-new-address-form .field.street{
+    width: 100%;
+    margin: 0
+}
+#customer-email-fieldset{
+    margin-bottom: 0;
+}
+.billing-address-same-as-shipping-block label{    
+    font-size: 14px;
+    font-weight: normal;
+    color: #4d4d4d;    
+}
+.checkout-billing-address #billing-address-same-as-shipping{
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #4d4d4d;
+    top: 4px;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    outline: none;
+    margin: 0!important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0px;
+    border: 1px solid #BDBDBD;
+    min-width: 18px;
+}
+.checkout-billing-address #billing-address-same-as-shipping:checked{
+    background-color: #4d4d4d;
+    color:#fff;
+    border: 0px !important;
+    text-align: center;
+    top: 0px;
+}
+.checkout-billing-address #billing-address-same-as-shipping:checked:after{
+    content:'\f00c';
+    font-family: 'fontAwesome';
+    color:#fff;
+    font-size: 14px;
+}
+.billing-address-form{
+    margin-top: 20px;
+}
+#discount-form{position: relative;}
+
+#discount-form .actions-toolbar {
+    position: absolute;
+    top: 0px;
+    margin-top: 0;
+    right: 0;
+}
+#discount-form .action,#discount-form .cancel{
+    width: 100%;
+    height: 60px;
+    border-radius: 0;
+    color: #fff;
+    background: #4D4D4D !important;
+    font-weight: normal;
+    padding: 0px 29px;
+    font-family: 'Futura Bk BT Medium' !important;
+    border: 0;
+}
+.minicart-items .product-item-details .details-qty .value{
+        color: #757575;
+        font-size: 12px;
+}
+#checkout .opc-block-summary .table-totals tr.totals-tax:last-child {
+    border-bottom: 1px solid #e0e0e0;
+}
+#checkout #billing_address_id{
+    width: 98%;
+    margin-top: 10px;  
 }

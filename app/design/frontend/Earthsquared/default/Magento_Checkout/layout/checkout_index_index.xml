@@ -9,4 +9,71 @@
     	<head>
     		<css src="Magento_Checkout::css/checkout_steps.css" />
     	</head>    
+    <body>
+	<referenceBlock name="checkout.root">
+	<arguments>
+	    <argument name="jsLayout" xsi:type="array">
+	        <item name="components" xsi:type="array">
+	            <item name="checkout" xsi:type="array">
+	                <item name="children" xsi:type="array">
+	                    <item name="steps" xsi:type="array">
+	                        <item name="children" xsi:type="array">
+	                            <item name="shipping-step" xsi:type="array">
+	                                <item name="children" xsi:type="array">
+	                                    <item name="shippingAddress" xsi:type="array">
+	                                        <item name="children" xsi:type="array">
+	                                            <!-- The name of the form the field belongs to -->
+	                                            <item name="shipping-address-fieldset" xsi:type="array">
+	                                                <item name="children" xsi:type="array">            	
+                                                            <item name="company" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">0</item>
+                                                            </item>                                             
+                                                            <item name="country_id" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">130</item>
+                                                            </item>
+                                                            <item name="region_id" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">140</item>
+                                                            </item>	
+                                                            <item name="postcode" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">150</item>
+                                                            </item>   
+                                                            <item name="city" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">160</item>
+                                                            </item>
+                                                             <item name="telephone" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">170</item>
+                                                            </item>                                                            	 
+	                                                </item>
+	                                            </item>
+	                                        </item>
+	                                    </item>
+	                                </item>
+	                            </item>
+	                        </item>
+	                    </item>
+                    <item name="sidebar" xsi:type="array">
+                        <item name="children" xsi:type="array">
+                            <item name="summary" xsi:type="array">
+                                <item name="children" xsi:type="array">
+                                    <item name="discount" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount</item>
+                                        <item name="children" xsi:type="array">
+                                            <item name="errors" xsi:type="array">
+                                                <item name="sortOrder" xsi:type="string">0</item>
+                                                <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                <item name="displayArea" xsi:type="string">messages</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>	                    
+	                </item>
+	            </item>
+	        </item>
+	    </argument>
+	</arguments>
+	</referenceBlock>
+    </body>    	
 </page>
