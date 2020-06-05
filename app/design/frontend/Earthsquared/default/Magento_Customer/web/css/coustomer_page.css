@@ -101,7 +101,7 @@ a.backlink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: 
 @media screen and (max-width: 1260px) {	
 .section_phone {    right: 15px;}
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
 .customer-account-login .max-width-section {    display: grid;}
 .customer-account-login .max-width-section ul.footer-checkout {    order: 1;padding-bottom: 10px;
     border-bottom: 1px solid #4D4D4D;    margin-bottom: 10px;}
@@ -111,8 +111,6 @@ a.backlink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: 
 .customer-account-create .max-width-section ul.footer-checkout {    order: 1;padding-bottom: 10px;
     border-bottom: 1px solid #4D4D4D;    margin-bottom: 10px;}
 .customer-account-create .max-width-section span {    order: 2;}
-}
-@media screen and (max-width: 480px) {	
 
 .customer-account-login header.page-header {    background: #fff;}
 .customer-account-login a.search-toggle-icon1.mobileview {   display: none !important;}
@@ -234,3 +232,149 @@ span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    f
 /* end wishlist page */
 
 /* account information */
+
+.form-edit-account legend.legend span {    font-size: 13px !important;    text-transform: uppercase;
+    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
+    position: relative;    text-align: center;}
+fieldset.password {    clear: both;}
+.form-edit-account legend.legend {    padding: 0;    border: none;}
+.form-edit-account input {    height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-edit-account fieldset.fieldset.info {  margin-bottom: 30px;  width: 100%;}
+.form-edit-account .field {    width: 447px;    float: left;margin-bottom: 30px;}
+fieldset.password legend.legend {    margin-bottom: 0;    text-decoration: underline;}
+fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: both;}
+.form-edit-account .field.field-name-lastname {    width: 447px;    float: left;    margin-left: 20px;}
+.form-edit-account .field.field-name-firstname {    width: 447px;    float: left;}
+.form-edit-account fieldset.password .field.confirmation.password {    float: left; clear: none; margin-left: 20px;}
+.form-edit-account fieldset.password .field.new.password {    float: left;}
+.form-edit-account .primary {    width: 447px;}
+.form-edit-account .actions-toolbar button.action.save.primary { background: #4D4D4D !important;   height: 44px;width: 100%;    margin: 0 !important;}
+
+@media screen and (max-width: 1247px) {	
+.form-edit-account .field.field-name-firstname {    width: 100%;    float: left;}
+.form-edit-account fieldset.password .field.confirmation.password {    margin-left: 0;}
+.form-edit-account .primary {    width: 100%;}
+.form-edit-account .field.field-name-lastname {    width: 100%;    float: left;    margin-left: 0;}
+.form-edit-account .field {    width: 100%;}
+}
+@media screen and (max-width: 768px) {	
+.block.block-collapsible-nav {
+    top: 0;
+}
+}
+/* end account information */
+
+/* address book */
+.block.block-addresses-default .box {    width: 216px !important;    float: left !important;
+    margin-right: 20px;    background: #FAFAFA;    border: 1px solid #4D4D4D;    padding: 10px;}
+.block.block-addresses-default .box strong.box-title span {    background: #4D4D4D;    padding: 4px 6px;
+    color: #fff;    font-family: Futura Bk BT;    font-size: 11px !important;    letter-spacing: 1px;
+    font-weight: normal;}
+.block.block-addresses-default .box address {    font-family: Futura Bk BT;    font-size: 14px !important;
+    color: #757575;}
+.block.block-addresses-default .box a.action.edit span {    font-family: Futura Bk BT;   font-size: 14px !important;
+    color: #757575;}
+.block.block-addresses-default .box.new-address {    clear: none !important;    height: 191px;
+    text-align: center;padding-top: 60px;}
+.block.block-addresses-default .box.new-address span {    width: 100%;    float: left;}
+.block.block-addresses-default .box.new-address span.plus_sign {    color: #F87883;}
+.form-address-edit .actions-toolbar {    float: left;    width: 100%;}
+.form-address-edit input { height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-address-edit select { height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-address-edit .field {    width: 383px;    float: left;    margin-right: 20px;margin-bottom: 35px;}
+.form-address-edit .field.street {    width: 784px;    float: left;}
+.form-address-edit .field.street input#street_2 {    width: 383px;    float: right;}
+.form-address-edit .field.street input#street_1 {    width: 383px;    float: left;}
+.form-address-edit .field.company {    width: 784px;}
+.form-address-edit fieldset.fieldset {    width: 100%;    float: left;margin-bottom: 0;}
+.form-address-edit .field.choice.set.billing {    clear: both;}
+.form-address-edit .field.choice input {    height: auto;    float: left;}
+.form-address-edit  .field.choice span {    font-family: Futura Bk BT;  font-size: 14px !important;}
+.form-address-edit .primary {    width: 383px;}
+.form-address-edit button.action.primary span {    font-size: 12px !important;}
+.form-address-edit button.action.primary {    background: #4D4D4D !important;    width: 100%;    height: 44px;line-height: 15px !important;}
+.message.info {    float: left;    width: 100%;}
+.box.new-address {    cursor: pointer;}
+
+@media screen and (max-width: 1247px) {	
+.form-address-edit {    float: left;    width: 100%;}
+}
+
+@media screen and (max-width: 1200px) {	
+.form-address-edit .field.company {    width: 90%;}
+.form-address-edit .field.street {    width: 90%;    float: left;}
+.form-address-edit .field.street input#street_1 {    width: 100%;    float: left;    margin-bottom: 35px;}
+.form-address-edit .field.street input#street_2 {   width: 100%;    float: left;}
+.form-address-edit .field {    width: 90%;    float: left;    margin-right: 0;  margin-bottom: 35px !important;}
+}
+@media screen and (max-width: 900px) {	
+.block.block-addresses-default .box {    margin-bottom: 20px;}
+}
+@media screen and (max-width: 767px) {
+.form-address-edit .field {    width: 100%; margin-bottom: 20px !important; }
+.form-address-edit .field.company {    width: 100%;}
+.block.block-addresses-default .box {    width: 100%!important;    margin-right: 0;  margin-bottom: 20px !important;}
+.form-address-edit .field.street input#street_1 {    margin-bottom: 20px;}
+.form-address-edit .primary {    width: 100%;}
+.form-address-edit .field.street {    width: 100%;    float: left;}
+}
+/* end address book */
+
+/* forgot password */
+
+.customer-account-forgotpassword footer.page-footer {    display: none;}
+.customer-account-forgotpassword ul.footer-checkout {    display: block;    float: right;padding: 0;margin-bottom: 0;}
+.customer-account-forgotpassword ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
+.customer-account-forgotpassword ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
+.customer-account-forgotpassword  header .section3 {    display: none;}
+.customer-account-forgotpassword header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
+
+.customer-account-forgotpassword h1.page-title {    margin-bottom: 0;}
+.customer-account-forgotpassword .page-title-wrapper span.base {    font-size: 13px !important;    text-transform: uppercase;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;}
+.customer-account-forgotpassword main#maincontent {    max-width: 340px;    margin-top: 40px;}
+.customer-account-forgotpassword form {    min-width: 100% !important;}
+.customer-account-forgotpassword p a {    color: #4D4D4D;    font-family: Futura Bk BT Medium;}
+.customer-account-forgotpassword form input {    height: 60px;}
+.customer-account-forgotpassword .primary {    width: 100%;}
+.customer-account-forgotpassword fieldset.fieldset {    margin-bottom: 25px;}
+.customer-account-forgotpassword p {    float: left;    width: 100%;    margin-top: 20px;}
+.customer-account-forgotpassword .primary button {    margin: 0;    width: 100% !important;    height: 40px;
+    background: #4D4D4D !important;}
+.form.password.forget .fieldset:after {display:none;}
+
+@media screen and (max-width: 768px) {	
+.customer-account-forgotpassword .max-width-section {    display: grid;}
+.customer-account-forgotpassword .max-width-section ul.footer-checkout {    order: 1;padding-bottom: 10px;
+    border-bottom: 1px solid #4D4D4D;    margin-bottom: 10px;}
+.customer-account-forgotpassword .max-width-section span {    order: 2;}
+
+.customer-account-forgotpassword header.page-header {    background: #fff;}
+.customer-account-forgotpassword a.search-toggle-icon1.mobileview {   display: none !important;}
+.customer-account-forgotpassword .header.content .section1 {    display: block;}
+.customer-account-forgotpassword span.action.nav-toggle {    display: none;}
+.customer-account-forgotpassword .header.content .section1 {    display: block;    width: auto;
+    float: left;    position: absolute;    top: 20px;}	
+.customer-account-forgotpassword main#maincontent {    max-width: 100%;  padding-left: 15px;    margin: initial;    padding-right: 15px;}
+}
+/* end forgot password */
+
+/* My Dashboard page */
+
+.mydeshboard_main {    float: left;    width: 100%;}
+.mydeshboard_main ul {    padding: 0;}
+.mydeshboard_main li {    background: #FAFAFA;    width: calc(33.33% - 40px);    float: left;
+    padding: 45px 20px;    height: 230px;    text-align: center;    margin-right: 40px;
+    list-style-type: none;    margin-bottom: 40px !important;}
+.mydeshboard_main li h3 {    font-family: Futura Bk BT;    font-size: 15px;    color: #4D4D4D;}
+.mydeshboard_main li a {    float: left;    width: 100%;    font-family: Futura Bk BT;    font-size: 14px;
+    color: #4D4D4D;}
+.form-newsletter-manage input {    float: left;}
+
+@media screen and (max-width: 900px) {	
+.mydeshboard_main li {    width: calc(50% - 40px); margin-right: 20px;    margin-left: 20px;}
+}
+
+@media screen and (max-width: 420px) {	
+.mydeshboard_main li {    width: 100%; margin-right: 0;    margin-left: 0;}
+}
+/* end My Dashboard page */

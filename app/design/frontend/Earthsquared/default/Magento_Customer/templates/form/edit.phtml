@@ -26,9 +26,8 @@
         <?php endif ?>
 		
 		<div class="field email required" data-container="change-email">
-            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
             <div class="control">
-                <input type="email" name="email" id="email" autocomplete="email" data-input="change-email" value="<?= $block->escapeHtmlAttr($block->getCustomer()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" />
+                <input type="email" placeholder="Email*" name="email" id="email" autocomplete="email" data-input="change-email" value="<?= $block->escapeHtmlAttr($block->getCustomer()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" />
             </div>
         </div>
 		
@@ -48,15 +47,13 @@
         <legend class="legend"><span data-title="change-email-password"><?= $block->escapeHtml(__('change Password')) ?></span></legend><br>
         
         <div class="field password current required">
-            <label class="label" for="current-password"><span><?= $block->escapeHtml(__('Current Password')) ?></span></label>
             <div class="control">
-                <input type="password" class="input-text" name="current_password" id="current-password" data-input="current-password" autocomplete="off" />
+                <input type="password" placeholder="Current Password*" class="input-text" name="current_password" id="current-password" data-input="current-password" autocomplete="off" />
             </div>
         </div>
         <div class="field new password required" data-container="new-password">
-            <label class="label" for="password"><span><?= $block->escapeHtml(__('New Password')) ?></span></label>
             <div class="control">
-                <input type="password" class="input-text" name="password" id="password"
+                <input type="password" placeholder="New Password*" class="input-text" name="password" id="password"
                     data-password-min-length="<?= $block->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
                     data-password-min-character-sets="<?= $block->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
                     data-input="new-password"
@@ -73,15 +70,15 @@
             </div>
         </div>
         <div class="field confirmation password required" data-container="confirm-password">
-            <label class="label" for="password-confirmation"><span><?= $block->escapeHtml(__('Confirm New Password')) ?></span></label>
             <div class="control">
-                <input type="password" class="input-text" name="password_confirmation" id="password-confirmation"
+                <input type="password" placeholder="Repeat Password*" class="input-text" name="password_confirmation" id="password-confirmation"
                     data-input="confirm-password"
                     autocomplete="off" />
             </div>
         </div>
+		
     </fieldset>
-    <?= $block->getChildHtml('form_additional_info') ?>
+  <?php /*  <?= $block->getChildHtml('form_additional_info') ?> */?>
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>"><span><?= $block->escapeHtml(__('Save')) ?></span></button>
@@ -137,3 +134,25 @@
         }
     }
 </script>
+<style>
+input:focus::-webkit-input-placeholder {
+    font-size: .75em;
+    position: relative;
+    top: -15px; 
+    transition: 0.2s ease-out;
+}
+
+input::-webkit-input-placeholder {
+    transition: 0.2s ease-in;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    padding-top: 10px;
+    transition: 0.2s ease-in;
+}
+
+input[type="text"], input[type="password"] {
+    transition: 0.2s ease-in;
+}
+
+</style>
