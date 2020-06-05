@@ -18,12 +18,13 @@
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-             
+
                 <div class="field email required">                    
                     <div class="control">
                         <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> id="email" type="email" placeholder="Email address*" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
+
                 <div class="field password required">
                     
                     <div class="control">
@@ -45,4 +46,5 @@
         </form>
     </div>
 </div>
+
 

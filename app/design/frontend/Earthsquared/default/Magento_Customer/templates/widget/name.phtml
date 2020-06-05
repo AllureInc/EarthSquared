@@ -68,6 +68,8 @@ $suffix = $block->showSuffix();
                        class="input-text <?= $block->escapeHtmlAttr($block->getAttributeValidationClass('firstname')) ?>" <?= ($block->getAttributeValidationClass('firstname') == 'required-entry') ? ' data-validate="{required:true}"' : '' ?>>
             </div>
         </div>
+		
+		
     <?php if ($middle) : ?>
         <?php $isMiddlenameRequired = $block->isMiddlenameRequired(); ?>
         <div class="field field-name-middlename<?= $isMiddlenameRequired ? ' required' : '' ?>">
@@ -124,3 +126,4 @@ $suffix = $block->showSuffix();
     </div>
 </div>
 <?php endif; ?>
+
