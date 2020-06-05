@@ -194,11 +194,14 @@ define([
         showFormPopUp: function () {
             this.isFormPopUpVisible(true);
         },
-
+        
+        saveNewAddress1: function() {
+            console.log('helllo');
+        },
         /**
          * Save new shipping address
          */
-        saveNewAddress: function () {
+        saveNewAddress: function () {            
             var addressData,
                 newShippingAddress;
 

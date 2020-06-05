@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Set Billing address above the payment method plugin -->
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="move_billing_address_above_payment_method"
+                type="Earthsquared\BillingAddressBeforePayment\Plugin\Block\Checkout\LayoutProcessor"/>
+    </type>
+</config>

@@ -1,0 +1,32 @@
+/*-- success --*/
+.checkout-onepage-success .page-title-wrapper{
+	text-align: center;
+}
+.checkout-onepage-success .page-title-wrapper .page-title{
+	font-size: 28px;
+	color: #4D4D4D;
+	font-family: 'Futura Bk BT Medium';
+}
+.checkout-success p{
+    text-align: center;
+    margin-top: 14px;
+}
+.para-text-success{
+    max-width: 500px;
+    text-align: center;
+    margin: 14px auto 0px;
+}
+.checkout-success .actions-toolbar{
+    text-align: center;
+    margin-top: 30px;    
+}
+.checkout-success .actions-toolbar .primary{
+    float: none;
+}
+.checkout-success .actions-toolbar .primary a{
+    border: 1px solid #4D4D4D !important;
+    background: transparent !important;
+    color: #4d4d4d;
+    font-size: 15px;    
+    font-family: 'Futura Bk BT Medium' !important;
+}

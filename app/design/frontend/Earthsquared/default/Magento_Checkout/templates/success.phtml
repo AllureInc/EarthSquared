@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= $block->escapeHtml(__('Order %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p><?= $block->escapeHtml(__('Order <span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+            <div class="para-text-success"><?= $block->escapeHtml(__('The zeitgeist contends that some posit the shaded maria to be less than basest. The secures could be said to resemble.')) ?></div>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+        </div>
+    </div>
+</div>

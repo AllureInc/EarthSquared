@@ -20,13 +20,14 @@
 
         <!-- Address form pop up -->
         <!-- ko if: (!isFormInline) -->
-        <button type="button"
-                data-bind="click: showFormPopUp, visible: !isNewAddressAdded()"
-                class="action action-show-popup">
-            <span data-bind="i18n: 'Add new address'"></span></button>
-        <div id="opc-new-shipping-address" data-bind="visible: isFormPopUpVisible()">
-            <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->
-        </div>
+        <div class="add-new-address-form-inline" data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+            <button type="button" data-role="title" class="action-add-new-shipping">
+                <span data-bind="i18n: 'Add new address'" class="action action-toggle" role="heading" aria-level="2"></span>
+            </button>
+            <div id="opc-new-shipping-address" data-role="content">
+                <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->               
+            </div>
+        </div>        
         <!-- /ko -->
 
         <!-- ko foreach: getRegion('before-form') -->
