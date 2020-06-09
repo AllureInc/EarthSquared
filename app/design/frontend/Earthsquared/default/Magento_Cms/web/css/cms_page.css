@@ -46,24 +46,59 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 
 /* end contact us */
 
-/* terms page */
+/* terms page and privacy-policy */
 
-.cms-terms-conditions .breadcrumbs {    max-width: 810px;margin-top: 15px !important;
-    padding-left: 20px !important;margin-bottom: 0 !important;    padding-right: 20px !important;}
-.cms-terms-conditions main#maincontent {    max-width: 810px;}
-.cms-terms-conditions h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;margin-top: 0;  margin-bottom: 10px;}
-.cms-terms-conditions p {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
-    margin-top: 0;    margin-bottom: 10px;}
-.cms-terms-conditions address {    margin-bottom: 0;    font-size: 14px;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;}
+.cms-terms-conditions .breadcrumbs , .cms-privacy-policy .breadcrumbs  {    max-width: 810px;margin-top: 15px !important;    padding-left: 20px !important;margin-bottom: 0 !important;    padding-right: 20px !important;}
+.cms-terms-conditions main#maincontent , .cms-privacy-policy  main#maincontent  {    max-width: 810px;}
+.cms-terms-conditions p , .cms-privacy-policy  p  {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-top: 0;    margin-bottom: 10px;}
+.cms-terms-conditions h3 , .cms-privacy-policy  h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium; color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;margin-top: 0;  margin-bottom: 10px;}
+.cms-terms-conditions p strong , .cms-privacy-policy  p strong {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    margin-top: 0;    font-weight: normal;    margin-bottom: 10px;}
+.cms-terms-conditions address , .cms-privacy-policy  address {    margin-bottom: 0;    font-size: 14px;    font-family: Futura Bk BT Medium;   color: #4D4D4D;}
 	
 @media screen and (max-width: 767px) {
-.cms-terms-conditions .breadcrumbs {    margin: unset !important;    margin-top: 15px !important;}
-.cms-terms-conditions .page-title-wrapper .page-title {    margin-bottom: 40px;}	
+.cms-terms-conditions .breadcrumbs , .cms-privacy-policy .breadcrumbs  {    margin: unset !important;    margin-top: 15px !important;}
+.cms-terms-conditions .page-title-wrapper .page-title , .cms-privacy-policy .page-title-wrapper .page-title {    margin-bottom: 40px;}
+
 }
 
-/* end terms page */
+/* end terms page and privacy-policy*/
+
+/* fair-trade-information */
+
+.cms-fair-trade-information  main#maincontent {    padding: 0;    max-width: 100%;}
+.cms-fair-trade-information .breadcrumbs {    display: none;}
+.cms-fair-trade-information .page-title-wrapper {    display: none;}
+.cms-fair-trade-information img.mobile {    display: none;}
+.fair_traid_banner {    margin-bottom: 50px;}
+.fair_traid_main {    max-width: 810px;    margin: 0 auto;    padding-left: 20px;  padding-right: 20px;}
+.fair_traid_main p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 20px;}
+
+@media screen and (max-width: 767px) {
+.cms-fair-trade-information .breadcrumbs {  display: none !important;}
+.cms-fair-trade-information  .page-title {    margin-bottom: 40px;}	
+}
+
+@media screen and (max-width: 576px) {
+.cms-fair-trade-information img.desktop {    display: none;}
+.cms-fair-trade-information img.mobile {    display: block !IMPORTANT;width: 100%;}
+}
+
+/* end fair-trade-information */
+
+/* Trade Fairs and Stockists and Delivery Details*/
+
+.cms-trade-fairs  main#maincontent , .cms-stockists  main#maincontent , .cms-delivery-details  main#maincontent { max-width: 810px;  padding-left: 20px;  padding-right: 20px;  margin: 0 auto; }
+.cms-delivery-details h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;    letter-spacing: 0.04em;}
+.cms-trade-fairs .breadcrumbs, .cms-stockists  .breadcrumbs , .cms-delivery-details  .breadcrumbs {
+    max-width: 810px;    margin-top: 15px !important;    padding-left: 20px !important;    margin-bottom: 0 !important;    padding-right: 20px !important;}	
+	
+@media screen and (max-width: 767px) {
+.cms-trade-fairs .breadcrumbs, .cms-stockists  .breadcrumbs , .cms-delivery-details  .breadcrumbs  {    margin: unset !important;    margin-top: 15px !important;}
+.cms-trade-fairs  .page-title , .cms-stockists  .page-title , .cms-delivery-details  .page-title {    margin-bottom: 40px;}	
+}
+
+/* end Trade Fairs and Stockists and Delivery Details */
 
 /* about us */
 .cms-about-us main#maincontent {    padding: 0;    max-width: 100%;}
@@ -109,5 +144,31 @@ p.add_location {
 }
 /* end about us */
 
+/* page not found */
 
+.page_not_found {margin-top: 50px;}
+.page_not_found .contain {    width: 40%;    float: left;    text-align: center;}
+.page_not_found .left_image {    width: 30%;    float: left;    text-align: center;    padding: 5% 0;}
+.page_not_found .left_image img {    width: 60%;}
+.page_not_found .contain h2 {    font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
+    color: #4D4D4D;    font-family: 'Tiempos Headline Medium';}
+.page_not_found .contain p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;}
+.page_not_found .contain span.border {    border-top: 1px solid #ccc;    display: -webkit-box;    margin-bottom: 12px !important;    max-width: 260px;    margin: 0 auto;    margin-top: 30px;}
+.page_not_found .contain ul {    padding: 0;margin-top: 18px;    text-align: center;}
+.page_not_found .contain ul li {    display: inline-block;margin-right: 20px;}
+.page_not_found .contain ul li a {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
+    text-decoration: underline;}
+	
+@media screen and (max-width: 1024px) {
+.page_not_found .left_image img {    width: auto;}
+.page_not_found .contain span.border {    margin-bottom: 0 !important;    margin-top: 20px;}
+}
+
+@media screen and (max-width: 576px) {
+.page_not_found {    margin-top: 0px;    float: left;    width: 100%;}
+.page_not_found .left_image {    display: none;}
+.page_not_found .contain {    width: 100%;}
+}
+
+/* end */
 

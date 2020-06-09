@@ -15,7 +15,6 @@
         <referenceBlock name="customer_account_dashboard_address" remove="true"/>
 		<referenceBlock name="customer_account_dashboard_top" remove="true"/>
 
-		
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
                 <argument translate="true" name="title" xsi:type="string">My Dashboard</argument>
