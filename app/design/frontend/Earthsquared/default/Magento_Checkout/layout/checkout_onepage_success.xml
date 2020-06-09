@@ -9,4 +9,11 @@
     <head>
         <css src="Magento_Checkout::css/checkout_success.css" />
     </head>
+    <body>
+		<referenceBlock name="page.main.title">            
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Order Successfully placed</argument>
+            </action>
+        </referenceBlock>    	
+    </body>
 </page>

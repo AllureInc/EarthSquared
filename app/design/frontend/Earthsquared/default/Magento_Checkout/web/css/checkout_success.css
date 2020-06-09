@@ -6,6 +6,20 @@
 	font-size: 28px;
 	color: #4D4D4D;
 	font-family: 'Futura Bk BT Medium';
+    margin-bottom: 0;
+}
+.checkout-onepage-success .page-title-wrapper:before{
+    content: '';
+    width: 70px;
+    height: 70px;
+    background: #7CB342 url(../images/tick.png) no-repeat;
+    display: inline-block;
+    border-radius: 50%;
+    /* clear: right; */
+    position: absolute;
+    top: -79px;
+    left: 47%;
+    background-position: center;    
 }
 .checkout-success p{
     text-align: center;
@@ -27,6 +41,26 @@
     border: 1px solid #4D4D4D !important;
     background: transparent !important;
     color: #4d4d4d;
-    font-size: 15px;    
+    font-size: 15px;
     font-family: 'Futura Bk BT Medium' !important;
+    width: 194px;
+    margin: 6px 0px;
+    height: 40px;
+    border-radius: 0;
+}
+.checkout-onepage-success .action.print{
+    display: none !important;
+}
+.checkout-onepage-success #maincontent{
+    margin-top: 194px;
+    position: relative;
+}
+.checkout-success > p:first-child,.checkout-success a.order-number{
+    color: #4d4d4d;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.checkout-success a.order-number strong{
+    font-weight: normal;
 }
