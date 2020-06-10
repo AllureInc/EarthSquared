@@ -2,6 +2,10 @@
 .opc-progress-bar-item._complete:before,.opc-progress-bar-item._active:before,.opc-progress-bar-item._active>span:before,.opc-progress-bar-item._active>span:after,.opc-progress-bar-item:last-child:before,.opc-progress-bar-item>span:before, .opc-progress-bar-item>span:after{
 	display: none !important;
 }
+.checkout-shipping-method{
+    display: flex;
+    flex-direction: column;    
+}
 #checkout .opc-progress-bar
 {
 	margin: 86px 0 50px;
@@ -46,6 +50,16 @@
     font-family: 'Futura Bk BT Medium';	
     border-bottom: 0;
     margin-bottom: 0px;
+    order:1;
+}
+.checkout-shipping-method .order-attributes{
+    order:3;
+}
+#checkout-step-shipping_method{
+    order:2;
+}
+.checkout-shipping-method .order-attributes .label{
+    display: none;
 }
 #checkout .opc-wrapper .shipping-address-item.selected-item,#checkout .opc-wrapper .shipping-address-item.not-selected-item{
 	border-color: #4D4D4D;
@@ -338,7 +352,7 @@
 	    padding: 2px 15px 0 0;
 	    margin: 0 -8px 0 0;
 }
-#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"], #checkout select
+#checkout textarea[type="textarea"],#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"], #checkout select
 {
     height: 60px;
     font-size: 12px;
@@ -349,7 +363,9 @@
     opacity: 1;
     padding: 0px 22px;
 }
-
+#checkout textarea[type="textarea"]{
+    height:200px;
+}
 #checkout input[type="text"]::-webkit-input-placeholder{ 
   font-size: 12px;    
   color: #9E9E9E;
