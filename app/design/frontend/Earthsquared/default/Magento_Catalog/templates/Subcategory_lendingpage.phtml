@@ -1,0 +1,63 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$category_dec = $category->getDescription();
+$subcats = $category->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+if(count($subcats) > 0)
+    {
+
+?>
+<div class="cat_dec"><?php echo $category_dec; ?></div>
+<div class="subcategory_alldata">
+<ul>
+    <?php
+    foreach ($subcats as $subcat) {
+        if ($subcat->getIsActive()) {
+            $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat->getId());
+            
+            //~ echo "<pre>";
+            //~ print_r($_category->getData());
+            //~ exit;
+
+            $_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+            $subcaturl = $subcat->getUrl();
+
+            $_imgHtml = '';
+            
+            $_imgHtml_placeholder = $this->getUrl('pub/media').'catalog/category/placeholder.png';
+            $_imgHtml1 = '<img src="' . $_imgHtml_placeholder . '" />';
+            
+           if ($_imgUrl = $_category->getThumbnail()) {
+				
+				$image = $_category->getThumbnail();
+				$_imgUrl = $this->getUrl('pub/media').'catalog/category/'.$image;
+                $_imgHtml = '<img src="' . $_imgUrl . '" />';
+                
+                $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'thumbnail');
+                /* @escapeNotVerified */
+                echo '<li><a href="' . $subcaturl . '" class="block-promo" title="' . $subcat->getName() . '">' . $_imgHtml . '<span class="contentname"><span>' . $subcat->getName() . '</span></span></a></li>';
+            }
+			else {
+				
+				echo '<li><a href="' . $subcaturl . '" class="block-promo_place" title="' . $subcat->getName() . '">'.$_imgHtml1.'<span class="contentname"><span>' . $subcat->getName() . '</span></span></a></li>';
+				
+			}
+        }
+    } ?>
+</ul>
+
+</div>
+
+<script>
+require(['jquery', 'jquery/ui'], function($){
+  jQuery(document).ready( function() {
+  setTimeout(function(){
+    jQuery('body').addClass("fullwidthpage");
+  }, 3000);
+  });
+});
+</script>
+
+<?php } ?>

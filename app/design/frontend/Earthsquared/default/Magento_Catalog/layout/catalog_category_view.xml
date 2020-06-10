@@ -9,7 +9,8 @@
 <body>
 	<referenceBlock name="category.image" remove="true" />
 	<referenceBlock name="category.description" remove="true" />
-	<referenceBlock name="category.cms" remove="true" />		
+	<!-- <referenceBlock name="category.cms" remove="true" /> -->
+	<move element="category.cms" destination="content" after="breadcrumbs" />
 	<referenceBlock name="page.main.title" remove="true" />
 	<move element="breadcrumbs" destination="content" before="-" />
 	<block class="Magento\Catalog\Block\Category\View" name="category.title" template="Magento_Catalog::category/category-title.phtml" />
