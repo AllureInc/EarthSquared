@@ -39,8 +39,17 @@
     top: -5px;
     right: 18px;
 }
+#checkout .authentication-wrapper{
+    display: none;
+}
 .opc-progress-bar li:last-child.opc-progress-bar-item._active:after{
     display: none;
+}
+.form-login .actions-toolbar > .secondary:last-child{
+    margin-top: 0px;
+}
+.form-login .actions-toolbar > .secondary .action.remind{
+    color:#4d4d4d;
 }
 #checkout .opc-wrapper .step-title{
 	color: #4d4d4d;
@@ -352,7 +361,7 @@
 	    padding: 2px 15px 0 0;
 	    margin: 0 -8px 0 0;
 }
-#checkout textarea[type="textarea"],#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"], #checkout select
+#checkout textarea[name="additional_comments"],#checkout input[type="text"], #checkout input[type="password"], #checkout input[type="tel"], #checkout input[type="number"], #checkout input[type="datetime"], #checkout input[type="email"], #checkout select
 {
     height: 60px;
     font-size: 12px;
@@ -363,8 +372,9 @@
     opacity: 1;
     padding: 0px 22px;
 }
-#checkout textarea[type="textarea"]{
+#checkout textarea[name="additional_comments"]{
     height:200px;
+    padding: 10px 22px;
 }
 #checkout input[type="text"]::-webkit-input-placeholder{ 
   font-size: 12px;    
@@ -620,4 +630,54 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
       height:16px;    
       top: 26px;    
       left: 18px;   
+}
+.order-attributes-form .fields[name="amastyShippingMethodAttributes.additional_comments"]{
+    height:120px;
+}
+#co-transparent-form-braintree .field .label{
+    text-align: left;
+    padding: 0;    
+}
+#co-transparent-form-braintree input[type=checkbox]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #4D4D4D;    
+    cursor: pointer;
+    background: #fff;
+    float: left;            
+    width: 18px;
+    height: 18px; 
+    margin: 2px 10px 10px 0px; 
+    text-align: center;
+}
+#co-transparent-form-braintree input[type=checkbox]:checked{    
+    background: #4d4d4d;    
+}
+#co-transparent-form-braintree input[type=checkbox]:checked:after{
+    content:'\f00c';
+    font-family: 'fontAwesome';
+    color:#fff;
+    font-size: 12px;
+    position: relative;
+    top: -1px;    
+}
+.checkout-billing-address .billing-address-details .action-edit-address{
+    display: none !important; 
+}
+.payment-method-content .actions-toolbar{
+    display: none;
+}
+.actions-toolbar-trigger #place-order-trigger{
+    width: 100%;
+    margin: -26px 0px 20px;
+    font-family: 'Futura Bk BT Medium' !important;
+    background: #4d4d4d !important;
+    border-radius: 0;
+    height: 50px;
+    font-size: 15px;    
+}
+.actions-toolbar-trigger{padding-left: 20px;}
+.checkout-payment-method .payment-method .label .action-help,.checkout-payment-method .payment-method .label .titlepaypal-express{
+    display: none;
 }

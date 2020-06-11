@@ -8,8 +8,24 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">    
     	<head>
     		<css src="Magento_Checkout::css/checkout_steps.css" />
+			<css src="Magento_Customer::css/coustomer_page.css"/>
     	</head>    
     <body>
+	
+		<referenceContainer name="page.wrapper">
+			<container name="checkout.header.container" as="checkout_header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+				<container name="checkout.header.wrapper" label="Checkout Page Header" as="checkout_header_wrapper" htmlTag="div" htmlClass="header content">
+				
+					<block class="Magento\Framework\View\Element\Template" name="header_backlink" template="Magento_Theme::html/header/backlink.phtml" before="logo" />	
+			
+					<block class="Magento\Framework\View\Element\Template" name="header_phoneright" template="Magento_Theme::html/header/phoneright.phtml" after="logo" />	
+			
+				</container>
+			</container>			
+		</referenceContainer>
+	
+		
+		
     	<referenceBlock name="checkout.root">
     	<arguments>
     	    <argument name="jsLayout" xsi:type="array">
@@ -64,8 +80,12 @@
                                                     <item name="displayArea" xsi:type="string">messages</item>
                                                 </item>
                                             </item>
-                                        </item>
+                                        </item>                                        
                                     </item>
+                                    <item name="component" xsi:type="string">Earthsquared_MovePlaceOrder/js/view/summary</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Earthsquared_MovePlaceOrder/summary</item>
+                                    </item>    
                                 </item>
                             </item>
                         </item>	                    

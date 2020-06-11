@@ -195,8 +195,8 @@ define([
             this.isFormPopUpVisible(true);
         },
         
-        saveNewAddress1: function() {
-            console.log('helllo');
+        closeNewAddress: function() {
+            $('#opc-new-shipping-address').hide();
         },
         /**
          * Save new shipping address
@@ -219,7 +219,9 @@ define([
                 checkoutData.setSelectedShippingAddress(newShippingAddress.getKey());
                 checkoutData.setNewCustomerShippingAddress($.extend(true, {}, addressData));
                 this.getPopUp().closeModal();
+                $('#opc-new-shipping-address').hide();
                 this.isNewAddressAdded(true);
+                $('.action-add-new-shipping').hide();
             }
         },
 

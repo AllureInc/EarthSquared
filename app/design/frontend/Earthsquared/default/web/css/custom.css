@@ -2354,6 +2354,7 @@ body.cms-index-index .page-main{
     font-size: 32px;
     color: #4d4d4d;
     margin-bottom: 34px;
+    padding: 0 20px;
 }
 .cart-summary .cart-totals{
 	border: 1px solid #ccc;
@@ -2365,12 +2366,18 @@ body.cms-index-index .page-main{
 #block-shipping{
 	display:none !important;
 }
+.checkout-cart-index .cart-summary{
+	background: transparent !important;
+}
 .cart-totals .grand .mark, .opc-block-summary .table-totals .grand .mark,.cart-totals tbody .mark, .cart-totals tfoot .mark,.cart-totals tbody .amount, .cart-totals tfoot .amount, .opc-block-summary .table-totals tbody .amount, .opc-block-summary .table-totals tfoot .amount{
 	text-transform: uppercase !important;
     font-size: 12px !important;
     letter-spacing: 0.04em;
     border-top: 0 !important;
     padding: 3px 0px 18px;
+}
+.cart-totals tbody .mark,.cart-totals tbody .amount, .cart-totals tfoot .amount{
+	padding: 18px 0px 18px;
 }
 .cart-totals .grand strong, .opc-block-summary .table-totals .grand strong{
 	font-weight: normal !important;
@@ -3494,3 +3501,26 @@ body.cms-index-index .page-main{
 }
 
 /* end collection page */
+
+/* remove minicart product popup */
+.modal-popup .modal-header {
+    border: none;
+}
+.modal-popup .modal-footer {
+    border: none;
+}
+.modal-content {
+    float: left;
+    width: 100%;
+    font-family: Futura Bk BT;
+    font-size: 16px;
+    color: #4D4D4D;
+}
+.modal-popup .modal-footer button {
+    background: #757575;
+    border-color: #757575;border-radius: unset;
+    box-shadow: none;
+    color: #fff;
+}
+
+/* end */

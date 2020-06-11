@@ -174,11 +174,11 @@ if($helper->isCustomerLoggedIn()){
                                 </div>
                                 <div data-role="add-to-links" class="action-button"<?= strpos($pos, $viewMode . '-secondary') ? $block->escapeHtmlAttr($position) : '' ?>> 
                                     
-                                        <?php if($helper->isCustomerLoggedIn()) { 
+                                        <?php  if($helper->isCustomerLoggedIn()) { 
                                               $productId = $_product->getId();
                                               $custid = $helper->getCustomerIdLoggedIn();
                                           ?>                             
-                                                <?php if(in_array($productId,$productIds)) { ?>
+                                                <?php if(in_array($productId,array($productIds))) { ?>
                                                     <a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist">
                                                         <span><?= $block->escapeHtmlAttr(__('Add to Wishlist')) ?></span> 
                                                         <img src="<?php echo $this->getUrl('pub/media/icons/').'heart-fill.png' ?>" />
@@ -188,11 +188,11 @@ if($helper->isCustomerLoggedIn()){
                                                     <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
                                                 <?php endif; ?>                                                                 
                                                <?php } ?>
-                                        <?php } else { ?>
+                                        <?php } else {  ?>
                                             <?php if ($addToBlock = $block->getChildBlock('addto')) :?>
                                                 <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
                                             <?php endif; ?>        
-                                        <?php } ?>
+                                        <?php  } ?>
                                 
                                 </div>                              
                             </div>                                                

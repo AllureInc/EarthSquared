@@ -8,13 +8,16 @@ class Guest extends \Magento\Framework\App\Action\Action
     protected $_pageFactory;
     protected $_urlInterface;
     protected $result;
+    protected $_storeManager;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\UrlInterface $urlInterface,
         ResultFactory $result,
         \Magento\Framework\View\Result\PageFactory $pageFactory) {
         $this->_pageFactory = $pageFactory;
+        $this->_storeManager = $storeManager;
         $this->_urlInterface = $urlInterface;
         $this->resultRedirect = $result;
         return parent::__construct($context);
@@ -40,7 +43,8 @@ class Guest extends \Magento\Framework\App\Action\Action
         //print_r($quote->getCustomerEmail());
         // exit;
         $resultRedirect = $this->resultRedirect->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl('http://staging.earthsquared.com/checkout/?value=guest');
+        //$resultRedirect->setUrl('http://staging.earthsquared.com/checkout/?value=guest');
+        $resultRedirect->setUrl($this->_storeManager->getStore()->getUrl('checkout') . '?value=guest');
         return $resultRedirect;
     }
 }
