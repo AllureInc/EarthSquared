@@ -18,6 +18,7 @@
     <fieldset class="fieldset">
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
+        <?= $block->getBlockHtml('formkey') ?>
         <?= $block->getNameBlockHtml() ?>
 
         <?php if ($_company->isEnabled()) : ?>

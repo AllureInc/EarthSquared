@@ -80,8 +80,12 @@
                                                     <item name="displayArea" xsi:type="string">messages</item>
                                                 </item>
                                             </item>
-                                        </item>
+                                        </item>                                        
                                     </item>
+                                    <item name="component" xsi:type="string">Earthsquared_MovePlaceOrder/js/view/summary</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Earthsquared_MovePlaceOrder/summary</item>
+                                    </item>    
                                 </item>
                             </item>
                         </item>	                    

@@ -504,6 +504,15 @@ a:hover{
 .checkout-cart-index .actions-toolbar .action-towishlist{
 	display: none !important;
 }
+.checkout-cart-index .actions-toolbar .action-towishlist.trade{
+	display: inline-block !important;
+}
+.checkout-cart-index .actions-toolbar .action-towishlist.trade span{
+	color:#4d4d4d !important;
+}
+.checkout-cart-index .actions-toolbar .action-towishlist.trade img{
+	width:16px;
+}
 #cart-totals .totals.shipping .label{
 	padding: 0;
     font-size: 12px;
@@ -2308,6 +2317,7 @@ body.cms-index-index .page-main{
 }
 .cart.table-wrapper .actions-toolbar>.action-edit, .cart.table-wrapper .actions-toolbar>.action-delete{	
 	right: 0;
+	position: relative;
 }
 .cart.table-wrapper .actions-toolbar>.action-edit>span, .cart.table-wrapper .actions-toolbar>.action-delete>span{
 	height:auto !important;
@@ -2319,7 +2329,7 @@ body.cms-index-index .page-main{
 .cart.table-wrapper #shopping-cart-table .actions-toolbar{
 	position: absolute;
     bottom: 30px;
-    left: 255px;
+    left: 173px;
 }
 .cart.table-wrapper .action.action-edit{
 	    margin-right: 70px;
@@ -2469,6 +2479,27 @@ body.cms-index-index .page-main{
 .active-clear-filter{
 	display:none;
 }
+.qty-inc,.qty-dec{
+    color: #4d4d4d !important;
+    font-size: 15px;
+    font-family: 'Futura Bk BT Medium';	
+    width:30px;
+}
+.cart-container .control.qty.trade{
+	border: 1px solid #EEE;
+    width: 90px;    
+    float: right;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.cart.table-wrapper .col.qty .input-text.trade{
+	width:30px;
+	border-width: 0px 1px 0px 1px;	
+	border-color: #EEE;
+
+}
 @media screen and (max-width: 1230px)
 {
 	header .section1{width:30%;}
@@ -2542,10 +2573,22 @@ body.cms-index-index .page-main{
     	font-size: 12px;
     	padding: 0 5px;
 	}
+	.page-products .sidebar.sidebar-main{
+		    width: 18.83333%;
+	}
+	.page-products .columns .column.main{
+		    width: 80.5%;
+	}
+	.catalog-category-view.page-products .products-grid .product-item{
+		margin: 0 1.5% !important;
+	}
 }
 
 @media screen and (max-width: 767px)
 {
+	.navigation.sw-megamenu > ul{
+		    padding: 0 0px;
+	}
 	.search-toggle-icon img, .search-toggle-icon1 img{
 		    width: 15.56px;
 	}
@@ -3202,7 +3245,7 @@ body.cms-index-index .page-main{
 		top: 50%;
 	}
 	.product-items .product-item-details{
-		height:110px;
+		height:94px;
 	}
 	.product-item-info .product-detail-action .action.towishlist{
 		background:transparent;

@@ -9,14 +9,19 @@
     <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;">
       <img src="<?php echo $this->getUrl('pub/media/icons').'bookmark.png' ?>"  alt="Saved For Later" />
       <?php if($customerSession->isLoggedIn()){ ?>
-      <span data-bind="text: wishlist().items.length" class="counter qty"></span>
+      <!-- ko if: wishlist().counter -->
+            <span data-bind="text: wishlist().counter" class="counter qty"></span>
+      <!-- /ko -->
     <?php } ?>
     </a>
   </li>
   <?php } else { ?>
 	 <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
     <?php if($customerSession->isLoggedIn()){ ?>
-      <span data-bind="text: wishlist().items.length" class="counter qty"></span>
+      <!-- ko if: wishlist().counter -->
+            <span data-bind="text: wishlist().counter" class="counter qty"></span>
+      <!-- /ko -->
+      <!--<span data-bind="text: wishlist().items.length" class="counter qty"></span>-->
     <?php } ?></a>
   </li>
   <?php } ?>  

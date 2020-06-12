@@ -6,6 +6,9 @@
 
 /** @var \Magento\Customer\Block\Form\Login $block */
 ?>
+<?php if(isset($_REQUEST['checkoutlogin'])){
+    echo $this->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("Magento_Customer::form/checkoutloginform.phtml")->toHtml();
+} else { ?>
 <div class="block block-customer-login">
     <div class="block-title">
         <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Sign in using Email')) ?></strong>
@@ -46,7 +49,7 @@
         </form>
     </div>
 </div>
-
+<?php } ?>
 <style>
 input:focus::-webkit-input-placeholder {
     font-size: .75em;
