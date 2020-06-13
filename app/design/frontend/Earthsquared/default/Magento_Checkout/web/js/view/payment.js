@@ -51,7 +51,7 @@ define([
             stepNavigator.registerStep(
                 'payment',
                 null,
-                $t('Payments'),
+                $t('Payment'),
                 this.isVisible,
                 _.bind(this.navigate, this),
                 this.sortOrder

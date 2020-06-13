@@ -148,7 +148,7 @@
     cursor: pointer;
     color: #fff;
     position: absolute;
-}
+} 
 #checkout .opc-wrapper .step-content{
     position: relative;	
     margin-bottom: 10px;
@@ -165,6 +165,9 @@
 	font-size: 11px;
 	line-height: 140%;
 	margin-top: 35px;
+}
+.billing-address-details .billingaddress{
+    margin-top: 20px;
 }
 .table-checkout-shipping-method .listship-methods .box-method
 {
@@ -240,7 +243,7 @@
 }
 #shipping-method-buttons-container .primary{
 	float: left;
-	background: #4D4D4D !important;
+	background: #4D4D4D !important;    
 }
 #shipping-method-buttons-container .primary span{
 	font-weight: normal;
@@ -554,13 +557,13 @@
     height: 18px; 
     margin: 2px 10px 10px 0px;
 }
-.payment-method input[type="radio"]:checked{    
+.payment-method input[type="radio"]:checked,.payment-method._active input[type="radio"]{    
     border: 5px solid #4D4D4D;
     border-radius: 50px;
     cursor: pointer;
     background: #fff;        
 }
-#checkout-payment-method-load > div > div > div.payment-method:after{
+#checkout-payment-method-load .payment-group .payment-method:after{
     content:'OR';
     font-size:14px;
     color:#4d4d4d;
@@ -570,7 +573,7 @@
 #checkout-payment-method-load .payment-method{
         margin: 48px 0px 55px;
 }
-#checkout-payment-method-load > div > div > div.payment-method:last-child:after{
+#checkout-payment-method-load .payment-methods .payment-group:last-child .payment-method:last-child:after{
     display: none;
 }   
 .checkout-payment-method .payment-method+.payment-method .payment-method-title{
@@ -591,6 +594,19 @@
     width: 216px;
     line-height: 140%;
     font-size: 11px;    
+    position: relative;
+}
+.checkout-payment-method .checkout-billing-address .billing-address-details:after{
+    content: '';
+    width: 18px;
+    height: 18px;
+    left: 19px;
+    top: 22px;
+    border: 5px solid #4D4D4D;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #fff;
+    position: absolute;
 }
 .payment-method input[type="radio"]:focus{
     box-shadow: none;
@@ -684,6 +700,11 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
 .checkout-payment-method .payment-method .label .action-help,.checkout-payment-method .payment-method .label .titlepaypal-express{
     display: none;
 }
+@media only screen and (max-width: 1100px){
+    .modal-custom .items-in-cart .minicart-items-wrapper .product-item-details{
+            width: 50%;
+     }
+}
 @media only screen and (max-width: 767px){
     #checkout .opc-progress-bar{
         margin: 6px 0 45px;
@@ -698,6 +719,9 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     #checkout .opc-wrapper .step-content{
         margin-top: 9px;
     } 
+    #checkout .opc-wrapper #checkout-step-payment.step-content,.checkout-payment-method .checkout-billing-address{
+        margin-top: 0px;
+    }
     #checkout .opc-wrapper .shipping-address-item.selected-item:after{
         width: 16px;
         height: 16px;
@@ -706,7 +730,7 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     }    
     #checkout .opc-wrapper .shipping-address-item.selected-item, #checkout .opc-wrapper .shipping-address-item.not-selected-item{
         width: 161px;
-        margin: 8px 20px 16px 0px;
+        margin: 8px 23px 16px 0px;
         padding: 16px 0px 20px 35px;
     }
     #checkout .opc-wrapper .shipping-address-item.selected-item:last-child, #checkout .opc-wrapper .shipping-address-item.not-selected-item:last-child{
@@ -732,8 +756,7 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     }
     .table-checkout-shipping-method .listship-methods .box-method{
             width: 100%;
-            margin-left: 0;
-            margin-right: 0;
+            margin: 0px 0px 20px 0px;
     }
     #shipping-method-buttons-container .primary{
             margin: 0;            
@@ -761,6 +784,7 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     #checkout .opc-block-summary>.title{
         font-size: 20px;
         font-family: 'Futura Bk BT Medium';
+        margin-bottom: 15px;
     }   
     #checkout .minicart-items-wrapper .product-item-details{
         padding: 0 35px 0px 10px;
@@ -789,12 +813,69 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     #shipping-new-address-form .field.choice{
         margin: 20px 0px 23px 0px;
     }
-    #shipping-save-in-address-book:checked, #shipping-save-in-address-book, #billing-save-in-address-book-shared{
+    #shipping-save-in-address-book:checked, #shipping-save-in-address-book{
         top: 0;
     }
     #checkout #shipping-new-address-form #shipping-save-in-address-book + .label{
         display: inline-block !important;
     }
+    #checkout .opc-wrapper .shipping-address-item.not-selected-item .action-select-shipping-item:after{
+        left: 10px;
+        top: 15px;
+    }
+    #checkout .opc-block-summary .table-totals tr td{
+        letter-spacing: 0.04em;
+    }
+    #checkout .opc-block-summary .product-item .price{
+        font-size: 14px;
+        letter-spacing: 0.04em;
+    }
+    .opc-progress-bar .opc-progress-bar-item._active:after, .opc-progress-bar-item._complete:after{
+        right: 16px;
+    }
+    .checkout-payment-method .billing-address-same-as-shipping-block{
+            margin: -4px 0 10px;
+    }
+    .checkout-payment-method .checkout-billing-address .billing-address-details{
+            width: 161px;
+            margin: 15px 40px 40px 0px;
+            padding: 16px 0px 20px 34px;
+    }
+    .checkout-payment-method .checkout-billing-address .billing-address-details:after{
+        left: 11px;
+        top: 16px;
+    }
+    #checkout .opc-wrapper .step-title{
+        padding:0;
+    }
+    #checkout-payment-method-load .payment-group .payment-method:after{
+        left: 15px;
+    }    
+    .checkout-payment-method .payment-method-title input[value="paypal_express"] + .label img.payment-icon{
+        width: 300px;
+    }
+    .billing-address-details .billingaddress{
+        margin-top: 20px;
+    }
+    .actions-toolbar-trigger{
+        padding-left: 0;
+    }
+    .actions-toolbar-trigger #place-order-trigger{
+        height: 60px;
+    }
+    .billing-address-form .field.choice{
+        margin: 0;
+    }
+    #billing-save-in-address-book-shared{
+        top:5px;
+    }
+    .billing-address-form .field.choice .label{
+        display: inline-block !important;
+    }
+    .search-toggle-icon1,header .action.nav-toggle{
+        display: none;
+    }
+
 }
 @media only screen and (max-width: 639px){
     .opc-wrapper .methods-shipping{

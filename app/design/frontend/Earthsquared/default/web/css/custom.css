@@ -1,221 +1,3 @@
-/*-- fonts css --*/
-/* @font-face {
-font-family: 'Tiempos Headline Regular';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Regular Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-RegularItalic.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Light';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Light.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Light Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-LightItalic.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Medium';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Medium Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-MediumItalic.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Semibold';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Semibold Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-SemiboldItalic.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Bold';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Bold Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-BoldItalic.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Black';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-Black.woff') format('woff');
-}
-
-
-@font-face {
-font-family: 'Tiempos Headline Black Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/tiempos-headline/TiemposHeadline-BlackItalic.woff') format('woff');
-}
-
-@font-face {
-font-family: 'Futura Bk BT';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/futura/FutuBk.woff') format('woff');
-}
-
-@font-face {
-font-family: 'Futura Bk BT Italic';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/futura/FutuBkIt.woff') format('woff');
-}
-@font-face {
-font-family: 'Futura Bk BT Medium';
-font-style: normal;
-font-weight: normal;
-src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
-}
-*/
- @font-face {
-    font-family: 'Futura Bk BT Medium';
-    src: url('../fonts/futura/FuturaBT-Medium.eot');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Futura Bk BT Medium';
-    src:url('../fonts/futura/FuturaBT-Medium.ttf') format('truetype'),
-        url('../fonts/futura/FuturaBT-Medium.svg#FuturaBT-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Futura Bk BT italic';
-    src: url('../fonts/futura/FuturaBT-BookItalic.eot');
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'Futura Bk BT italic';
-    src:url('../fonts/futura/FuturaBT-BookItalic.ttf') format('truetype'),
-        url('../fonts/futura/FuturaBT-BookItalic.svg#FuturaBT-BookItalic') format('svg');
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'Tiempos Headline Regular';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.eot');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Tiempos Headline Regular';
-    src:url('../fonts/tiempos-headline/TiemposHeadline-Regular.ttf') format('truetype'),
-        url('../fonts/tiempos-headline/TiemposHeadline-Regular.svg#TiemposHeadline-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-
-@font-face {
-    font-family: 'Tiempos Headline Semibold';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.eot');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Tiempos Headline Semibold';
-    src:url('../fonts/tiempos-headline/TiemposHeadline-Semibold.ttf') format('truetype'),
-        url('../fonts/tiempos-headline/TiemposHeadline-Semibold.svg#TiemposHeadline-Semibold') format('svg');
-    font-weight: 600;
-    font-style: normal;
-}
-
-
-@font-face {
-    font-family: 'Futura Bk BT';
-    src: url('../fonts/futura/FuturaBT-Book.eot');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Futura Bk BT';
-    src: url('../fonts/futura/FuturaBT-Book.ttf') format('truetype'),
-        url('../fonts/futura/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Tiempos Headline Bold';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.eot');
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Tiempos Headline Bold';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.ttf') format('truetype'),
-        url('../fonts/tiempos-headline/TiemposHeadline-Bold.svg#TiemposHeadline-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Tiempos Headline Medium';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.eot');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Tiempos Headline Medium';
-    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.ttf') format('truetype'),
-        url('../fonts/tiempos-headline/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
-} 
-
-body{
-	font-family: 'Futura Bk BT' !important;
-}
 /*-- button a tag css --*/
 .action.primary,a,.box,a:after{
 	-webkit-transition: all 1s ease;
@@ -263,7 +45,7 @@ a:hover{
 	.sw-megamenu.navigation li.level0.fullwidth .submenu a{
 		text-align: left;		
 		color:#4d4d4d;
-		font-weight: normal;
+		font-weight: normal !important;
 	}
 	header .panel.header{
 		display:none;
@@ -408,8 +190,9 @@ a:hover{
 	    top: -6px;
 	    border-radius: 50px;
 	    font-size: 10px;
-	    color: #fff;
+	    color: #4d4d4d;
 	    text-align: center;		
+	    font-family: Futura Bk BT Medium;
 	}
 	.topwishlistitems{
 	    position: absolute;
@@ -559,7 +342,7 @@ header .minicart-wrapper .product.options.list .label{
 .sections.nav-sections{background:#fff;}
 .navigation.sw-megamenu .level0 a{
 	font-style: normal;
-    font-weight: 500;
+    font-weight: normal;
     font-size: 14px;
     letter-spacing: 0.5px;
     padding: 0 30px;
@@ -620,6 +403,8 @@ header .minicart-wrapper .action.showcart .counter.qty .counter-number{
     	top: 0;
     	border-radius: 50px;
     	font-size: 10px;
+    	color: #4d4d4d;
+    	font-family: Futura Bk BT Medium;
 }
 header .minicart-wrapper .action.showcart .counter.qty
 {
@@ -1342,7 +1127,7 @@ body.cms-index-index .page-main{
 	float: right;
 	clear: both;
 }
-.mobileview,.tabletview{display:none !important;}
+.mobilebannerview,.tabletbannerview,.mobileview{display:none !important;}
 .owl-theme .owl-dots .owl-dot span{
 	    width: 8px !important;
     height: 8px !important;
@@ -2539,8 +2324,8 @@ body.cms-index-index .page-main{
 	.header-topicons li{
 	    padding: 0 5px;	    
 	}
-	.tabletview{display:block !important;}
-	.desktopview{display:none !important;}
+	.tabletbannerview{display:block !important;}
+	.desktopbannerview{display:none !important;}
 	.benefits .box1, .benefits .box2, .benefits .box3{
 	      border: 1px solid rgba(239, 168, 228, 0.2);	      
 	}
@@ -2636,8 +2421,8 @@ body.cms-index-index .page-main{
 		    line-height: 48px;
 		    padding: 0 15px;	
 	}
-	.desktopview,.tabletview{display:none !important;}
-	.mobileview{display:block !important;}
+	.desktopbannerview,.tabletbannerview,.desktopview{display:none !important;}
+	.mobilebannerview,.mobileview{display:block !important;}
 	footer.page-footer{    padding: 25px 0px 40px;margin-top: 20px;}
 	footer.page-footer .mobileview,footer.page-footer .ftitle.last{    margin-top: 45px;}	
 	footer.page-footer .mobileview{text-align: center;     margin-top: 36px; }

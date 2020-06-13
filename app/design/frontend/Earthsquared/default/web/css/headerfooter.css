@@ -1,0 +1,218 @@
+/*-- fonts css --*/
+/* @font-face {
+font-family: 'Tiempos Headline Regular';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Regular Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-RegularItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Light';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Light.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Light Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-LightItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Medium';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Medium Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-MediumItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Semibold';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Semibold Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-SemiboldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Bold';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Bold Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Black';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-Black.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tiempos Headline Black Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/tiempos-headline/TiemposHeadline-BlackItalic.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Futura Bk BT';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/futura/FutuBk.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Futura Bk BT Italic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/futura/FutuBkIt.woff') format('woff');
+}
+@font-face {
+font-family: 'Futura Bk BT Medium';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/futura/Futura_20Medium_20BT.woff') format('woff');
+}
+*/
+ @font-face {
+    font-family: 'Futura Bk BT Medium';
+    src: url('../fonts/futura/FuturaBT-Medium.eot');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT Medium';
+    src:url('../fonts/futura/FuturaBT-Medium.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-Medium.svg#FuturaBT-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT italic';
+    src: url('../fonts/futura/FuturaBT-BookItalic.eot');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Futura Bk BT italic';
+    src:url('../fonts/futura/FuturaBT-BookItalic.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-BookItalic.svg#FuturaBT-BookItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Tiempos Headline Regular';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Regular.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Regular';
+    src:url('../fonts/tiempos-headline/TiemposHeadline-Regular.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Regular.svg#TiemposHeadline-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'Tiempos Headline Semibold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Semibold.eot');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Semibold';
+    src:url('../fonts/tiempos-headline/TiemposHeadline-Semibold.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Semibold.svg#TiemposHeadline-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Futura Bk BT';
+    src: url('../fonts/futura/FuturaBT-Book.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT';
+    src: url('../fonts/futura/FuturaBT-Book.ttf') format('truetype'),
+        url('../fonts/futura/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos Headline Bold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.eot');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Bold';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Bold.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Bold.svg#TiemposHeadline-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tiempos Headline Medium';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.eot');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tiempos Headline Medium';
+    src: url('../fonts/tiempos-headline/TiemposHeadline-Medium.ttf') format('truetype'),
+        url('../fonts/tiempos-headline/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+} 
+
+body{
+	font-family: 'Futura Bk BT' !important;
+}
