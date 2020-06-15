@@ -71,7 +71,6 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 .cms-fair-trade-information img.mobile {    display: none;}
 .fair_traid_banner {    margin-bottom: 50px;}
 .fair_traid_main {    max-width: 810px;    margin: 0 auto;    padding-left: 20px;  padding-right: 20px;}
-.fair_traid_main p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 20px;}
 
 @media screen and (max-width: 767px) {
 .cms-fair-trade-information .breadcrumbs {  display: none !important;}
@@ -86,16 +85,25 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 /* end fair-trade-information */
 
 /* Trade Fairs and Stockists and Delivery Details*/
-
+.cms-trade-fairs  .breadcrumbs {    display: none;}
+.cms-trade-fairs main#maincontent {    margin-top: 25px !important;}
 .cms-trade-fairs  main#maincontent , .cms-stockists  main#maincontent , .cms-delivery-details  main#maincontent { max-width: 810px;  padding-left: 20px;  padding-right: 20px;  margin: 0 auto; }
 .cms-delivery-details h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
     color: #4D4D4D;    letter-spacing: 0.04em;}
 .cms-trade-fairs .breadcrumbs, .cms-stockists  .breadcrumbs , .cms-delivery-details  .breadcrumbs {
     max-width: 810px;    margin-top: 15px !important;    padding-left: 20px !important;    margin-bottom: 0 !important;    padding-right: 20px !important;}	
-	
+.cms-trade-fairs p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;}	
+img.second_contain_img {
+    margin-top: 35px;
+}
+
+
 @media screen and (max-width: 767px) {
 .cms-trade-fairs .breadcrumbs, .cms-stockists  .breadcrumbs , .cms-delivery-details  .breadcrumbs  {    margin: unset !important;    margin-top: 15px !important;}
 .cms-trade-fairs  .page-title , .cms-stockists  .page-title , .cms-delivery-details  .page-title {    margin-bottom: 40px;}	
+.cms-trade-fairs main#maincontent {    margin-top: 0 !important;}
+img.second_contain_img {    height: 26px;    margin-top: 25px;}
+img.contain_image {    height: 61px;}
 }
 
 /* end Trade Fairs and Stockists and Delivery Details */
@@ -166,7 +174,9 @@ p.add_location {
 
 @media screen and (max-width: 576px) {
 .page_not_found {    margin-top: 0px;    float: left;    width: 100%;}
-.page_not_found .left_image {    display: none;}
+.page_not_found .left_image.mobile {    display: none;}
+.page_not_found .left_image {    width: 40%;}
+.page_not_found .right_image {    display: block !important; float: right;  width: 35%;  padding: 5% 0;}
 .page_not_found .contain {    width: 100%;}
 }
 

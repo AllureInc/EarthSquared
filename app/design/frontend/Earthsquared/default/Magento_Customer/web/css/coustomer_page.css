@@ -34,7 +34,7 @@ form#login-form fieldset.fieldset.login div {
 .customer-account-login header .section3 {    display: none;}
 .section_phone img {    width: 18.67px;}
 .section_phone {    float: right;    position: absolute;   right: 20px;}
-a.backlink:before {    content: '';    background: url(../images/left-arrow.png) no-repeat;    width: 14px;
+a.backlink:before {    content: '';    background: url(../images/back.png) no-repeat;    width: 14px;
     height: 14px;    background-size: 100%;    display: inline-block;    margin-right: 5px;    background-position: 0px 2px;}
 a.backlink { font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
 .section_phone a.phonelink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;
@@ -205,7 +205,8 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D
 .account .table-wrapper tbody tr td {    border-right: 1px solid #E0E0E0;}
 
 .account.page-layout-2columns-left .column.main {    position: relative;}
-.order-products-toolbar.toolbar.bottom {    position: absolute;    top: 0;    left: 14%;}
+.order-products-toolbar.toolbar.bottom {    position: absolute;    top: 12px;
+    left: 16%; }
 .order-products-toolbar.toolbar.bottom .limiter {    display: none;}
 .order-products-toolbar.toolbar.bottom span.toolbar-number:before {    content: "(";    float: left;}
 .order-products-toolbar.toolbar.bottom span.toolbar-number:after {    content: ")";    float: right;
@@ -477,4 +478,29 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 
 .customer-address-form .form-address-edit {
     display: block !important;
+}
+.account.page-layout-2columns-left .sidebar-main {
+    margin-top: 7%;
+}
+
+.account .page-main .page-title-wrapper .page-title {
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+
+@media screen and (max-width: 639px) {	
+.account .page-main .page-title-wrapper .page-title {    margin-left: 0;}
+.orders_page_mobile {    display: block !important;}
+.order-products-toolbar.toolbar.bottom {    left: 42%;}
+.table-wrapper.orders-history {    border-top: none;    border-bottom: none;}
+.account .table-wrapper table#my-orders-table {    display: none;}
+.orders_page_mobile .order {  width: 100%;  border: 1px solid #E0E0E0;    margin-bottom: 20px;display: inline-block;    padding: 10px;}
+.orders_page_mobile .order .order_no {    float: left;}
+.orders_page_mobile .order .order_date {    float: right;}
+.oredr_contain_part {    float: left;    width: 100%;margin-top: 20px;    position: relative;}
+.oredr_contain_part h3 {    color: #9E9E9E;    font-size: 12px;    text-transform: uppercase;}
+.oredr_contain_part .order_total {    position: absolute;    right: 0;    top: 16px;}
+.orders_page_mobile .order .order_view {    float: left;    width: 100%;    margin-top: 25px;}
+.orders_page_mobile .order .order_view span {    color: #212121;    font-size: 12px;}
 }

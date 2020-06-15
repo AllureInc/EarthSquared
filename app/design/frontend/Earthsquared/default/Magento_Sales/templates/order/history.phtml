@@ -75,5 +75,41 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+		
+		
+		<div class="orders_page_mobile" style="display:none;">
+		
+		<?php foreach ($_orders as $_order) : ?>	
+
+				<?php  
+				foreach ($_order->getAllVisibleItems() as $_item) {
+					 $order_item = $block->escapeHtml($_item->getName());
+				} 
+				?>
+
+			<div class="order">
+
+			<div class="order_no"><?= $block->escapeHtml(__('Order #')) ?><?= $block->escapeHtml($_order->getRealOrderId()) ?></div>
+			<div class="order_date"><?= $block->formatDate($_order->getCreatedAt()) ?></div>
+
+			<div class="oredr_contain_part">
+			<h3><?= $block->escapeHtmlAttr(__('Order Items')) ?></h3>
+			<div class="order_items"><?php echo $order_item; ?></div>
+			<div class="order_total"><?= $_order->formatPrice($_order->getGrandTotal()) ?></div>
+			</div>
+
+			<div class="order_view">
+			<a href="<?= $block->escapeUrl($block->getViewUrl($_order)) ?>" class="action view">
+                                <span><?= $block->escapeHtml(__('View Order')) ?></span>
+                            </a>
+			</div>
+
+			</div>
+			
+			 <?php endforeach; ?>
+
+		</div>
+
+
     </div>
 
