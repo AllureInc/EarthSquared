@@ -203,7 +203,7 @@ if($helper->isCustomerLoggedIn()){
         </ol>
     </div>
     <div class="bottom-toolbar">
-        <?= $block->getToolbarHtml() ?>
+        <?php //echo $block->getToolbarHtml() ?>
     </div>
     <?php if (!$block->isRedirectToCartEnabled()) :?>
         <script type="text/x-magento-init">
@@ -217,3 +217,17 @@ if($helper->isCustomerLoggedIn()){
         </script>
     <?php endif; ?>
 <?php endif; ?>
+<!-- <script>
+              require([
+              'jquery'   
+            ], function ($) {
+            $(document).ready(function(){
+                  $('#sorter.sorter-options.desk').parent().append('<ul id="nsorter" data-role="sorter" class="sorter-options desk"></ul>');
+                  $('#sorter.sorter-options.desk option').each(function(){
+                    $('#nsorter').append('<li value="' + $(this).val() + '" onclick="">'+$(this).text()+'</li>');
+                  });
+                  //$('#sorter.sorter-options.desk').remove();
+                  $('#nsorter').attr('id', 'sorter'); 
+            });
+        });
+</script> -->

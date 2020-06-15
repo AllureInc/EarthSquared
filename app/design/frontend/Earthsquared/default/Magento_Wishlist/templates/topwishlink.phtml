@@ -3,6 +3,10 @@
   $websiteid = $helper->getWebsiteId();
   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
   $customerSession = $objectManager->create('Magento\Customer\Model\Session');
+
+  $collection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
+  $collection->clear()->setInStockFilter(true)->setOrder('added_at');
+  $totalcount = count($collection);
   /* @var \Magento\Wishlist\Block\Link $block */
 ?>
   <?php if($websiteid == 1) { ?>
@@ -10,7 +14,7 @@
       <img src="<?php echo $this->getUrl('pub/media/icons').'bookmark.png' ?>"  alt="Saved For Later" />
       <?php if($customerSession->isLoggedIn()){ ?>
       <!-- ko if: wishlist().counter -->
-            <span data-bind="text: wishlist().counter" class="counter qty"></span>
+            <span class="counter qty"><?php echo $totalcount; ?></span>
       <!-- /ko -->
     <?php } ?>
     </a>
@@ -19,7 +23,7 @@
 	 <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
     <?php if($customerSession->isLoggedIn()){ ?>
       <!-- ko if: wishlist().counter -->
-            <span data-bind="text: wishlist().counter" class="counter qty"></span>
+            <span class="counter qty"><?php echo $totalcount; ?></span>
       <!-- /ko -->
       <!--<span data-bind="text: wishlist().items.length" class="counter qty"></span>-->
     <?php } ?></a>

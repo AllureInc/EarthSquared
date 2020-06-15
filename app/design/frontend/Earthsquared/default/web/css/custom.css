@@ -37,6 +37,7 @@ a:hover{
 .sidebar-additional .paypal.acceptance{
 	display: none;
 }
+
 /*-- header footer css --*/
 @media screen and (min-width: 768px){	
 	body .navigation, .breadcrumbs, body .page-header .header.panel, body .header.content, body .footer.content, body .page-wrapper > .widget, body .page-wrapper > .page-bottom, body .block.category.event, body .top-container, body .page-main{
@@ -52,8 +53,8 @@ a:hover{
 	}
 	.header-topicons{
 		width:auto;float:right;     padding: 0;    margin: 0;
-	}
-	.header-topicons li{display:inline-block;  padding: 0px 16px;   margin-bottom: 4px;}
+	}	
+	.header-topicons li{display:inline-block;  padding: 0px 16px;  margin-bottom: 4px;}
 	.header-topicons li img{ width: 18.67px;}
 	header .block-search{float:left;}
 	header .section1{width:30%;float: left;}
@@ -121,9 +122,16 @@ a:hover{
 		font-size: 15px !important;
 		color: #F87883 !important;
 	}
-	.navigation.sw-megamenu .menu-left-block ul li.viewall a:after{
-		content:'\f178';
-		font-family: 'fontAwesome';		
+	.navigation.sw-megamenu .menu-left-block ul li.viewall a:after{    
+		    padding-left: 10px;
+		    content: '';
+		    background: url(../images/right-arrow-pink.png) no-repeat;
+		    width: 13px;
+		    height: 14px;
+		    background-size: 100%;
+		    display: inline-block;
+		    margin-left: 5px;
+		    background-position: 0px 3px;	
 	}	
 
 	.navigation.sw-megamenu .level0 > .level-top
@@ -305,8 +313,9 @@ a:hover{
 header .block-search.active{
 	display:block !important;
 	position: absolute;
-	top:75px;
+	top:66px;
 	width: 334px;
+	right: 32px;
 }
 .subchildmenu.col-md-0.mega-columns.columns4
 {
@@ -352,8 +361,27 @@ header .minicart-wrapper .product.options.list .label{
     text-transform: uppercase;
 }
 .navigation.sw-megamenu .level0 a:hover{
-	color:#000;
-	font-family: Futura Bk BT Medium;
+	color:#000; 
+	font-family: Futura Bk BT;
+}
+.navigation.sw-megamenu .level0 a:hover span:before{
+	content:'';
+	background: url('../images/our-story-blob.svg') no-repeat;
+	background-size:100%;
+	width:44px;
+	height:44px;
+	background-position: left;
+	animation-name: scale-down-and-back;
+	display: inline-block;
+	position: absolute;
+	z-index: -1;
+	top:0;
+	left:0;
+	animation-duration: 0.3s;	
+	margin: -14px 0 0 -24px;
+}
+.stickymenu .navigation.sw-megamenu .level0 a:hover span:before{
+	display: none;
 }
 .news_bar
 {	
@@ -457,9 +485,16 @@ header .amsearch-close, header .amasty-xsearch-loader
 .search .amsearch-loupe{
 	right:10px;left:unset;display: none !important;
 }
-.amsearch-close{
+.amsearch-close,.search-close{
 	left:10px;right:unset;
 	width: 50px;
+	text-align: center;	    
+	top: 13px;
+	position: absolute;
+	cursor: pointer;
+}
+.search-close img{
+	width:14px;
 }
 header .block-search .search-autocomplete
 {
@@ -709,7 +744,7 @@ body.cms-index-index .page-main{
 	padding:0;
 }
 .insta{
-	margin-top: 165px;
+	margin-top: 168px;
 	text-align:center;
 	height: 340px;
 }
@@ -765,13 +800,13 @@ body.cms-index-index .page-main{
 	padding: 20px 20px 97px 20px;
 }
 .boxinner .readmore:after{
-    width: 15px;
-    height: 17px;    
+    width: 13px;
+    height: 14px;    
     margin-left: 9px;
-    background-position: 0px 4px;	
+    background-position: 0px 2px;	
 }
 .featurecategories .box .boxinner:hover{
-	background: #EEEEF8;
+	/* background: #EEEEF8; */
 }
 .featurecategories .box:first-child,.featurecategories .box:nth-child(3n){
 	padding-left:0;
@@ -836,18 +871,26 @@ body.cms-index-index .page-main{
 .featurep-collection .product-detail{	
 	    margin-top: 17px;
 }
-.our-story:before{
+.full-width-section{
+	width:100%;
+	float: left;
+	position: relative;	
+}
+.full-width-section:before{	
     background: linear-gradient(90deg, #FFF1F2 0%, rgba(255, 241, 242, 0) 74.97%);
     content: '';
     position: absolute;
     top: 40%;
     height: 75%;
     width: 100%;
-    left: 15px;
+    left: 0px;
 }
 .benefits{
     margin: 142px 0px;
     padding: 0px 23px !important;
+}
+.benefits.trade{
+	margin: 118px 0px;
 }
 .insta p{
 	margin-top: 15px;
@@ -1187,6 +1230,9 @@ body.cms-index-index .page-main{
 	color: #757575 !important;
 	font-size:14px !important;
 }
+.amcart-minipage-wrap .am-photo-container .product-image-container{
+	border:0px !important;
+}
 .catalog-category-view .columns{
 	margin-top: 31px;
 }
@@ -1351,17 +1397,28 @@ body.cms-index-index .page-main{
 .swatch-option-link-layered input[type=checkbox]:checked + .am-swatch-link > .swatch-option.selected:before
 {
 	content:'';	
-	background:url('../images/sign-grey.png') no-repeat;
+	background:url('../images/tick.png') no-repeat;
 	background-size:100%;
-	width:10px;
-	height:8px;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 100%;
+    text-align: center;
 }
 .filter-options-content input[type="radio"]:checked:after,.filter-options-content input[type="checkbox"]:checked:after{
-	/* background:url('../images/sign-white.png') no-repeat; */
-	content:'\f00c';
-	font-family: 'fontAwesome';
-	color:#fff;
-	font-size: 14px;
+	background:url('../images/tick.png') no-repeat;
+	content:'';	    
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 100%;
+    text-align: center;
+    background-position: 0 2px;
+}
+#layered-filter-block .filter-current .action.remove:before{
+    color: #424242;
+    font-size: 10px;
+    font-weight: bold;
 }
 .filter-options .filter-options-content .am-shopby-form,.filter-options .am-swatch-options{
 	padding:0;
@@ -1580,7 +1637,7 @@ body.cms-index-index .page-main{
 	padding:0px 32px 0px 0px;
 }
 .filter-current.am-filter-current .items li:hover{
-	    background: #EEEEEE;
+	    background: transparent;
 }
 .filter-current.am-filter-current .action.remove {
     right: 0px;
@@ -2326,13 +2383,21 @@ body.cms-index-index .page-main{
 	}
 	.tabletbannerview{display:block !important;}
 	.desktopbannerview{display:none !important;}
-	.benefits .box1, .benefits .box2, .benefits .box3{
-	      border: 1px solid rgba(239, 168, 228, 0.2);	      
+	.benefits .box1{
+		border-right:1px solid rgba(239, 168, 228, 0.2);
+		border-bottom: 1px solid rgba(239, 168, 228, 0.2);
 	}
+	.benefits .box2{
+		border-bottom: 1px solid rgba(239, 168, 228, 0.2);
+	}
+	.benefits .box3{
+		border-right:1px solid rgba(239, 168, 228, 0.2);
+	}
+
 	.benefits .box1, .benefits .box2, .benefits .box3, .benefits .box4{
 		width: 50%;		
     	padding: 34px 20px 10px;
-	}
+	}	
 	.benefits .box1:after, .benefits .box2:after, .benefits .box3:after{
 		display: none;		
 	}
@@ -2526,9 +2591,7 @@ body.cms-index-index .page-main{
 	    width: 100%;
 	    text-align:center;	
 	}
-	.benefits .box1, .benefits .box2, .benefits .box3, .benefits .box4{
-	      border: 1px solid rgba(239, 168, 228, 0.2);	      
-	}
+	
 	.featurep-collection .owl-stage {
 	    padding-left: 0 !important;
 	}
@@ -2548,6 +2611,19 @@ body.cms-index-index .page-main{
 	}
 	.sub-desc .titlemain{
 		margin-bottom: 14px;
+		font-size: 28px;
+	}
+	.sub-desc .titlemain{
+		top: -2px;
+    	left: -8px;		
+    	padding: 13px 0px 0px 11px;
+	}
+	.sub-desc p{
+		padding-left: 5px;
+		margin-bottom:26px;
+	}
+	.transparent-button{
+		    margin-left: 3px;
 	}
 	.featurecategories .content-title{
 		background: url(../images/prod-cat-blob.svg) no-repeat;
@@ -2580,11 +2656,16 @@ body.cms-index-index .page-main{
 		    margin: 28px 0px 90px;
 		    padding:0 !important;
 	}
+	.benefits .box1, .benefits .box2, .benefits .box3, .benefits .box4{
+		    height: 226px;
+		    padding: 33px 18px 0px;
+	}
 	.featurecategories .box{
 			padding: 0px 0px 20px 0px;
     		width: 95%;
     		margin: 5px 2.5% 18px;
 	}
+
 	.featureblock{
 		margin:24px 0px 0px 0px;
 		display: block;
@@ -2686,6 +2767,9 @@ body.cms-index-index .page-main{
 		    color:#4D4D4D;
 		    top:0;
 		    right:20px;
+	}
+	.stickymenu .navigation.sw-megamenu .level0 a:hover span:before,.navigation.sw-megamenu .level0 a:hover span:before{
+		display: none;
 	}
 	.navigation .parent .level-top.ui-state-active:after{
 		content: '\f104';
@@ -3325,7 +3409,10 @@ body.cms-index-index .page-main{
 }
 
 @media screen and (max-width: 480px){
-.subcategory_alldata li {    width: 50%;    padding: 0 5px;}
+	.subcategory_alldata li {    width: 50%;    padding: 0 5px;}
+	.benefits .box1, .benefits .box2, .benefits .box3, .benefits .box4{
+		padding: 17px 18px 0px;
+	}
 }
 
 /* end collection page */
@@ -3350,5 +3437,6 @@ body.cms-index-index .page-main{
     box-shadow: none;
     color: #fff;
 }
+@keyframes scale-down-and-back{0%,to{transform:scale(1)}50%{transform:scale(.25)}}
 
 /* end */
