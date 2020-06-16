@@ -1,0 +1,26 @@
+<?php 
+  $helper = $this->helper('Earthsquared\Customize\Helper\Data');
+  
+  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+  $customerSession = $objectManager->create('Magento\Customer\Model\Session');
+
+  $collection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
+  $collection->clear()->setInStockFilter(true)->setOrder('added_at');
+  $totalcount = count($collection);
+  /* @var \Magento\Wishlist\Block\Link $block */
+?>
+ 
+    <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;">
+      <img src="<?php echo $this->getUrl('pub/media/icons').'bookmark.png' ?>"  alt="Saved For Later" />
+      <?php if($customerSession->isLoggedIn()){ ?>
+      <!-- ko if: wishlist().counter -->
+            <span class="counter qty"><?php echo $totalcount; ?></span>
+      <!-- /ko -->
+    <?php } ?>
+    </a>
+  </li>   
+  <?php
+  if($customerSession->isLoggedIn()){
+		echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Customer\Sidebar")->setTemplate("Magento_Wishlist::wishlisttopsidebar.phtml")->toHtml();
+  }
+  ?>

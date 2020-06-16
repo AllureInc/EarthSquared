@@ -7,30 +7,14 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $helper = $this->helper('Earthsquared\Customize\Helper\Data'); 
-$websiteid = $helper->getWebsiteId();
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to my Bag'); ?>
 <?php if ($_product->isSaleable()) :?>
-<div class="box-tocart <?php if($websiteid == 1) { ?> trade <?php } ?>">
+<div class="box-tocart">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()) :?>        
-          <?php if($websiteid == 1) { ?>
-            <div class="field qty">
-              <label class="label" for="qty"><span><?= $block->escapeHtml(__('Quantity')) ?></span></label>
-              <div class="control">
-                  <input type="number"
-                         name="qty"
-                         id="qty"
-                         min="0"
-                         value="<?= $block->getProductDefaultQty() * 1 ?>"
-                         title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                         class="input-text qty"
-                         data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
-                         />
-              </div>
-          </div>
-          <?php } else { ?>
+         
           <div class="field qty retail">           
             <div class="control">
                 <input type="hidden"
@@ -43,8 +27,7 @@ $websiteid = $helper->getWebsiteId();
                        data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
                        />
             </div>
-          </div>  
-          <?php } ?>        
+          </div>                   
         <?php endif; ?>
         <div class="actions">
             <button type="submit"

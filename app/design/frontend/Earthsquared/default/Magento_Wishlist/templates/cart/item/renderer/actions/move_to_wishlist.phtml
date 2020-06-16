@@ -6,23 +6,12 @@
 
 /** @var \Magento\Wishlist\Block\Cart\Item\Renderer\Actions\MoveToWishlist $block */
 ?>
-<?php 
-$_helper = $this->helper('Earthsquared\Customize\Helper\Data');
-$websiteid = $_helper->getWebsiteId();
-?>
 <?php if ($block->isAllowInCart() && $block->isProductVisibleInSiteVisibility()) : ?>
-	<?php if($websiteid == 1) { ?>
-		<a href="#"
-	       data-post='<?= /* @noEscape */ $block->getMoveFromCartParams() ?>'
-	       class="use-ajax action towishlist action-towishlist trade">
-	       	<img src="<?php echo $this->getUrl('pub/media/icons/').'bookmark-cart.png' ?>" />
-	        <span><?= $block->escapeHtml(__('Save for later use')) ?></span>
-	    </a>
-	<?php } else { ?>
+	
 	    <a href="#"
 	       data-post='<?= /* @noEscape */ $block->getMoveFromCartParams() ?>'
 	       class="use-ajax action towishlist action-towishlist">       	
 	        <span><?= $block->escapeHtml(__('Move to Wishlist')) ?></span>
 	    </a>
-	<?php } ?>
+	
 <?php endif ?>

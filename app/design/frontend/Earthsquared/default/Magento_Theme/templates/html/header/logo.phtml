@@ -8,8 +8,6 @@
  * @var \Magento\Theme\Block\Html\Header\Logo $block
  */
 $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();
-$helper = $this->helper('Earthsquared\Customize\Helper\Data');
-$websiteid = $helper->getWebsiteId();
 
 ?>
 <span data-action="toggle-nav" class="action nav-toggle"><span><?= $block->escapeHtml(__('Toggle Nav')) ?></span></span>
@@ -18,20 +16,11 @@ $websiteid = $helper->getWebsiteId();
     class="logo"
     href="<?= $block->escapeUrl($block->getUrl('')) ?>"
     title="<?= $block->escapeHtmlAttr($storeName) ?>"
-    aria-label="store logo">
-    <?php if($websiteid == 1) { ?>
-    <img src="<?= $this->getUrl('pub/media/logo/').'logo_TRADE.svg' ?>"
+    aria-label="store logo">    
+        <img src="<?= $this->getUrl('pub/media/logo/').'logo_MASTER.svg' ?>"
              title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
              alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
                 <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"' : '' ?>
                 <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"' : '' ?>
-        />
-    <?php } else { ?>
-        <img src="<?= $this->getUrl('pub/media/logo/').'earthlogo01.svg' ?>"
-             title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
-             alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
-                <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"' : '' ?>
-                <?= $block->getLogoHeight() ? 'height="' . $block->escapeHtmlAttr($block->getLogoHeight()) . '"' : '' ?>
-        />
-    <?php } ?>    
+        />    
 </a>

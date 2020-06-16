@@ -15,10 +15,10 @@ $rating = $block->getRatingSummary($product);
 $productName = $helper->productAttribute($product, $product->getName(), 'name');
 $productSku = $helper->productAttribute($product, $product->getSku(), 'sku');
 ?>
-
+<?php /* 
 <p class="amcart-product-notice">
     <?= $block->escapeHtml(__('Please choose the options for your item')); ?>
-</p>
+</p> */ ?>
 <div class="product-item-info product-info-main">
     <div class="ampage-top-info">
         <p class="am-title">
@@ -37,12 +37,14 @@ $productSku = $helper->productAttribute($product, $product->getSku(), 'sku');
         </a>
     </div>
 
-    <div class="ampage-bottom-info">
-        <div class="am-description">
-            <?= /* @noEscape */ $helper->productAttribute($product, $product->getShortDescription(), 'short_description') ?>
-        </div>
+    <div class="ampage-bottom-info">       
         <p><?= /* @noEscape */ $block->getOptions(); ?></p>
-    </div>
+        <?php echo $this->getLayout()
+          ->createBlock('Magento\Cms\Block\Block')
+          ->setBlockId('product_details_three_benefits')
+          ->toHtml(); ?>
+    </div>    
+     <a class="viewfull-details" href="<?php echo $product->getProductUrl() ?>"><?php echo __('View full details')?></a>       
 </div>
 <script>
     require([

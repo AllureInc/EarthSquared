@@ -9,6 +9,10 @@
     	<span><?= $block->escapeHtml($block->getCopyright()) ?></span>
     	<?php echo $this->getLayout()
           ->createBlock('Magento\Cms\Block\Block')
+          ->setBlockId('footer_bottom_right_developedby')
+          ->toHtml(); ?>    	
+    	<?php echo $this->getLayout()
+          ->createBlock('Magento\Cms\Block\Block')
           ->setBlockId('footer_checkout')
           ->toHtml(); ?>
 	</div>

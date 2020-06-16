@@ -16,7 +16,6 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 $helper = $this->helper(Magento\Msrp\Helper\Data::class);
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
 $_helper = $this->helper('Earthsquared\Customize\Helper\Data');
-$websiteid = $_helper->getWebsiteId();
 if($_helper->isMobile()){ ?>
 <div class="cart item cartmobile mobileview">
     <div class="product-item-details">
@@ -87,21 +86,6 @@ if($_helper->isMobile()){ ?>
                 <div class="qty-subtotal">
                     <div class="field qty">
                         <div class="control qty cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
-                             <?php if($websiteid == 1) { ?>
-                            <div href="javascript:void(0)" class="qty-dec">-</div>                                  
-                               <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
-                                   name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
-                                   data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
-                                   value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
-                                   type="number"
-                                   size="4"
-                                   title="<?php echo $block->escapeHtml(__('Qty')); ?>"
-                                   class="input-text qty"
-                                   maxlength="12"
-                                   data-validate="{required:true,'validate-greater-than-zero':true}"
-                                   data-role="cart-item-qty"/>
-                                <div href="javascript:void(0)" class="qty-inc">+</div> 
-                             <?php } else { ?>
                             <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">                            
                                 <?php /* <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
                                        name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
@@ -124,8 +108,7 @@ if($_helper->isMobile()){ ?>
                                           }
                                     ?>
                                 </select>                                        
-                            </label>
-                        <?php } ?>
+                            </label>                        
                         </div>
                     </div> 
                     <div class="col subtotal">
@@ -225,22 +208,7 @@ if($_helper->isMobile()){ ?>
         <?php endif; ?>
         <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>">
             <div class="field qty">
-                <div class="control qty cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty <?php if($websiteid == 1) { ?> trade <?php } ?> ">
-                    <?php if($websiteid == 1) { ?>
-                               <div href="javascript:void(0)" class="qty-dec">-</div> 
-                               <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
-                                   name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
-                                   data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
-                                   value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
-                                   type="number"
-                                   size="4"
-                                   title="<?php echo $block->escapeHtml(__('Qty')); ?>"
-                                   class="input-text qty trade"
-                                   maxlength="12"
-                                   data-validate="{required:true,'validate-greater-than-zero':true}"
-                                   data-role="cart-item-qty"/>
-                                <div href="javascript:void(0)" class="qty-inc">+</div>                                   
-                    <?php } else { ?>
+                <div class="control qty cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty">                  
                     <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
                         <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
                   <?php /*      <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
@@ -265,7 +233,7 @@ if($_helper->isMobile()){ ?>
                             ?>
                         </select>     
                     </label>
-                <?php } ?>
+                
                 </div>
             </div>
         </td>
@@ -280,23 +248,3 @@ if($_helper->isMobile()){ ?>
     </tr>   
 </tbody>
 <?php } ?>
-
-
-<script type="text/javascript">
-    require(["jquery"],function($){        
-        $(".qty-inc").unbind('click').click(function(){
-            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
-                $(this).parents('.field.qty').find("input.input-text.qty").val((+$(this).parents('.field.qty').find("input.input-text.qty").val() + 1) || 0);
-                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
-                $(this).focus();
-            }
-        });
-        $(".qty-dec").unbind('click').click(function(){
-            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
-                $(this).parents('.field.qty').find("input.input-text.qty").val(($(this).parents('.field.qty').find("input.input-text.qty").val() - 1 > 0) ? ($(this).parents('.field.qty').find("input.input-text.qty").val() - 1) : 0);
-                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
-                $(this).focus();
-            }
-        });
-    });
-</script>

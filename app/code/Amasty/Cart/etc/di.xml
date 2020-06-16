@@ -8,9 +8,9 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Catalog\Block\Product\View">
+    <!-- <type name="Magento\Catalog\Block\Product\View">
         <plugin name="Amasty_Cart::product-view-addtocart" type="Amasty\Cart\Plugin\Product\View\Addtocart" />
-    </type>
+    </type> -->
     <!-- Move functionality to product-list plugin -->
     <!--<type name="\Magento\Catalog\Block\Category\View">-->
         <!--<plugin name="Amasty_Cart::category-view-addtocart" type="Amasty\Cart\Plugin\Product\Category\Addtocart" />-->

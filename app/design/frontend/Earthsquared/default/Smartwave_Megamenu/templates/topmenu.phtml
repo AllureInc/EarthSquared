@@ -14,8 +14,7 @@
 <?php
     $_helper = $this->helper('Smartwave\Megamenu\Helper\Data');
     $_config = $_helper->getConfig('sw_megamenu');
-    $helper = $this->helper('Earthsquared\Customize\Helper\Data');
-    $websiteid = $helper->getWebsiteId();
+    $helper = $this->helper('Earthsquared\Customize\Helper\Data');   
     $columnsLimit = 0;
     if($_config['general']['enable']) {
 ?>
@@ -77,12 +76,8 @@
     <li><a href="<?php echo $this->getUrl().'customer/account/create' ?>"><?php echo __("Register") ?></a></li>
 </ul>
 <div class="tradesocial col-xs-12 nopadding">
-    <div class="col-xs-6">
-        <?php if($websiteid == 1) { ?>
-            <a href="#" class="quickorder"><img src="<?php echo $this->getUrl('pub/media/icons/').'lightning.png' ?>" /><?php echo __('Quick Order Form'); ?></a>
-        <?php } else { ?>
-            <a href="<?php echo $this->getUrl() ?>" class="button-pink trade"><?php echo __("Trade") ?></a>
-        <?php } ?>
+    <div class="col-xs-6">        
+            <a href="<?php echo $this->getUrl() ?>" class="button-pink trade"><?php echo __("Trade") ?></a>       
     </div>
     <div class="col-xs-6">
         <ul class="socialiconsm">

@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */
+?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $this->helper('Earthsquared\Customize\Helper\Data');
+$_product = $helper->getCurrentProduct(); 
+if($helper->isCustomerLoggedIn()){		
+	$productId= $_product->getId();
+	$custid = $helper->getCustomerIdLoggedIn();
+	$collection = $objectManager->create('Magento\Wishlist\Model\ResourceModel\Item\Collection');	
+	$collection->addCustomerIdFilter($custid);
+	$productIds = null;
+	foreach ($collection as $item) {
+		$productIds[] = $item->getProductId();   
+    }
+    if(in_array($productId,array($productIds)))
+    { ?>
+    	 <?php 
+        if ($_product->isSaleable()) { ?>  
+			<a href="<?php echo $this->getUrl('customize/index/index').'?cid='.$custid.'&pid='.$productId ?>" class="action towishlist" data-action="add-to-wishlist">
+				<span><?= $block->escapeHtml(__('Remove From Wish List')) ?></span>				
+			</a>
+		<?php } ?>	
+    <?php }  else { ?>
+    	<?php 
+        if ($_product->isSaleable()) { ?> 			
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist trade" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>					
+			</a>		
+		<?php } ?>	
+    <?php }   
+} else { ?>
+	<?php 
+        if ($_product->isSaleable()) { ?> 
+			
+			<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist trade" data-action="add-to-wishlist">					
+						<span><?= $block->escapeHtml(__('Save for Later')) ?></span>					
+			</a>			
+<?php }   }

@@ -2,7 +2,6 @@
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $helper = $this->helper('Earthsquared\Customize\Helper\Data');
 $_product = $block->getProduct();
-$websiteid = $helper->getWebsiteId();
 if($helper->isCustomerLoggedIn()){      
     $productId= $_product->getId();
     $custid = $helper->getCustomerIdLoggedIn();
@@ -12,7 +11,7 @@ if($helper->isCustomerLoggedIn()){
     foreach ($collection as $item) {
         $productIds[] = $item->getProductId();   
     }
-    if(in_array($productId,$productIds)){ ?>
+    if(in_array($productId,array($productIds))){ ?>
         <?php 
         if ($_product->isSaleable()) { ?>   
         <div class="mobileview wishlistp">
@@ -32,7 +31,7 @@ if($helper->isCustomerLoggedIn()){
         <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
     </div>
 <?php } } ?>
-<?php if($websiteid != 1): ?>
+
 <div class="share-medias mobileview"><a href="javascript:;" onclick="openmForm()" class="opensharem"><img src="<?php echo $this->getUrl('pub/media/productpage/').'social-media.png' ?>" /><span><?php echo __('Share') ?></span></a>
 <div class="social-media-icons" id="socialmediam" style="display:none">
     <span class="btn cancel" onclick="closemForm()"><img src="<?php echo $this->getUrl('pub/media/icons/').'close.png'; ?>"/></span>
@@ -59,7 +58,7 @@ if($helper->isCustomerLoggedIn()){
     </div>
 </div>
 </div>
-<?php endif; ?>
+
 <script>
     
     function openmForm() {

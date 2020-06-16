@@ -1,0 +1,55 @@
+.quickorder{
+	color:#616161;
+	font-family: 'Futura Bk BT Medium';
+}
+.quickorder img{width:16px;}
+.benefits.trade{
+	margin: 118px 0px;
+}
+.product-social-links .product-addto-links .action.towishlist.trade:before{
+	content:'';
+	background: url('../images/bookmark.png') no-repeat;
+	background-size:100%;
+	width:16px; 
+	height:16px;	
+}
+.product-info-main .product-options-bottom .box-tocart.trade{
+	margin-top:65px !important;
+}
+.checkout-cart-index .actions-toolbar .action-towishlist.trade{
+	display: inline-block !important;
+}
+.checkout-cart-index .actions-toolbar .action-towishlist.trade span{
+	color:#4d4d4d !important;
+}
+.checkout-cart-index .actions-toolbar .action-towishlist.trade img{
+	width:16px;
+}
+.cart-container .control.qty.trade{
+	border: 1px solid #EEE;
+    width: 90px;    
+    float: right;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.cart.table-wrapper .col.qty .input-text.trade{
+	width:30px;
+	border-width: 0px 1px 0px 1px;	
+	border-color: #EEE;
+
+}
+@media screen and (max-width: 767px)
+{
+		.tradesocial{
+		margin-top: 50px;
+	}
+	.tradesocial .trade{
+		width: 62px;
+    	float: left;
+    	padding: 7px;
+    	height: 34px;
+	}
+}
+
