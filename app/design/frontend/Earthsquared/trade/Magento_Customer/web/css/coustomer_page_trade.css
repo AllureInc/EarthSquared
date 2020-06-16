@@ -1,0 +1,104 @@
+/* trade login */
+
+@media screen and (min-width: 768px) {	
+.customer-account-login header.page-header {    display: none;}
+.customer-account-login .column.main {    padding-bottom: 0;}
+
+}
+.customer-account-login main#maincontent {    max-width: 100%;    padding: 0;}
+.block-customer-login-trade {    margin-top: 12%;}
+.block-customer-login-trade {    width: 60%;    float: right;}
+.block-new-customer-trade {   display: none; width: 60%;    float: right;}
+.block-new-customer-trade .block.block-new-customer {    margin: 0 auto;    float: none !important; }
+.login_register_sidebar_main .site_logo {    width: 250px;}
+
+.block-customer-login-trade h2#block-customer-login-heading {    font-size: 28px;    display: inline-block;
+    width: 100%;    font-family: Tiempos Headline Medium;    font-weight: 500;  text-align: left;}
+.block-customer-login-trade .actions-toolbar .secondary {    float: left;}
+
+.login_register_sidebar_main {    float: left;padding: 140px 65px;    background: linear-gradient(0deg, #EDB6BB, #EDB6BB);    width: 40%;}
+.login_register_sidebar_main .customer_account_create_top_part {    background: none;}
+.login_register_sidebar_main h3 {    font-size: 21px;    text-align: left;}
+.login_register_sidebar_main p {    font-size: 14px;    color: #4D4D4D;   text-align: left;}
+.login_register_sidebar_main .list_part {    float: left;    width: 100%;}
+.login_register_sidebar_main .list_part .item {    float: left;    width: 100%;    text-align: left;
+    margin-bottom: 10px;    margin-top: 10px;    line-height: 35px;}
+.login_register_sidebar_main .list_part .item a {    font-size: 15px;    color: #4D4D4D;}
+.login_register_sidebar_main .last_part_link {    float: left;    margin-top: 10%; width: 100%;text-align: left;}
+.login_register_sidebar_main .last_part_link a.register_link { font-family: Futura Bk BT; font-size: 20px;color: #4D4D4D; font-weight: 500;}
+
+/* end trade login */
+
+/* trade account create */
+
+@media screen and (min-width: 768px) {	
+.customer-account-create header.page-header {    display: none;}
+.customer-account-create .column.main {    padding-bottom: 0;}
+
+.customer-account-create .login_register_sidebar_main {    height: 1190px;}
+}
+.customer-account-create main#maincontent {    max-width: 100%;    padding: 0;}
+.customer-account-create .login_register_sidebar_main .last_part_link {    display: none;}
+.form_main_part_trade {    width: 60%;    float: right;}
+.form_main_part_trade h2 {    font-size: 28px;    display: inline-block;    width: 100%;    font-family: Tiempos Headline Medium;    font-weight: 500;    text-align: left;}
+.form_main_part_trade p {    font-size: 14px;    color: #4D4D4D;float: left;    width: 100%;  text-align: left;}
+.form_main_part_trade .form_main_part {    max-width: 365px;margin-top: 83px;}
+
+.customer-account-create  .form_main_part_trade .form.create.account .field.field-name-firstname , .customer-account-create .form_main_part_trade .form.create.account .field.email_address , .customer-account-create .form.create.account .field.city , .customer-account-create .form.create.account .field.password {
+    width: 175px;    float: left;}
+.customer-account-create .form_main_part_trade .form.create.account .field.field-name-lastname , .customer-account-create .form_main_part_trade .form.create.account .field.company , .customer-account-create .form.create.account .field.zip , .customer-account-create .form.create.account .field.confirmation {
+    width: 175px;    float: right;}
+
+.customer-account-create .form.create.account .field select {    height: 60px;}
+.customer-account-create .form.create.account .field.street { margin-bottom: 0;    float: left; width: 100%;}
+.customer-account-create .form.create.account .field .nested {    margin-top: 30px;}
+
+
+/* end trade account create */
+
+
+@media screen and (max-width: 1024px) {	
+.login_register_sidebar_main {  padding: 140px 20px;}
+}
+
+
+@media screen and (max-width: 768px) {	
+.customer-account-login main#maincontent {    margin-top: 0 !important;}
+.block-customer-login-trade {    width: 100%;    float: right;    margin-top: 0;}
+.login_register_sidebar_main {    width: 100%;    padding: 40px;}
+.login_register_sidebar_main .last_part_link {    margin-top: 5%;}
+.customer-account-login .copyright .developed, .customer-account-create .copyright .developed {
+    display: none;}
+.block-customer-login-trade h2#block-customer-login-heading {   text-align: center;}
+.customer-account-login .column.main {    padding-bottom: 0 !important;}
+.login_register_sidebar_main .customer_account_create_top_part {    margin-bottom: 0;}
+.customer-account-create .column.main {    padding-bottom: 0 !important;}
+.form_main_part_trade {    width: 100%;    float: right;}
+.customer-account-create .login_register_sidebar_main {    height: auto;}
+.form_main_part_trade .form_main_part {    margin-top: 20px;}
+.block.block-new-login {    margin-top: 0;}
+}
+
+@media screen and (max-width: 375px) {
+.form_main_part_trade {    padding-left: 15px;    padding-right: 15px;}
+.customer-account-create  .form_main_part_trade .form.create.account .field.field-name-firstname , .customer-account-create .form_main_part_trade .form.create.account .field.email_address , .customer-account-create .form.create.account .field.city , .customer-account-create .form.create.account .field.password {
+    width: 165px;    float: left;}
+.customer-account-create .form_main_part_trade .form.create.account .field.field-name-lastname , .customer-account-create .form_main_part_trade .form.create.account .field.company , .customer-account-create .form.create.account .field.zip , .customer-account-create .form.create.account .field.confirmation {
+    width: 165px;    float: right;}
+
+.customer-account-create header .logo img , .customer-account-login  header .logo img  {    height: 66px;}
+
+}
+
+@media screen and (max-width: 320px) {
+.login_register_sidebar_main {    padding: 20px;}
+.login_register_sidebar_main .last_part_link a.register_link {    font-size: 16px;}
+.login_register_sidebar_main .list_part .item a {    font-size: 13px;}	
+.customer-account-login .block-customer-login-trade {    padding-left: 15px;    padding-right: 15px;}
+.customer-account-create  .form_main_part_trade .form.create.account .field.field-name-firstname , .customer-account-create .form_main_part_trade .form.create.account .field.email_address , .customer-account-create .form.create.account .field.city , .customer-account-create .form.create.account .field.password {
+    width: 140px;    float: left;}
+.customer-account-create .form_main_part_trade .form.create.account .field.field-name-lastname , .customer-account-create .form_main_part_trade .form.create.account .field.company , .customer-account-create .form.create.account .field.zip , .customer-account-create .form.create.account .field.confirmation {
+    width: 140px;    float: right;}
+.customer-account-create .form_main_part_trade .form.create.account {   padding-left: 0;   padding-right: 0;}
+.form_main_part_trade h2 {    font-size: 20px; }
+}
