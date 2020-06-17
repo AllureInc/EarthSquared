@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+	 <head>
+		<css src="Magento_Checkout::css/cartpage_trade.css"/>
+    </head>
+    <body>
+        <move element="checkout.cart.coupon" destination="cart.summary" after="-" />
+        <block class="Magento\Framework\View\Element\Template" name="checkout.cart.summary.title" before="-" template="Magento_Theme::text.phtml">
+            <arguments>
+                <argument translate="true" name="text" xsi:type="string">Order Summary</argument>
+                <argument name="tag" xsi:type="string">strong</argument>
+                <argument name="css_class" xsi:type="string">summary title</argument>
+                </arguments>
+            </block>
+		<move element="checkout.cart.summary.title" destination="cart.summary" before="-" />
+    </body>
+</page>

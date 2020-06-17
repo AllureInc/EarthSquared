@@ -1,0 +1,13 @@
+/* cart page */
+
+button.action.primary.checkout {    background-color: #bbb !important;}
+#discount-coupon-form .actions-toolbar .apply.primary {    background: #bbb !important;}
+strong#block-discount-heading {    font-size: 12px;    text-transform: uppercase;float: left;    width: 100%;
+    color: #4D4D4D;    letter-spacing: 0.04em;}
+div#block-discount_trade {    float: left;    width: 100%;}
+div#block-discount_trade .title::after {display:none;}
+#block-discount_trade #coupon_code {    height: 60px;    color: #4d4d4d;  font-size: 12px;font-family: 'Futura Bk BT Medium';    padding: 0 20px;}
+div#block-discount_trade .title {    float: left;    width: 100%;}
+div#block-discount_trade .content {    float: left;    width: 100%;}
+
+/* end cart page */

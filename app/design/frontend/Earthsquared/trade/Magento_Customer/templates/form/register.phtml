@@ -16,7 +16,7 @@
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset create info">
         <h2><?= $block->escapeHtml(__('Apply for a Trade Account')) ?></h2><br>
-		<p>Please allow 1-2 days for us to review your application.</p>
+		<p><?= $block->escapeHtml(__('Please allow 1-2 days for us to review your application.')) ?></p>
 		<p>If you do not hear back from us within 2-3 days please call us on <b>01620 892289</b> or email: <b>mail@earthsquared.com</b></p>
 		<p></p>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
@@ -120,6 +120,8 @@
                     <?= $block->getCountryHtmlSelect() ?>
                 </div>
             </div>
+			
+			
             <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
             <?php if ($addressAttributes) : ?>
                 <?php $addressAttributes->setEntityType('customer_address'); ?>
