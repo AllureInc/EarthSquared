@@ -2,15 +2,15 @@
 .cms-contact-us .breadcrumbs {    display: none;}
 .cms-contact-us .page-title-wrapper {    display: none;}
 .cms-contact-us main#maincontent {    margin-top: 35px;}
-.contact_info h1 { font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;    color: #4D4D4D;    font-family: 'Tiempos Headline Medium';}
+.contact_info h1 { font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;    color: #4D4D4D;    font-family: 'Tiempos Headline Medium';margin-bottom: 30px;}
 .contact_info p {    font-style: normal;    font-weight: normal;    font-size: 15px;    line-height: 180%;
-    color: #4D4D4D;    font-family: Futura Bk BT;}
+    color: #4D4D4D;    font-family: Futura Bk BT;     margin-bottom: 38px;}
 .addresspart h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
     color: #4D4D4D;    letter-spacing: 0.04em;}
-.contact_info {    width: 48%;    float: left;    padding-left: 8%;    padding-right: 8%;}
-form#contact-form {   margin-top: 10px; width: 563px;    float: left;}
+.contact_info {    width: 46.5%;    float: left;    padding-left: 8.5%;    padding-right: 8%;}
+form#contact-form {   margin-top: 0px; width: 563px;    float: left;}
 form#contact-form h2 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;	position: relative;	margin-bottom: 25px;}
+    color: #4D4D4D;    letter-spacing: 0.04em;	position: relative;	margin-bottom: 29px;}
 form#contact-form span.title_bg {    position: absolute;    width: 45px;    height: 45px;
     left: -6px;    top: -17px;    background: rgba(237, 182, 187, 0.3);    border: 1px solid rgba(237, 182, 187, 0.3);    border-radius: 50px;}
 form#contact-form input {  padding: 20px;  height: 60px;}

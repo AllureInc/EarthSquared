@@ -5,6 +5,7 @@
 .checkout-shipping-method{
     display: flex;
     flex-direction: column;    
+    width:100%;
 }
 #checkout .opc-progress-bar
 {
@@ -111,7 +112,7 @@
     width:100%;
     float: left;
 }
-.add-new-address-form-inline .action-add-new-shipping{
+.add-new-address-form-inline .action-add-new-shipping,.new-address-popup .action-show-popup{
     border-color: #4D4D4D;
     background: #FAFAFA;
     margin: 8px 0px 40px 0px;    
@@ -122,17 +123,21 @@
     line-height: 140%;    
     border-radius: 0;
     font-size: 12px; 
-    position: absolute;
+    position: relative;
     top: 0;
-    right: 18px;   
+    right: 0;  
 }
-.add-new-address-form-inline .action-add-new-shipping:before{
+.add-new-address-form-inline .action-add-new-shipping:before,.new-address-popup .action-show-popup{
    content: '+';
     padding-right: 5px;    
     width: 100%;
     float: left;    
     color: #F87883;
     font-size: 18px;   
+}
+.add-new-address-form-inline._active{
+    width: 100%;
+    float: left;
 }
 #checkout .opc-wrapper .shipping-address-item.not-selected-item .action-select-shipping-item span{
 	display: none;
@@ -142,7 +147,7 @@
     width: 18px;
     height: 18px;
     left: 20px;
-    top: 27px;
+    top: 22px;
     border: 1px solid #4D4D4D;
     border-radius: 50px;
     cursor: pointer;
@@ -178,7 +183,16 @@
     float: left;    
     margin-left: 0;
     margin-right: 2%;
+    margin-bottom: 2%;
     height: 96px;
+    position: relative;
+}
+.table-checkout-shipping-method .listship-methods .box-method p{
+    position: absolute;
+    top: 50px;
+    left: 57px;
+    color: #4d4d4d;
+    font-size: 12px;
 }
 .checkcontainer {
     display: block;
@@ -756,18 +770,18 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     #checkout .opc-wrapper .shipping-address-item.selected-item:last-child, #checkout .opc-wrapper .shipping-address-item.not-selected-item:last-child{
             margin-right: 0;
     }
-    .add-new-address-form-inline .action-add-new-shipping{
+    .add-new-address-form-inline .action-add-new-shipping,.new-address-popup .action-show-popup{
         width: 161px;
         right: unset;
         position: relative;
         width: 161px;
         margin: 8px 0px 25px 0px;
     }
-    .add-new-address-form-inline .action-add-new-shipping:before{
+    .add-new-address-form-inline .action-add-new-shipping:before,.new-address-popup .action-show-popup:before{
         padding-bottom: 11px;
         padding-right: 0;
     }
-    .add-new-address-form-inline .action-add-new-shipping span{
+    .add-new-address-form-inline .action-add-new-shipping span,.new-address-popup .action-show-popup span{
         font-size: 14px;
     }
     .opc-wrapper .methods-shipping{

@@ -18,13 +18,14 @@
                <span class="radiobtn"></span>     
       </label>                    
     </div> 
-    <div class="col col-method method_code"
+    <div class="col col-method methodcode"
         attr="'id': 'label_method_' + method.method_code + '_' + method.carrier_code"
         text="method.method_title" />
     <div class="col col-carrier"
         attr="'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code"
         text="method.carrier_title" />
-    <div class="col col-price">
+        <p>3-5 working days</p>
+    <div class="col col-price">      
         <each args="element.getRegion('price')" render="" />
     </div>        
 </div>
