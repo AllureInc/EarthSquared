@@ -9,16 +9,12 @@
 define([
     '../model/quote',
 	'jquery',
-    'Magento_Checkout/js/action/get-totals',
-	'Magento_Checkout/js/action/set-shipping-information'
-], function (quote, $, getTotalsAction, setShippingAction) {
+    'Magento_Checkout/js/action/get-totals'	
+], function (quote, $, getTotalsAction) {
     'use strict';
-
     return function (shippingMethod) {
-        quote.shippingMethod(shippingMethod);
-		
+        quote.shippingMethod(shippingMethod);		
 		var deferred = $.Deferred();
-		getTotalsAction([], deferred);
-		setShippingAction([]);
+		getTotalsAction([], deferred);		
     };
 });

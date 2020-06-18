@@ -18,6 +18,7 @@
 }
 .checkout-cart-index .actions-toolbar .action-towishlist.trade{
 	display: inline-block !important;
+	font-size: 12px;
 }
 .checkout-cart-index .actions-toolbar .action-towishlist.trade span{
 	color:#4d4d4d !important;
@@ -38,6 +39,9 @@
 	width:30px;
 	border-width: 0px 1px 0px 1px;	
 	border-color: #EEE;
+	padding: 0;
+    height: 30px;
+    margin-top: 0;
 
 }
 @media screen and (max-width: 767px)

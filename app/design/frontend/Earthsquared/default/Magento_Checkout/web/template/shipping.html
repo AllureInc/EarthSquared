@@ -20,12 +20,9 @@
                 <button type="button" data-role="title" class="action-add-new-shipping">
                     <span data-bind="i18n: 'Add new address'" class="action action-toggle" role="heading" aria-level="2"></span>
                 </button>
-                <div id="opc-new-shipping-address" data-role="content">
-                    <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->               
-                </div>
+                <div id="opc-new-shipping-address" data-role="content" render="shippingFormTemplate" />
             </div> 
-        </if>
-
+        </if>                
         <each args="getRegion('before-form')" render="" />
 
         <!-- Inline address form -->

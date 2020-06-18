@@ -188,11 +188,11 @@
     position: relative;
 }
 .table-checkout-shipping-method .listship-methods .box-method p{
-    position: absolute;
-    top: 50px;
-    left: 57px;
+    position: relative;    
+    left: 30px;
     color: #4d4d4d;
     font-size: 12px;
+        clear: both;
 }
 .checkcontainer {
     display: block;
@@ -243,8 +243,11 @@
     float: left;
 }
 .table-checkout-shipping-method .listship-methods .box-method .col-price{
-	float: right;
+    float: right;
     width: auto;
+    position: absolute;
+    right: 20px;
+    top: 33px;
 }
 .table-checkout-shipping-method .listship-methods .box-method .col-price,.table-checkout-shipping-method .listship-methods .box-method .col-carrier{
     color: #4d4d4d;

@@ -30,7 +30,7 @@
         </referenceContainer>         
 		<referenceBlock name="page.main.title">            
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Order Successfully placed</argument>
+                <argument translate="true" name="title" xsi:type="string">Hurray! Thank you for your order.</argument>
             </action>
         </referenceBlock>    	
     </body>

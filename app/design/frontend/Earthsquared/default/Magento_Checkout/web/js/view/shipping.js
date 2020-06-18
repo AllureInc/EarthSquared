@@ -243,7 +243,7 @@ define([
         selectShippingMethod: function (shippingMethod) {
             selectShippingMethodAction(shippingMethod);
             checkoutData.setSelectedShippingRate(shippingMethod['carrier_code'] + '_' + shippingMethod['method_code']);
-
+            setShippingInformationAction();
             return true;
         },
 

@@ -86,29 +86,21 @@ if($_helper->isMobile()){ ?>
                 <div class="qty-subtotal">
                     <div class="field qty">
                         <div class="control qty cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
-                            <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">                            
-                                <?php /* <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
-                                       name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
-                                       data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
-                                       value="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
-                                       type="number"
-                                       size="4"
-                                       step="any"
-                                       title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                                       class="input-text qty"
-                                       data-validate="{required:true,'validate-greater-than-zero':true}"
-                                       data-role="cart-item-qty"/> */ ?>
-                                <select id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty" name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]" data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>" class="input-text qty">
-                                    <?php $i=1; 
-                                          for($i=1;$i<=4;$i++)  
-                                          {
-                                            ?>
-                                             <option <?php if($i==$block->getQty()) { ?> selected <?php } ?> value="<?php echo $i ?>"><?php echo $i ?></option>   
-                                            <?php 
-                                          }
-                                    ?>
-                                </select>                                        
-                            </label>                        
+                             
+                            <div href="javascript:void(0)" class="qty-dec">-</div>                                  
+                               <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
+                                   name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
+                                   data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
+                                   value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
+                                   type="number"
+                                   size="4"
+                                   title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                                   class="input-text qty"
+                                   maxlength="12"
+                                   data-validate="{required:true,'validate-greater-than-zero':true}"
+                                   data-role="cart-item-qty"/>
+                                <div href="javascript:void(0)" class="qty-inc">+</div> 
+                         
                         </div>
                     </div> 
                     <div class="col subtotal">
@@ -208,32 +200,20 @@ if($_helper->isMobile()){ ?>
         <?php endif; ?>
         <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>">
             <div class="field qty">
-                <div class="control qty cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty">                  
-                    <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
-                        <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
-                  <?php /*      <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
-                               name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
-                               data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
-                               value="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
-                               type="number"
-                               size="4"
-                               step="any"
-                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                               class="input-text qty"
-                               data-validate="{required:true,'validate-greater-than-zero':true}"
-                               data-role="cart-item-qty"/> */ ?>
-                        <select id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty" name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]" data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>" class="input-text qty">
-                            <?php $i=1; 
-                                  for($i=1;$i<=4;$i++)  
-                                  {
-                                    ?>
-                                     <option <?php if($i==$block->getQty()) { ?> selected <?php } ?> value="<?php echo $i ?>"><?php echo $i ?></option>   
-                                    <?php 
-                                  }
-                            ?>
-                        </select>     
-                    </label>
-                
+                <div class="control qty cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty trade">                   
+                               <div href="javascript:void(0)" class="qty-dec">-</div> 
+                               <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
+                                   name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
+                                   data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
+                                   value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
+                                   type="number"
+                                   size="4"
+                                   title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                                   class="input-text qty trade"
+                                   maxlength="12"
+                                   data-validate="{required:true,'validate-greater-than-zero':true}"
+                                   data-role="cart-item-qty"/>
+                                <div href="javascript:void(0)" class="qty-inc">+</div> 
                 </div>
             </div>
         </td>
@@ -248,3 +228,23 @@ if($_helper->isMobile()){ ?>
     </tr>   
 </tbody>
 <?php } ?>
+
+
+<script type="text/javascript">
+    require(["jquery"],function($){        
+        $(".qty-inc").unbind('click').click(function(){
+            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
+                $(this).parents('.field.qty').find("input.input-text.qty").val((+$(this).parents('.field.qty').find("input.input-text.qty").val() + 1) || 0);
+                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
+                $(this).focus();
+            }
+        });
+        $(".qty-dec").unbind('click').click(function(){
+            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
+                $(this).parents('.field.qty').find("input.input-text.qty").val(($(this).parents('.field.qty').find("input.input-text.qty").val() - 1 > 0) ? ($(this).parents('.field.qty').find("input.input-text.qty").val() - 1) : 0);
+                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
+                $(this).focus();
+            }
+        });
+    });
+</script>

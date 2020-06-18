@@ -1301,7 +1301,7 @@ body.cms-index-index .page-main{
     top: 36px;
     margin: 0;
     background: #FFFFFF;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #eee;
     border-top: 0px;
     box-sizing: border-box;
     /* box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1); */
@@ -1814,6 +1814,8 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
     height: 16px;
     display: inline-block;
     margin-right: 5px;
+    position: relative;
+    top: 2px;
 }
 #confirmBox.amcart-minipage-wrap > .cross{
 	top: 11px;
@@ -2419,7 +2421,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	font-family: 'Tiempos Headline Medium';
     font-size: 28px;
     color: #4d4d4d;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     padding: 0 0px;
 }
 .cart-summary .cart-totals{
