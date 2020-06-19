@@ -1,0 +1,39 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .checkout-payment-method .field-select-billing {
+    max-width: 100%;
+  }
+
+  .opc-wrapper {
+    .shipping-address-item {
+      border-color: #4D4D4D;
+      background: #FAFAFA;
+      margin: 8px 40px 40px 0px;
+      padding: 23px 0px 20px 50px;
+      height: 144px;
+      border-width: 1px;
+      color: #4d4d4d;
+      width: 216px !important;
+      line-height: 140%;
+      font-size: 11px;
+      min-height: 144px;
+      
+      button.action.action-select-billing-item {    
+        width: 18px;
+        height: 18px;
+        left: 19px;
+        top: 22px;
+        border: 1px solid #4D4D4D;
+        border-radius: 50px;
+        cursor: pointer;
+        background: #fff;
+        position:absolute;
+        padding: 0;
+
+        &.active {
+          border: 5px solid #4D4D4D;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,55 @@
+<div class="field field-select-billing">
+    <label class="label"><span data-bind="i18n: 'Billing Address'"></span></label>
+    <div class="control" data-bind="if: (addressOptions.length > 1)">
+        <select class="select" name="billing_address_id" data-bind="
+        visible: false,
+        options: addressOptions,
+        optionsText: addressOptionsText,
+        value: selectedAddress,
+        event: {change: onAddressChange(selectedAddress())};
+    "></select>
+
+        <each args="data: addressOptions, as: 'element'">
+            <!-- ko if: (element.customerAddressId) -->
+            <div class="shipping-address-item">
+                <div class="billingname">
+                    <text args="element.prefix"/>
+                    <text args="element.firstname"/>
+                    <text args="element.middlename"/>
+                    <text args="element.lastname"/>
+                    <text args="element.suffix"/>
+                </div>                
+                <div class="billingaddress">
+                    <text args="_.values(element.street).join(', ')"/>
+                    <br/>
+                    <text args="element.city "/>, <span text="element.region"></span>
+                    <text args="element.postcode"/>
+                    <br/>
+                    <text args="$parent.getCountryName(element.countryId)"/>                    
+                </div>    
+                <each args="data: element.customAttributes, as: 'element'">
+                    <text args="$parent.getCustomAttributeLabel(element)"/>
+                    <br/>
+                </each>
+
+                <button type="button" data-bind="
+                        css: { active: !$parent.isNewAddressSelected() && element.getKey() == $parent.selectedAddress().getKey()},
+                        event: {click: $parent.onAddressChange(element)};"
+                        class="action action-select-billing-item"
+                >
+                </button>
+            </div>
+            <!-- /ko -->
+        </each>
+
+        <div class="shipping-address-item addnewbilling" data-bind="visible: !isNewAddressSelected()">
+            <button type="button"
+                    class="action action-show-popup"
+                    data-bind="visible: !isNewAddressSelected(), event: {click: addNewBillingAddress};"
+            >
+                <span translate="'Add new Address'"/>
+            </button>
+        </div>
+
+    </div>
+</div>

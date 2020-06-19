@@ -82,7 +82,9 @@
     width: 216px;
     line-height: 140%;
     font-size: 11px;
+    min-height: 144px;
 }
+
 #checkout .opc-wrapper .shipping-address-item.not-selected-item{
 	background: #fff;	
 	border-color: #757575;
@@ -112,7 +114,7 @@
     width:100%;
     float: left;
 }
-.add-new-address-form-inline .action-add-new-shipping,.new-address-popup .action-show-popup{
+.add-new-address-form-inline .action-add-new-shipping,.new-address-popup .action-show-popup,.checkout-billing-address .shipping-address-item.addnewbilling .action-show-popup{
     border-color: #4D4D4D;
     background: #FAFAFA;
     margin: 8px 0px 40px 0px;    
@@ -127,13 +129,16 @@
     top: 0;
     right: 0;  
 }
-.add-new-address-form-inline .action-add-new-shipping:before,.new-address-popup .action-show-popup{
+.add-new-address-form-inline .action-add-new-shipping:before,.new-address-popup .action-show-popup,.checkout-billing-address .shipping-address-item.addnewbilling .action-show-popup:before{
    content: '+';
     padding-right: 5px;    
     width: 100%;
     float: left;    
     color: #F87883;
     font-size: 18px;   
+}
+.checkout-billing-address .shipping-address-item.addnewbilling .action-show-popup span:before,.checkout-billing-address .shipping-address-item.addnewbilling:before{
+    display: none;
 }
 .add-new-address-form-inline._active{
     width: 100%;
@@ -158,22 +163,35 @@
     position: relative;	
     margin-bottom: 10px;
 }
-.shipping-address-item .shippingname,.billing-address-details .billingname{
+.shipping-address-item .shippingname,.billing-address-details .billingname,.billingname{
 	font-size: 12px;
 	text-transform: uppercase;
 	color:#4d4d4d;
 	letter-spacing: 0.04em;
 	font-family: 'Futura Bk BT Medium';	
 }
-.shipping-address-item .shipaddress,.billing-address-details .billingaddress{
+.shipping-address-item .shipaddress,.billing-address-details .billingaddress,.billingaddress{
 	color: #757575;
 	font-size: 11px;
 	line-height: 140%;
 	margin-top: 35px;
 }
+.checkout-billing-address .shipping-address-item .billingaddress{
+    margin-top: 20px;
+}
+.checkout-billing-address .shipping-address-item.addnewbilling{
+    border:0px;
+    width:auto !important;
+    min-height: auto;
+    background:transparent;
+    margin: 0px;
+    padding:0px;
+}
+
 .billing-address-details .billingaddress{
     margin-top: 20px;
 }
+
 .table-checkout-shipping-method .listship-methods .box-method
 {
 	background: #FAFAFA;

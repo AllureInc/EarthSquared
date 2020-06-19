@@ -1,0 +1,20 @@
+<!-- ko if: (visible)-->
+<div class="field addresses">
+    <div class="control">
+        <div class="shipping-address-items">
+            <select class="select select-shipping-address-dd" data-bind="event: {change: selectAddress()};">
+                <!-- ko foreach: { data: elems, as: 'element' } -->
+                <option attr="'value': element.address().getKey(), 'selected': element.isSelected()"
+                        text="$parent.addressOptionsText(element.address())">
+                </option>
+                <!-- /ko -->
+                <option data-bind="visible: !isNewAddressAdded()" translate="'Add New Address'"
+                        value="new-address"></option>
+            </select>
+            <!-- ko foreach: { data: elems, as: 'element' } -->
+            <!-- ko template: element.getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+<!-- /ko -->
