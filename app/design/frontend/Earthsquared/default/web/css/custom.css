@@ -308,7 +308,7 @@ header .minicart-wrapper .action.showcart .counter.qty.empty{
 }
 #confirmBox.amcart-minipage-wrap .ampage-bottom-info{
 	padding-left: 47px;
-    margin-top: -24px;
+    margin-top: -10px;
 }
 
 .checkout-cart-index .actions-toolbar .action-towishlist{
@@ -469,8 +469,7 @@ header .minicart-wrapper .product.options.list .label{
     background-position: 0px 2px;
 }
 header .minicart-wrapper .action.showcart .counter.qty .counter-number{
-	    background: #EDB6BB;
-    	height: 18px;
+	    background: #EDB6BB;    	
     	line-height: 18px;
     	min-width: 18px;
     	float: right;
@@ -1364,7 +1363,13 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	padding-left: 5px;
 }
 .filter-content .filter-current.am-filter-current .item{
-	    margin: 0px 0 !important;	    
+	    margin: 0px 14px 0px 0px !important;
+	    background: #FAFAFA;
+	    padding:15px 32px 15px 10px;	    
+}
+.filter-content .filter-current.am-filter-current .item.am-swatch-wrapper{
+	margin: 0px !important;
+	background: transparent;
 }
 .product-items .product-item-details{
 	margin-top: 14px;
@@ -1416,6 +1421,9 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	font-size: 13px;
 	font-weight: normal;
 	color:#4d4d4d !important;
+}
+.filter-options-content .items .am_shopby_link_selected {
+    font-family: 'Futura Bk Bt Medium';
 }
 .filter-options-content a:hover{
 	background-color: transparent ;
@@ -1476,17 +1484,26 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	outline: none !important;
 	border: 0px solid #BDBDBD !important;
 }
+.filter-options .swatch-option.selected + .am-shopby-swatch-label{
+	font-family: 'Futura Bk Bt Medium';
+}
+.filter-options .swatch-option.selected{
+	border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+.filter-options .swatch-option:hover{
+	border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
 .filter-options .swatch-option:hover,.am-filter-current .am-filter-value .am-swatch-options .swatch-option:hover{
 	opacity: 0.3;
 }
 .filter-content .item{
 	display: flex;
-	margin: 20px 0 !important;
+	margin: 20px 0 26px !important;
 }
 
 .filter-options-title:after,.filter-options-content .count{display:none;}
 #narrow-by-list .filter-options-content .am-swatch-wrapper{
-	    margin: 13px 0px !important;
+	    margin: 13px -5px !important;
 }
 .filter-options .filter-options-content .am-shopby-swatch-label .label{
     display: inline-flex;
@@ -1553,6 +1570,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	text-transform: uppercase;
 	font-family: Futura Bk BT Medium;
 	letter-spacing: 0.03em;
+	margin-top: 2px;
 }
 .filter-options-content .am-show-more:hover{
 	color: #ED737E !important;
@@ -1599,8 +1617,8 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 .products-grid .swatch-option{ height: 24px;min-width: 24px;border:0px solid #bdbdbd !important; border-radius: 100%;}
 .products-grid .swatch-option.selected,.products-grid .swatch-option:hover{
 	outline: none !important;
-	transform-style: preserve-3d;
-    border: 1.5px solid rgba(0, 0, 0, 0.6) !important;    
+	transform-style: preserve-3d;    
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 .action-button a.towishlist img,.action-button .tocart img{width:13px;}
 .action-button a.towishlist img.hover-wish{
@@ -1710,7 +1728,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 .bottom-toolbar .pages-item-next{float:right;}
 .bottom-toolbar .pages-item-previous{float:left;}
 .products .product-item .price-box .price-label{
-	display:none;
+	display:none !important;
 }
 .amrelated-grid-wrapper .product-item .price-box .price-label{
 	display:none;
@@ -1738,7 +1756,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	position: absolute;
     right: 0;    
     width: 84.5%;
-    padding-left: 3%;
+    padding-left: 2%;
     top: 145px;
 }
 #amasty-shopby-product-list .products.wrapper{	    
@@ -1748,18 +1766,19 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	display:inline-block;	
 	padding: 0 32px;
 	margin: 3px 0 !important;
+	background: #FAFAFA;
 }
 .filter-current.am-filter-current .items li:first-child{
-	padding:0px 32px 0px 0px;
+	padding:15px 30px 15px 10px;
 }
 .filter-current.am-filter-current .items li:hover{
 	    background: transparent;
 }
 .filter-current.am-filter-current .action.remove {
-    right: 0px;
+    right: 10px;
     left:unset;
     position: absolute;
-    top: 0px;
+    top: 15px;
 }
 .filter-current.am-filter-current .filter-value{color:#4d4d4d;}
 .filter-current.am-filter-current .items li .filter-clear{
@@ -1783,6 +1802,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 .amcart-message-box .product-info-main .swatch-attribute-label{
 	float: left;
 	display: block;
+	font-family: 'Futura Bk Bt Medium';
 }
 .amcart-message-box .product-options-wrapper .swatch-attribute-selected-option{
     padding-left: 9px;		
@@ -1893,13 +1913,20 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	outline: none !important;
     transform-style: preserve-3d;
     /* border: 2px solid #fff !important; */
-     border: 1.5px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 .product-options-wrapper .swatch-option.image:not(.disabled):hover, .product-options-wrapper .swatch-option.color:not(.disabled):hover{
-    border: 1.5px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 .psku span{
 	text-transform: uppercase;
+}
+.minicart-wrapper .minicart-items .product-item:not(:first-child) {
+    border-top: 1px solid #eee;
+}
+#btn-minicart-close{ display: none !important; }
+.minicart-wrapper .block-minicart{
+	box-shadow: none !important;
 }
 .product-add-form{position:relative;}
 .share-medias{
@@ -2972,7 +2999,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 	    margin-top: 10px;
 	    position: absolute;
 	    top: 1px;
-	    right: 15px;
+	    right: 10px;
 	    z-index: 9;
 	    width:auto;
 	}

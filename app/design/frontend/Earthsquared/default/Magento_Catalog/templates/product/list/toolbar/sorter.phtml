@@ -44,19 +44,3 @@
         </a>
     <?php endif; ?>
 </div>
-<script type="text/javascript">
-            require([
-              'jquery'   
-            ], function ($) {
-            $(document).ready(function(){  
-                if($("ul.sortorder-options li").hasClass("active")){
-                    var liactive = $('ul.sortorder-options li.active').text();
-                    $('.custom-select label span').text(liactive);
-                }
-                $(".custom-select label.init").on("click", function() {
-                  $(this).next("#sorter").toggle();
-              });
-     
-            });
-          });
-</script>

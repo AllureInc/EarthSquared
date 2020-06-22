@@ -10,10 +10,15 @@
     <a class="action showcart1" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>" data-bind="scope: 'minicart_content'">         
         <span class="counter qty empty"
               data-bind="css: { empty: !!getCartParam('summary_count') == false && !isLoading() }, blockLoader: isLoading">
-            <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>          
-            <!-- ko if: getCartParam('subtotal') -->
-            <span class="total-price subtotal" data-bind="html: getCartParam('subtotal')"></span>
-            <!-- /ko -->            
+            <!-- ko if: getCartParam('summary_count') -->
+                <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+                <span class="total-price subtotal" data-bind="html: getCartParam('subtotal')"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: getCartParam('summary_count') -->
+                <span class="counter-number">0</span>
+                <span class="total-price subtotal">£0.00</span>
+            <!-- /ko -->         
         </span>
+
     </a>	
 </li>

@@ -34,7 +34,9 @@ if($helper->isCustomerLoggedIn()){
 <?php if (!$_productCollection->count()) :?>
     <div class="message info empty"><div><?= $block->escapeHtml(__('We can\'t find products matching the selection.')) ?></div></div>
 <?php else :?>
-    <?= $block->getToolbarHtml() ?>
+    <div class="top-toolbar">
+        <?= $block->getToolbarHtml() ?>
+    </div>
     <?= $block->getAdditionalHtml() ?>
     <?php
     if ($block->getMode() == 'grid') {
@@ -203,7 +205,7 @@ if($helper->isCustomerLoggedIn()){
         </ol>
     </div>
     <div class="bottom-toolbar">
-        <?php //echo $block->getToolbarHtml() ?>
+        <?php echo $block->getToolbarHtml() ?>        
     </div>
     <?php if (!$block->isRedirectToCartEnabled()) :?>
         <script type="text/x-magento-init">
@@ -217,17 +219,18 @@ if($helper->isCustomerLoggedIn()){
         </script>
     <?php endif; ?>
 <?php endif; ?>
-<!-- <script>
-              require([
+<script type="text/javascript">
+            require([
               'jquery'   
             ], function ($) {
-            $(document).ready(function(){
-                  $('#sorter.sorter-options.desk').parent().append('<ul id="nsorter" data-role="sorter" class="sorter-options desk"></ul>');
-                  $('#sorter.sorter-options.desk option').each(function(){
-                    $('#nsorter').append('<li value="' + $(this).val() + '" onclick="">'+$(this).text()+'</li>');
-                  });
-                  //$('#sorter.sorter-options.desk').remove();
-                  $('#nsorter').attr('id', 'sorter'); 
+            $(document).ready(function(){                                
+                if($(".top-toolbar ul.sortorder-options li").hasClass("active")){
+                    var liactive = $('.top-toolbar ul.sortorder-options li.active').text();
+                    $('.top-toolbar .custom-select label span').text(liactive);
+                }                               
+                $(".top-toolbar .custom-select label.init").on("click", function() {
+                  $(this).next("#sorter").toggle();
+                });              
             });
-        });
-</script> -->
+          });
+</script>
