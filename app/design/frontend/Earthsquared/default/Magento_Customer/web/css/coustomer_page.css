@@ -36,11 +36,11 @@ form#login-form fieldset.fieldset.login div {
 .customer-account-login ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
 .customer-account-login ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
 .customer-account-login header .section3 {    display: none;}
-.section_phone img {    width: 18.67px;}
+.section_phone img {  width: 13.26px;    height: 13.29px;}
 .section_phone {    float: right;    position: absolute;   right: 20px;}
 a.backlink:before {    content: '';    background: url(../images/back.png) no-repeat;    width: 14px;
     height: 14px;    background-size: 100%;    display: inline-block;    margin-right: 5px;    background-position: 0px 2px;}
-a.backlink { font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
+a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .section_phone a.phonelink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;
     margin-left: 5px;}
 /* end customer login */
@@ -99,8 +99,8 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D
     padding: 3px 20px 1.42px;    margin: 0 auto;}
 .customer_account_create_top_part .part1 {    display: inline-block;    margin-left: 60px;}
 .customer_account_create_top_part .part1 img {    margin-right: 10px;}
-.customer_account_create_top_part {    text-align: center;    padding-bottom: 20px;    margin-bottom: 50px;
-    float: left;    padding-top: 20px;    width: 100%;    background: #FAFAFA;}
+.customer_account_create_top_part {    text-align: center;    padding-bottom: 30px;    margin-bottom: 35px;
+    float: left;    padding-top: 30px;    width: 100%;    background: #FAFAFA;}
 .customer-account-create .form.create.account {    min-width: 100%;}
 .customer-account-create .page-title-wrapper {    display: none;}
 .customer-account-create footer.page-footer {    display: none;}
@@ -115,7 +115,7 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D
 .customer_account_create_top_part .item a.third:before {content: '';    background: url(../images/smiling-girl.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;    margin-right: 15px;    background-position: 0;}
 .customer_account_create_top_part .item span{  margin-top: 5px;  font-size: 14px;    color: #4D4D4D;float: left;
     font-family: Futura Bk BT Medium;}
-.customer-account-create .form.create.account h3 {   font-size: 13px;    text-transform: uppercase;
+.customer-account-create .form.create.account h3 {  margin-bottom: 20px;  font-size: 13px;    text-transform: uppercase;
     font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
     position: relative;    text-align: center;}
 .customer-account-create .form.create.account input {    height: 60px;    background: #FFFFFF;
