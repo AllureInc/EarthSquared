@@ -100,7 +100,8 @@ class Flatrate9 extends AbstractCarrier implements CarrierInterface
             $shippingPrice = '0.00';
         }
 
-        if ($this->getConfigData('handling_type') == 'FI') { // Fixed - Per Item
+        if ($this->getConfigData('handling_type') == 'FI') {
+            // Fixed - Per Item
             if ($request->getPackageQty() > 1) {
                 $onlyhandelfee = $shippingPrice - $onlyShippingPrice;
                 $feeadded = $onlyhandelfee * ($request->getPackageQty() - 1);
@@ -109,22 +110,21 @@ class Flatrate9 extends AbstractCarrier implements CarrierInterface
         }
 
         if ((($this->getConfigData('min_amount') != '')
-                && ($request->getBaseSubtotalInclTax() <= $this->getConfigData('min_amount')))
+            && ($request->getBaseSubtotalInclTax() <= $this->getConfigData('min_amount')))
             && (($this->getConfigData('max_amount') != '')
                 && ($request->getBaseSubtotalInclTax() <= $this->getConfigData('max_amount')))) {
             $shippingPrice = false;
         } elseif ((($this->getConfigData('min_amount') != '')
-                && ($request->getBaseSubtotalInclTax() >= $this->getConfigData('min_amount')))
+            && ($request->getBaseSubtotalInclTax() >= $this->getConfigData('min_amount')))
             && (($this->getConfigData('max_amount') != '')
                 && ($request->getBaseSubtotalInclTax() >= $this->getConfigData('max_amount')))) {
             $shippingPrice = false;
-        }
-        elseif ((($this->getConfigData('min_amount') != '')
-                && ($request->getBaseSubtotalInclTax() <= $this->getConfigData('min_amount')))
+        } elseif ((($this->getConfigData('min_amount') != '')
+            && ($request->getBaseSubtotalInclTax() <= $this->getConfigData('min_amount')))
             && (($this->getConfigData('max_amount') == ''))) {
             $shippingPrice = false;
         } elseif ((($this->getConfigData('max_amount') != '')
-                && ($request->getBaseSubtotalInclTax() >= $this->getConfigData('max_amount')))
+            && ($request->getBaseSubtotalInclTax() >= $this->getConfigData('max_amount')))
             && (($this->getConfigData('min_amount') == ''))) {
             $shippingPrice = false;
         }
@@ -146,7 +146,7 @@ class Flatrate9 extends AbstractCarrier implements CarrierInterface
 
         $method->setPrice($shippingPrice);
         $method->setCost($shippingPrice);
-
+        $method->setData('method_description', $this->getConfigData('shippinginfo'));
         return $method;
     }
 

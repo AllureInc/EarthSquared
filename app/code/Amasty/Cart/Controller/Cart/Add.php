@@ -7,20 +7,20 @@
 namespace Amasty\Cart\Controller\Cart;
 
 use Amasty\Cart\Model\Source\BlockType;
-use Amasty\Cart\Model\Source\Option;
 use Amasty\Cart\Model\Source\ConfirmPopup;
+use Amasty\Cart\Model\Source\Option;
 use Amasty\Cart\Model\Source\Section;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
+use Magento\Checkout\Helper\Data as HelperData;
 use Magento\Checkout\Model\Cart as CustomerCart;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\Framework\DataObjectFactory as ObjectFactory;
 use Magento\Framework\Escaper;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Quote\Model\Quote\Address\Total;
-use Magento\Checkout\Helper\Data as HelperData;
-use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
-use Magento\Framework\DataObjectFactory as ObjectFactory;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Quote\Model\Quote\Address\Total;
 
 class Add extends \Magento\Checkout\Controller\Cart\Add
 {
@@ -239,7 +239,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
 
             if ($product->getTypeId() == Configurable::TYPE_CODE && isset($params['super_attribute'])) {
                 $this->setQuoteProduct($product);
-                if ((bool)$this->helper->getModuleConfig('confirm_display/configurable_image')) {
+                if ((bool) $this->helper->getModuleConfig('confirm_display/configurable_image')) {
                     $this->_coreRegistry->register(
                         'amasty_cart_conf_product',
                         $this->configurable->getProductByAttributes(
@@ -325,7 +325,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             case 'configurable':
                 $attributesCount = $product->getTypeInstance()->getConfigurableAttributes($product)->count();
                 $superParamsCount = (array_key_exists('super_attribute', $params)) ?
-                    count(array_filter($params['super_attribute'])) : 0;
+                count(array_filter($params['super_attribute'])) : 0;
                 if (isset($params['configurable-option'])) {
                     // compatibility with Amasty_Conf product matrix
                     $matrixSelected = false;
@@ -406,7 +406,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
     private function isProductPageOrAjaxMini()
     {
         return $this->getRequest()->getParam('product_page') == 'true'
-            || $this->getRequest()->getParam('requestAjaxMini') == 'true';
+        || $this->getRequest()->getParam('requestAjaxMini') == 'true';
     }
 
     /**
@@ -446,12 +446,12 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                 'amasty.cart.minipage',
                 [
                     'data' =>
-                        [
-                            'product'      => $product,
-                            'optionsHtml'  => $optionsHtml,
-                            'imageBuilder' => $this->imageBuilder,
-                            'pageFactory'  => $this->resultPageFactory
-                        ]
+                    [
+                        'product' => $product,
+                        'optionsHtml' => $optionsHtml,
+                        'imageBuilder' => $this->imageBuilder,
+                        'pageFactory' => $this->resultPageFactory,
+                    ],
                 ]
             );
             $message = $block->toHtml();
@@ -467,19 +467,19 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                 break;
             case Section::CART:
             default:
-                $buttonTitle = __('Add to cart');
+                $buttonTitle = __('Add to my Bag');
         }
 
         $result = [
-            'title'     =>  __('Set options'),
-            'message'   =>  $message,
-            'b2_name'   =>  $buttonTitle,
-            'b1_name'   =>  $cancelTitle,
-            'b2_action' =>  'self.submitFormInPopup();',
-            'b1_action' =>  'self.confirmHide();',
-            'align' =>  'self.confirmHide();' ,
-            'is_add_to_cart' =>  '0',
-            'is_minipage' => $isMiniPage ? true : false
+            'title' => __('Set options'),
+            'message' => $message,
+            'b2_name' => $buttonTitle,
+            'b1_name' => $cancelTitle,
+            'b2_action' => 'self.submitFormInPopup();',
+            'b1_action' => 'self.confirmHide();',
+            'align' => 'self.confirmHide();',
+            'is_add_to_cart' => '0',
+            'is_minipage' => $isMiniPage ? true : false,
         ];
 
         if ($product->getTypeId() == Configurable::TYPE_CODE) {
@@ -512,14 +512,14 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             $block = $page->getLayout()->createBlock(
                 \Magento\Catalog\Block\Product\View::class,
                 'product.info',
-                [ 'data' => [] ]
+                ['data' => []]
             );
         }
 
         $block->setProduct($product);
         if ($submitRoute) {
             $block->setData('submit_route_data', [
-                'route' => $submitRoute
+                'route' => $submitRoute,
             ]);
         }
         $html = $block->toHtml();
@@ -534,7 +534,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             $html = str_replace(
                 '</form>',
                 '<input name="item" type="hidden" value="'
-                            . (int)$this->getRequest()->getParam('item') . '"></form>',
+                . (int) $this->getRequest()->getParam('item') . '"></form>',
                 $html
             );
         }
@@ -612,20 +612,20 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
             switch ($this->type) {
                 case Section::QUOTE:
                     $linkTitle = __('Quote Cart');
-                    $itemCountTitle =  __(' in your quote cart.');
+                    $itemCountTitle = __(' in your quote cart.');
                     $cartUrl = $this->getQuoteCartUrl();
                     break;
                 case Section::CART:
                 default:
                     $linkTitle = __('View Cart');
-                    $itemCountTitle =  __(' in your cart.');
+                    $itemCountTitle = __(' in your cart.');
                     $cartUrl = $this->cartHelper->getCartUrl();
             }
             $message .=
-                "<p id='amcart-count' class='text'>".
+                "<p id='amcart-count' class='text'>" .
                 $partOne .
-                ' <a href="'. $cartUrl .'" id="am-a-count" data-amcart="amcart-count" title="' . $linkTitle . '">'.
-                $summary.  $partTwo .
+                ' <a href="' . $cartUrl . '" id="am-a-count" data-amcart="amcart-count" title="' . $linkTitle . '">' .
+                $summary . $partTwo .
                 '</a> '
                 . $itemCountTitle
                 . "</p>";
@@ -634,10 +634,10 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
         //display sum price
         if ($this->helper->isDisplaySubtotal()) {
             $message .=
-                '<p class="amcart-subtotal text">' .
-                __('Cart Subtotal:') .
-                ' <span class="am_price" data-amcart="amcart-price">'.
-                $this->getSubtotalHtml() .
+            '<p class="amcart-subtotal text">' .
+            __('Cart Subtotal:') .
+            ' <span class="am_price" data-amcart="amcart-price">' .
+            $this->getSubtotalHtml() .
                 '</span></p>';
         }
 
@@ -674,22 +674,22 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
         $result = array_merge(
             $result,
             [
-                'title'     => __('Information'),
-                'message'   => $message,
-                'related'   => $this->getAdditionalBlockHtml(),
-                'b1_name'   => __('Continue'),
-                'b2_name'   => $buttonName,
+                'title' => __('Information'),
+                'message' => $message,
+                'related' => $this->getAdditionalBlockHtml(),
+                'b1_name' => __('Continue'),
+                'b2_name' => $buttonName,
                 'b2_action' => 'document.location = "' . $cartUrl . '";',
                 'b1_action' => 'self.confirmHide();',
-                'checkout'  => '',
-                'timer'     => ''
+                'checkout' => '',
+                'timer' => '',
             ]
         );
 
         if ($this->helper->isDisplayGoToCheckout() && $this->isCartController()) {
             $goto = __('Go to Checkout');
             $result['checkout'] =
-                '<a class="checkout"
+            '<a class="checkout"
                     title="' . $goto . '"
                     data-role="proceed-to-checkout"
                     href="' . $this->helper->getUrl('checkout') . '"
@@ -837,7 +837,7 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
                 'product.price.render.default',
                 ['data' => [
                     'price_render_handle' => 'catalog_product_prices',
-                    'use_link_for_as_low_as' => true
+                    'use_link_for_as_low_as' => true,
                 ]]
             );
             $blockName = 'Amasty\Cart\Block\Product\\';
@@ -865,8 +865,8 @@ class Add extends \Magento\Checkout\Controller\Cart\Add
     {
         $totals = $this->getCartModel()->getQuote()->getTotals();
         $subtotal = isset($totals['subtotal']) && $totals['subtotal'] instanceof Total
-            ? $totals['subtotal']->getValue()
-            : 0;
+        ? $totals['subtotal']->getValue()
+        : 0;
 
         return $this->helperData->formatPrice($subtotal);
     }

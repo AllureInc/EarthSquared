@@ -137,7 +137,11 @@
             <image id="product_swatch_image_medium" type="image">
                 <width>314</width>
                 <height>314</height>
-            </image>                      
+            </image>    
+            <image id="swatch_image" type="swatch_image">
+                 <width>35</width>
+                 <height>35</height>
+            </image>                  
             <image id="recently_compared_products_grid_content_widget" type="small_image">
                 <width>255</width>
                 <height>255</height>
@@ -174,6 +178,10 @@
                 <width>255</width>
                 <height>255</height>
             </image>
+            <image id="related_products_content" type="small_image">
+                <width>314</width>
+                <height>314</height>
+            </image>            
             <image id="review_page_product_image" type="small_image">
                 <width>285</width>
                 <height>285</height>
