@@ -21,5 +21,14 @@
 
         <referenceBlock name="customer.wishlist.item.comment" remove="true"/>
 		<referenceBlock name="customer.wishlist.item.actions" remove="true"/>
+
+		<move element="Wishlist_product_count" destination="content"  before="-"/>
+
+
+	<referenceContainer name="content">
+		<block class="Magento\Framework\View\Element\Template" name="Wishlist_product_count" template="Magento_Wishlist::Wishlist_product_count.phtml"/>
+	</referenceContainer>
+
+
     </body>
 </page>

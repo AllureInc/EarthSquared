@@ -4,31 +4,38 @@
 
 /* customer login us page */
 
-.customer-account-login	.login-container .block.block-customer-login {max-width: 340px;    margin-top: 35px !important; float: none;    padding: 0;    margin: auto;}
+.customer-account-login	.login-container .block.block-customer-login {max-width: 340px;    margin-top: 26px !important; float: none;    padding: 0;    margin: auto;}
 .customer-account-login .page-title-wrapper {    display: none;}
 .login-container .block.block-customer-login {    width: 100%;margin: 0;}
 .block.block-customer-login .block-title {    text-align: center;    border: none;margin-bottom: 5px;}
 .block.block-customer-login  strong {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;    margin-bottom: 25px;}
-span.msg_note {    font-size: 11px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
-.block.block-customer-login input { height: 60px;	background: #FFFFFF;padding: 20px;    border: 1px solid #E0E0E0; border-radius: 0;}
-form#login-form fieldset.fieldset.login div {
-    position: relative;
+span.msg_note {    font-size: 11px;    font-family: Futura Bk BT;    color: #4D4D4D;}
+#checkoutcustomerlogin .actions-toolbar .secondary a.action{
+    margin-top: 4px;
 }
+.block.block-customer-login input { height: 60px;	background: #FFFFFF;padding: 20px;    border: 1px solid #E0E0E0; border-radius: 0; font-size: 12px;}
+form#login-form fieldset.fieldset.login div {    position: relative;}
+form#login-form fieldset.fieldset.login .actions-toolbar {    margin-top: 0;}
+form#login-form fieldset.fieldset.login .field.password {    margin-bottom: 3px;}
+form#login-form fieldset.fieldset.login .field {    margin-bottom: 30px;}
+.customer-account-login .actions-toolbar .primary button {    margin-top: 28px;}
+div#checkoutguestlogin .actions-toolbar .primary button {    margin-top: 10px;}
+.customer-account-login .block.block-new-customer .block-content {    margin-top: 10px;    float: left;    width: 100%;}
 .block.block-customer-login input::placeholder { color: #9E9E9E;}
-.block.block-customer-login input:-ms-input-placeholder {  color: #9E9E9E;}
-.block.block-customer-login input::-ms-input-placeholder {   color: #9E9E9E;}
+.block.block-customer-login input:-ms-input-placeholder { color: #9E9E9E;}
+.block.block-customer-login input::-ms-input-placeholder {color: #9E9E9E;}
 .login-container .fieldset>.field>.control {    width: 100% !important;}
 .customer-account-login .field.password {    margin-bottom: 0;}
-.customer-account-login .actions-toolbar .primary {    width: 100%;    margin-top: 20px;}
+.customer-account-login .actions-toolbar .primary {    width: 100%;    margin-top: 0;}
 .customer-account-login .actions-toolbar .secondary { width: auto;   float: right;}
-.customer-account-login a.action.remind {    font-size: 11px;    font-family: Futura Bk BT Medium; color: #4D4D4D;}
+.customer-account-login a.action.remind {    font-size: 12px;    font-family: Futura Bk BT Medium;     letter-spacing: 0.01em; color: #4D4D4D;}
 .customer-account-login .actions-toolbar .primary button {    background: #4D4D4D !important;    width: 100%;
-    height: 44px;}
+    height: 44px; letter-spacing: 0.04em;}
 .block.block-customer-login {    margin-bottom: 0;}
 .login-container .fieldset:after {display:none;}
 .customer-account-login .block.block-new-customer {    float: none;    width: 100%;    max-width: 340px;
     margin-top: 9px;    margin: 0 auto;}
-.block.block-new-customer p {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
+.block.block-new-customer p {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .block.block-new-customer p a {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    margin-left: 5px;}
 .customer-account-login header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
 .customer-account-login footer.page-footer {    display: none;}
@@ -36,12 +43,20 @@ form#login-form fieldset.fieldset.login div {
 .customer-account-login ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
 .customer-account-login ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
 .customer-account-login header .section3 {    display: none;}
-.section_phone img {  width: 13.26px;    height: 13.29px;}
+.section_phone img {    width: 13.29px;    height: 15.29px;    margin-top: -2px;    margin-right: 4px;}
 .section_phone {    float: right;    position: absolute;   right: 20px;}
-a.backlink:before {    content: '';    background: url(../images/back.png) no-repeat;    width: 14px;
-    height: 14px;    background-size: 100%;    display: inline-block;    margin-right: 5px;    background-position: 0px 2px;}
+a.backlink:before {        
+    content: '';
+    background: url(../images/back.png) no-repeat;
+    width: 13px;
+    height: 14px;
+    background-size: 100%;
+    display: inline-block;
+    margin-right: 7px;
+    background-position: 0px 2px;
+}
 a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
-.section_phone a.phonelink {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;
+.section_phone a.phonelink {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
     margin-left: 5px;}
 /* end customer login */
 /*--checkout login --*/
@@ -49,12 +64,14 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
     font-size: 15px;
     font-family: 'Futura Bk BT Medium' !important;
     line-height: 100%;
+    font-weight: normal;
 }
 
 /* Style the tab */
 .customer-account-login .tab {
   overflow: hidden;
   text-align: center;
+  margin-top: 20px;
 }
 
 /* Style the buttons inside the tab */
@@ -95,8 +112,7 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .customer-account-create main#maincontent {    margin-top: 0;    padding: 0;    max-width: 100%;}
 .customer-account-create .form.create.account {  padding: 0;}
 .form_main_part {    clear: both;    max-width: 340px;    margin: 0 auto;}
-.customer_account_create_top_part .customer_account_create_top_part_max {   max-width: 930px;
-    padding: 3px 20px 1.42px;    margin: 0 auto;}
+.customer_account_create_top_part .customer_account_create_top_part_max {    max-width: 975px;  padding: 7px 20px 1.42px;    margin: 0 auto;}
 .customer_account_create_top_part .part1 {    display: inline-block;    margin-left: 60px;}
 .customer_account_create_top_part .part1 img {    margin-right: 10px;}
 .customer_account_create_top_part {    text-align: center;    padding-bottom: 30px;    margin-bottom: 35px;
@@ -113,28 +129,64 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
     margin-right: 15px;    background-position: 0;}
 .customer_account_create_top_part .item a.second:before {content: '';    background: url(../images/art-and-design.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;    margin-right: 15px;    background-position: 0;}
 .customer_account_create_top_part .item a.third:before {content: '';    background: url(../images/smiling-girl.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;    margin-right: 15px;    background-position: 0;}
-.customer_account_create_top_part .item span{  margin-top: 5px;  font-size: 14px;    color: #4D4D4D;float: left;
-    font-family: Futura Bk BT Medium;}
-.customer-account-create .form.create.account h3 {  margin-bottom: 20px;  font-size: 13px;    text-transform: uppercase;
+.customer_account_create_top_part .item span{  margin-top: 8px;  font-size: 14px;    color: #4D4D4D;float: left;
+    font-family: Futura Bk BT Medium; letter-spacing: 0.04em;}
+.customer-account-create .form.create.account h3 {  margin-bottom: 20px; padding-top: 7px; font-size: 13px;    text-transform: uppercase;
     font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
     position: relative;    text-align: center;}
 .customer-account-create .form.create.account input {    height: 60px;    background: #FFFFFF;
-    padding: 20px;    border: 1px solid #E0E0E0;}
+    padding: 20px;    border: 1px solid #E0E0E0; font-size: 12px;}
 .customer-account-create .form.create.account .field.field-name-firstname {    width: 161px;    float: left;}
 .customer-account-create .form.create.account .field.field-name-lastname {    width: 161px;  float: right;}
 .customer-account-create .form.create.account .field.choice.newsletter {    float: left;    width: 100%;}
 .customer-account-create .form.create.account .field {    margin-bottom: 30px;}
-.customer-account-create .form.create.account .field.choice.newsletter input#is_subscribed {    height: 20px;
-    float: left;    width: 20px;    margin-top: 0;}
+
 .customer-account-create .form.create.account fieldset {    margin-bottom: 0!important;}
-.password-strength-meter {    background: none;}
-.field.choice.terms input#is_terms {    height: 20px;    float: left;    width: 20px;   margin-top: 0;}
-.field.choice.terms label.label {    font-size: 14px;    color: #4D4D4D;  font-family: Futura Bk BT Medium;}
+.password-strength-meter {   padding: 0; background: none;    font-size: 11px;
+    margin-top: -3px;}
+.field.choice.terms input#is_terms,.customer-account-create .form.create.account .field.choice.newsletter input#is_subscribed,.form-edit-account .field.choice.newsletter input#is_subscribed {            
+    float: left;    
+    margin-top: 0;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #4d4d4d;
+    top: 0;
+    height: 19px;
+    width: 18px;
+    cursor: pointer;
+    outline: none;
+    margin: 0!important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0px;
+    border: 1px solid #BDBDBD;
+    min-width: 18px;
+    padding: 0;
+}
+.field.choice.terms input#is_terms:checked,.customer-account-create .form.create.account .field.choice.newsletter input#is_subscribed:checked,.form-edit-account .field.choice.newsletter input#is_subscribed:checked{
+    background-color: #4d4d4d;
+    color: #fff;
+    border: 0px !important;
+    text-align: center;
+}
+.field.choice.terms input#is_terms:checked:after,.customer-account-create .form.create.account .field.choice.newsletter input#is_subscribed:checked:after,.form-edit-account .field.choice.newsletter input#is_subscribed:checked:after{
+    background: url(../images/tick.png) no-repeat;
+    content: '';
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 100%;
+    text-align: center;
+    background-position: 0 2px;
+}
+.field.choice.terms label.label,.field.choice.newsletter label.label {    font-size: 14px;    color: #4D4D4D;  font-family: Futura Bk BT;     padding: 5px 11px 0px;}
 .field.choice.terms label.label a {    font-size: 14px;    color: #4D4D4D;  text-decoration: underline;
     margin-left: 5px;}
-.customer-account-create .form.create.account .field.choice.terms {    margin-bottom: 20px;}
+.customer-account-create .form.create.account .field.choice.terms {    margin-bottom: 28px;}
 .customer-account-create .form.create.account .field.choice.newsletter span {
-    color: #757575;    font-size: 14px;    font-family: Futura Bk BT Medium;}
+    color: #757575;    font-size: 14px;    font-family: Futura Bk BT;}
 .form-create-account .fieldset.create.account:after {display:none;}
 .customer-account-create .actions-toolbar .primary {    width: 100%;}
 .customer-account-create .actions-toolbar button {    background: #4D4D4D !important;    width: 100% !important;
@@ -142,10 +194,23 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .block.block-new-login {    float: left;    width: 100%;    margin-top: 30px;    margin-bottom: 0;}
 .customer-account-create .actions-toolbar button span {    font-size: 15px;    font-weight: normal;
     letter-spacing: 0.04em;    font-family: Futura Bk BT Medium;}
-.customer-account-create .actions-toolbar {    margin-top: 10px;}
-.block.block-new-login p {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;}
+.customer-account-create .actions-toolbar {    margin-top: -1px;}
+.block.block-new-login p {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .block.block-new-login p a {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;
     margin-left: 5px;}
+.customer-account-create .form.create.account .field.confirmation {
+    margin-bottom: 29px;
+    margin-top: -7px;
+}
+section#slider_demo .owl-item:nth-child(2) {
+    padding-left: 26px;
+}
+section#slider_demo .owl-item:nth-child(3) {
+    padding-left: 10px;
+    margin-right: 0 !important;
+    width: 320px !important;
+}
+
 
 @media screen and (max-width: 1260px) {	
 .section_phone {    right: 15px;}
@@ -193,33 +258,44 @@ a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 
 /* my account page */
 
+@media screen and (min-width: 768px) {	
+	.order-products-toolbar.toolbar.bottom {    position: absolute;    top: 30px;    left: 16%;   width: 100%;}
+}
+
 .block-collapsible-nav .content {    background: #FFFFFF;padding: 0;    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.08);}
 .block-collapsible-nav .content li.nav.item.current {    background: #EDB6BB;}
 .block-collapsible-nav .item.current a, .block-collapsible-nav .item.current>strong {    border: none;
     font-family: Futura Bk BT;font-weight: normal;    font-size: 14px;    color: #4D4D4D;}
 .block-collapsible-nav .content li.nav.item a {    font-family: Futura Bk BT;    font-size: 14px;
-    color: #4D4D4D;}
+    color: #4D4D4D; padding: 6px 18px 5px 15px;}
 .block-collapsible-nav .content li.nav.item {  height: 56px;    line-height: 46px;    margin: 0;}
 .account .table-wrapper thead {    background: #FCFCFC;  border-bottom: none !important;  border: 1px solid #E0E0E0;}
 .account .table-wrapper table#my-orders-table {    border: 1px solid #E0E0E0;    font-family: Futura Bk BT;
     font-size: 12px;    color: #4D4D4D;}
-.account .table-wrapper thead tr th {    border: none;    font-family: Futura Bk BT;border-right: none;
+.account .table-wrapper thead tr th {  padding-left: 14px;
+    padding-top: 11px;  border: none;    font-family: Futura Bk BT;border-right: none;
     font-size: 12px;    font-weight: 600;  background-color: #fff; color: #616161;}
 .account .data.table .col.actions a {    font-family: Futura Bk BT;    font-size: 12px; color: #4D4D4D !important;}
-.account .table-wrapper tbody tr td {    border-right: none;}
+.account .table-wrapper tbody tr td {  padding-left: 14px;
+    padding-top: 12px;  border-right: none;}
 
 .account.page-layout-2columns-left .column.main {    position: relative;}
-.order-products-toolbar.toolbar.bottom {    position: absolute;    top: 12px;    left: 14%; }
 .order-products-toolbar.toolbar.bottom .limiter {    display: none;}
 .order-products-toolbar.toolbar.bottom span.toolbar-number:before {    content: "(";    float: left;}
 .order-products-toolbar.toolbar.bottom span.toolbar-number:after {    content: ")";    float: right;
     margin-left: 2px;}
-.account .page-main .page-title-wrapper .page-title {    margin-bottom: 30px;}
+.account .page-main .page-title-wrapper .page-title {    margin-bottom: 23px;}
 span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    font-size: 14px;
     color: #4D4D4D;}
 .account .data.table .col.actions .action:after { display:none; }
 .account .data.table .col.actions a.action.order {
     display: none;
+}
+
+.table-wrapper.orders-history {
+    margin-top: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 	
 /* end my account page */
@@ -248,7 +324,10 @@ span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    f
     background: rgba(255, 255, 255, 0.9) !important;    color: #000;    padding: 9.5px 10px;    top: 0;
 	line-height: 100%;	display: none;    font-size: 13px;    padding-right: 5px;}
 .products-grid.wishlist .product-item .box-tocart .tocart:hover span {    display: block !important;}
-.wishlist-index-index .column.main .toolbar.wishlist-toolbar:nth-child(4n) {    display: none;}
+.wishlist-index-index .column.main .toolbar.wishlist-toolbar:nth-child(5n) {    display: none;}
+.wishlist_count {    position: absolute;    top: 8%;    left: 20%;}
+.products-grid.wishlist .product-item-name {    margin-top: 10px !important;    display: inline-block;    padding-left: 13px;}
+.products-grid.wishlist .product-item .price-box {    margin-top: 5px;    padding-left: 16px;}
 .wishlist-index-index .actions-toolbar button {    background: #4D4D4D !important;    color: #fff;    border-color: #4D4D4D !important;    box-shadow: none;}
 .toolbar.wishlist-toolbar.pages .item {    margin: 0 8px 0 16px;    font-size: 15px;}
 .toolbar.wishlist-toolbar .pages strong.page {    color: #fff;    width: 30px;    height: 30px;    font-size: 15px;
@@ -283,21 +362,64 @@ span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    f
 /* account information */
 
 .form-edit-account legend.legend span {    font-size: 13px !important;    text-transform: uppercase;
-    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
+    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 1px;    border: none;
     position: relative;    text-align: center;}
 fieldset.password {    clear: both;}
-.form-edit-account legend.legend {    padding: 0;    border: none;}
-.form-edit-account input {    height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
-.form-edit-account fieldset.fieldset.info {  margin-bottom: 30px;  width: 100%;}
-.form-edit-account .field {    width: 447px;    float: left;margin-bottom: 30px;}
+.form-edit-account legend.legend {   margin-bottom: 26px; padding: 0;    border: none;}
+.form-edit-account input {    height: 60px;   font-size: 12px;
+    font-family: Futura Bk BT; background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-edit-account fieldset.fieldset.info {    margin-bottom: 30px;    width: 100%;    padding-left: 11px;    padding-right: 0px;    margin-top: 10px;
+    display: inline-block;}    
+
+.form-edit-account .field {    width: 447px;    float: left;margin-bottom: 41px;}
+.form-edit-account fieldset.password{
+    padding-left: 11px;
+}
+.form-edit-account fieldset.password legend.legend{
+        margin-bottom: 4px;
+}
 fieldset.password legend.legend {    margin-bottom: 0;    text-decoration: underline;}
 fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: both;}
-.form-edit-account .field.field-name-lastname {    width: 447px;    float: left;    margin-left: 20px;}
+.form-edit-account fieldset.password .field {  
+    position: relative;
+    margin-bottom: 40px;
+    clear: none;
+    width: 447px;
+    float: left;
+    clear:none;
+}
+.form-edit-account fieldset.password .field.new.password {
+    margin-bottom: 0;
+    float: left;
+    width: 447px;
+    float: left;
+    clear: both;
+}
+.form-edit-account fieldset.password .field.confirmation.password {
+    float: right;
+    clear: none;
+    margin-left: 0;
+     width: 447px;
+}
+.form-edit-account .actions-toolbar{
+        margin-left: 12px;
+    margin-top: 0;
+}
+.form-edit-account .field.field-name-lastname {    width: 447px;    float: right;    margin-left: 0;}
 .form-edit-account .field.field-name-firstname {    width: 447px;    float: left;}
-.form-edit-account fieldset.password .field.confirmation.password {    float: left; clear: none; margin-left: 20px;}
-.form-edit-account fieldset.password .field.new.password {    float: left;}
+.form-edit-account fieldset.password .field.new.password {   margin-bottom: 0; float: left;}
 .form-edit-account .primary {    width: 447px;}
-.form-edit-account .actions-toolbar button.action.save.primary { background: #4D4D4D !important;   height: 44px;width: 100%;    margin: 0 !important;}
+.form-edit-account .actions-toolbar button.action.save.primary { background: #4D4D4D !important;   height: 60px;width: 100%;    margin: 0 !important;}
+
+.form-edit-account  .field.choice.newsletter {    float: left;    width: 100%;    margin-top: 50px; padding-left: 11px;}
+.form-edit-account  .field.choice.newsletter h2 {    font-family: Futura Bk BT Medium;    font-style: normal;   font-size: 13px;
+    line-height: 100%;margin-bottom: 29px;    letter-spacing: 0.04em;    text-transform: uppercase;    color: #4D4D4D;}
+.form-edit-account .field.choice.newsletter input#is_subscribed {    float: left;    height: auto;    margin: 0px;    width: 19px;
+    height: 19px;}
+.form-edit-account .field.choice.newsletter span {    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    font-size: 14px;
+    color: #4D4D4D;    line-height: 100%;}
+
+
 
 @media screen and (max-width: 1247px) {	
 .form-edit-account .field.field-name-firstname {    width: 100%;    float: left;}
@@ -314,8 +436,8 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 /* end account information */
 
 /* address book */
-.block.block-addresses-default .box {    width: 216px !important;    float: left !important;
-    margin-right: 20px;    background: #FAFAFA;    border: 1px solid #4D4D4D;    padding: 10px;}
+.block.block-addresses-default .box {    width: 216px !important;    float: left !important;    margin-right: 40px;    background: #FAFAFA;
+    border: 1px solid #4D4D4D;    padding: 20px 17px;}
 .block.block-addresses-default .box strong.box-title span {    background: #4D4D4D;    padding: 4px 6px;
     color: #fff;    font-family: Futura Bk BT;    font-size: 11px !important;    letter-spacing: 1px;
     font-weight: normal;}
@@ -328,22 +450,29 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .block.block-addresses-default .box.new-address span {    width: 100%;    float: left;}
 .block.block-addresses-default .box.new-address span.plus_sign {    color: #F87883;}
 .form-address-edit .actions-toolbar {    float: left;    width: 100%;}
-.form-address-edit input { height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-address-edit input {    background: #FFFFFF;    padding: 20px;    font-family: Futura Bk BT;    height: 60px;    padding-left: 20px;
+    padding-right: 20px;    font-size: 12px;    border: 1px solid #E0E0E0;}
 .form-address-edit select { height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
-.form-address-edit .field {    width: 383px;    float: left;    margin-right: 20px;margin-bottom: 35px;}
+.form-address-edit .field {    width: 383px;    float: left;    margin-right: 20px;margin-bottom: 40px;}
 .form-address-edit .field.street {    width: 784px;    float: left;}
 .form-address-edit .field.street input#street_2 {    width: 383px;    float: right;}
 .form-address-edit .field.street input#street_1 {    width: 383px;    float: left;}
 .form-address-edit .field.company {    width: 784px;}
 .form-address-edit fieldset.fieldset {    width: 100%;    float: left;margin-bottom: 0;}
-.form-address-edit .field.choice.set.billing {    clear: both;}
-.form-address-edit .field.choice input {    height: auto;    float: left;}
+.form-address-edit .field.choice.set.billing {  margin-bottom: 30px;  clear: both;}
+.form-address-edit .field.choice input {  height: 19px;    width: 19px;    margin-top: -3px;    float: left;}
 .form-address-edit  .field.choice span {    font-family: Futura Bk BT;  font-size: 14px !important;}
 .form-address-edit .primary {    width: 383px;}
-.form-address-edit button.action.primary span {    font-size: 12px !important;}
-.form-address-edit button.action.primary {    background: #4D4D4D !important;    width: 100%;    height: 44px;line-height: 15px !important;}
+.form-address-edit button.action.primary span {    font-size: 15px !important;}
+.form-address-edit button.action.primary {    background: #4D4D4D !important;    width: 383px;   height: 60px;line-height: 15px !important;}
 .message.info {    float: left;    width: 100%;}
 .box.new-address {    cursor: pointer;}
+.block.block-addresses-default .box a.action.edit span:before {    content: '';    background: url(../images/pen.png) no-repeat;   background-position: 0; background-size: 100%;
+    width: 12px;    padding-left: 15px;    margin-right: 5px;    height: 12px;}
+.block.block-addresses-default {    margin-top: 18px;    padding-left: 10px;}
+.form-address-edit .actions-toolbar .primary {    display: inline-block;    width: 100%;}
+.form-address-edit a.cancel_button {    display: inline-block;    background: #FAFAFA;    border: 1px solid #BDBDBD;    width: 383px;
+    height: 60px;    float: left;    font-weight: 500;    color: #9E9E9E;    font-size: 15px;    margin-right: 18px;    line-height: 60px;}
 
 @media screen and (max-width: 1247px) {	
 .form-address-edit {    float: left;    width: 100%;}
@@ -379,17 +508,28 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .customer-account-forgotpassword header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
 
 .customer-account-forgotpassword h1.page-title {    margin-bottom: 0;}
-.customer-account-forgotpassword .page-title-wrapper span.base {    font-size: 13px !important;    text-transform: uppercase;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;}
-.customer-account-forgotpassword main#maincontent {    max-width: 340px;    margin-top: 40px;}
+.customer-account-forgotpassword .page-title-wrapper span.base {    font-size: 12.5px !important;    text-transform: uppercase;    
+	font-family: Futura Bk BT;    color: #4D4D4D;    letter-spacing: 0.0648em;}
+.customer-account-forgotpassword main#maincontent {    max-width: 380px;    margin-top: 87px;}
 .customer-account-forgotpassword form {    min-width: 100% !important;}
-.customer-account-forgotpassword p a {    color: #4D4D4D;    font-family: Futura Bk BT Medium;}
-.customer-account-forgotpassword form input {    height: 60px;}
+.customer-account-forgotpassword p a {    color: #4D4D4D;    font-family: Futura Bk BT;    font-size: 14.7px;    letter-spacing: 0.17px;}
+.customer-account-forgotpassword form input {   font-family: Futura Bk BT; height: 60px;    padding-left: 20px;    padding-right: 20px;    font-size: 12px;}
 .customer-account-forgotpassword .primary {    width: 100%;}
-.customer-account-forgotpassword fieldset.fieldset {    margin-bottom: 25px;}
-.customer-account-forgotpassword p {    float: left;    width: 100%;    margin-top: 20px;}
-.customer-account-forgotpassword .primary button {    margin: 0;    width: 100% !important;    height: 40px;
+.customer-account-forgotpassword fieldset.fieldset {   margin-bottom: 29px;}
+.customer-account-forgotpassword p {    float: left;    width: 100%;    margin-top: 30px;}
+.customer-account-forgotpassword .primary button {    margin: 0;    width: 100% !important;    height: 44px;
     background: #4D4D4D !important;}
 .form.password.forget .fieldset:after {display:none;}
+.customer-account-forgotpassword form .field.email {    margin-top: 10px;    float: left;    width: 100%;}
+.customer-account-forgotpassword form .field.note {    margin-top: -2px;line-height: 22px;    font-weight: 300;    font-style: normal;  letter-spacing: 0.02px;}
+
+.customer-account-forgotpassword header .section1 {
+    margin-top: -7px;padding-left: 2px;
+}
+.customer-account-forgotpassword .section_phone {
+    margin-top: -4px;
+}
+
 
 @media screen and (max-width: 768px) {	
 .customer-account-forgotpassword .max-width-section {    display: grid;}
@@ -483,14 +623,16 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
     display: block !important;
 }
 .account.page-layout-2columns-left .sidebar-main {
-    margin-top: 7%;
+    margin-top: 115px;
 }
 
 .account .page-main .page-title-wrapper .page-title {
-    margin-top: 30px;
-    margin-left: 0;
+     margin-top: 45px;
+    margin-left: 14px;
 }
-
+.account .form-edit-account{
+    padding: 2px 0px 0px 3px;
+}
 
 @media screen and (max-width: 639px) {	
 .account .page-main .page-title-wrapper .page-title {    margin-left: 0;}
@@ -524,20 +666,52 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .account .data.table .col.actions a.action.view:before , .order_view a.action.view:before  {
 content: '';  background: url(../images/view_oredr.svg) no-repeat;    width: 14px;    height: 14px;    background-size: 100%;    display: inline-block;    background-position: 0 2px;
 }
-.block-collapsible-nav .item:first-child:before {    content: '';    background: url(../images/my_order.svg) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .item:first-child:before {    content: '';    background: url(../images/my_order.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px; margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(2):before {    content: '';    background: url(../images/heart.png) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(2):before {    content: '';    background: url(../images/heart.png) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(3):before {    content: '';    background: url(../images/address.svg) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(3):before {    content: '';    background: url(../images/address.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(5):before {    content: '';    background: url(../images/manage_payment.svg) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(5):before {    content: '';    background: url(../images/manage_payment.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 	
 
 
+/* order view page */
+.sales-order-view h1.page-title {
+    float: left;
+}
+.sales-order-view h1.page-title span {
+    font-family: Futura;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #4D4D4D;
+}
+.sales-order-view span.order-status {
+    display: none;
+}
+.sales-order-view .order-date {
+    margin-top: 57px !important;
+    float: left;
+    width: auto;
+    font-family: Futura Bk BT;
+    font-style: normal;
+    color: #757575;
+    font-weight: normal;
+    font-size: 12px !important;
+}
+
+table#my-orders-table td.col.sku {
+    display: none;
+}
+/* end order view page */

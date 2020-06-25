@@ -1,0 +1,20 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$wishlist = $objectManager->get('\Magento\Wishlist\Model\Wishlist');
+$customerSession = $objectManager->create("Magento\Customer\Model\Session");
+$userId = '';
+if($customerSession->isLoggedIn()){
+  $userId =  $customerSession->getCustomerId();
+}
+$wishlist_collection = $wishlist->loadByCustomerId($userId, true)->getItemCollection();
+$wishlistproductm = count($wishlist_collection);
+?>
+
+<div class="wishlist_count">
+<?php
+
+echo '('.$wishlistproductm.'  Items'.')'
+
+?>
+</div>
