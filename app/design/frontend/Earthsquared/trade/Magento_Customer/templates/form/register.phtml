@@ -14,6 +14,8 @@
 <div class="form_main_part">
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+    <input type="hidden" name="group_id" id="group_id" value="27" />
+    <input type="hidden" name="website_id_dws" id="website_id_dws" value="trade" />
     <fieldset class="fieldset create info">
         <h2><?= $block->escapeHtml(__('Apply for a Trade Account')) ?></h2><br>
 		<p><?= $block->escapeHtml(__('Please allow 1-2 days for us to review your application.')) ?></p>
@@ -158,6 +160,29 @@
                 <input type="password" placeholder="<?= $block->escapeHtmlAttr(__('Confirm Password*')) ?>" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
             </div>
         </div>
+        
+        <div class="field nature_of_business">
+            <div class="control">
+                <select name="nature_of_business" id="nature_of_business">
+					<option value="0"><?= __('Select') ?></option>
+					<option value="1"><?= __('Shop') ?></option>
+					<option value="2"><?= __('eCommerce') ?></option>
+					<option value="3"><?= __('Other') ?></option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="field nature_of_business_other" style="display:none;">
+            <div class="control">
+                <input type="text" placeholder="<?= $block->escapeHtmlAttr(__('Nature of Business Other')) ?>" data-validate="{required:true}" name="nature_of_business_other" title="<?= $block->escapeHtmlAttr(__('Nature of Business Other')) ?>" id="nature-of-business-other" class="input-text">
+            </div>
+        </div>
+        
+        <div class="field additional_information">
+            <div class="control">
+                <input type="text" placeholder="<?= $block->escapeHtmlAttr(__('Additional Information')) ?>" name="additional_information" title="<?= $block->escapeHtmlAttr(__('Additional Information')) ?>" id="additional-information" class="input-text">
+            </div>
+        </div>
 		
 		<?php /*
 		<div class="field choice terms">
@@ -269,6 +294,15 @@ require([
 
 <script>
 require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
+	$('#nature_of_business').on('change', function (e) {
+		var optionSelected = $("option:selected", this);
+		var valueSelected = this.value;
+		if(valueSelected == 3){
+			$('.nature_of_business_other').show();
+		}else{
+			$('.nature_of_business_other').hide();
+		}
+	});
   $(document).ready( function() {
               $('.owl-carousel').owlCarousel({
                 loop: true,

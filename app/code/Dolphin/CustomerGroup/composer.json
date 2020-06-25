@@ -1,0 +1,22 @@
+{
+    "name": "dolphin/module-customergroup",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dolphin\\CustomerGroup\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
