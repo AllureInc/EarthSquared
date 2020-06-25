@@ -1,18 +1,24 @@
 /* contact us page */
+.cms-contact-us .news_bar{
+    display: inline-flex;
+}
 .cms-contact-us .breadcrumbs {    display: none;}
 .cms-contact-us .page-title-wrapper {    display: none;}
-.cms-contact-us main#maincontent {    margin-top: 35px;}
+.cms-contact-us main#maincontent {    margin-top: 44px;}
 .contact_info h1 { font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;    color: #4D4D4D;    font-family: 'Tiempos Headline Medium';margin-bottom: 30px;}
 .contact_info p {    font-style: normal;    font-weight: normal;    font-size: 15px;    line-height: 180%;
-    color: #4D4D4D;    font-family: Futura Bk BT;     margin-bottom: 38px;}
+    color: #4D4D4D;    font-family: Futura Bk BT;     margin-bottom: 41px;}
 .contact_info p span {    color: #4D4D4D;}
 .contact_info p a {    color: #4D4D4D;}
 .addresspart h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;}
-.contact_info {    width: 46.5%;    float: left;    padding-left: 7%;    padding-right: 8%;}
-form#contact-form {   margin-top: 0px; width: 563px;    float: left;}
+    color: #4D4D4D;    letter-spacing: 0.04em; margin-bottom: 7px;}
+.contact_info {    width: 46.4%;    float: left;    padding-left: 8.5%;    padding-right: 6%;}
+form#contact-form {   margin-top: 2px; width: 563px;    float: left;    margin-left: 0px;    padding-left: 3px;    margin-bottom: 37px;}
+form#contact-form .actions-toolbar{
+        margin-top: 5px;
+}
 form#contact-form h2 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;	position: relative;	margin-bottom: 29px;}
+    color: #4D4D4D;    letter-spacing: 1px;	position: relative;	margin-bottom: 29px;}
 form#contact-form span.title_bg { content: '';    background: url(../images/our-story-blob.svg) no-repeat;    background-size: 100%;
     width: 52px;    height: 52px;    background-position: left;    animation-name: scale-down-and-back;    display: inline-block;
     position: absolute;    z-index: -1;    top: -5px;    opacity: 0.7;    left: 12px;    animation-duration: 0.3s;    margin: -14px 0 0 -24px;}
@@ -21,15 +27,15 @@ form#contact-form .fieldset .lname {    width: 271px;    float: left;    margin-
 form#contact-form .fieldset .name {    width: 271px;    float: left;}
 form#contact-form button span {    font-style: normal;    font-weight: normal;    font-size: 15px;
     color: #fff;    font-family: Futura Bk BT Medium;}
-form#contact-form button {    background: #4D4D4D !important;    width: 270px;    height: 60px;    margin: 0;}
+form#contact-form button {    background: #4D4D4D !important;    width: 271px;    height: 60px;    margin: 0;}
 form#contact-form .actions-toolbar .primary {    float: right;}
 form#contact-form .fieldset > div {	position: relative;	float: left;    width: 100%;    margin-bottom: 40px;}
 form#contact-form .fieldset .field.comment {    margin-bottom: 0;}
 form#contact-form fieldset.fieldset {    margin-bottom: 0;}
 .floating-label em {    color: #e02b27;}
-form#contact-form .fieldset div textarea#comment {    padding: 20px;}
-
-.cms-contact-us ._keyfocus :focus, .cms-contact-us input:not([disabled]):focus, .cms-contact-us textarea:not([disabled]):focus, .cms-contact-us select:not([disabled]):focus {
+form#contact-form .fieldset div textarea#comment {  height: 120px;  padding: 20px;}
+form#contact-form .fieldset > div.comment {    margin-bottom: 30px;}
+.cms-contact-us form#contact-form ._keyfocus :focus, .cms-contact-us form#contact-form input:not([disabled]):focus, .cms-contact-us form#contact-form textarea:not([disabled]):focus, .cms-contact-us form#contact-form select:not([disabled]):focus {
     padding: 25px 20px 10px 20px !important;
 }
 
@@ -55,11 +61,17 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 
 /* terms page and privacy-policy */
 
-.cms-terms-conditions .breadcrumbs , .cms-privacy-policy .breadcrumbs  {    max-width: 848px;margin-top: 30px !important;    padding-left: 20px !important;margin-bottom: 0 !important;    padding-right: 20px !important;}
+.cms-terms-conditions .breadcrumbs , .cms-privacy-policy .breadcrumbs  {  
+    max-width: 848px;
+    margin-top: 33px !important;
+    padding-left: 20px !important;
+    margin-bottom: 8px !important;
+    padding-right: 20px !important;
+}
 .cms-terms-conditions main#maincontent , .cms-privacy-policy  main#maincontent  {max-width: 848px;    margin: 0 auto;    padding-left: 20px;    padding-right: 20px;}
-.cms-terms-conditions p , .cms-privacy-policy  p  {   line-height: 160%; font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-top: 0;    margin-bottom: 24px;}
+.cms-terms-conditions p , .cms-privacy-policy  p  {   line-height: 160%; font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-top: 0;    margin-bottom: 31px;}
 .cms-terms-conditions h3, .cms-privacy-policy h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;    margin-top: 16px;    float: left;    margin-bottom: 18px;   width: 100%;}
+    color: #4D4D4D;    letter-spacing: 0.04em;    position: relative;    margin-top: 19px;    float: left;    margin-bottom: 14px;   width: 100%;}
 .cms-terms-conditions p strong , .cms-privacy-policy  p strong {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    margin-top: 0;    font-weight: normal;    margin-bottom: 10px;}
 .cms-terms-conditions address, .cms-privacy-policy address {    margin-bottom: 0;    font-size: 14px;    font-family: Futura Bk BT;
     color: #4D4D4D;    line-height: 160%;}
@@ -77,7 +89,7 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 .cms-fair-trade-information .breadcrumbs {    display: none;}
 .cms-fair-trade-information .page-title-wrapper {    display: none;}
 .cms-fair-trade-information img.mobile {    display: none;}
-.fair_traid_banner {    margin-bottom: 35px; }
+.fair_traid_banner {    margin-bottom: 48px; }
 .fair_traid_main {   max-width: 848px;    margin: 0 auto;    padding-left: 20px;    padding-right: 20px; }
 .fair_traid_banner img {    width: 100%;}
 .fair_traid_main .page-title {    margin-bottom: 16px;}
@@ -125,30 +137,33 @@ img.contain_image {    height: 61px;}
 .cms-about-us .breadcrumbs {    display: none;}
 .cms-about-us .page-title-wrapper {    display: none;}
 .cms-about-us img.mobile {    display: none;}
-.about_banner {    margin-bottom: 35px;}
+.about_banner {    margin-bottom: 48px;}
 .about_us_main {    max-width: 848px;    margin: 0 auto;    padding-left: 20px;    padding-right: 20px;}
-.about_us_main p {   line-height: 180%; font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 20px;}
+.about_us_main p {  line-height: 26.5px; font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 32px;}
 .about_info {    float: left;    width: 100%;}
 .about_info ul li a {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;
     margin-bottom: 20px;}
-.about_info ul li p.add_location {    padding-left: 20px;    position: relative;}
-.about_info h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
-    color: #4D4D4D;    letter-spacing: 0.04em;}
+.about_info ul li p.add_location {   padding-left: 21px;    position: relative;    font-size: 15px;}
+.about_info h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.06em;
+    margin-top: 32px;}
 .about_info ul {   display: inline-block; margin-top: 15px;    padding: 0;}
-.about_info ul li {    list-style-type: none;    display: inline-block;    border: 1px solid #000;
-    height: 120px;    width: calc(33.33% - 20px);    float: left;    margin-right: 20px;    padding: 22px;}
+.about_info ul li {    list-style-type: none;    display: inline-block;    border: 1px solid #000;    height: 120px;    width: calc(33.33% - 19px);
+    float: left;    margin-right: 28px;    padding: 22px;}
 .about_info .call:before {    content: '';    background: url(../images/phone_icon.png) no-repeat;
     height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 10px;}
 .about_info .email:before {    content: '';    background: url(../images/email_icon.png) no-repeat;    height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 7px;
     background-position: 0px 2px;}
 .about_us_main p.add_location:before {    content: '';    background: url(../images/map_location.jpg) no-repeat;    height: 15px;    width: 15px;    background-size: 100%;    display: inline-block;    margin-right: 7px;
     background-position: 0px 2px; position: absolute;    left: -2px;    top: 3px;}
-.about_info ul li a.call {    margin-top: 28px;    float: left;}
-.about_info ul li a.email {    margin-top: 28px;    float: left;}
+.about_info ul li a.call {    margin-top: 32px;    float: left;    margin-left: 19%;}
+.about_info ul li a.email {    margin-top: 30px;    float: left;    margin-left: 7px;}
 .about_banner img {   width: 100%;}
-.about_us_main h1.page-title {    margin-bottom: 16px;}
-
-
+.about_us_main h1.page-title {    margin-bottom: 30px;}
+.about_info ul li:last-child {    margin-right: 0;    padding: 30px 31px;}
+.about_info ul li:last-child p.add_location {
+    margin: 0;
+    line-height: 23px;
+}
 
 @media screen and (max-width: 767px) {
 .cms-about-us .breadcrumbs {  display: none !important;}
@@ -174,19 +189,44 @@ p.add_location {
 @media screen and (min-width: 770px) {
 .page_not_found {    margin-top: 145px;    display: inline-block;    width: 100%;    margin-bottom: 40px;}
 }
-
+.cms-page-not-found #maincontent{
+        padding: 0;
+}
 .page_not_found .contain {   margin-top: 15px; width: 40%;    float: left;    text-align: center;}
-.page_not_found .left_image {    width: 30%;    float: left;    text-align: center;    padding: 5% 0;}
-.page_not_found .left_image img {    width: 60%;}
-.page_not_found .contain h2 {  margin-bottom: 17px;  font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
+.page_not_found .left_image {    width: 30%;    float: left;    text-align: center;  padding: 40px 35px 34px 0px;}
+.page_not_found .left_image img {    width: 153px;}
+.page_not_found .contain h2 { margin-top:42px; margin-bottom: 17px;  font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
     color: #4D4D4D;    font-family: 'Tiempos Headline Medium';}
 .page_not_found .contain p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;}
-.page_not_found .contain span.border {    border-top: 1px solid #ccc;    width: 100%;    margin-bottom: 13px !important;    max-width: 260px;
-    margin: 0 auto;    margin-top: 23px;    display: inline-block;}
-.page_not_found .contain ul {    padding: 0;margin-top: 18px;    text-align: center;}
-.page_not_found .contain ul li {    display: inline-block;margin-right: 20px;}
-.page_not_found .contain ul li a {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
+.page_not_found .contain span.border {   border-top: 1px solid #e5e5e5;
+    width: 100%;
+    margin-bottom: 13px !important;
+    max-width: 455px;
+    margin: 0 auto;
+    margin-top: 27px;
+    display: inline-block;}
+.page_not_found .contain ul {      
+    padding: 0;
+    margin-top: 16px;
+    text-align: center;
+    max-width: 403px;
+    margin: 16px auto;
+}
+.page_not_found .contain ul li {   
+    padding-right: 20px;
+    padding-left: 0;
+    width: auto;
+    float: left;
+    list-style: none;
+}
+.page_not_found .contain ul li a {    font-size: 14px;    font-family: Futura Bk BT;    color: #616161;
     text-decoration: underline;}
+.page_not_found .left_image.mobile{
+        padding: 40px 30px 34px 58px;
+}    
+.page_not_found .contain ul li:last-child {
+    padding-right: 0;
+}
 	
 @media screen and (max-width: 1024px) {
 .page_not_found .left_image img {    width: auto;}

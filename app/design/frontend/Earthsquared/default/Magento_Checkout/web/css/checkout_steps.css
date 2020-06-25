@@ -28,17 +28,17 @@
 .opc-progress-bar .opc-progress-bar-item{
 	width:auto;
     position: relative;
-    padding-right: 40px;	
+    padding-right: 42px;	
 }
 .opc-progress-bar .opc-progress-bar-item._active:after,.opc-progress-bar-item._complete:after{
     content: '\f105';
     font-family: 'fontAwesome';
     color: #4d4d4d;
-    font-size: 20px;
+    font-size: 18px;
     display: inline-block;
     position: absolute;
-    top: -5px;
-    right: 18px;
+    top: -4px;
+    right: 16px;
 }
 #checkout .authentication-wrapper{
     display: none;
@@ -54,7 +54,7 @@
 }
 #checkout .opc-wrapper .step-title{
 	color: #4d4d4d;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     font-size: 12px;
     font-family: 'Futura Bk BT Medium';	
@@ -74,7 +74,7 @@
 #checkout .opc-wrapper .shipping-address-item.selected-item,#checkout .opc-wrapper .shipping-address-item.not-selected-item{
 	border-color: #4D4D4D;
     background: #FAFAFA;
-    margin: 8px 40px 40px 0px;
+    margin: 9px 40px 40px 0px;
     padding: 23px 0px 20px 50px;
     height: 144px;
     border-width: 1px;
@@ -124,18 +124,18 @@
     width: 216px;
     line-height: 140%;    
     border-radius: 0;
-    font-size: 12px; 
+    font-size: 14px; 
     position: relative;
     top: 0;
     right: 0;  
 }
 .add-new-address-form-inline .action-add-new-shipping:before,.new-address-popup .action-show-popup,.checkout-billing-address .shipping-address-item.addnewbilling .action-show-popup:before{
-   content: '+';
-    padding-right: 5px;    
+   content: '+';    
     width: 100%;
     float: left;    
     color: #F87883;
     font-size: 18px;   
+    padding: 5px;
 }
 .checkout-billing-address .shipping-address-item.addnewbilling .action-show-popup span:before,.checkout-billing-address .shipping-address-item.addnewbilling:before{
     display: none;
@@ -194,15 +194,15 @@
 
 .table-checkout-shipping-method .listship-methods .box-method
 {
-	background: #FAFAFA;
+    background: #FAFAFA;
     border: 1px solid #4D4D4D;
-    width: 48%;
-    padding: 18px 28px 18px;
-    float: left;    
+    width: 47%;
+    padding: 18px 30px 18px;
+    float: left;
     margin-left: 0;
-    margin-right: 2%;
+    margin-right: 3%;
     margin-bottom: 2%;
-    height: 96px;
+    height: 97px;
     position: relative;
 }
 .table-checkout-shipping-method .listship-methods .box-method p{
@@ -264,8 +264,8 @@
     float: right;
     width: auto;
     position: absolute;
-    right: 20px;
-    top: 33px;
+right: 34px;
+    top: 29px;  
 }
 .table-checkout-shipping-method .listship-methods .box-method .col-price,.table-checkout-shipping-method .listship-methods .box-method .col-carrier{
     color: #4d4d4d;
@@ -322,8 +322,8 @@
 }
 #checkout .opc-block-summary{
     background: #fff;
-    margin: -26px 0px 20px;
-    padding: 20px 0px 20px 20px;	    
+    margin: -27px 0px 20px;
+    padding: 18px 0px 20px 16px;	    
     display: flex;
     flex-flow: column;
 }
@@ -335,7 +335,7 @@
 	    right: 15px;
 }
 #checkout .minicart-items{
-	padding: 5px 8px;
+	padding: 7px 6px 0px 9px;
 }
 #checkout .minicart-items.tradecheck .product-image-container{
     display: none;
@@ -347,7 +347,7 @@
 }
 #checkout .opc-block-summary .product-item .subtotal{
 	position: absolute;
-    top: -8px;
+    top: -4px;
     right: 0;
 }
 #checkout  .minicart-items .product-item-name{
@@ -371,7 +371,7 @@
 } 
 .column.main #checkout .opc-block-summary .product-item
 {
-	padding-bottom: 0;
+	padding-bottom: 21px;
 	border-top: 1px solid #EEEEEE;
 }
 .column.main #checkout .opc-block-summary .product-item:first-child{
@@ -381,14 +381,15 @@
 	border-bottom: 1px solid #EEEEEE;
 }
 #checkout .opc-block-summary .table-totals tr th, #checkout .opc-block-summary .table-totals tr td {
-    padding: 23px 15px;
+    padding: 23px 20px;
 }
 #checkout .opc-block-summary .table-totals tr th,#checkout .opc-block-summary .table-totals tr th .label{
 	text-transform: uppercase;
     color: #4d4d4d;
     font-size: 12px;
     letter-spacing: 0.04em;
-    font-family: 'Futura Bk BT Medium';	       
+    font-family: 'Futura Bk BT Medium';	
+    font-weight: normal;       
 }
  #checkout .opc-block-summary .table-totals tr td{
 	font-size: 14px !important;
@@ -397,7 +398,7 @@
     text-transform: uppercase !important;
  }
  #checkout .opc-block-summary .table-totals tr.totals-tax{
- 	border-bottom: 1px solid #E0E0E0;
+ 	border-bottom: 1px solid #EEE;
  }
  #checkout .opc-block-summary .table-totals tr th .label {
     padding: 0;
@@ -466,10 +467,14 @@
     max-width: 100% !important;
 }
 #shipping-new-address-form .field,#billing-new-address-form .field,.billing-address-form .field,.billing-address-form .field.additional{
-    width:47.71%;
+    width:48.5%;
     display: inline-block;
-    margin: 20px 18px 20px 0;
+    margin: 21px 11px 20px 0;
     float: left;
+}
+#shipping-new-address-form .field[name="shippingAddress.firstname"],#shipping-new-address-form .field[name="shippingAddress.street.1"],#shipping-new-address-form .field[name="shippingAddress.region"],#shipping-new-address-form .field[name="shippingAddress.city"],#shipping-new-address-form .field.choice{
+    margin-right:0px;
+    margin-left:9px;
 }
 #shipping-new-address-form .field._required._error input,#billing-new-address-form .field._required._error input{
     border: 1px solid #EF5350;
@@ -478,7 +483,7 @@
     color:#EF5350 !important;
 }
 #shipping-new-address-form .field[name="shippingAddress.lastname"],#billing-new-address-form .field[name="billingAddress.company"],.billing-address-form .field[name="billingAddressshared.company"]{
-    width:97.71%;
+    width:99.5%;
 }
 #shipping-new-address-form .field.street,#billing-new-address-form .field.street,.billing-address-form .field.street{
     width: 100%;
@@ -518,10 +523,14 @@
     top: 0px;
 }
 .checkout-billing-address #billing-address-same-as-shipping:checked:after,#shipping-save-in-address-book:checked:after,#billing-address-same-as-shipping-shared:checked:after{
-    content:'\f00c';
-    font-family: 'fontAwesome';
-    color:#fff;
-    font-size: 14px;
+    background:url('../images/tick.png') no-repeat;
+    content:'';     
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 100%;
+    text-align: center;
+    background-position: 0 0px;
 }
 #shipping-save-in-address-book:checked,#shipping-save-in-address-book,#billing-save-in-address-book-shared{
     top:17px;
@@ -563,14 +572,18 @@
 #co-shipping-form .model-buttons button,.checkout-payment-method .checkout-billing-address .primary .action-update,.checkout-billing-address .actions-toolbar .action-cancel{
     background: #4D4D4D !important;
     border-radius: 0;
-    width: 48% !important;
+    width: 48.5% !important;
     float: right;
-    margin-right: 2%;
+    margin-right: 11px;
     box-shadow: none;
     border: 0;
     color: #fff;
     height: 60px;
     border:1px solid #4d4d4d;
+}
+#co-shipping-form .model-buttons button.action-save-address{
+    margin-right: 0px;
+    margin-left: 11px;
 }
 #co-shipping-form .model-buttons button.action-hide-popup,.checkout-billing-address .actions-toolbar .action-cancel{
     background: #fff !important;
@@ -736,7 +749,8 @@ input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus{
     background: #4d4d4d !important;
     border-radius: 0;
     height: 50px;
-    font-size: 15px;    
+    font-size: 15px;  
+    font-weight: normal;  
 }
 .actions-toolbar-trigger{padding-left: 20px;}
 

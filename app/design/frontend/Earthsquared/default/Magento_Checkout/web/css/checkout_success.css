@@ -29,12 +29,13 @@
 .para-text-success{
     max-width: 500px;
     text-align: center;
-    margin: 14px auto 0px;
-    color: #757575;
+    margin: 15px auto 0px;
+    color: #757575;    
+    font-size: 15px;
 }
 .checkout-success .actions-toolbar{
     text-align: center;
-    margin-top: 30px;    
+    margin-top: 6px;    
 }
 .checkout-success .actions-toolbar .primary{
     float: none;
@@ -45,10 +46,11 @@
     color: #4d4d4d;
     font-size: 15px;
     font-family: 'Futura Bk BT Medium' !important;
-    width: 194px;
+    width: 192px;
     margin: 6px 0px;
     height: 40px;
     border-radius: 0;
+    font-weight: normal;
 }
 .checkout-onepage-success .action.print{
     display: none !important;
