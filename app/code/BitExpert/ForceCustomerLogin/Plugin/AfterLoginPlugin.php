@@ -44,6 +44,8 @@ class AfterLoginPlugin
      * @var ScopeConfigInterface
      */
     private $scopeConfig;
+    
+    protected $_urlInterface;
 
     /**
      * AfterLoginPlugin constructor.
@@ -55,11 +57,13 @@ class AfterLoginPlugin
     public function __construct(
         Session $session,
         ScopeConfigInterface $scopeConfig,
-        $defaultTargetUrl
+        $defaultTargetUrl,
+        \Magento\Framework\UrlInterface $urlInterface
     ) {
         $this->session = $session;
         $this->scopeConfig = $scopeConfig;
         $this->defaultTargetUrl = $defaultTargetUrl;
+        $this->_urlInterface = $urlInterface;
     }
 
     /**
@@ -73,6 +77,8 @@ class AfterLoginPlugin
     {
         if (self::REDIRECT_DASHBOARD_ENABLED ===
             $this->scopeConfig->getValue(self::REDIRECT_DASHBOARD_CONFIG)) {
+            $targetUrl = $this->_urlInterface->getUrl('customer/account');
+            $resultRedirect->setUrl($targetUrl);
             return $resultRedirect;
         }
 
