@@ -70,14 +70,25 @@
 <?php
     }
 ?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
 <div class="mobileview">    
 <ul class="loginreg">
-    <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+
+    <?php if($customerSession->isLoggedIn()) { ?>
+        <li><a href="<?php echo $this->getUrl().'customer/account/logout' ?>"><?php echo __("Log Out") ?></a></li>
+    <?php } else { ?>
+        <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+   <?php } ?>    
+
     <li><a href="<?php echo $this->getUrl().'customer/account/create' ?>"><?php echo __("Register") ?></a></li>
 </ul>
 <div class="tradesocial col-xs-12 nopadding">
     <div class="col-xs-6">        
-            <a href="<?php echo $this->getUrl() ?>" class="button-pink trade"><?php echo __("Trade") ?></a>       
+            <a href="<?php echo $this->getUrl() ?>" class="button-pink trade"><?php echo __("Trade Login") ?></a>       
     </div>
     <div class="col-xs-6">
         <ul class="socialiconsm">

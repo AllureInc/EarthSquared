@@ -70,16 +70,24 @@
 <?php
     }
 ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
 <div class="mobileview">    
 <ul class="loginreg">
-    <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+    <?php if($customerSession->isLoggedIn()) { ?>
+        <li><a href="<?php echo $this->getUrl().'customer/account/logout' ?>"><?php echo __("Log Out") ?></a></li>
+    <?php } else { ?>
+        <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+   <?php } ?>   
     <li><a href="<?php echo $this->getUrl().'customer/account/create' ?>"><?php echo __("Register") ?></a></li>
 </ul>
 <div class="tradesocial col-xs-12 nopadding">
-    <div class="col-xs-6">        
+    <div class="col-xs-12 quick">        
             <a href="#" class="quickorder"><img src="<?php echo $this->getUrl('pub/media/icons/').'lightning.png' ?>" /><?php echo __('Quick Order Form'); ?></a>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-12 socialtrade">
         <ul class="socialiconsm">
             <li><a href="https://www.facebook.com/EarthSquaredLtd/">
                 <img src="<?php echo $this->getUrl('pub/media/headerimages/').'facebook-h.png' ?>" />

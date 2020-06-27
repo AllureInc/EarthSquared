@@ -2,7 +2,7 @@
 	color:#616161;
 	font-family: 'Futura Bk BT Medium';
 }
-.quickorder img{width:16px;}
+.quickorder img{    margin: 0 6px;    width: 15px;}
 .benefits.trade{
 	margin: 118px 0px;
 }
@@ -14,7 +14,19 @@
 	height:16px;	
 }
 .product-info-main .product-options-bottom .box-tocart.trade{
-	margin-top:65px !important;
+	margin-top:51px !important;
+}
+.product-info-main .product-options-bottom .box-tocart.trade .field.qty{
+	 top: 18px;
+    right: 30px;
+}
+.catalog-product-view .box-tocart.trade .field.qty #qty-error.mage-error{
+    width: 100%;
+    top: 55px;
+    position: absolute;
+}
+.catalog-product-view .product-options-wrapper .swatch-opt{
+	    margin: 13px 0 !important; 
 }
 .checkout-cart-index .actions-toolbar .action-towishlist.trade{
 	display: inline-block !important;
@@ -23,8 +35,27 @@
 .checkout-cart-index .actions-toolbar .action-towishlist.trade span{
 	color:#4d4d4d !important;
 }
+.checkout-cart-index .cart-container .cart.table-wrapper .action{
+	margin-right: 30px;
+}
+.cart.table-wrapper .action.action-edit{
+	    margin-right: 55px !important;
+}
+.checkout-cart-index .cart.table-wrapper td.col.qty {
+    padding: 30px 42px 10px 0px !important;
+}
+.checkout-cart-index .cart.table-wrapper .cart thead tr th.col.price{
+        padding: 23px 0px 23px 60px;   
+}
+.checkout-cart-index .cart.table-wrapper td.col.price{
+    padding: 30px 0px 23px 40px !important;
+}
 .checkout-cart-index .actions-toolbar .action-towishlist.trade img{
-	width:16px;
+	width:11px;
+}
+.cart.table-wrapper #shopping-cart-table .actions-toolbar{	
+        bottom: -2px !important;
+    width: 100%; 
 }
 .cart-container .control.qty.trade{
 	border: 1px solid #EEE;
@@ -44,10 +75,43 @@
     margin-top: 0;
 
 }
+.featureblock .content-right p {    margin: 25px 0 21.5px;}
+.featurecategories p {       margin-bottom: 0;}
+.featurecategories .details a {    display: inline-block;    margin-top: 28px;}
+.customer-address-index .block.block-addresses-default {    margin-top: 16px;    padding-left: 14px;}
+.customer-address-index .block.block-addresses-default .box.new-address {  height: 177px;  padding-top: 65px;}
+.customer-address-index .block.block-addresses-default .box.new-address span.plus_sign {    font-size: 16px;    font-weight: bold;}
+.customer-address-index .block.block-addresses-default .box.new-address span {    margin-top: 2px;}
+.wishlist-index-index .wishlist_count {    top: 8%;    left: 28%;}
+
+div#confirmBox #confirmButtons.amcart-confirm-buttons {    bottom: 38.2%;}
+div#confirmBox .ampage-bottom-info .benefits-ul {    margin-top: 55px;}
+
+
+footer.page-footer .secfoot {
+    margin-top: 17px;
+}
+footer.page-footer .secmobile {
+    margin-top: 17px;
+}
+div#confirmBox .ampage-bottom-info .benefits-ul li p {
+
+    line-height: 24px;
+
+}
+
+@media screen and (min-width: 768px){
+	header .logo img.tradelogo {
+	    width: 296px;	   
+	}
+}
 @media screen and (max-width: 767px)
 {
-		.tradesocial{
-		margin-top: 50px;
+	header .logo img.tradelogo {
+	    width: 170px;	   
+	}
+	.tradesocial{
+		margin-top: 6px;
 	}
 	.tradesocial .trade{
 		width: 62px;
@@ -55,5 +119,49 @@
     	padding: 7px;
     	height: 34px;
 	}
+	.tradesocial .quick{
+		padding-bottom: 15px;	
+    	border-bottom: 1px solid #eee;
+	}
+	.tradesocial .socialtrade{
+		    margin-top: 18px;
+	}
+	.benefits .box1, .benefits .box2, .benefits .box3, .benefits .box4{
+		height: 270px !important;
+	}
+	.sub-desc p {
+	    padding-left: 3px !important;
+	    margin-bottom: 27px !important;
+	    top: -3px !important;
+	}
+	.quickorder	img{display: none;}
 }
+
+@media screen and (max-width: 575px) {  
+.minicart-items .action.delete {
+    margin: 0px 0px 0px 0;
+}
+.minicart-wrapper .block-minicart {
+    width: 320px !important;
+}
+.minicart-wrapper .product .actions > .primary:not(:last-child) {
+    margin: 0 !important;
+}
+.catalog-product-view .product-options-wrapper .swatch-opt {
+    margin: 2px 0 !important;
+}
+.product-info-main .product-options-bottom .box-tocart.trade {
+    margin-top: 0 !important;
+}
+.product-info-main .product-options-bottom .box-tocart.trade .field.qty {
+    top: -3px;
+    right: 0;
+    left: 14px;
+}
+.product-info-main .product-options-bottom .box-tocart .action.primary.tocart.grey-btn {
+    margin-top: 8px !important;
+}
+
+}
+
 

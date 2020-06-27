@@ -81,12 +81,24 @@
   <?php /*  <?= $block->getChildHtml('form_additional_info') ?> */?>
     <div class="actions-toolbar">
         <div class="primary">
+            
             <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>"><span><?= $block->escapeHtml(__('Save')) ?></span></button>
         </div>
         <div class="secondary">
             <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Go back')) ?></span></a>
         </div>
     </div>
+
+
+    <div class="field choice newsletter">
+        <h2>Newsletter Subscription</h2>
+        <input type="checkbox" name="is_subscribed" title="<?= $block->escapeHtmlAttr(__('Subscribe to EarthSquared’s Newsletter to get the latest news and updates')) ?>" value="1" id="is_subscribed" class="checkbox">
+        <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Subscribe to EarthSquared’s Newsletter to get the latest news and updates')) ?></span></label>
+    </div>
+    <?php /* Extensions placeholder */ ?>
+    <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+
+
 </form>
 <script>
     require([
@@ -147,8 +159,9 @@ input::-webkit-input-placeholder {
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    padding-top: 10px;
+    padding-top: 22px;
     transition: 0.2s ease-in;
+    font-size: 11px;
 }
 
 input[type="text"], input[type="password"] {

@@ -1,0 +1,12 @@
+@media screen and (max-width: 575px) {  
+.contact_info {
+    padding-right: 0;
+}
+form#contact-form span.title_bg {
+    display: none;
+}
+form#contact-form {
+    margin-top: -28px;
+}
+
+}

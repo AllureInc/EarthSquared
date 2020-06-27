@@ -9,6 +9,7 @@
     <update handle="customer_account"/>
     <head>
         <css src="Magento_Customer::css/coustomer_page.css"/>
+        <css src="Magento_Customer::css/coustomer_page_trade.css"/>
     </head>
 	<body>
 	

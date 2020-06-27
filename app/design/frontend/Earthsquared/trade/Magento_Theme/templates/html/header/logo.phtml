@@ -17,7 +17,7 @@ $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAl
     href="<?= $block->escapeUrl($block->getUrl('')) ?>"
     title="<?= $block->escapeHtmlAttr($storeName) ?>"
     aria-label="store logo">    
-    <img src="<?= $this->getUrl('pub/media/logo/').'logo_TRADE.svg' ?>"
+    <img class="tradelogo" src="<?= $this->getUrl('pub/media/logo/').'ESnewlogo_TRADE.svg' ?>"
              title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
              alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
                 <?= $block->getLogoWidth() ? 'width="' . $block->escapeHtmlAttr($block->getLogoWidth()) . '"' : '' ?>

@@ -8,18 +8,58 @@ class Data extends AbstractHelper
 {
     protected $_storeManager;
     protected $_registry;
+    protected $_filesystem;
+    protected $_imageFactory;
+    protected $_categoryHelper;
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Registry $registry,
         \Magento\Customer\Block\Account\AuthorizationLink $customerSession,
         \Magento\Customer\Model\Session $session,
-        \Magento\Wishlist\Model\Wishlist $wishlist
+        \Magento\Wishlist\Model\Wishlist $wishlist,
+        \Magento\Catalog\Helper\Category $categoryHelper,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Image\AdapterFactory $imageFactory
     ) {
         $this->_storeManager = $storeManager;
         $this->_registry = $registry;
         $this->customerSession = $customerSession;
         $this->session = $session;
         $this->wishlist = $wishlist;
+        $this->_categoryHelper = $categoryHelper;
+        $this->_filesystem = $filesystem;
+        $this->_imageFactory = $imageFactory;
+    }
+
+    public function getCategoryResizeImg($imagefile, $width, $height)
+    {
+        // $mediacategorypath = 'pub/media/catalog/category/';
+        // $imagefile = '';
+        // if (strpos($image, $mediacategorypath) !== false) {
+        //     $imagefile = str_replace($mediacategorypath, '', $image);
+        // } else {
+        //     $imagefile = $image;
+        // }
+        $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('catalog/category/') . $imagefile;
+
+        $imageResized = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('resizedCollection/' . $width . '/') . $imagefile;
+        //create image factory...
+        $imageResize = $this->_imageFactory->create();
+        $imageResize->open($absolutePath);
+        $imageResize->constrainOnly(true);
+        $imageResize->keepTransparency(true);
+        $imageResize->keepFrame(true);
+        $imageResize->keepAspectRatio(true);
+        $imageResize->backgroundColor([255, 255, 255]);
+        $imageResize->resize($width, $height);
+
+        //destination folder
+        $destination = $imageResized;
+        //save image
+        $imageResize->save($destination);
+
+        $resizedURL = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'resizedCollection/' . $width . '/' . $imagefile;
+        return $resizedURL;
     }
     /**
      * Get store identifier

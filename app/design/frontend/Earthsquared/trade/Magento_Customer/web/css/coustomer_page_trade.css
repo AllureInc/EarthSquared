@@ -1,5 +1,6 @@
 /* trade login */
 
+
 @media screen and (min-width: 768px) {	
 .customer-account-login header.page-header {    display: none;}
 .customer-account-login .column.main {    padding-bottom: 0;}
@@ -20,7 +21,7 @@
 .block-customer-login-trade .actions-toolbar .secondary {    float: left;}
 
 .login_register_sidebar_main {    float: left;padding: 150px 65px;    background: linear-gradient(0deg, #EDB6BB, #EDB6BB);    width: 31.4%;}
-.login_register_sidebar_main .customer_account_create_top_part { padding-top: 42px; padding-right: 50px;   background: none;}
+.login_register_sidebar_main .customer_account_create_top_part { padding-top: 42px; padding-right: 0;   background: none;}
 .login_register_sidebar_main h3 {    font-size: 22px;    text-align: left;    font-family: Futura Bk BT;}
 .login_register_sidebar_main p {    font-size: 14px;    color: #4D4D4D;    font-family: Futura Bk BT;    line-height: 25px;    text-align: left;}
 .login_register_sidebar_main .list_part {    float: left;    width: 100%;}
@@ -30,10 +31,20 @@
 .login_register_sidebar_main .last_part_link {    float: left;    margin-top: 14%; width: 100%;text-align: left;}
 .login_register_sidebar_main .last_part_link a.register_link { font-family: Futura Bk BT; font-size: 20px;color: #4D4D4D; font-weight: 500;}
 
+.login_register_sidebar_main .list_part .item:first-child {    margin-bottom: 0;    margin-top: 13px;}
+.login_register_sidebar_main .list_part .item:nth-child(2) {  margin-bottom: 0;      margin-top: 10px;}
+.login_register_sidebar_main .list_part .item:nth-child(3) {  margin-bottom: 0;      margin-top: 8px;}
+.login_register_sidebar_main .list_part .item:nth-child(4) {    margin-bottom: 0;    margin-top: 13px;}
+
+
 .customer_account_create_top_part .item a.firest:before {    width: 24px;}
 .customer_account_create_top_part .item a.second:before {    width: 18px;}
 .customer_account_create_top_part .item a.third:before {    width: 20px;    height: 24px;}
 .customer_account_create_top_part .item a.four:before {  margin-right: 0 !important;  height: 26px !important;    width: 39px !important; background-position: -5px -4px !important;}
+
+@media screen and (max-width: 1440px) {  
+.login_register_sidebar_main h3 {    font-size: 21px; }
+}
 
 /* end trade login */
 
@@ -115,3 +126,100 @@
 .customer-account-create .form_main_part_trade .form.create.account {   padding-left: 0;   padding-right: 0;}
 .form_main_part_trade h2 {    font-size: 20px; }
 }
+
+
+
+@media screen and (max-width: 575px) {  
+
+
+.block-customer-login-trade {
+
+    padding-left: 0;
+
+}
+.login_register_sidebar_main .last_part_link_mobile {
+    display: block !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+}
+.login_register_sidebar_main .last_part_link_mobile a.register_link {
+    font-family: Futura Md BT;
+    font-style: normal;
+    font-weight: 500;
+    color: #4D4D4D;
+    font-size: 20px;
+}
+.login_register_sidebar_main .last_part_link {
+    display: none;
+}
+.login_register_sidebar_main .site_logo {
+    display: none;
+}
+.block-customer-login-trade h2#block-customer-login-heading {
+    margin-bottom: 2px;
+}
+.block-customer-login-trade .actions-toolbar .secondary {
+    float: right;
+    margin-bottom: 0;
+}
+.customer-account-login .login-container .block.block-customer-login {
+    max-width: 350px;
+    margin-top: 30px !important;
+    float: none;
+    padding-left: 0px;
+    margin: 0 auto;
+    padding-right: 5px;
+}
+.customer-account-login form#login-form fieldset.fieldset.login div {
+    margin-top: 5px;
+}
+.customer-account-login .actions-toolbar .primary button {
+    margin-top: 27px;
+}
+.login_register_sidebar_main {
+    padding: 40px 13px;
+}
+.login_register_sidebar_main .customer_account_create_top_part {
+    padding-top: 16px;
+}
+.customer-account-create .form.create.account .field .nested {
+    margin-top: 30px;
+}
+.form_main_part_trade .form_main_part {
+    margin-top: 35px;
+    padding-left: 0;
+}
+.customer-account-create .form.create.account .field.confirmation {
+    margin-top: 0;
+}
+.customer-account-create .form.create.account .field.additional_information input {
+    height: 120px;
+}
+.customer-account-create .block.block-new-login {
+    margin-top: 16px;
+}
+.customer-account-create .login_register_sidebar_main .last_part_link_mobile {
+    display: none !important;
+}
+.customer-account-create .login_register_sidebar_main {
+    padding: 0 13px;
+}
+.customer-account-create .form_main_part_trade {
+    margin-bottom: 16px;
+}
+.customer-account-forgotpassword main#maincontent {
+    margin-top: 12px;
+}
+.customer-account-forgotpassword .primary {
+    margin-bottom: 5px;
+}
+.minicart-wrapper .block-minicart {
+    width: 320px !important;
+}
+.wishlist-index-index .wishlist_count {
+    top: 12px;
+    left: 66%;
+}
+
+}
+

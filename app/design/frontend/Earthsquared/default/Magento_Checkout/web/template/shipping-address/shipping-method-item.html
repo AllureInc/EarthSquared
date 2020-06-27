@@ -24,7 +24,9 @@
     <div class="col col-carrier"
         attr="'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code"
         text="method.carrier_title" />
-        <p>3-5 working days</p>
+    <!-- ko if: method.method_code != 'freeshipping' -->
+		<p text="method.extension_attributes.method_description"></p>
+	<!-- /ko -->
     <div class="col col-price">      
         <each args="element.getRegion('price')" render="" />
     </div>        

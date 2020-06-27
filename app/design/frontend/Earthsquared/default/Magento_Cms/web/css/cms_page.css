@@ -77,7 +77,8 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
     color: #4D4D4D;    line-height: 160%;}
 @media screen and (max-width: 767px) {
 .cms-terms-conditions .breadcrumbs , .cms-privacy-policy .breadcrumbs  {    margin: unset !important;    margin-top: 15px !important;}
-.cms-terms-conditions .page-title-wrapper .page-title , .cms-privacy-policy .page-title-wrapper .page-title {    margin-bottom: 40px;}
+.cms-terms-conditions .page-title-wrapper .page-title , .cms-privacy-policy .page-title-wrapper .page-title {  margin-bottom: 31px;
+    margin-top: 37px;}
 
 }
 
@@ -109,17 +110,17 @@ form#contact-form .fieldset .lname {    width: 100%;    float: left;    margin-l
 /* end fair-trade-information */
 
 /* Trade Fairs and Stockists and Delivery Details*/
+.cms-trade-fairs .page-title-wrapper {    display: none;}
 .cms-trade-fairs  .breadcrumbs {    display: none;}
-.cms-trade-fairs main#maincontent {    margin-top: 25px !important;}
+.cms-trade-fairs main#maincontent {    margin-top: 66px !important;}
 .cms-trade-fairs  main#maincontent , .cms-stockists  main#maincontent , .cms-delivery-details  main#maincontent { max-width: 848px;    margin: 0 auto;    padding-left: 20px;    padding-right: 20px; }
 .cms-delivery-details h3 {    font-size: 13px;    text-transform: uppercase;    font-family: Futura Bk BT Medium;
     color: #4D4D4D;    letter-spacing: 0.04em;}
 .cms-trade-fairs .breadcrumbs, .cms-stockists  .breadcrumbs , .cms-delivery-details  .breadcrumbs {
     max-width: 810px;    margin-top: 15px !important;    padding-left: 20px !important;    margin-bottom: 0 !important;    padding-right: 20px !important;}	
 .cms-trade-fairs p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;}	
-img.second_contain_img {
-    margin-top: 35px;
-}
+img.second_contain_img {    margin-top: 35px;}
+.about_us_main {    padding: 0;}
 
 
 @media screen and (max-width: 767px) {
@@ -130,13 +131,13 @@ img.second_contain_img {    height: 26px;    margin-top: 25px;}
 img.contain_image {    height: 61px;}
 }
 
-/* end Trade Fairs and Stockists and Delivery Details */
+/* end Trade Fairs and Stockists and Delivery Details and Bespoke/White Label Projects */
 
 /* about us */
-.cms-about-us main#maincontent {    padding: 0;    max-width: 100%;}
-.cms-about-us .breadcrumbs {    display: none;}
-.cms-about-us .page-title-wrapper {    display: none;}
-.cms-about-us img.mobile {    display: none;}
+.cms-our-story main#maincontent , .cms-bespoke-white-label-projects main#maincontent  {    padding: 0;    max-width: 100%;}
+.cms-our-story .breadcrumbs , .cms-bespoke-white-label-projects .breadcrumbs  {    display: none;}
+.cms-our-story .page-title-wrapper , .cms-bespoke-white-label-projects .page-title-wrapper {    display: none;}
+.cms-our-story img.mobile , .cms-bespoke-white-label-projects img.mobile {    display: none;}
 .about_banner {    margin-bottom: 48px;}
 .about_us_main {    max-width: 848px;    margin: 0 auto;    padding-left: 20px;    padding-right: 20px;}
 .about_us_main p {  line-height: 26.5px; font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;    margin-bottom: 32px;}
@@ -166,14 +167,14 @@ img.contain_image {    height: 61px;}
 }
 
 @media screen and (max-width: 767px) {
-.cms-about-us .breadcrumbs {  display: none !important;}
-.cms-about-us  .page-title {    margin-bottom: 40px;}	
+.cms-our-story .breadcrumbs , .cms-bespoke-white-label-projects .breadcrumbs {  display: none !important;}
+.cms-our-story  .page-title , .cms-bespoke-white-label-projects .page-title {    margin-bottom: 40px;}	
 .about_info ul li {    padding: 12px;}
 }
 
 @media screen and (max-width: 576px) {
-.cms-about-us img.desktop {    display: none;}
-.cms-about-us img.mobile {    display: block !IMPORTANT;width: 100%;}
+.cms-our-story img.desktop , .cms-bespoke-white-label-projects img.desktop {    display: none;}
+.cms-our-story img.mobile , .cms-bespoke-white-label-projects img.mobile {    display: block !IMPORTANT;width: 100%;}
 p.add_location {    float: left;    margin-top: 15px;}
 .about_info ul li {    width: 100%;margin-bottom: 25px;    padding: 20px;}
 }
@@ -187,15 +188,15 @@ p.add_location {
 /* page not found */
 
 @media screen and (min-width: 770px) {
-.page_not_found {    margin-top: 145px;    display: inline-block;    width: 100%;    margin-bottom: 40px;}
+.page_not_found {    margin-top: 156px;    display: inline-block;    width: 100%;    margin-bottom: 40px;}
 }
 .cms-page-not-found #maincontent{
         padding: 0;
 }
-.page_not_found .contain {   margin-top: 15px; width: 40%;    float: left;    text-align: center;}
+.page_not_found .contain {   margin-top: 15px; width: 40%;    margin: 0 auto;   text-align: center;}
 .page_not_found .left_image {    width: 30%;    float: left;    text-align: center;  padding: 40px 35px 34px 0px;}
 .page_not_found .left_image img {    width: 153px;}
-.page_not_found .contain h2 { margin-top:42px; margin-bottom: 17px;  font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
+.page_not_found .contain h2 { margin-top: 45px; margin-bottom: 17px;  font-style: normal;    font-weight: 500;    font-size: 32px;    line-height: 100%;
     color: #4D4D4D;    font-family: 'Tiempos Headline Medium';}
 .page_not_found .contain p {    font-size: 15px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .page_not_found .contain span.border {   border-top: 1px solid #e5e5e5;
@@ -232,7 +233,20 @@ p.add_location {
 .page_not_found .left_image img {    width: auto;}
 .page_not_found .contain span.border {    margin-bottom: 0 !important;    margin-top: 20px;}
 }
-
+@media screen and (max-width: 767px) {
+    .page_not_found .contain {
+        padding:0 20px;
+    }
+    .page_not_found .contain span.border{
+        margin-bottom: 13px !important;
+        margin-top: 4px;
+    }
+    .page_not_found .contain ul li{
+        float: none;
+        display: inline-block;
+        padding:0 10px;
+    }
+}   
 @media screen and (max-width: 576px) {
 .page_not_found {    margin-top: 0px;    float: left;    width: 100%;}
 .page_not_found .left_image.mobile {    display: none;}
@@ -243,4 +257,57 @@ p.add_location {
 
 /* end */
 
+
+@media screen and (max-width: 575px) {  
+
+.about_banner {
+    margin-bottom: 0;
+}
+.about_us_main {
+    margin-top: 18%;
+    display: inline-block;
+}
+.about_info ul li {
+   
+    margin-bottom: 30px;
+    
+}
+.fair_traid_main {
+    margin-top: 22px;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.cms-fair-trade-information .page-title {
+    margin-bottom: 28px;
+}
+.about_info ul {
+
+    margin-top: 20px;
+
+}
+.about_info ul li a.call {
+    margin-left: 0;
+}
+.about_info ul li a.email {
+    margin-top: 27px;
+    margin-left: 0;
+}
+.about_info ul li:last-child {
+    margin-right: 0;
+    padding: 28px 22px;
+}
+.cms-contact-us .news_bar {
+    display: none;
+}
+form#contact-form .fieldset div {
+    margin-bottom: 37px;
+}
+form#contact-form .fieldset .lname {
+    margin-bottom: 40px;
+}
+form#contact-form .actions-toolbar {
+    margin-top: 10px;
+}
+}
 

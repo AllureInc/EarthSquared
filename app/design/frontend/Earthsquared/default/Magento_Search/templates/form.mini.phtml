@@ -41,6 +41,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            aria-autocomplete="both"
                            autocomplete="off"
                            aria-expanded="false"/>
+                    <div class="search-close" title="Clear Field" style="display: block;"><img src="<?php echo $this->getUrl('pub/media/icons/').'close.png' ?>" /></div>
                     <div id="search_autocomplete" class="search-autocomplete"></div>
                     <?= $block->getChildHtml() ?>
                 </div>
@@ -57,6 +58,4 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
         </form>
     </div>
 </div>
-
-
 </div>

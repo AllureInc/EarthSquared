@@ -1,0 +1,138 @@
+#checkout .opc-wrapper #checkout-step-shipping.step-content { 
+    margin-bottom: 80px;
+    margin-top: 10px;
+}
+#shipping.checkout-shipping-address #checkout-step-shipping .field.addresses{
+	width: 356px;
+    float: left;
+}
+#shipping.checkout-shipping-address #checkout-step-shipping .add-new-address-form-inline button.action-add-new-shipping{
+    width: 190px;
+    min-height: auto;
+    margin: 0;
+    height: 60px;
+    font-size: 14px;
+    position: relative;
+    right: 0;
+    float: left;
+    margin-left: 40px;
+}
+.add-new-address-form-inline .action-add-new-shipping:before{
+	width: auto;
+    float: none;
+}
+.checkout-billing-address .field-select-billing #billing_address_id{
+	width: 97.71%;
+}
+.checkout-shipping-method{
+    margin-top: 21px !important;
+}
+#checkout .opc-block-summary>.title{
+    margin-bottom: -11px !important;
+}
+#checkout .opc-wrapper .order-attributes .step-title{
+    margin-bottom: 10px;
+}
+#checkout .opc-wrapper .order-attributes .field[name="amastyShippingMethodAttributes.purchase_order_number"]{
+        margin-bottom: 40px;
+            width: 48.5%;
+}
+#checkout textarea[name="additional_comments"]{
+        height: 120px !important;
+}
+#checkout.tradeopc #shipping-new-address-form{
+	    margin-top: 20px;
+}
+#checkout.tradeopc #shipping-new-address-form .field[name="shippingAddress.company"],#checkout.tradeopc #shipping-new-address-form .field[name="shippingAddress.firstname"]{
+	    margin-bottom: 36px;
+}
+#checkout.tradeopc #shipping-new-address-form .field.choice,#checkout.tradeopc #co-payment-form .field.choice:not(.payment-method-title){
+	margin: 0px 0px 37px 0px;
+}
+
+#checkout.tradeopc .checkout-payment-method .checkout-billing-address{
+	    margin-top: -19px;
+}
+#checkout.checkout-container.tradeopc #opc-sidebar{
+    position: relative;
+}
+#checkout.tradeopc #opc-sidebar #place-order-trigger-wrapper{
+    position: absolute;
+    top:123px;
+    width: 100%;
+    padding-left: 16px;    
+}
+#checkout.checkout-container.tradeopc .opc-block-summary .items-in-cart{
+    margin-top:120px;
+}
+@media only screen and (max-width: 767px){
+	.checkout-billing-address .field-select-billing #billing_address_id{
+		width: 100%;
+	}	
+	#shipping.checkout-shipping-address #checkout-step-shipping .field.addresses{
+		width: 100%;
+    	float: left;
+    	margin-right: 0;
+    	margin-top: 5px;
+    	margin-bottom: 21px;
+	}
+	#shipping.checkout-shipping-address #checkout-step-shipping .field.addresses .select-shipping-address-dd, .checkout-billing-address .field-select-billing select{
+		background-size: 23px;
+    	background-position: 97%;
+	}
+	#shipping.checkout-shipping-address #checkout-step-shipping .add-new-address-form-inline button.action-add-new-shipping{
+		width: 100%;
+		margin-left: 0;
+	}
+	.add-new-address-form-inline .action-add-new-shipping:before{
+		    padding: 0px;
+	}
+	.checkout-shipping-method{
+		    margin-top: 70px !important;
+	}
+	.add-new-address-form-inline._active{
+		width: 100%;
+    	float: left;
+	}
+	#checkout .opc-wrapper .order-attributes .step-title{
+		    margin-bottom: 18px;
+	}
+	#checkout .opc-wrapper .order-attributes .field[name="amastyShippingMethodAttributes.purchase_order_number"]{
+		    width: 100%;
+	}
+	#checkout.tradeopc .opc-block-summary{
+		padding: 47px 0px 20px 0px;
+	}
+	#checkout.checkout-container.tradeopc .opc-block-summary .items-in-cart{
+		    margin-top: 25px;
+	}
+	#checkout.tradeopc .opc-wrapper .form-shipping-address{
+		padding: 9px 0px;
+    	margin: 0 0px 15px;	
+	}
+	#shipping-new-address-form .field.street, #billing-new-address-form .field.street, .billing-address-form .field.street{
+		margin: 0 !important;
+	}
+	#checkout.tradeopc .opc-wrapper .step-title{
+		    margin-bottom: 15px;
+	}
+	.billing-address-same-as-shipping-block label{
+		    padding-left: 9px;
+		    position: relative;
+    		top: -5px;
+	}
+	#billing-address-same-as-shipping-shared{
+		    top: 1px !important;		    
+	}
+	#checkout.tradeopc #co-payment-form .field.choice:not(.payment-method-title){
+		    margin: 0px 0px 10px 0px;
+	}	
+	#checkout.tradeopc #opc-sidebar #place-order-trigger-wrapper{
+		position: relative;
+		top:0px;
+		padding-left: 0;
+	}
+	#checkout .minicart-items{
+		display: block !important;
+	}
+}

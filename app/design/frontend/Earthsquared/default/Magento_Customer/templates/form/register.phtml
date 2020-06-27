@@ -268,31 +268,32 @@ require([
 <script>
 require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
   $(document).ready( function() {
+              
               $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                responsiveClass: true,
-                responsive: {
-                  0: {
-                    items: 1,
-					dots: false,
-                    nav: false
-					
-                  },
-                  600: {
-                    items: 2,
-					dots: false,
-                    nav: false
-                  },
-                  1000: {
-                    items: 3,
-                    nav: false,
-					dots: false,
-                    loop: false,
-                    margin: 20
-                  }
+                loop:true,
+                margin:10,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        dots: false,
+                        nav:false
+                    },
+                    600:{
+                        items:2,
+                        dots: false,
+                        nav:false
+                    },
+                    1000:{
+                        items:3,
+                        dots: false,
+                        nav:false,
+                        loop:false
+                    }
                 }
               });
+
+
          });
 });
           </script>

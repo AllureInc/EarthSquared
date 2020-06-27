@@ -2,4 +2,7 @@
     <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
         <preference for="Magento\Quote\Model\QuoteAddressValidator" type="Earthsquared\Customize\Model\QuoteAddressValidator" />
+        <type name="Magento\Eav\Model\Entity\Collection\AbstractCollection">
+    		<plugin name="find_duplicate_entry" type="Earthsquared\Customize\Plugin\Collection" sortOrder="20"/>
+ 		</type>
     </config>

@@ -25,14 +25,15 @@ if(count($subcats) > 0)
             $subcaturl = $subcat->getUrl();
 
             $_imgHtml = '';
-            
-            $_imgHtml_placeholder = $this->getUrl('pub/media').'catalog/category/placeholder.png';
+            $_imgHtml_placeholderimg = 'placeholder.png';
+            $_imgHtml_placeholder = $this->helper('Earthsquared\Customize\Helper\Data')->getCategoryResizeImg($_imgHtml_placeholderimg,276,288);
+            //$_imgHtml_placeholder = $this->getUrl('pub/media').'catalog/category/placeholder.png';
             $_imgHtml1 = '<img src="' . $_imgHtml_placeholder . '" />';
             
            if ($_imgUrl = $_category->getThumbnail()) {
 				
-				$image = $_category->getThumbnail();
-				$_imgUrl = $this->getUrl('pub/media').'catalog/category/'.$image;
+				$_imgUrl = $this->helper('Earthsquared\Customize\Helper\Data')->getCategoryResizeImg($_category->getThumbnail(),276,288);
+				//$_imgUrl = $this->getUrl('pub/media').'catalog/category/'.$image;
                 $_imgHtml = '<img src="' . $_imgUrl . '" />';
                 
                 $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'thumbnail');
