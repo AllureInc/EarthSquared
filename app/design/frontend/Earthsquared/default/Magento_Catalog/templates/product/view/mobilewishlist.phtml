@@ -62,20 +62,12 @@ if($helper->isCustomerLoggedIn()){
 <script>
     
     function openmForm() {
+        console.log('test');
       document.getElementById("socialmediam").style.display = "block";   
     }
     function closemForm() {
+        console.log('test11');
       document.getElementById("socialmediam").style.display = "none";
     }    
   
-</script>
-<script>
-    require(['jquery'],function($){
-        $(document).click(function(event) {
-          //if you click on anything except the modal itself or the "open modal" link, close the modal
-          if (!$(event.target).closest("#socialmediam,.openmshare").length) {
-                $("body").find("#socialmediam").hide();
-          }
-        });
-    });
 </script>

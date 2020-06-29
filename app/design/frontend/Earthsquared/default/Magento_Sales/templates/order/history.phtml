@@ -12,12 +12,7 @@
 <?= $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)) : ?>
 
-    <?php if ($block->getPagerHtml()) : ?>
-        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
-    <?php endif ?>
-	<?php else : ?>
-		<div class="message info empty"><span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span></div>
-	<?php endif ?>
+   
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">
             <caption class="table-caption"><?= $block->escapeHtml(__('Orders')) ?></caption>
@@ -27,7 +22,7 @@
                     <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
                     <?= $block->getChildHtml('extra.column.header') ?>
                     <?php /*<th scope="col" class="col shipping"><?= $block->escapeHtml(__('Ship To')) ?></th> */?>
-                    <th scope="col" class="col items"><?= $block->escapeHtml(__('Order Items')) ?></th>
+                    <th scope="col" class="col items"><?= $block->escapeHtml(__('Ordered Items')) ?></th>
                     <th scope="col" class="col total"><?= $block->escapeHtml(__('Order Total')) ?></th>
                   <?php /*  <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th> */?>
                     <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
@@ -112,4 +107,10 @@
 
 
     </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+    <?php else : ?>
+        <div class="message info empty"><span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span></div>
+    <?php endif ?>
 

@@ -13,5 +13,13 @@
 				<argument translate="true" name="title" xsi:type="string">Orders</argument>
 			</action>
 		</referenceBlock>		
+
+
+		<move element="order_count" destination="content"  before="-"/>
+		
+		<referenceContainer name="content">
+			<block class="Magento\Framework\View\Element\Template" name="order_count" template="Magento_Sales::order_count.phtml"/>
+		</referenceContainer>
+
     </body>
 </page>

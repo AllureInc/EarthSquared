@@ -265,7 +265,8 @@ p.add_location {
 }
 .about_us_main {
     margin-top: 18%;
-    display: inline-block;
+    display: inline-block;padding-left: 15px;
+    padding-right: 15px;
 }
 .about_info ul li {
    
@@ -285,6 +286,9 @@ p.add_location {
 
     margin-top: 20px;
 
+}
+.about_info ul li a.call {
+    margin-top: 29px;
 }
 .about_info ul li a.call {
     margin-left: 0;

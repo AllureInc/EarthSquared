@@ -1,0 +1,20 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create("Magento\Customer\Model\Session");
+$userId = '';
+if($customerSession->isLoggedIn()){
+  $userId =  $customerSession->getCustomerId();
+}
+$order_collection = $objectManager->create('Magento\Sales\Model\Order')->getCollection()->addAttributeToFilter('customer_id', $userId);
+$order = count($order_collection);
+?>
+
+<div class="order_count">
+<?php
+
+echo '('.$order.'  Items'.')'
+
+?>
+</div> 
+

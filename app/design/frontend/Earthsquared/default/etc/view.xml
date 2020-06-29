@@ -28,20 +28,20 @@
                 <height>150</height>                
             </image>
             <image id="category_page_grid" type="small_image">
-                <width>314</width>
-                <height>314</height>
+                <width>1000</width>
+                <height>1000</height>
             </image>
             <image id="category_page_grid-hover" type="lifestyle_image">
-                <width>314</width>
-                <height>314</height>
+                <width>1000</width>
+                <height>1000</height>
             </image>
             <image id="category_page_list" type="small_image">
-                <width>314</width>
-                <height>314</height>
+                <width>1000</width>
+                <height>1000</height>
             </image>
             <image id="category_page_list-hover" type="thumbnail">
-                <width>314</width>
-                <height>314</height>
+                <width>1000</width>
+                <height>1000</height>
             </image>
             <image id="customer_account_my_tags_tag_view" type="small_image">
                 <width>100</width>

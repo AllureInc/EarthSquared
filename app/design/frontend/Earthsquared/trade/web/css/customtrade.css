@@ -100,6 +100,10 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 
 }
 
+.page-wrapper.stickymenu header .section1 {
+	    top: 20px;
+	}
+
 @media screen and (min-width: 768px){
 	header .logo img.tradelogo {
 	    width: 296px;	   
@@ -119,6 +123,8 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
     	padding: 7px;
     	height: 34px;
 	}
+	
+
 	.tradesocial .quick{
 		padding-bottom: 15px;	
     	border-bottom: 1px solid #eee;
@@ -135,6 +141,9 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 	    top: -3px !important;
 	}
 	.quickorder	img{display: none;}
+	.cart-summary{
+		margin-bottom:0px;
+	}
 }
 
 @media screen and (max-width: 575px) {  

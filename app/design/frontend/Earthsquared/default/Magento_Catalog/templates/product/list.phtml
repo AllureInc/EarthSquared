@@ -1,4 +1,4 @@
-<?php
+3<?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -45,8 +45,8 @@ if($helper->isCustomerLoggedIn()){
         $showDescription = false;
         $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
         $imageDisplayAreaHover = 'category_page_grid-hover';
-        $image_width = 314;
-        $image_height = 314;
+        $image_width = 1000;
+        $image_height = 1000;
     } else {
         $viewMode = 'list';
         $imageDisplayArea = 'category_page_list';
@@ -230,7 +230,8 @@ if($helper->isCustomerLoggedIn()){
                 }                               
                 $(".top-toolbar .custom-select label.init").on("click", function() {
                   $(this).next("#sorter").toggle();
-                });              
+                });  
+                
             });
           });
 </script>

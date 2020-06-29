@@ -77,11 +77,13 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 <div class="mobileview">    
 <ul class="loginreg">
     <?php if($customerSession->isLoggedIn()) { ?>
-        <li><a href="<?php echo $this->getUrl().'customer/account/logout' ?>"><?php echo __("Log Out") ?></a></li>
+        <li><a class="logout" href="<?php echo $this->getUrl().'customer/account/logout' ?>"><?php echo __("Log Out") ?></a></li>
+        <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("My Account") ?></a></li>
     <?php } else { ?>
         <li><a href="<?php echo $this->getUrl().'customer/account' ?>"><?php echo __("Sign In") ?></a></li>
+        <li><a href="<?php echo $this->getUrl().'customer/account/create' ?>"><?php echo __("Register") ?></a></li>
    <?php } ?>   
-    <li><a href="<?php echo $this->getUrl().'customer/account/create' ?>"><?php echo __("Register") ?></a></li>
+
 </ul>
 <div class="tradesocial col-xs-12 nopadding">
     <div class="col-xs-12 quick">        
@@ -89,11 +91,11 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
     </div>
     <div class="col-xs-12 socialtrade">
         <ul class="socialiconsm">
-            <li><a href="https://www.facebook.com/EarthSquaredLtd/">
+            <li><a target="_blank" href="https://www.facebook.com/EarthSquaredLtd/">
                 <img src="<?php echo $this->getUrl('pub/media/headerimages/').'facebook-h.png' ?>" />
             </a></li>
-            <li><a href="https://twitter.com/earthsquaredltd"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'twitter-h.png' ?>" /></a></li>
-            <li><a href="https://www.instagram.com/earth_squared"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'instagram-h.png' ?>" /></a></li>
+            <li><a target="_blank" href="https://twitter.com/earthsquaredltd"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'twitter-h.png' ?>" /></a></li>
+            <li><a target="_blank" href="https://www.instagram.com/earth_squared"><img src="<?php echo $this->getUrl('pub/media/headerimages/').'instagram-h.png' ?>" /></a></li>
         </ul>
     </div>
 </div>
