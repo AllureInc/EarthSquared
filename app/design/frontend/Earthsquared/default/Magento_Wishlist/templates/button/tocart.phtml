@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Button $block */
+?>
+
+<?php if ($block->getWishlist()->getItemsCount() && $block->getWishlist()->isSalable()) : ?>
+<div class="wishlist_btn">
+	<div class="wishlist_btn_real">
+	    <button type="button" data-role="all-tocart" title="<?= $block->escapeHtmlAttr(__('Add all items to Bag')) ?>" class="action tocart wishlist">
+	        <span><?= $block->escapeHtml(__('Add all items to Bag')) ?></span>
+	    </button>
+	</div>
+</div>
+<?php endif;?>

@@ -41,10 +41,10 @@ if($helper->isCustomerLoggedIn()){
     <?php
     if ($block->getMode() == 'grid') {
         $viewMode = 'grid';
-        $imageDisplayArea = 'category_page_grid';
+        $imageDisplayAreaHover = 'category_page_grid';
         $showDescription = false;
         $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-        $imageDisplayAreaHover = 'category_page_grid-hover';
+        $imageDisplayArea = 'category_page_grid-hover';
         $image_width = 1000;
         $image_height = 1000;
     } else {

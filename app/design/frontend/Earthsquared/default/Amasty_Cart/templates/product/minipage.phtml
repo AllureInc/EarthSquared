@@ -43,8 +43,9 @@ $productSku = $helper->productAttribute($product, $product->getSku(), 'sku');
           ->createBlock('Magento\Cms\Block\Block')
           ->setBlockId('product_details_three_benefits')
           ->toHtml(); ?>
+          <a class="viewfull-details" href="<?php echo $product->getProductUrl() ?>"><?php echo __('View full details')?></a>       
     </div>    
-     <a class="viewfull-details" href="<?php echo $product->getProductUrl() ?>"><?php echo __('View full details')?></a>       
+     
 </div>
 <script>
     require([

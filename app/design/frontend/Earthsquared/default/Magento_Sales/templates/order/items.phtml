@@ -71,18 +71,74 @@
     </table>
 
 
-    <table class="right_part">
-            <?php if ($block->isPagerDisplayed()) : ?>
-                <tr>
-                    <td colspan="5" data-block="order-items-pager-bottom" class="order-pager-wrapper order-pager-wrapper-bottom">
-                        <?= $block->getPagerHtml() ?>
-                    </td>
-                </tr>
-            <?php endif ?>
-            <?= $block->getChildHtml('order_totals') ?>
-        </table>
+    <div class="orders_view_page_mobile" style="display:none;">
+            <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+            ?>
+            <?php foreach ($items as $item) :
+                if ($item->getParentItem()) :
+                    continue;
+                endif;
+            ?>
+            <?php
 
-</div>
+                $qty = $item->getQtyOrdered();
+                $product = $objectManager->create('Magento\Catalog\Model\Product')->load($item->getProductId());
+                //echo 'hello';exit;
+                $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+                $ImageUrl = $this->getUrl('pub/media').'catalog/category/placeholder.png';
+                if($product->getImage()){                    
+                    $ImageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage();
+                }      
+
+            ?>
+            <div class="order_view"> 
+                <div class="product_name"><?= $block->escapeHtml($item->getName()) ?></div>
+                <div class="contain_part">
+                <div class="left">
+                        <div class="product_image"><img src="<?php echo $ImageUrl; ?>" /></div>
+                </div>
+                <div class="right">
+                    <?php $options = $item->getProductOptions(); 
+                        if(!empty($options['attributes_info'])) {
+                            foreach($options['attributes_info'] as $option)  {  ?>
+                                <div class="attribute"><?php echo $option['label'];?>: <?php echo $option['value'];?></div>
+                            <?php  } } ?>
+                         <div class="price"><?php echo $formattedPrice = $priceHelper->currency($item->getPrice(), true, false); ?></div>
+                         <div class="part">
+                            <div class="qty"><?php echo floatval($qty); ?></div>
+                            <div class="total"><?php echo $formattedPrice = $priceHelper->currency($item->getRowTotal(), true, false); ?></div>
+                         </div>
+                      </div>
+                   </div>
+                </div>        
+            <?php endforeach; ?>
+        </div>
+
+
+    </div>
+
+
+
+
+
+<div class="right_part">
+        <h1>Order Summary</h1>
+        <table>
+                <?php if ($block->isPagerDisplayed()) : ?>
+                    <tr>
+                        <td colspan="5" data-block="order-items-pager-bottom" class="order-pager-wrapper order-pager-wrapper-bottom">
+                            <?= $block->getPagerHtml() ?>
+                        </td>
+                    </tr>
+                <?php endif ?>
+                <?= $block->getChildHtml('order_totals') ?>
+        </table>
+        <?php echo $this->getLayout()->createBlock("Magento\Sales\Block\Order\Info")->setTemplate("Magento_Sales::order/info.phtml")->toHtml() ?>
+    </div>
+
+
 <?php if ($giftMessage) : ?>
 <script type="text/x-magento-init">
     {

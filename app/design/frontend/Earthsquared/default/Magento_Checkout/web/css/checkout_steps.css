@@ -2,6 +2,9 @@
 .opc-progress-bar-item._complete:before,.opc-progress-bar-item._active:before,.opc-progress-bar-item._active>span:before,.opc-progress-bar-item._active>span:after,.opc-progress-bar-item:last-child:before,.opc-progress-bar-item>span:before, .opc-progress-bar-item>span:after{
 	display: none !important;
 }
+.checkout-index-index header.page-header{
+	    border-bottom: 1px solid #EEEEEE;
+}
 .checkout-shipping-method{
     display: flex;
     flex-direction: column;    
@@ -11,6 +14,9 @@
 #checkout .opc-progress-bar
 {
 	margin: 86px 0 50px;
+}
+#checkout-step-shipping .form.form-login .hidden-fields{
+	display: none !important;
 }
 .opc-progress-bar .opc-progress-bar-item>span,.opc-progress-bar .opc-progress-bar-item._active>span
 {
@@ -422,7 +428,7 @@ right: 34px;
 {
     height: 60px;
     font-size: 12px;
-    color: #9E9E9E;
+    color: #4d4d4d;
     border: 1px solid #E0E0E0;
     border-radius: 0px;
     width: 100%;
@@ -453,7 +459,7 @@ right: 34px;
 	margin-bottom: 0;
     padding-bottom: 0;
     max-width: 100%;
-    width: 97.71%;
+    width: 98.5%;
     margin: 0 1% 0 0%;
 }
 #checkout .opc-wrapper .form-shipping-address{

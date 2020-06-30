@@ -83,9 +83,9 @@
             <div class="control">
                 <input type="text"
                        name="postcode"
-					   placeholder="postcode*"
+					   placeholder="Postcode*"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getPostcode()) ?>"
-                       title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>"
+                       title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('Postcode') ?>"
                        id="zip"
                        class="input-text validate-zip-international <?= $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('postcode')) ?>">
                 <div role="alert" class="message warning" style="display:none">
@@ -98,7 +98,7 @@
             <div class="control">
                 <input type="text"
                        name="city"
-					   placeholder="city*"
+					   placeholder="City*"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getCity()) ?>"
                        title="<?= $block->escapeHtmlAttr(__('City')) ?>"
                        class="input-text <?= $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('city')) ?>"

@@ -458,29 +458,28 @@ define([
                 $widget.optionsMap[item.id] = {};
 
                 // Aggregate options array to hash (key => value)
-	                if(!$("body").hasClass("catalog-product-view")){ 
-	                   
-	                    var total_swatch = item.options.length;                    
-	                    var x=3;
-	                    var moreswatch =  total_swatch - x;    
+                    if(!$("body").hasClass("catalog-product-view")){
+                        var total_swatch = $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').length;
+                        console.log(total_swatch);
+                        var x=3;
+                        var moreswatch =  total_swatch - x;
+                        if(total_swatch > 3){
+                           x=(x-total_swatch < 0) ? 3 : x-total_swatch;
+                            //console.log(container);
+                            $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').not(':lt('+x+')').hide();
+                            $(container.context).children('#loadMore').text('+'+moreswatch).addClass('swatchitem'+item.id);
+                            
+                            $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
+                            $(container.context).children('#loadMore').click(function () {
+                                    x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
+                                    $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
+                                    $(this).hide();
+                            });
+                            $(container.context).children('.swatchitem'+item.id).insertAfter('.swatch-attribute .swatch-attribute-options .swatch-option:last-child');
+                        }
 
-	                    if(total_swatch > 3){                            
-	                       x=(x-total_swatch<0) ? 3 : x-total_swatch;    
-	                       	console.log(container);	                                                
-	                        $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').not(':lt('+x+')').hide();                                             	                        
-	                        $(container.context).children('#loadMore').text('+'+moreswatch);                     
-	                        $(container.context).children('#loadMore').addClass('swatchitem'+item.id);
-	                        $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();	                        
-	                        $('.products-grid  #loadMore').click(function () {                            
-	                                x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;	                                
-	                                $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();                                 
-	                                $('.products-grid  #loadMore').hide();                                               
-	                        });                                                
-	                       	$(container.context).children('.swatchitem'+item.id).insertAfter('.swatch-attribute .swatch-attribute-options .swatch-option:last');
-	                    } 
-	                   
-	                }                               
-                $.each(item.options, function () {                	
+                    }
+                $.each(item.options, function () {
                     if (this.products.length > 0) {
                         $widget.optionsMap[item.id][this.id] = {
                             price: parseInt(
@@ -587,7 +586,7 @@ define([
                 swatchImageWidth = _.has(sizeConfig, 'swatchImage') ? sizeConfig.swatchImage.width : 35;
                 swatchImageHeight = _.has(sizeConfig, 'swatchImage') ? sizeConfig.swatchImage.height : 35;
 
-                console.log(swatchImageWidth);
+                //console.log(swatchImageWidth);
                 if (!this.hasOwnProperty('products') || this.products.length <= 0) {
                     attr += ' option-empty="true"';
                 }

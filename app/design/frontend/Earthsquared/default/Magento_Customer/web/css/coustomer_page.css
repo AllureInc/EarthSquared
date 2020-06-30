@@ -299,9 +299,9 @@ div#checkoutguestlogin .actions-toolbar .primary button{
     padding-top: 11px;  border: none;    font-family: Futura Bk BT;border-right: none;
     font-size: 12px;    font-weight: 600;  background-color: #fff; color: #616161;}
 .account .data.table .col.actions a {    font-family: Futura Bk BT;    font-size: 12px; color: #4D4D4D !important;}
-.account .table-wrapper tbody tr td {  padding-left: 14px;
-    padding-top: 12px;  border-right: none;}
-
+.account .table-wrapper tbody tr td {    padding-left: 14px;    padding-top: 12px;    font-family: Futura Bk BT;    border-right: none;
+    font-size: 12px;    color: #616161;}
+.account .table-wrapper tbody tr td.col.id {    font-family: Futura Bk BT;    color: #424242;font-size: 13px;}
 .account.page-layout-2columns-left .column.main {    position: relative;}
 .order-products-toolbar.toolbar.bottom .limiter {    display: none;}
 .order-products-toolbar.toolbar.bottom span.toolbar-number:before {    content: "(";    float: left;}
@@ -350,11 +350,17 @@ span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    f
     background: rgba(255, 255, 255, 0.9) !important;    color: #000;    padding: 9.5px 10px;    top: 0;
 	line-height: 100%;	display: none;    font-size: 13px;    padding-right: 5px;}
 .products-grid.wishlist .product-item .box-tocart .tocart:hover span {    display: block !important;}
-.wishlist-index-index .column.main .toolbar.wishlist-toolbar:nth-child(5n) {    display: none;}
-.wishlist_count {
-    position: absolute;
-    top: 5%;
-    left: 20%;
+.wishlist_count {    position: absolute;    top: 56px;    left: 20%;    color: #616161;    font-family: Futura Bk BT;    font-size: 14px;}
+.products-grid.wishlist {    display: inline-block;    float: left;    width: 100%;}
+
+.wishlist-index-index .wishlist_btn {    position: absolute;    top: 44px;    right: -17px;   margin: 0;}
+.wishlist-index-index .column.main {    position: relative;}
+.wishlist-index-index  .wishlist_btn button.action.tocart {   box-shadow: none; background: none !important;    border: none;    font-family: Futura Bk BT;
+    font-style: normal;    font-weight: normal;    font-size: 14px;    color: #4D4D4D;}
+.wishlist-index-index  .wishlist_btn button.action.tocart.wishlist span:before {    content: '';    background: url(../images/shopping-bag.png) no-repeat;
+    background-size: 100%;    width: 13.67px;    height: 24px;    background-position: 0;    left: -7px;    position: absolute;    top: 4px;}
+.wishlist-index-index .wishlist_btn .wishlist_btn_real {
+    position: relative;
 }
 .products-grid.wishlist .product-item-name {    margin-top: 10px !important;    display: inline-block;    padding-left: 13px;}
 .products-grid.wishlist .product-item .price-box {    margin-top: 5px;    padding-left: 16px;}
@@ -375,11 +381,15 @@ span.toolbar-number {    font-family: Futura Bk BT;    font-weight: normal;    f
 }	
 @media screen and (max-width: 576px) {	
 .wishlist-index-index .products-grid .product-item {    border-bottom: 0;}
-.wishlist-index-index .products-grid .product-item span.product-image-container {    width: 100% !important;
-    max-width: 100%;}
+.wishlist-index-index .products-grid .product-item span.product-image-container {    width: 100% !important;    max-width: 100%;}
+.wishlist-index-index .wishlist_btn {    position: initial;    padding-left: 7px;}
+.wishlist-index-index  .page-main .page-title-wrapper .page-title {    margin-bottom: 10px;}
 .wishlist-index-index  .block.block-collapsible-nav {    top: 0;}
 .wishlist-index-index  .toolbar .pages {    position: relative;}
 .products-grid.wishlist .product-item-name{    margin-left: 0;}
+.wishlist-index-index button.action.tocart {    clear: both;    position: initial;}
+.products-grid.wishlist .product-item:first-child {    border: none;}
+form#wishlist-view-form {  margin-top: 18px;  display: inline-block;    width: 100%;}
 
 }
 @media screen and (max-width: 420px) {	
@@ -441,7 +451,7 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .form-edit-account .primary {    width: 447px;}
 .form-edit-account .actions-toolbar button.action.save.primary { background: #4D4D4D !important;   height: 60px;width: 100%;    margin: 0 !important;}
 
-.form-edit-account  .field.choice.newsletter {    float: left;    width: 100%;    margin-top: 50px; padding-left: 11px;}
+.form-edit-account  .field.choice.newsletter {   display: none; float: left;    width: 100%;    margin-top: 50px; padding-left: 11px;}
 .form-edit-account  .field.choice.newsletter h2 {    font-family: Futura Bk BT Medium;    font-style: normal;   font-size: 13px;
     line-height: 100%;margin-bottom: 29px;    letter-spacing: 0.04em;    text-transform: uppercase;    color: #4D4D4D;}
 .form-edit-account .field.choice.newsletter input#is_subscribed {    float: left;    height: auto;    margin: 0px;    width: 19px;
@@ -466,7 +476,7 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 /* end account information */
 
 /* address book */
-.block.block-addresses-default .box {    width: 216px !important;    float: left !important;    margin-right: 40px;    background: #FAFAFA;
+.block.block-addresses-default .box {    width: 216px !important;    float: left !important;    margin-right: 40px;  
     border: 1px solid #4D4D4D;    padding: 20px 17px;}
 .block.block-addresses-default .box strong.box-title span {    background: #4D4D4D;    padding: 4px 6px;
     color: #fff;    font-family: Futura Bk BT;    font-size: 11px !important;    letter-spacing: 1px;
@@ -475,10 +485,9 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
     color: #757575;}
 .block.block-addresses-default .box a.action.edit span {    font-family: Futura Bk BT;   font-size: 14px !important;
     color: #757575;}
-.block.block-addresses-default .box.new-address {    clear: none !important;    height: 191px;
-    text-align: center;padding-top: 60px;}
+.block.block-addresses-default .box.new-address {    clear: none !important;    height: 178px;    text-align: center;    padding-top: 62px;}
 .block.block-addresses-default .box.new-address span {    width: 100%;    float: left;}
-.block.block-addresses-default .box.new-address span.plus_sign {    color: #F87883;}
+.block.block-addresses-default .box.new-address span.plus_sign {    color: #F87883; font-weight: bold;    font-size: 18px;    margin-bottom: 5px;}
 .form-address-edit .actions-toolbar {    float: left;    width: 100%;}
 .form-address-edit input {    background: #FFFFFF;    padding: 20px;    font-family: Futura Bk BT;    height: 60px;    padding-left: 20px;
     padding-right: 20px;    font-size: 12px;    border: 1px solid #E0E0E0;}
@@ -706,7 +715,7 @@ content: '';  background: url(../images/view_oredr.svg) no-repeat;    width: 14p
 .block-collapsible-nav .content li:nth-child(3):before {    content: '';    background: url(../images/address.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
 .block-collapsible-nav .content li:nth-child(5):before {    content: '';    background: url(../images/manage_payment.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
@@ -716,39 +725,95 @@ content: '';  background: url(../images/view_oredr.svg) no-repeat;    width: 14p
 
 /* order view page */
 .sales-order-view h1.page-title {    float: left;}
-.sales-order-view h1.page-title span {    font-family: Futura;    font-style: normal;    font-weight: 500;    font-size: 15px;
+.sales-order-view h1.page-title span {    font-family: Futura Bk BT Medium;    font-style: normal;    font-weight: 500;    font-size: 15px;
     line-height: 100%;    letter-spacing: 0.04em;    text-transform: uppercase;    color: #4D4D4D;}
 .sales-order-view span.order-status {    display: none;}
-.sales-order-view .order-date {    margin-top: 57px !important;    float: left;    width: auto;    font-family: Futura Bk BT;    font-style: normal;    color: #757575;
+.sales-order-view .order-date {    margin-top: 60px !important;    float: left;    width: auto;    font-family: Futura Bk BT;    font-style: normal;    color: #757575;
     font-weight: normal;    font-size: 12px !important;}
+.sales-order-view .table-wrapper.order-items td {    padding-left: 7px;    padding-top: 28px;}
 .sales-order-view table#my-orders-table {    border: none !important;}
 table#my-orders-table td.col.sku {    display: none;}
 .sales-order-view ul.items.order-links {    display: none;}
-.sales-order-view .order-details-items.ordered {   float: left;    width: 100%; padding: 0;    border: none;}
+.sales-order-view .order-details-items.ordered {  margin-bottom: 0; float: left;    width: 100%; padding: 0;    border: none;}
 .sales-order-view .table-wrapper thead {    border-left: none;border-right: none;}
-.sales-order-view .table-wrapper.order-items {float: left;    padding-left: 15px;margin-top: 12px;    width: 100%;  padding-right: 15px;}
-.sales-order-view .table-wrapper.order-items table#my-orders-table {    width: 66%;    float: left;}
-.sales-order-view .table-wrapper.order-items table.right_part {    float: right;    width: 30%;background: #E5E5E5;  border: 1px solid #EEEEEE;}
+.sales-order-view .table-wrapper.order-items {    float: left;    padding-left: 15px;    margin-top: 12px;    border-bottom: none;    margin-bottom: 0;
+    width: 70%;    padding-right: 15px;}
+.sales-order-view .table-wrapper.order-items table#my-orders-table {    width: 100%;    float: left;}
+.sales-order-view  .right_part {float: right;width: 30%; margin-top: -67px;}
+.sales-order-view  .right_part table { border: 1px solid #EEEEEE;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table th { font-weight: 500 !important;    font-size: 12px !important; text-transform: uppercase;}
-.sales-order-view .table-wrapper.order-items table.right_part th {    text-align: center;    padding: 11px 10px;}
+.sales-order-view  .right_part th {    text-align: center;    padding: 23px 18px;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td .product {    font-weight: 500 !important;font-size: 14px !important; color: #4D4D4D;}
 .account .table-wrapper tbody tr td.col.qty span.title {    display: none;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td span.price {font-weight: 500 !important;font-size: 14px !important; color: #4D4D4D;}
-.sales-order-view  .order-details-items {    margin-top: -11px;}
+.sales-order-view .order-details-items {    margin-top: 5px;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td.subtotal span.price {    color: #212121;}
 .sales-order-view .actions-toolbar.order-actions-toolbar {    width: 66%;    position: absolute;  top: 52px;  left: 6px;  text-align: right;}
 .sales-order-view a.action.order {    font-size: 14px !important;    color: #4D4D4D;    border: 1px solid #4D4D4D;  padding: 10px 29px;    margin-right: 0;}
-.sales-order-view .table-wrapper.order-items table.right_part th {    text-align: center;    text-transform: uppercase;    font-size: 12px;
+.sales-order-view  .right_part th {    text-align: left;    text-transform: uppercase;    font-size: 12px;
     font-weight: normal;    font-family: Futura Bk BT;}
-.sales-order-view .table-wrapper.order-items table.right_part th strong {    font-weight: normal;}
-.sales-order-view .table-wrapper.order-items table.right_part td {    text-align: right;}
-.sales-order-view .table-wrapper.order-items table.right_part tr {    border-bottom: 1px solid #EEEEEE;}
-.sales-order-view .block-order-details-view .box-title span {    text-transform: uppercase;    font-size: 14px !important;    font-weight: normal;
+.sales-order-view  .right_part th strong {    font-weight: normal;}
+.sales-order-view  .right_part td {    text-align: right;    padding: 23px 18px;    font-size: 15px;    font-family: Futura Bk BT;
+    letter-spacing: 0.04em;    text-transform: uppercase;    color: #212121;}
+.sales-order-view  .right_part tr {    border-bottom: 1px solid #EEEEEE;}
+.sales-order-view .block-order-details-view .box-title span {    text-transform: uppercase;    font-size: 11px !important;    font-weight: normal;
     font-family: Futura Bk BT;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box .box-content {    color: #757575;    font-family: Futura Bk BT;
+    font-style: normal;    font-weight: normal;    font-size: 12px;    line-height: 20px;}
+.sales-order-view .right_part h1 {    font-style: normal;    font-weight: 500;    font-size: 15px;    letter-spacing: 0.04em;
+    color: #757575;    text-transform: uppercase;}
 .sales-order-view  .block-order-details-view address {    color: #757575;    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;
     font-size: 12px;    line-height: 20px;}
-.sales-order-view .block.block-order-details-view {    float: right;    width: 100%;}
+.sales-order-view .block.block-order-details-view {    float: right;    width: 100%;    margin-top: 34px;}
 .sales-order-view .block.block-order-details-view .block-title {    display: none;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box strong.box-title {border-bottom: 1px solid #EEEEEE;padding-bottom: 2px;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box { width: 50% !important;    display: inline-block;margin-bottom: 0;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box:nth-child(2n+1) {    clear: both;}
+.sales-order-view  .right_part td strong {    font-family: Futura Bk BT Medium;    font-weight: 500;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box dl.payment-method table.data.table {    border: none;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box dl.payment-method tr {    border: none;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box dl.payment-method th {    display: none;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box dl.payment-method td { border: none; padding: 0;    text-align: left;
+    color: #757575;    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    font-size: 12px;    line-height: 20px;}
+.sales-order-view .actions-toolbar > .secondary .action.back {    display: block;}
+.sales-order-view .column.main {    position: relative;}
+.sales-order-view  .actions-toolbar-order-view span {    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    font-size: 14px;
+    color: #9E9E9E;}
+.sales-order-view  .actions-toolbar-order-view {    position: absolute;    top: 57px;    left: -73px;}
+.sales-order-view  a.action.back:before {    background: url(../images/back.png) no-repeat;    background-size: 100%;    display: inline-block;
+    width: 14px;    height: 14px;    background-position: 0px 2px;    content: '';}
+
+
+@media screen and (max-width: 575px) {  
+.sales-order-view .right_part {    float: right;    width: 100%;    margin-top: 0;}
+.sales-order-view .table-wrapper.order-items {    width: 100%;}
+.sales-order-view .column.main .block.block-order-details-view .block-content:not(.widget) .box {    height: 175px;}
+.sales-order-view .actions-toolbar.order-actions-toolbar {    margin: 0;}
+.sales-order-view a.action.order {    float: right;}
+.account .column.main .block.block-order-details-view .block-content:not(.widget) .box:nth-child(2n+1) {   float: left;}
+.sales-order-view .sidebar.sidebar-main .block.block-collapsible-nav {   width: 263px;  margin-bottom: 25px;  height: 59px;    float: right;}
+.sales-order-view .actions-toolbar-order-view {    position: absolute;    top: -67px;    left: 0;    width: 55px;}
+.sales-order-view h1.page-title span {    text-transform: capitalize;}
+.sales-order-view .table-wrapper.order-items table#my-orders-table {    display: none;}
+.orders_view_page_mobile {    float: left;    width: 100%;    display: block !important;}
+.orders_view_page_mobile .product_name {    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;  font-size: 17px;margin-bottom: 21px;
+    color: #4D4D4D;}
+.sales-order-view .order-details-items.ordered .order-title {    display: none;}
+.orders_view_page_mobile .contain_part .left {    width: 41%;    float: left;}
+.orders_view_page_mobile .contain_part .right {    width: 59%;    float: right;    padding-left: 20px;    padding-top: 6px;}
+.orders_view_page_mobile .order_view {    float: left;    width: 100%;    border-bottom: 1px solid #EEEEEE;padding-bottom: 20px;    margin-bottom: 20px;}
+.orders_view_page_mobile .order_view .price {    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    font-size: 14px;
+    color: #4D4D4D;}
+.orders_view_page_mobile .order_view .part {    display: inline-block;    margin-top: 40px;width: 100%;}
+.orders_view_page_mobile .order_view .part .qty {    float: left;    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;
+    font-size: 13px;    border: 1px solid #EEEEEE;    padding: 6px 12px;}
+.orders_view_page_mobile .order_view .part .total {    float: right;    font-family: Futura Bk BT Medium;    font-weight: 500;    color: #4D4D4D;margin-top: 6px;
+    font-size: 14px;}
+.orders_view_page_mobile .order_view .attribute {    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    font-size: 14px;
+    color: #757575;    margin-bottom: 14px;}
+}
+
+
 /* end order view page */
 
 
@@ -774,14 +839,16 @@ background: url(../images/right-arrow.png) no-repeat;
 .order-products-toolbar .pages-item-previous a.action.previous {    width: auto;}
 
 
+
+
+.customer-address-index input[type="text"]:focus, .customer-address-index input[type="password"]:focus {
+    padding-top: 20px;
+}
+
+
 @media all and (min-width: 576px) and (max-width: 768px) {
 
-.order-products-toolbar.toolbar.bottom {
-    position: relative;
-    top: 0;
-    left: 20px;
-    width: 100%;
-}
+.order-products-toolbar.toolbar.bottom {    position: relative;    top: 0;    left: 20px;    width: 100%;}
 
   
 }

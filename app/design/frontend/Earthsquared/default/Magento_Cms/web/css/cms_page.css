@@ -22,7 +22,8 @@ form#contact-form h2 {    font-size: 13px;    text-transform: uppercase;    font
 form#contact-form span.title_bg { content: '';    background: url(../images/our-story-blob.svg) no-repeat;    background-size: 100%;
     width: 52px;    height: 52px;    background-position: left;    animation-name: scale-down-and-back;    display: inline-block;
     position: absolute;    z-index: -1;    top: -5px;    opacity: 0.7;    left: 12px;    animation-duration: 0.3s;    margin: -14px 0 0 -24px;}
-form#contact-form input {  padding: 20px;  height: 60px;}
+form#contact-form input {    padding: 20px;    height: 60px;    font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;    color: #4D4D4D;
+    font-size: 14px;}
 form#contact-form .fieldset .lname {    width: 271px;    float: left;    margin-left: 18px;}
 form#contact-form .fieldset .name {    width: 271px;    float: left;}
 form#contact-form button span {    font-style: normal;    font-weight: normal;    font-size: 15px;
@@ -33,7 +34,8 @@ form#contact-form .fieldset > div {	position: relative;	float: left;    width: 1
 form#contact-form .fieldset .field.comment {    margin-bottom: 0;}
 form#contact-form fieldset.fieldset {    margin-bottom: 0;}
 .floating-label em {    color: #e02b27;}
-form#contact-form .fieldset div textarea#comment {  height: 120px;  padding: 20px;}
+form#contact-form .fieldset div textarea#comment {  height: 120px;  padding: 20px; font-family: Futura Bk BT;    font-style: normal;    font-weight: normal;
+    color: #4D4D4D;    font-size: 14px;}
 form#contact-form .fieldset > div.comment {    margin-bottom: 30px;}
 .cms-contact-us form#contact-form ._keyfocus :focus, .cms-contact-us form#contact-form input:not([disabled]):focus, .cms-contact-us form#contact-form textarea:not([disabled]):focus, .cms-contact-us form#contact-form select:not([disabled]):focus {
     padding: 25px 20px 10px 20px !important;
