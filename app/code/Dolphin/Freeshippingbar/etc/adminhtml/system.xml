@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="dolphin" sortOrder="201" translate="label">
+			<label>Dolphin</label>
+		</tab>
+		<section id="dolphin_freeshippingbar" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="060320" translate="label">
+			<class>separator-top</class>
+			<label>Free Shipping Bar</label>
+			<tab>dolphin</tab>
+			<resource>Dolphin_Freeshippingbar::config_dolphin_freeshippingbar</resource>
+			<group id="general_setting" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General Setting</label>
+				<field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Enabled</label>
+					<comment>Enabled Dolphin Free Shipping Bar</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+			<group id="display_setting" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label">
+				<label>Free Shipping Bar Display Setting</label>
+				<field id="threshold" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>Free Shipping Threshold</label>
+					<comment><![CDATA[Free Shipping Threshold, Make use of variables to set notification text. {leftValue} = {thresholdValue} - {cartSubtotal}. For Example: Add more {leftValue} to be eligible for Free Shipping!]]></comment>
+					<frontend_model>Dolphin\Freeshippingbar\Block\Adminhtml\Form\Field\Threshold</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+				</field>
+				<field id="sucess_message" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>Free Shipping Availability Success Message</label>
+					<comment>Free Shipping Availability Success Message</comment>
+				</field>
+				<field id="bar_position" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Bar Position</label>
+					<comment/>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\BarPosition</source_model>
+				</field>
+				<field id="sticky" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Stick Shipping Bar</label>
+					<comment>Stick Shipping Bar</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="close_button" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Close Button</label>
+					<comment>Close Button for remove free shipping bar</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="calculate_subtotal" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Calculate Subtotal</label>
+					<comment/>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\CalculateSubtotal</source_model>
+				</field>
+				<field id="display_bar_in" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Display Bar In</label>
+					<comment>Display Bar In</comment>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\DisplayBarIn</source_model>
+				</field>
+				<field id="display_on" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+					<label>Display On Pages</label>
+					<comment>Display On Pages</comment>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\DisplayOn</source_model>
+				</field>
+			</group>
+			<group id="bar_design_setting" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="25" translate="label">
+				<label>Free Shipping Bar Design Settings</label>
+				<field id="bar_size" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Bar Size</label>
+					<comment>Bar Size</comment>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\BarSize</source_model>
+				</field>
+				<field id="load_delay_time" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Bar Load Delay Time</label>
+					<comment>Bar Load Delay Time in Second, Set 0 For No Delay</comment>
+				</field>
+				<field id="hide_after" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Hide Bar After</label>
+					<comment>Auto Hide Bar After Seconds, Set 0 For No Delay</comment>
+				</field>
+				<field id="font_family" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Font Family</label>
+					<comment/>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\FontFamily</source_model>
+				</field>
+				<field id="text_align" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Text Align</label>
+					<comment/>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\TextAlign</source_model>
+				</field>
+				<field id="font_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Font Color</label>
+					<comment/>
+					<frontend_model>Dolphin\Freeshippingbar\Block\Color</frontend_model>
+				</field>
+				<field id="shipping_price_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Shipping Price Color</label>
+					<comment/>
+					<frontend_model>Dolphin\Freeshippingbar\Block\Color</frontend_model>
+				</field>
+				<field id="close_button_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Close Button Color</label>
+					<comment/>
+					<frontend_model>Dolphin\Freeshippingbar\Block\Color</frontend_model>
+				</field>
+				<field id="bg_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text" canRestore="1">
+					<label>Bar Background Color</label>
+					<comment/>
+					<frontend_model>Dolphin\Freeshippingbar\Block\Color</frontend_model>
+				</field>
+				<field id="animation_effect" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Animation Effect</label>
+					<comment/>
+					<source_model>Dolphin\Freeshippingbar\Model\Config\Source\AnimationEffect</source_model>
+				</field>
+				<field id="custom_css" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="textarea">
+					<label>Custom Css</label>
+					<comment>You must input the correct format of a css. EX. padding:10px;margin:10px;</comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

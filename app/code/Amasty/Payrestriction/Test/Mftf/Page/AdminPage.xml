@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Page/etc/PageObject.xsd">
+
+    <page name="AdminPyrestrictionConfigurationPage" url="/admin/system_config/edit/section/ampayrestriction/" area="admin" module="Amasty_Payrestriction">
+        <section name="AdminConfigurationsPayrestrictionSection"/>
+    </page>
+
+    <page name="AdminPaymentRestrictionsGridPage" url="/amasty_payrestriction/rule/index/" area="admin" module="Amasty_Payrestriction">
+        <section name="AdminPaymentRestrictionsGridSection"/>
+    </page>
+
+</pages>

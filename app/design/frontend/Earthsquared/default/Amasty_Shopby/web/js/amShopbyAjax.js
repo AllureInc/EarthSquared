@@ -201,6 +201,19 @@ define([
                         if ($.mage.amShopbyApplyFilters) {
                             $.mage.amShopbyApplyFilters.prototype.showButtonCounter(response.productsCount);
                         }
+                        
+                        $(window).scroll(function() {
+                            var y = $(this).scrollTop();
+                            var top = $('.page-header').height();
+                            //var navigation = $('.nav-sections.sections').height();
+                           // var totalh = top + navigation;
+                            if (y > top) {
+                                $('.page-wrapper').addClass('stickymenu');
+                            } else {
+                                $('.page-wrapper').removeClass('stickymenu');
+                            }
+                        });      
+                        
                     } catch (e) {
                         var url = self.clearUrl ? self.clearUrl : self.options.clearUrl;
                         window.location = (this.url.indexOf('shopbyAjax') == -1) ? this.url : url;

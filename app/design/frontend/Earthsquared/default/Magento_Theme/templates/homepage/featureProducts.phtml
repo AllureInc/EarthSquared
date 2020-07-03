@@ -26,7 +26,13 @@ foreach ($categoryProducts as $product) { ?>
 
 			<div class="product-detail">
 				<div class="product-name"><?php echo $product->getName(); ?></div>
-				<div class="product-price"><?php echo $block->getProductPrice($product->getPrice()); ?></div>
+				<div class="product-price">
+					<?php if($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){ ?>
+						<?php echo $block->getProductPrice($product->getFinalPrice()); ?>						
+				<?php } else { 
+						echo $block->getProductPrice($product->getPrice());
+				} ?>
+				</div>
 			</div>
 			</a>
 			    <?php $postParams = $block->getAddToCartPostParams($product); ?>    			

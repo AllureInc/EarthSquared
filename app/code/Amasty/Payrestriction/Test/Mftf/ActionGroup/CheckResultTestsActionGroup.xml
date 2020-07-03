@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="StorefrontCheckPaymentMethod">
+        <!-- Use After "StorefrontCheckoutFillShippingAddressAsGuest" or "AmastyCreateOrderAsCustomerOnCheckoutShippingPage" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad15"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <seeElement selector="//label[@for='{{paymentMethods.paymentValue}}']" stepKey="checkHavePaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontCheckNoPaymentMethod">
+        <!-- Use After "StorefrontCheckoutFillShippingAddressAsGuest" or "AmastyCreateOrderAsCustomerOnCheckoutShippingPage" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <dontSeeElement selector="//label[@for='{{paymentMethods.paymentValue}}']" stepKey="checkNoPaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontMultishippingCheckPaymentMethod">
+        <!-- Use After "StorefrontMultishippingFillAddressAndShippingMethods" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad15"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <seeElement selector="//input[@value='{{paymentMethods.paymentValue}}']" stepKey="checkHavePaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontMultishippingCheckNoPaymentMethod">
+        <!-- Use After "StorefrontMultishippingFillAddressAndShippingMethods" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <dontSeeElement selector="//label[@for='{{paymentMethods.paymentValue}}']" stepKey="checkNoPaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontCheckRestrictAllPaymentMethods">
+        <!-- Use After "StorefrontCheckoutFillShippingAddressAsGuest" or "AmastyCreateOrderAsCustomerOnCheckoutShippingPage" -->
+        <waitForPageLoad time="50" stepKey="waitForPageLoad1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad11"/>
+        <seeElement selector="{{CheckoutPaymentAddressSection.NoAvailablePaymentMethods}}" stepKey="checkNoAllPaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontCheckContentPayPalMethod">
+        <!-- Use After "StorefrontCheckoutFillShippingAddressAsGuest" or "AmastyCreateOrderAsCustomerOnCheckoutShippingPage" -->
+        <waitForPageLoad time="50" stepKey="waitForPageLoad1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <click selector="//input[@value='paypal_express']" stepKey="choosePaypalMethod"/>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad2"/>
+        <seeElement selector="{{CheckoutPaymentAddressSection.PayPalExpressContent}}" stepKey="checkHavePayPalContent"/>
+    </actionGroup>
+
+
+    <actionGroup name="StorefrontCheckNoContentPayPalMethod">
+        <!-- Use After "StorefrontCheckoutFillShippingAddressAsGuest" or "AmastyCreateOrderAsCustomerOnCheckoutShippingPage" -->
+        <waitForPageLoad time="50" stepKey="waitForPageLoad1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <dontSeeElement selector="{{CheckoutPaymentAddressSection.PayPalExpressContent}}" stepKey="checkNoPayPalContent"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminCheckPaymentMethodInAdminArea">
+        <!-- Using After "AdminCreateOrderChooseUserAndAddProducts" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <scrollTo selector="{{AdminCreateOrderSection.PaymentAndShippingSection}}" stepKey="scrollToSectionShippingAndPayment"/>
+        <seeElement selector="//input[@value='{{paymentMethods.paymentValue}}']" stepKey="checkHavePaymentMethod"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminCheckNoPaymentMethodInAdminArea">
+        <!-- Using After "AdminCreateOrderChooseUserAndAddProducts" -->
+        <arguments>
+            <argument name="paymentMethods"/>
+        </arguments>
+        <scrollTo selector="{{AdminCreateOrderSection.PaymentAndShippingSection}}" stepKey="scrollToSectionShippingAndPayment"/>
+        <dontSeeElement selector="//input[@value='{{paymentMethods.paymentValue}}']" stepKey="checkHavePaymentMethod"/>
+    </actionGroup>
+
+</actionGroups>

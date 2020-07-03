@@ -1,4 +1,4 @@
-3<?php
+<?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -128,8 +128,7 @@ if($helper->isCustomerLoggedIn()){
                         <?php endif; ?>
 
                         <?php 
-                        if($_product->getTypeId() == 'simple') 
-                        {
+                       
                                 $product_label = __("On Sale");
                                 $orgprice = $_product->getPrice();
                                 $specialprice = $_product->getSpecialPrice();
@@ -142,8 +141,7 @@ if($helper->isCustomerLoggedIn()){
                                     if((is_null($specialfromdate) && is_null($specialtodate)) || ($today >= strtotime($specialfromdate) && is_null($specialtodate)) || ($today <= strtotime($specialtodate) && is_null($specialfromdate)) || ($today >= strtotime($specialfromdate) && $today <= strtotime($specialtodate))){  ?>                                      
                                             <div class="product-label sale-label"><?php echo $product_label; ?></div>                                     
                                     <?php }
-                                }
-                            }
+                                }                            
                         ?>
                             <div class="product-detail-action">
                                 <div class="action-button">

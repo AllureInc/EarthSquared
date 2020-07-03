@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckRestrictPayPal">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Restrict PayPal"/>
+            <description value="Check Restrict PayPal"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-29"/>
+            <group value="PayrestrictionCheckExternalPayments"/>
+            <group value="PayrestrictionCheckExternalPaymentsPayPal"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminActivatePayPalPayment" stepKey="ActivatePayPalPayment">
+                <argument name="paymentMethodsAccess" value="paymentMethodCredentialsPayPal"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckRestrictPayPal"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingPayPalPayment" stepKey="ReturnDefaultSettingPayPalPayment"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckRestrictPayPal"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddConditionsWithInput" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckRestrictPayPal"/>
+            <argument name="actionsConditionsOptions" value="_subtotal"/>
+            <argument name="actionsConditionsOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="payrestrictionCheckRestrictPayPal.conditions"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="customerPayrestrictionCheckPayPalAndBraintree"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHavePayPalExpress">
+            <argument name="paymentMethods" value="paymentPaypalExpressCheckout"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckContentPayPalMethod" stepKey="checkHaveAllContentPayPal"/>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="customerPayrestrictionCheckPayPalAndBraintree"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoPayPalExpress">
+            <argument name="paymentMethods" value="paymentPaypalExpressCheckout"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoContentPayPalMethod" stepKey="checkNoContentPayPal"/>
+
+    </test>
+</tests>

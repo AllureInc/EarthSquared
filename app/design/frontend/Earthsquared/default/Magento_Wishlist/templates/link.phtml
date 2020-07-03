@@ -6,12 +6,6 @@
 
 /* @var \Magento\Wishlist\Block\Link $block */
 ?>
-<?php 
-$helper = $this->helper('Earthsquared\Customize\Helper\Data');  
-$collection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
-$collection->clear()->setInStockFilter(true)->setOrder('added_at');
-$totalcount = count($collection);
-?>
 <li class="link wishlist" data-bind="scope: 'wishlist'">
     <a <?= /* @noEscape */ $block->getLinkAttributes() ?>>
         <img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>">

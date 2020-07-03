@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckMultishipping">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Restrict Payment Methods for Multishipping"/>
+            <description value="Check Restrict Payment Methods for Multishipping"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-22"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckMultishipping"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminActivatePurchaseOrder" stepKey="ActivatePurchaseOrderMethod"/>
+            <actionGroup ref="AdminActivateBankTransferPayment" stepKey="ActivateBankTransferMethod"/>
+            <actionGroup ref="AdminActivateCashOnDeliveryPayment" stepKey="ActivateCashOnDeliveryMethod"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed1">
+                <argument name="products" value="_theWatchClamberData"/>
+            </actionGroup>
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed2">
+                <argument name="products" value="_theBagImpulseDuffleData"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckMultishipping"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingPurchaseOrder" stepKey="ReturnDefaultSettingPurchaseOrder"/>
+            <actionGroup ref="AdminReturnDefaultSettingBankTransferPayment" stepKey="ReturnDefaultSettingBankTransfer"/>
+            <actionGroup ref="AdminReturnDefaultSettingCashOnDeliveryPayment" stepKey="ReturnDefaultSettingCashOnDelivery"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckMultishipping"/>
+        </actionGroup>
+
+        <!--Login -->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <actionGroup ref="StorefrontAddNewCustomerAddress" stepKey="AddNewAddress">
+            <argument name="customer" value="newCustomerAddress"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <!-- Check Restrict Payment Methods -->
+        <actionGroup ref="StorefrontMultishippingFillAddressAndShippingMethods" stepKey="FillMultishippingAddress">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="address" value="payrestrictionCheckMultishipping.address"/>
+            <argument name="shippingMethodOne" value="payrestrictionCheckMultishipping.shippingMethod1"/>
+            <argument name="shippingMethodTwo" value="payrestrictionCheckMultishipping.shippingMethod2"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontMultishippingCheckPaymentMethod" stepKey="checkHaveCashOnDelivery">
+            <argument name="paymentMethods" value="paymentCashOnDeliveryPayment"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontMultishippingCheckPaymentMethod" stepKey="checkHaveCheckMoneyPurchase">
+            <argument name="paymentMethods" value="paymentPurchaseOrder"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontMultishippingCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontMultishippingCheckNoPaymentMethod" stepKey="checkNoBankTransfer">
+            <argument name="paymentMethods" value="paymentBankTransferPayment"/>
+        </actionGroup>
+
+        <!-- Create Multishipping Order -->
+        <actionGroup ref="AmastyCreateMultishippingOrderWithTwoAddressAndCheckSuccessful" stepKey="CreateMultiShippingOrder">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="address" value="payrestrictionCheckMultishipping.address"/>
+            <argument name="shippingMethodOne" value="payrestrictionCheckMultishipping.shippingMethod1"/>
+            <argument name="shippingMethodTwo" value="payrestrictionCheckMultishipping.shippingMethod2"/>
+            <argument name="billingMethod" value="payrestrictionCheckMultishipping.billingMethod"/>
+        </actionGroup>
+
+    </test>
+</tests>

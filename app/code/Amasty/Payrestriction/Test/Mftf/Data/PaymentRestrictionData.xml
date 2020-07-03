@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="payrestrictionDefaultCartPriceRuleDiscount10" type="paymentRestriction">
+        <data key="name">Default Rule</data>
+        <data key="websites">Main Website</data>
+        <data key="customerGroups">'NOT LOGGED IN', 'General', 'Wholesale', 'Retailer'</data>
+        <data key="apply">Fixed amount discount for whole cart</data>
+        <data key="discountAmount">10</data>
+    </entity>
+
+    <entity name="payrestrictionDefaultCartPriceRuleDiscount30" type="paymentRestriction">
+        <data key="name">Default Rule</data>
+        <data key="websites">Main Website</data>
+        <data key="customerGroups">'NOT LOGGED IN', 'General', 'Wholesale', 'Retailer'</data>
+        <data key="apply">Fixed amount discount for whole cart</data>
+        <data key="discountAmount">30</data>
+    </entity>
+
+    <entity name="payrestrictionCouponCode" type="paymentRestriction">
+        <data key="code">paymentTest</data>
+    </entity>
+
+    <entity name="payrestrictionCheckIncludeTaxInSubtotal" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Setting Include Tax In Subtotal</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">97</data>
+    </entity>
+
+    <entity name="payrestrictionCheckDontIncludeTaxInSubtotal" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Setting Dont Include Tax In Subtotal</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">91</data>
+    </entity>
+
+    <entity name="payrestrictionCheckUseSubtotalAfterDiscount" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Setting Use Subtotal After Discount</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">86</data>
+    </entity>
+
+    <entity name="payrestrictionCheckDontUseSubtotalAfterDiscount" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Setting Dont Use Subtotal After Discount</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">86</data>
+    </entity>
+
+    <entity name="payrestrictionCheckInactiveStatus" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Inactive Status</data>
+        <data key="methods">'checkmo'</data>
+        <data key="newStatus">Inactive</data>
+    </entity>
+
+    <entity name="payrestrictionRestrictAllMethods" type="paymentRestriction">
+        <data key="name">Check Restrict All Payment Methods</data>
+        <data key="methods">'checkmo', 'banktransfer', 'cashondelivery', 'purchaseorder'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyInAdminArea" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply In Admin Area</data>
+        <data key="methods">'checkmo', 'banktransfer'</data>
+        <data key="applyInAdminArea">Yes</data>
+        <data key="email">roni_cost@example.com</data>
+    </entity>
+
+    <entity name="payrestrictionCheckDontApplyInAdminArea" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Dont Apply In Admin Area</data>
+        <data key="methods">'checkmo', 'banktransfer'</data>
+        <data key="email">roni_cost@example.com</data>
+    </entity>
+
+    <entity name="payrestrictionCheckStores" type="paymentRestriction">
+        <data key="name">Check Restrict to Different Stores</data>
+        <data key="methods">'checkmo'</data>
+        <data key="stores">'storeViewForTest'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckCustomerGroups" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Customer Groups</data>
+        <data key="methods">'checkmo'</data>
+        <data key="customerGroups">'NOT LOGGED IN'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckConditionsShippingCountry" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Conditions With Shipping Country</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">Austria</data>
+    </entity>
+
+    <entity name="payrestrictionCheckAdvancedConditionsCity" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Advanced Conditions With City</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">New York</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyToAllOrders" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply This Rule To All Orders</data>
+        <data key="methods">'checkmo'</data>
+        <data key="firstQty">1</data>
+        <data key="secondQty">100</data>
+        <data key="backordersValueProduct">Allow Qty Below 0</data>
+        <data key="backordersValueRule">All orders</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyToBackordrersOnly" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply This Rule To Backordrers Only</data>
+        <data key="methods">'checkmo'</data>
+        <data key="firstQty">1</data>
+        <data key="secondQty">100</data>
+        <data key="backordersValueProduct">Allow Qty Below 0</data>
+        <data key="backordersValueRule">Backorders only</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyToNonBackordrers" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply This Rule To Non Backordrers</data>
+        <data key="methods">'checkmo'</data>
+        <data key="firstQty">1</data>
+        <data key="secondQty">100</data>
+        <data key="backordersValueProduct">Allow Qty Below 0</data>
+        <data key="backordersValueRule">Non backorders</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyOnlyWithCouponCodes" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply Rules Only With Coupon Codes</data>
+        <data key="methods">'checkmo'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckApplyOnlyWithShoppingCartRule" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Apply Rules Only With Shopping Cart Rule</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">24-WG03</data>
+    </entity>
+
+    <entity name="payrestrictionCheckDontApplyWithCouponCodes" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Dont Apply Rules With Coupon Codes</data>
+        <data key="methods">'checkmo'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckDontApplyWithShoppingCartRule" type="paymentRestriction">
+        <data key="name">Check Payment Restriction Dont Apply Rules With Shopping Cart Rule</data>
+        <data key="methods">'checkmo'</data>
+        <data key="conditions">24-MB04</data>
+    </entity>
+
+    <entity name="payrestrictionCheckTwoRulesAndOrderInAccount1" type="paymentRestriction">
+        <data key="name">Check Work Two Rules and Order In Customer Account First</data>
+        <data key="methods">'checkmo', 'purchaseorder'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckTwoRulesAndOrderInAccount2" type="paymentRestriction">
+        <data key="name">Check Work Two Rules and Order In Customer Account Second</data>
+        <data key="methods">'cashondelivery'</data>
+    </entity>
+
+    <entity name="payrestrictionCheckMultishipping" type="paymentRestriction">
+        <data key="name">Check Restrict Payment Methods for Multishipping</data>
+        <data key="methods">'checkmo', 'banktransfer'</data>
+        <data key="address">Veronica Costello, My street, London, Alabama 12345, United States</data>
+        <data key="shippingMethod1">flatrate_flatrate</data>
+        <data key="shippingMethod2">tablerate_bestway</data>
+        <data key="billingMethod">p_method_cashondelivery</data>
+    </entity>
+
+    <entity name="payrestrictionCheckRestrictPayPalPayflowAndPro" type="paymentRestriction">
+        <data key="name">Check Restrict PayPal Payfloy And PayPal Payfloy Pro Methods</data>
+        <data key="methods">'payflowpro', 'payflow_express_bml', 'payflow_express'</data>
+        <data key="conditions">60</data>
+    </entity>
+
+    <entity name="payrestrictionCheckRestrictBraintreeAndPayPalBraintree" type="paymentRestriction">
+        <data key="name">Check Restrict Braintree And PayPal Braintree Methods</data>
+        <data key="methods">'braintree', 'braintree_paypal'</data>
+        <data key="conditions">60</data>
+    </entity>
+
+    <entity name="payrestrictionCheckStripe" type="paymentRestriction">
+        <data key="name">Check Restrict Stripe Method</data>
+        <data key="methods">'amasty_stripe'</data>
+        <data key="conditions">60</data>
+    </entity>
+
+    <entity name="payrestrictionCheckRestrictPayPal" type="paymentRestriction">
+        <data key="name">Check Restrict PayPal</data>
+        <data key="methods">'paypal_express'</data>
+        <data key="conditions">60</data>
+    </entity>
+
+    <entity name="payrestrictionCheckKlarna" type="paymentRestriction">
+        <data key="name">Check Restrict Klarna</data>
+        <data key="methods">'klarna_pay_later'</data>
+        <data key="conditions">60</data>
+    </entity>
+
+    <entity name="payrestrictionCheckAuthorizeAndEWay" type="paymentRestriction">
+        <data key="name">Check Restrict Authorize And eWay</data>
+        <data key="methods">'eway', 'authorizenet_acceptjs'</data>
+        <data key="conditions">60</data>
+        <data key="sizeMH01">XS</data>
+        <data key="colorMH01">Black</data>
+    </entity>
+
+    <entity name="payrestrictionCheckAmazonPay" type="paymentRestriction">
+        <data key="name">Check Restrict Amazon Pay</data>
+        <data key="methods">'amazonlogin'</data>
+        <data key="conditions">60</data>
+        <data key="sizeMH01">XS</data>
+        <data key="colorMH01">Black</data>
+    </entity>
+
+    <entity name="payrestrictionDontRestrictAllMethodsAndOrder" type="paymentRestriction">
+        <data key="name">Check Dont  Restrict All Methods And Order in Admin Area</data>
+        <data key="methods">'checkmo', 'banktransfer'</data>
+        <data key="purchaseNumber">123</data>
+    </entity>
+
+</entities>

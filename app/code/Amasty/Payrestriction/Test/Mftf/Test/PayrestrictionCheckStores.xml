@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckStores">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Restrict to Different Stores"/>
+            <description value="Check Restrict to Different Stores"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-10"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckStores"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminCreateStoreViewActionGroup" stepKey="createNewStoreView">
+                <argument name="StoreGroup" value="payrestrictionStoreGroup"/>
+                <argument name="customStore" value="payrestrictionStoreView"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckStores"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeleteStoreViewActionGroup" stepKey="deleteStoreView1">
+                <argument name="customStore" value="payrestrictionStoreView"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckStores"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionStoresView" stepKey="selectStores">
+            <argument name="paymentRestriction" value="payrestrictionCheckStores"/>
+            <argument name="applyForStoresView" value="payrestrictionCheckStores.stores"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <actionGroup ref="StorefrontSwitchStoreViewActionGroup" stepKey="switchStoreView">
+            <argument name="storeView" value="payrestrictionStoreView"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

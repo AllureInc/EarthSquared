@@ -171,11 +171,12 @@ define([
                         var hashurl = $(location).attr('hash');
                         var queryUrl = $(location).attr('search');
                         if(loc.indexOf(hashurl) != -1){
-                            console.log('if');
+                            //console.log('if');
+                            $('body').removeClass(element.code);
                             window.location = window.checkoutConfig.checkoutUrl + queryUrl + '#' + code;
                             //window.location.replace(loc);
                         } else {
-                            console.log('else');
+                            //console.log('else');
                             window.location = window.checkoutConfig.checkoutUrl + '#' + code;
                         }
                     });

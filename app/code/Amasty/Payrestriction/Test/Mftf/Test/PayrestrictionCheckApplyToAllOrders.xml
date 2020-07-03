@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckApplyToAllOrders">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Restriction Rule via the Admin"/>
+            <title value="Check Payment Restriction Apply This Rule To All Orders"/>
+            <description value="Check Payment Restriction Apply This Rule To All Orders"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-14"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="PayrestrictionCheckApplyToAllOrders"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigSettingBeforeTest"/>
+            <!-- Setting Product -->
+            <actionGroup ref="AdminEditAdvancedInventoryQtyProduct" stepKey="ChangingProductQty">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="qty" value="payrestrictionCheckApplyToAllOrders.firstQty"/>
+            </actionGroup>
+            <actionGroup ref="AdminEditSettingBackordersProduct" stepKey="ChangingProductBackordersSetting">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="backordersValue" value="payrestrictionCheckApplyToAllOrders.backordersValueProduct"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckApplyToAllOrders"/>
+            </actionGroup>
+            <actionGroup ref="AdminEditAdvancedInventoryQtyProduct" stepKey="ChangingProductQty">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="qty" value="payrestrictionCheckApplyToAllOrders.secondQty"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingBackordersProduct" stepKey="ReturnDefaultSettingProduct">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create Payment Restriction-->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyToAllOrders"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionBackorders" stepKey="AddBackordersSettingIntoRule">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyToAllOrders"/>
+            <argument name="backordersValue" value="payrestrictionCheckApplyToAllOrders.backordersValueRule"/>
+        </actionGroup>
+
+        <!-- Add Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty2"/>
+            <argument name="products" value="_theBagJoustDuffleBag"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Change Qty Product in The Cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyProductToOne">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagJoustDuffleBag"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

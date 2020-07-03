@@ -148,12 +148,17 @@ section#slider_demo .item a {
 .customer-account-create .form.create.account h3 {  margin-bottom: 20px; padding-top: 7px; font-size: 13px;    text-transform: uppercase;
     font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
     position: relative;    text-align: center;}
-.customer-account-create .form.create.account input {    height: 60px;    background: #FFFFFF;
+.customer-account-create .form.create.account input { font-family: Futura Bk BT;   height: 60px;    background: #FFFFFF;
     padding: 20px;    border: 1px solid #E0E0E0; font-size: 12px;}
 .customer-account-create .form.create.account .field.field-name-firstname {    width: 161px;    float: left;}
 .customer-account-create .form.create.account .field.field-name-lastname {    width: 161px;  float: right;}
 .customer-account-create .form.create.account .field.choice.newsletter {    float: left;    width: 100%;}
 .customer-account-create .form.create.account .field {    margin-bottom: 30px;}
+
+
+.sales-order-view a.action.order span:before {    content: '';    background: url(../images/reorder.png) no-repeat;    width: 15px;
+    height: 15px;    background-size: contain;    background-position: 0;    display: inline-block;}
+
 
 .customer-account-create .form.create.account fieldset {    margin-bottom: 0!important;}
 .password-strength-meter {   padding: 0; background: none;    font-size: 11px;
@@ -749,7 +754,7 @@ table#my-orders-table td.col.sku {    display: none;}
 .sales-order-view .order-details-items {    margin-top: 5px;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td.subtotal span.price {    color: #212121;}
 .sales-order-view .actions-toolbar.order-actions-toolbar {    width: 66%;    position: absolute;  top: 52px;  left: 6px;  text-align: right;}
-.sales-order-view a.action.order {    font-size: 14px !important;    color: #4D4D4D;    border: 1px solid #4D4D4D;  padding: 10px 29px;    margin-right: 0;}
+.sales-order-view a.action.order {    font-size: 14px !important;    color: #4D4D4D;    border: 1px solid #4D4D4D;  padding: 10px 22px;    margin-right: 0;}
 .sales-order-view  .right_part th {    text-align: left;    text-transform: uppercase;    font-size: 12px;
     font-weight: normal;    font-family: Futura Bk BT;}
 .sales-order-view  .right_part th strong {    font-weight: normal;}

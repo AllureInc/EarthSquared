@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <!-- Action Group For Configuration Shipping Restriction-->
+    <actionGroup name="AdminEditGeneralSettingPayrestriction">
+        <arguments>
+            <argument name="settingIncludeTaxInSubtotal"/>
+            <argument name="settingUseSubtotalAfterDiscount"/>
+        </arguments>
+        <amOnPage url="{{AdminPyrestrictionConfigurationPage.url}}" stepKey="navigateToPayrestrictionConfiguration"/>
+        <conditionalClick stepKey="openGeneralTab"
+                          selector="{{AdminConfigurationsPayrestrictionSection.GeneralTab}}"
+                          dependentSelector="{{AdminConfigurationsPayrestrictionSection.GeneralTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPayrestrictionSection.IncludeTaxInSubtotal}}"
+                      userInput="{{settingIncludeTaxInSubtotal}}"
+                      stepKey="selectGeneralSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPayrestrictionSection.UseSubtotalAfterDiscount}}"
+                      userInput="{{settingUseSubtotalAfterDiscount}}"
+                      stepKey="selectGeneralSetting2"/>
+        <click selector="{{AdminConfigurationsPayrestrictionSection.Save}}" stepKey="saveCustomSettings"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad1"/>
+    </actionGroup>
+
+
+    <!-- Action Group For Configuration Shipping Restriction-->
+    <actionGroup name="AdminDefaultSettingPayrestriction">
+        <amOnPage url="{{AdminPyrestrictionConfigurationPage.url}}" stepKey="navigateToPayrestrictionConfiguration"/>
+        <conditionalClick stepKey="openGeneralTab"
+                          selector="{{AdminConfigurationsPayrestrictionSection.GeneralTab}}"
+                          dependentSelector="{{AdminConfigurationsPayrestrictionSection.GeneralTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPayrestrictionSection.IncludeTaxInSubtotal}}"
+                      userInput="0"
+                      stepKey="selectDefaultGeneralSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPayrestrictionSection.UseSubtotalAfterDiscount}}"
+                      userInput="0"
+                      stepKey="selectDefaultGeneralSetting2"/>
+        <click selector="{{AdminConfigurationsPayrestrictionSection.Save}}" stepKey="saveDefaultSettings"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad1"/>
+    </actionGroup>
+
+</actionGroups>

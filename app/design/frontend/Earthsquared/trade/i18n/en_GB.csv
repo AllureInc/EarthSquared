@@ -1,0 +1,13 @@
+"Cart Subtotal","Subtotal"
+"Grand Total (Excl.Tax)","Order Total (Excl.Tax)"
+"Order Total Incl. Tax","GRAND TOTAL"
+"Stored Payment Methods","Manage Payments"
+"Shipping & Handling","Delivery"
+"Order Total","Grand Total Incl. Tax"
+"%1 has been moved to your wish list.","%1 has been moved to your saved list."
+"Company","Company Name",module,Magento_Checkout
+"Street Address","Address",module,Magento_Checkout
+"%1: Line %2","Address Line %2",module,Magento_Checkout
+"State/Province","County/State/Province",module,Magento_Checkout
+"Zip/Postal Code","Postcode/ZIP",module,Magento_Checkout
+"Phone Number","Telephone",module,Magento_Checkout

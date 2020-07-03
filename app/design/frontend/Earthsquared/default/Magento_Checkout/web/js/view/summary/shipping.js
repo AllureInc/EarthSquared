@@ -35,13 +35,13 @@ define([
                 return '';
             }
 
-            if (typeof shippingMethod['method_title'] !== 'undefined') {
-                shippingMethodTitle = ' - ' + shippingMethod['method_title'];
-            }
-
+            // if (typeof shippingMethod['method_title'] !== 'undefined') {
+            //     shippingMethodTitle = ' - ' + shippingMethod['method_title'];
+            // }
+            //console.log(shippingMethodTitle);
             return shippingMethodTitle ?
-                shippingMethod['carrier_title'] + shippingMethodTitle :
-                shippingMethod['carrier_title'];
+                '(' +shippingMethod['carrier_title'] + shippingMethodTitle +')':
+                '(' +shippingMethod['carrier_title'] + ')';
         },
 
         /**
@@ -55,17 +55,14 @@ define([
          * @return {*}
          */
         getValue: function () {
-                var price;
+            var price;
 
-                if (!this.isCalculated()) {
-                    return this.notCalculatedMessage;
-                }
-                //var price =  this.totals().shipping_amount; //comment this line
+            if (!this.isCalculated()) {
+                return this.notCalculatedMessage;
+            }
+            price =  this.totals()['shipping_amount'];
 
-                var shippingMethod = quote.shippingMethod(); //add these both line
-                var price =  shippingMethod.amount; // update data on change of the shipping method
-
-                return this.getFormattedPrice(price);          
+            return this.getFormattedPrice(price);
         },
 
         /**

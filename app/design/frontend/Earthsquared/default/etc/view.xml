@@ -139,8 +139,8 @@
                 <height>314</height>
             </image>    
             <image id="swatch_image" type="swatch_image">
-                 <width>35</width>
-                 <height>35</height>
+                 <width>30</width>
+                 <height>30</height>
             </image>                  
             <image id="recently_compared_products_grid_content_widget" type="small_image">
                 <width>255</width>
@@ -178,7 +178,7 @@
                 <width>255</width>
                 <height>255</height>
             </image>
-            <image id="related_products_content" type="small_image">
+            <image id="related_products_content" type="lifestyle_image">
                 <width>314</width>
                 <height>314</height>
             </image>            

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <!-- To Create Restriction Rules-->
+    <actionGroup name="AdminCreatePaymentRestrictionRule">
+        <arguments>
+            <argument name="paymentRestriction"/>
+        </arguments>
+        <amOnPage url="{{AdminPaymentRestrictionsGridPage.url}}" stepKey="navigatePaymentRestrictionsGrid1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <conditionalClick stepKey="clearAllFilters" selector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}"
+                          dependentSelector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}" visible="true"/>
+        <click selector="{{AdminPaymentRestrictionsGridSection.AddNewRuleButton}}" stepKey="clickOnAddNewRule"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad2"/>
+        <click  selector="{{AdminPaymentRestrictionSection.RestrictionsTab}}" stepKey="openRestrictionsTab"/>
+        <fillField selector="{{AdminPaymentRestrictionSection.Name}}" userInput="{{paymentRestriction.name}}" stepKey="enterRuleName"/>
+        <selectOption stepKey="activateRule"
+                      selector="{{AdminPaymentRestrictionSection.Status}}"
+                      userInput="1"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.Methods}}" parameterArray="[{{paymentRestriction.methods}}]" stepKey="selectMethods"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSaveAndContinue"/>
+        <waitForPageLoad time="300" stepKey="waitForPageLoad4"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminDeletePaymentRestrictionsRule">
+        <arguments>
+            <argument name="paymentRestrictionRule"/>
+        </arguments>
+        <amOnPage url="{{AdminPaymentRestrictionsGridPage.url}}" stepKey="navigateToPaymentRestrictionGridPage1"/>
+        <waitForPageLoad stepKey="waitForGridLoad"/>
+        <conditionalClick stepKey="openFiltersBlockIfClose" selector="{{AdminPaymentRestrictionsGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminPaymentRestrictionsGridSection.FiltersNameInput}}" visible="false"/>
+        <fillField selector="{{AdminPaymentRestrictionsGridSection.FiltersNameInput}}"
+                   userInput="{{paymentRestrictionRule.name}}" stepKey="enterNameOfRule"/>
+        <click selector="{{AdminPaymentRestrictionsGridSection.FiltersApplyButton}}" stepKey="clickButtonAppleFilter"/>
+        <click selector="{{AdminPaymentRestrictionsGridSection.TableRowOne}}" stepKey="openFirstFoundRule"/>
+        <waitForPageLoad stepKey="waitForPageOpenRuleLoad"/>
+        <click selector="{{AdminPaymentRestrictionSection.Delete}}" stepKey="clickToDeleteRule"/>
+        <waitForPageLoad stepKey="waitForLoadConfirmMessage"/>
+        <click selector="{{AdminPaymentRestrictionSection.ModalAcceptButton}}" stepKey="clickToConfirmMessage"/>
+        <waitForPageLoad stepKey="waitForLoadPageAfterDelete"/>
+        <seeElement selector="{{AdminPaymentRestrictionsGridSection.SuccessMessageDeletedRule}}"
+                    stepKey="assertShowMessageAboutDeleted"/>
+        <conditionalClick stepKey="clearAllFilters" selector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}"
+                          dependentSelector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}" visible="true"/>
+        <waitForPageLoad stepKey="waitForLoadPageAfterClearFields"/>
+        <waitForAjaxLoad stepKey="waitForAjaxPageAfterClearFields"/>
+    </actionGroup>
+
+
+    <!--To Edit Restriction Rules-->
+    <actionGroup name="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="paymentRestriction"/>
+        </arguments>
+        <amOnPage url="{{AdminPaymentRestrictionsGridPage.url}}" stepKey="navigateToPaymentRestrictionsGridPage1"/>
+        <waitForPageLoad stepKey="waitForGridPageLoad"/>
+        <conditionalClick stepKey="clearAllFilters" selector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}"
+                          dependentSelector="{{AdminPaymentRestrictionsGridSection.FiltersClearAll}}" visible="true"/>
+        <waitForPageLoad stepKey="waitForGridPageLoadAfterClear"/>
+        <conditionalClick stepKey="openFiltersBlockIfClose" selector="{{AdminPaymentRestrictionsGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminPaymentRestrictionsGridSection.FiltersNameInput}}" visible="false"/>
+        <fillField selector="{{AdminPaymentRestrictionsGridSection.FiltersNameInput}}"
+                   userInput="{{paymentRestriction.name}}" stepKey="enterNameOfRule"/>
+        <click selector="{{AdminPaymentRestrictionsGridSection.FiltersApplyButton}}" stepKey="clickButtonAppleFilter"/>
+        <click selector="{{AdminPaymentRestrictionsGridSection.TableRowOne}}" stepKey="openFirstFoundRule"/>
+        <waitForPageLoad stepKey="waitForPageOpenRuleLoad"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad2"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionStatus" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="status"/>
+        </arguments>
+        <selectOption selector="{{AdminPaymentRestrictionSection.Status}}"
+                      userInput="{{status}}"
+                      stepKey="chooseStatus"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionApplyInAdminArea" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="applyInAdminAreaStatus"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.StoresAndCustomersTab}}"
+               stepKey="openStoresAndCustomersTab"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.AdminArea}}"
+                      userInput="{{applyInAdminAreaStatus}}"
+                      stepKey="chooseSettingForAdminArea"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionCustomerGroups" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="applyForCustomerGroups"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.StoresAndCustomersTab}}"
+               stepKey="openStoresAndCustomersTab"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.CustomerGroups}}"
+                      parameterArray="[{{applyForCustomerGroups}}]"
+                      stepKey="selectCustomerGroups"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionStoresView" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="applyForStoresView"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.StoresAndCustomersTab}}"
+               stepKey="openStoresAndCustomersTab"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.Stores}}"
+                      parameterArray="[{{applyForStoresView}}]"
+                      stepKey="selectStores"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionBackorders" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="backordersValue"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.ConditionsTab}}" stepKey="openConditionsTab"/>
+        <selectOption stepKey="settingBackorders"
+                      selector="{{AdminPaymentRestrictionSection.BackordersSelect}}"
+                      userInput="{{backordersValue}}"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionAddApplyRulesCoupon" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="couponCode"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.CartPriceRulesTab}}" stepKey="openCartPriceRulesTab"/>
+        <fillField selector="{{AdminPaymentRestrictionSection.ApplyCouponCode}}" userInput="{{couponCode}}" stepKey="inputCouponCode"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionAddApplyRulesCartRule" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="ruleName"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.CartPriceRulesTab}}" stepKey="openCartPriceRulesTab"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.ApplyShoppingCartRule}}"
+                      userInput="{{ruleName}}"
+                      stepKey="selectShoppingCartRule"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionDontAddApplyRulesCoupon" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="couponCode"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.CartPriceRulesTab}}" stepKey="openCartPriceRulesTab"/>
+        <fillField selector="{{AdminPaymentRestrictionSection.DontApplyCouponCode}}" userInput="{{couponCode}}" stepKey="inputCouponCode"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionAddDontApplyRulesCartRule" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="ruleName"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.CartPriceRulesTab}}" stepKey="openCartPriceRulesTab"/>
+        <selectOption selector="{{AdminPaymentRestrictionSection.DontApplyShoppingCartRule}}"
+                      userInput="{{ruleName}}"
+                      stepKey="selectShoppingCartRule"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionAddConditionsWithInput" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="actionsConditionsOptions"/>
+            <argument name="actionsConditionsOptionsParamIs"/>
+            <argument name="conditionsData"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.ConditionsTab}}" stepKey="openConditionsTab"/>
+        <scrollTo selector="{{AdminPaymentRestrictionSection.ConditionsText}}" stepKey="GoToConditions"/>
+        <click selector="{{AdminPaymentRestrictionSection.ButtonAddConditions}}" stepKey="clickButtonAddCondition"/>
+        <waitForElementVisible selector="//div[@class='rule-tree']//select[@id='conditions__1__new_child']"
+            stepKey="waitForElementVisible1"/>
+        <selectOption selector="//div[@class='rule-tree']//select[@id='conditions__1__new_child']"
+                      userInput="{{actionsConditionsOptions.optionsText}}"
+                      stepKey="actionsConditionsOptions"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]/parent::span/parent::span/a"
+                               stepKey="waitForElementVisible2"/>
+        <click selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]/parent::span/parent::span/a"
+               stepKey="clickForSelectOperator"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]"
+                               stepKey="waitForElementVisible3"/>
+        <selectOption selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]"
+                      userInput="{{actionsConditionsOptionsParamIs.optionsValue}}"
+                      stepKey="selectOperator"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//a[contains(string(), '...')]"
+                               stepKey="waitForElementVisible4"/>
+        <click selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//a[contains(string(), '...')]"
+               stepKey="clickForInputData"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//input[contains(@name,'value')]"
+                               stepKey="waitForElementVisible5"/>
+        <fillField selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//input[contains(@name,'value')]"
+                      userInput="{{conditionsData}}" stepKey="inputConditions"/>
+        <waitForPageLoad time="5" stepKey="waitForPageLoad3"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad4"/>
+    </actionGroup>
+
+
+    <actionGroup name="AdminEditPaymentRestrictionAddConditionsWithSelect" extends="AdminOpenPaymentRestrictionForEdit">
+        <arguments>
+            <argument name="actionsConditionsOptions"/>
+            <argument name="actionsConditionsOptionsParamIs"/>
+            <argument name="conditionsData"/>
+        </arguments>
+        <click selector="{{AdminPaymentRestrictionSection.ConditionsTab}}" stepKey="openConditionsTab"/>
+        <scrollTo selector="{{AdminPaymentRestrictionSection.ConditionsText}}" stepKey="GoToConditions"/>
+        <click selector="{{AdminPaymentRestrictionSection.ButtonAddConditions}}" stepKey="clickButtonAddCondition"/>
+        <waitForElementVisible selector="//div[@class='rule-tree']//select[@id='conditions__1__new_child']"
+                               stepKey="waitForElementVisible1"/>
+        <selectOption selector="//div[@class='rule-tree']//select[@id='conditions__1__new_child']"
+                      userInput="{{actionsConditionsOptions.optionsText}}"
+                      stepKey="actionsConditionsOptions"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]/parent::span/parent::span/a"
+                               stepKey="waitForElementVisible2"/>
+        <click selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]/parent::span/parent::span/a"
+               stepKey="clickForSelectOperator"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]"
+                               stepKey="waitForElementVisible3"/>
+        <selectOption selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name, 'operator')]"
+                      userInput="{{actionsConditionsOptionsParamIs.optionsValue}}"
+                      stepKey="selectOperator"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//a[contains(string(), '...')]"
+                               stepKey="waitForElementVisible4"/>
+        <click selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//a[contains(string(), '...')]"
+               stepKey="clickForInputData"/>
+        <waitForElementVisible selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name,'value')]"
+                               stepKey="waitForElementVisible5"/>
+        <selectOption selector="//input[@value='{{actionsConditionsOptions.optionsValue}}']/following-sibling::span//select[contains(@name,'value')]"
+                      userInput="{{conditionsData}}" stepKey="selectConditions"/>
+        <waitForPageLoad time="5" stepKey="waitForPageLoad3"/>
+        <click selector="{{AdminPaymentRestrictionSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad4"/>
+    </actionGroup>
+
+</actionGroups>

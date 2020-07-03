@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="StorefrontCreateOrderAsGuestWithPurchaseOrder" extends="StorefrontCheckoutFillShippingAddressAsGuest">
+        <arguments>
+            <argument name="purchaseOrderNumber"/>
+        </arguments>
+        <click selector="//input[@value='purchaseorder']" stepKey="choosePurchaseOrder"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad11"/>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad6"/>
+        <fillField selector="{{CheckoutPaymentAddressSection.PurchaseOrderNumber}}" userInput="{{purchaseOrderNumber}}"
+                   stepKey="enterNumber"/>
+        <click selector="{{CheckoutPaymentAddressSection.PlaceOrder}}" stepKey="waitForPlaceOrderButton"/>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad7"/>
+        <seeElement selector="{{SuccessPageSection.SuccessMessage}}" stepKey="assertSuccessPage"/>
+        <waitForPageLoad time="20" stepKey="waitForPageLoad8"/>
+    </actionGroup>
+
+</actionGroups>

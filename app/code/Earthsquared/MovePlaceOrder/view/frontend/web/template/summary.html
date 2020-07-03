@@ -4,6 +4,15 @@
         <!-- ko template: getTemplate() --><!-- /ko -->
     <!-- /ko -->
 </div>
+<!-- ko if: (isVisibleShippingButton()) -->
+<div class="actions-toolbar-trigger" id="continue-to-payment-trigger-wrapper">
+    <div class="primary">
+        <button type="button" id="continue-to-payment-trigger" class="button action continue primary">
+            <span><!-- ko i18n: 'Continue'--><!-- /ko --></span>
+        </button>
+    </div>
+</div>
+<!-- /ko -->
 <!-- ko if: (isVisible()) -->
 <div class="actions-toolbar-trigger" id="place-order-trigger-wrapper">
     <button type="button" class="button action primary" id="place-order-trigger" value="Place Order" >

@@ -5,7 +5,7 @@
 	<li><a href="javascript:void(0)" class="search-toggle-icon"><img src="<?php echo $this->getUrl('pub/media/icons/').'loupe.png' ?>" /></a></li>
 	<li><a href="<?php echo $this->getUrl('contact-us') ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'call.png' ?>" /></a></li>  
   <?php if($helper->isCustomerLoggedIn()) { ?>
-	<li><a href="<?php echo $this->getUrl().'customer/account/logout/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
+	<li><a href="<?php echo $this->getUrl().'customer/account/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
   <?php } else { ?>
   <li><a href="<?php echo $this->getUrl().'customer/account/' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'user.png' ?>" /></a></li>
   <?php } ?>

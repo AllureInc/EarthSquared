@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckUseSubtotalAfterDiscount">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Setting Use Subtotal After Discount"/>
+            <description value="Check Payment Restriction Setting Use Subtotal After Discount"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-03"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckUseSubtotalAfterDiscount"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings -->
+            <actionGroup ref="AdminEditGeneralSettingPayrestriction" stepKey="chooseConfigBeforeTest">
+                <argument name="settingIncludeTaxInSubtotal" value="includeTaxInSubtotalPayrestriction.default"/>
+                <argument name="settingUseSubtotalAfterDiscount" value="useSubtotalAfterDiscountPayrestriction.yes"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete All Rules and Return Default Setting-->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckUseSubtotalAfterDiscount"/>
+            </actionGroup>
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseAfterTest"/>
+            <!--Delete Created Cart Price Rule -->
+            <actionGroup ref="DeleteCartPriceRuleByName" stepKey="deleteCreatedCartPriceRule">
+                <argument name="ruleName" value="{{payrestrictionDefaultCartPriceRuleDiscount10.name}}"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction-->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckUseSubtotalAfterDiscount"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddConditionsWithInput" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckUseSubtotalAfterDiscount"/>
+            <argument name="actionsConditionsOptions" value="_subtotal"/>
+            <argument name="actionsConditionsOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="payrestrictionCheckUseSubtotalAfterDiscount.conditions"/>
+        </actionGroup>
+
+        <!-- Create Magento Cart Price Rule and Add Coupon Code -->
+        <actionGroup ref="AdminCreateCartPriceRuleActionGroup" stepKey="CreateCartPriceRule">
+            <argument name="ruleName" value="payrestrictionDefaultCartPriceRuleDiscount10"/>
+        </actionGroup>
+        <actionGroup ref="EditCartPriceRuleAddCouponCode" stepKey="AddCouponCodeForCartPriceRule">
+            <argument name="cartRuleName" value="payrestrictionDefaultCartPriceRuleDiscount10.name"/>
+            <argument name="couponCode" value="payrestrictionCouponCode.code"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagOvernightDuffle"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Apply Coupon -->
+        <actionGroup ref="StorefrontApplyCouponCodeOnTheCheckout" stepKey="AddCoupon">
+            <argument name="coupon" value="payrestrictionCouponCode"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

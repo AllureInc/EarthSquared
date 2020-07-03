@@ -10,7 +10,23 @@
         <css src="Magento_Customer::css/coustomer_page.css"/>
     </head>
     <body>
-	
+
+    <!-- Account link -->
+   <referenceBlock name="customer-account-navigation-account-link" remove="true"/>
+    <!-- Downloadable product link -->
+   <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+   <!-- Billing agreement link -->
+   <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+   <!-- Subscription link -->
+   <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link" remove="true"/>
+   <!-- Billing agreement link -->
+   <referenceBlock name="customer-account-navigation-delimiter-1" remove="true"/>
+    <referenceBlock name="customer-account-navigation-delimiter-2" remove="true"/>
+   
+    <move element="customer-account-navigation-my-credit-cards-link" destination="customer_account_navigation" before="customer-account-navigation-address-link"/>
+   
+   
+
 	<referenceBlock name="sidebar.additional" remove="true"/>
 
 	<referenceBlock name="customer_account_navigation"><!--ifconfig="wishlist/general/active"-->

@@ -80,7 +80,7 @@ class FeatureCategory extends \Magento\Framework\View\Element\Template
         $imageResize->keepTransparency(true);
         $imageResize->keepFrame(true);
         $imageResize->keepAspectRatio(true);
-        $imageResize->backgroundColor([255, 255, 255]);
+        $imageResize->backgroundColor([246, 246, 246]);
         $imageResize->resize($width, $height);
 
         //destination folder

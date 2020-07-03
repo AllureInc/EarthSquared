@@ -5,4 +5,8 @@
         <plugin sortOrder="1" name="dolphinCustomerAccountLinksManagerLinks"
                 type="Dolphin\CustomerAccountLinksManager\Plugin\View\Element\Html\LinksPlugin"/>
     </type>
+	
+	   <preference for="Magento\Customer\Controller\Account\Index" type="Dolphin\CustomerAccountLinksManager\Controller\Account\ExtendIndex" /> 
+
+	   
 </config>

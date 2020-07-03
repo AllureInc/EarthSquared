@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="CheckoutShippingAddressSection">
+        <!--Customer Info-->
+        <element name="SelectRegion" type="select" selector="//select[@name='region_id']"/>
+        <element name="SelectCountry" type="select" selector="//select[@name='country_id']"/>
+        <element name="ShippingLoader" type="block" selector="//li[@id='opc-shipping_method']//div[@class='loader']"/>
+    </section>
+
+    <section name="CheckoutPaymentAddressSection">
+        <element name="PurchaseOrderNumber" type="input" selector="//input[@id='po_number']"/>
+        <element name="NoAvailablePaymentMethods" type="block" selector="//div[@class='no-quotes-block']"/>
+        <element name="PayPalExpressContent" type="block" selector="//div[@class='zoid-outlet']"/>
+    </section>
+
+</sections>

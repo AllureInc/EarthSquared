@@ -19,6 +19,6 @@
                 <argument name="css_class" xsi:type="string">summary title</argument>
                 </arguments>
             </block>
-		<move element="checkout.cart.summary.title" destination="cart.summary" before="-" />
+		<move element="checkout.cart.summary.title" destination="cart.summary" before="-" />           
     </body>
 </page>

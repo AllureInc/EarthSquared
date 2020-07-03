@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="defaultCustomerPayrestrictionData" type="customer">
+        <data key="email">test@amasty.com</data>
+        <data key="firstName">FirstCustName</data>
+        <data key="lastName">LastCustName</data>
+        <data key="street">Cust street</data>
+        <data key="city">London</data>
+        <data key="postcode">12345</data>
+        <data key="telephone">1234567</data>
+        <data key="region">Alabama</data>
+        <data key="country">United States</data>
+    </entity>
+
+    <entity name="customerPayrestrictionCheckIncludeTaxInSubtotal" type="customer">
+        <data key="email">testTax@amasty.com</data>
+        <data key="firstName">FirstCustNameTax</data>
+        <data key="lastName">LastCustNameTax</data>
+        <data key="street">Cust street Tax</data>
+        <data key="city">Calder</data>
+        <data key="postcode">49628-7978</data>
+        <data key="telephone">1234567</data>
+        <data key="region">Michigan</data>
+        <data key="country">United States</data>
+    </entity>
+
+    <entity name="customerPayrestrictionCheckConditionsShippingCountry" type="customer">
+        <data key="email">test@amasty.com</data>
+        <data key="firstName">FirstCustName</data>
+        <data key="lastName">LastCustName</data>
+        <data key="street">Cust street</data>
+        <data key="city">CustCity</data>
+        <data key="postcode">12345</data>
+        <data key="telephone">1234567</data>
+        <data key="region">Tirol</data>
+        <data key="country">Austria</data>
+    </entity>
+
+    <entity name="customerPayrestrictionCheckAdvancedConditionsCity" type="customer">
+        <data key="email">test@amasty.com</data>
+        <data key="firstName">FirstCustName</data>
+        <data key="lastName">LastCustName</data>
+        <data key="street">Cust street</data>
+        <data key="city">New York</data>
+        <data key="postcode">12345</data>
+        <data key="telephone">1234567</data>
+        <data key="region">New York</data>
+        <data key="country">United States</data>
+    </entity>
+
+    <entity name="customerPayrestrictionCheckPayPalAndBraintree" type="customer">
+        <data key="email">test@amasty.com</data>
+        <data key="firstName">FirstCustName</data>
+        <data key="lastName">LastCustName</data>
+        <data key="street">Cust street</data>
+        <data key="city">San Jose</data>
+        <data key="postcode">95131</data>
+        <data key="telephone">1234567</data>
+        <data key="region">California</data>
+        <data key="country">United States</data>
+    </entity>
+
+</entities>

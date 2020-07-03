@@ -44,7 +44,7 @@
 	    margin-top: 20px;
 }
 #checkout.tradeopc #shipping-new-address-form .field[name="shippingAddress.company"],#checkout.tradeopc #shipping-new-address-form .field[name="shippingAddress.firstname"]{
-	    margin-bottom: 36px;
+	    margin-bottom: 20px;
 }
 #checkout.tradeopc #shipping-new-address-form .field.choice,#checkout.tradeopc #co-payment-form .field.choice:not(.payment-method-title){
 	margin: 0px 0px 37px 0px;

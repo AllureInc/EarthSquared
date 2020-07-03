@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckDontApplyWithCouponCodes">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Dont Apply Rules With Coupon Codes"/>
+            <description value="Check Payment Restriction Dont Apply Rules With Coupon Codes"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-19"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckDontApplyWithCouponCodes"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings Before Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigBeforeTest"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed1">
+                <argument name="products" value="_theBagImpulseDuffleData"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckDontApplyWithCouponCodes"/>
+            </actionGroup>
+            <!--Delete Created Cart Price Rule -->
+            <actionGroup ref="DeleteCartPriceRuleByName" stepKey="deleteCreatedCartPriceRule">
+                <argument name="ruleName" value="{{payrestrictionDefaultCartPriceRuleDiscount10.name}}"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create Default Cart Price Rule-->
+        <actionGroup ref="AdminCreateCartPriceRuleActionGroup" stepKey="CreateCartPriceRule">
+            <argument name="ruleName" value="payrestrictionDefaultCartPriceRuleDiscount10"/>
+        </actionGroup>
+        <actionGroup ref="EditCartPriceRuleAddCouponCode" stepKey="AddCouponCodeForCartPriceRule">
+            <argument name="cartRuleName" value="payrestrictionDefaultCartPriceRuleDiscount10.name"/>
+            <argument name="couponCode" value="payrestrictionCouponCode.code"/>
+        </actionGroup>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckDontApplyWithCouponCodes"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionDontAddApplyRulesCoupon" stepKey="AddCouponCode">
+            <argument name="paymentRestriction" value="payrestrictionCheckDontApplyWithCouponCodes"/>
+            <argument name="couponCode" value="payrestrictionCouponCode.code"/>
+        </actionGroup>
+
+        <!-- Login As Veronica -->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <!-- Add Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Customer (Veronica) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage1">
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Apply Coupon -->
+        <actionGroup ref="StorefrontApplyCouponCodeOnTheCheckout" stepKey="AddCoupon">
+            <argument name="coupon" value="payrestrictionCouponCode"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Cancel Apply Code-->
+        <actionGroup ref="StorefrontCancelCouponCodeOnTheCheckout" stepKey="CancelCoupon"/>
+
+        <!-- Check Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart">
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+    </test>
+</tests>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="includeTaxInSubtotalPayrestriction" type="adminSetting">
+        <data key="yes">1</data>
+        <data key="no">0</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="useSubtotalAfterDiscountPayrestriction" type="adminSetting">
+        <data key="yes">1</data>
+        <data key="no">0</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="payrestrictionStoreGroup" type="group">
+        <data key="name">Main Website Store</data>
+        <data key="code">main_website_store</data>
+    </entity>
+
+    <entity name="payrestrictionStoreView" type="store">
+        <data key="name">storeViewForTest</data>
+        <data key="code">store_view_for_test</data>
+    </entity>
+
+</entities>

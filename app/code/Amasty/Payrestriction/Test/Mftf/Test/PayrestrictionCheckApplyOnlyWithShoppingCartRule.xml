@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckApplyOnlyWithShoppingCartRule">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Apply Rules Only With Shopping Cart Rule"/>
+            <description value="Check Payment Restriction Apply Rules Only With Shopping Cart Rule"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-18"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckApplyOnlyWithShoppingCartRule"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings Before Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigBeforeTest"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed1">
+                <argument name="products" value="_theBagWayfarerMessenger"/>
+            </actionGroup>
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed2">
+                <argument name="products" value="_theWatchClamberData"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckApplyOnlyWithShoppingCartRule"/>
+            </actionGroup>
+            <!--Delete Created Cart Price Rule -->
+            <actionGroup ref="DeleteCartPriceRuleByName" stepKey="deleteCreatedCartPriceRule">
+                <argument name="ruleName" value="{{payrestrictionDefaultCartPriceRuleDiscount30.name}}"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create Default Cart Price Rule-->
+        <actionGroup ref="AdminCreateCartPriceRuleActionGroup" stepKey="CreateCartPriceRule">
+            <argument name="ruleName" value="payrestrictionDefaultCartPriceRuleDiscount30"/>
+        </actionGroup>
+        <actionGroup ref="EditRuleAddActionsConditions" stepKey="AddConditionsForCartRule">
+            <argument name="actionsConditionOptions" value="_SKU"/>
+            <argument name="ruleName" value="payrestrictionDefaultCartPriceRuleDiscount30.name"/>
+            <argument name="actionsConditionOptionsParamIs" value="_isOneOf"/>
+            <argument name="conditionsData" value="payrestrictionCheckApplyOnlyWithShoppingCartRule.conditions"/>
+        </actionGroup>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyOnlyWithShoppingCartRule"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddApplyRulesCartRule" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyOnlyWithShoppingCartRule"/>
+            <argument name="ruleName" value="payrestrictionDefaultCartPriceRuleDiscount30.name"/>
+        </actionGroup>
+        <magentoCLI command="indexer:reindex" stepKey="reindex"/>
+
+        <!--Login As Veronica-->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Customer (Veronica) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage1">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Customer (Veronica) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage2">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart1">
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Customer (Veronica) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage3">
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart2">
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+    </test>
+</tests>

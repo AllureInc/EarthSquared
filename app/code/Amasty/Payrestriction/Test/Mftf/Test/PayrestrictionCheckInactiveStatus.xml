@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckInactiveStatus">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Setting Use Subtotal After Discount"/>
+            <description value="Check Payment Restriction Setting Use Subtotal After Discount"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-05"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckInactiveStatus"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings -->
+            <actionGroup ref="AdminEditGeneralSettingPayrestriction" stepKey="chooseConfigBeforeTest">
+                <argument name="settingIncludeTaxInSubtotal" value="includeTaxInSubtotalPayrestriction.default"/>
+                <argument name="settingUseSubtotalAfterDiscount" value="useSubtotalAfterDiscountPayrestriction.no"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete All Rules and Return Default Setting-->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckInactiveStatus"/>
+            </actionGroup>
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseAfterTest"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction-->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckInactiveStatus"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <actionGroup ref="AdminEditPaymentRestrictionStatus" stepKey="DisablePaymentRestrictionRule">
+            <argument name="paymentRestriction" value="payrestrictionCheckInactiveStatus"/>
+            <argument name="status" value="payrestrictionCheckInactiveStatus.newStatus"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

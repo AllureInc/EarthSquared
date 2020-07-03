@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckAmazonPay">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Restrict Amazon Pay"/>
+            <description value="Check Restrict Amazon Pay"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-28"/>
+            <group value="PayrestrictionCheckExternalPayments"/>
+            <group value="PayrestrictionCheckExternalPaymentsAmazon"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminActivateAmazonPayment" stepKey="activateAuthorize">
+                <argument name="paymentMethodsAccess" value="paymentMethodCredentialsAmazonPay"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckAmazonPay"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingAmazonPayment" stepKey="returnDefaultSettingForAmazon">
+                <argument name="paymentMethodsAccess" value="paymentMethodCredentialsAmazonPay"/>
+            </actionGroup>
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed1">
+                <argument name="products" value="_theWatchClamberData"/>
+            </actionGroup>
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed2">
+                <argument name="products" value="_theMenHoodiesChazKangerooHoodie"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckAmazonPay"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddConditionsWithInput" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckAmazonPay"/>
+            <argument name="actionsConditionsOptions" value="_subtotal"/>
+            <argument name="actionsConditionsOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="payrestrictionCheckAmazonPay.conditions"/>
+        </actionGroup>
+
+        <!--Login -->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage1">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveAmazon">
+            <argument name="paymentMethods" value="paymentAmazonPay"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddConfigurableProductToCart" stepKey="AddConfigProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theMenHoodiesChazKangerooHoodie"/>
+            <argument name="size" value="payrestrictionCheckAmazonPay.sizeMH01"/>
+            <argument name="color" value="payrestrictionCheckAmazonPay.colorMH01"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage2">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoAmazon">
+            <argument name="paymentMethods" value="paymentAmazonPay"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete First Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart1">
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+        <!--Delete Second Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart2">
+            <argument name="products" value="_theMenHoodiesChazKangerooHoodie"/>
+        </actionGroup>
+
+    </test>
+</tests>

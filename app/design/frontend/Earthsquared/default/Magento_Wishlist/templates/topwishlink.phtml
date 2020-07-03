@@ -3,17 +3,24 @@
   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
   $customerSession = $objectManager->create('Magento\Customer\Model\Session');
 
-  $collection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
-  $collection->clear()->setInStockFilter(true)->setOrder('added_at');
-  $totalcount = count($collection);
+  // $collection = $this->helper('Magento\Wishlist\Helper\Data')->getWishlistItemCollection();
+  // $collection->clear()->setInStockFilter(true)->setOrder('added_at');
+  // $totalcount = count($collection);
   /* @var \Magento\Wishlist\Block\Link $block */
 ?> 
-	 <li class="wishtop" data-bind="scope: 'wishlist'"><a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
+	 <li class="wishtop" data-bind="scope: 'wishlist'">
+
+  <?php if($customerSession->isLoggedIn()){ ?>
+      <a href="javascript:;"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
+  <?php } else { ?>    
+      <a href="<?php echo $this->getUrl().'customer/account/login' ?>"><img src="<?php echo $this->getUrl('pub/media/icons').'heart.png' ?>" alt="Wishlist" />
+  <?php } ?>  
+
     <?php if($customerSession->isLoggedIn()){ ?>
       <!-- ko if: wishlist().counter -->
-            <span class="counter qty"><?php echo $totalcount; ?></span>
+        <span data-bind="text: wishlist().items.length" class="counter qty"></span>
       <!-- /ko -->
-      <!--<span data-bind="text: wishlist().items.length" class="counter qty"></span>-->
+      
     <?php } ?></a>
   </li> 
   <?php
@@ -21,3 +28,6 @@
 		echo $this->getLayout()->createBlock("Magento\Wishlist\Block\Customer\Sidebar")->setTemplate("Magento_Wishlist::wishlisttopsidebar.phtml")->toHtml();
   }
   ?>
+
+
+

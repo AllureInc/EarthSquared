@@ -458,29 +458,11 @@ define([
                 $widget.optionsMap[item.id] = {};
 
                 // Aggregate options array to hash (key => value)
-                    if(!$("body").hasClass("catalog-product-view")){
-                        var total_swatch = $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').length;
-                        console.log(total_swatch);
-                        var x=3;
-                        var moreswatch =  total_swatch - x;
-                        if(total_swatch > 3){
-                           x=(x-total_swatch < 0) ? 3 : x-total_swatch;
-                            //console.log(container);
-                            $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').not(':lt('+x+')').hide();
-                            $(container.context).children('#loadMore').text('+'+moreswatch).addClass('swatchitem'+item.id);
-                            
-                            $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
-                            $(container.context).children('#loadMore').click(function () {
-                                    x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
-                                    $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
-                                    $(this).hide();
-                            });
-                            $(container.context).children('.swatchitem'+item.id).insertAfter('.swatch-attribute .swatch-attribute-options .swatch-option:last-child');
-                        }
 
-                    }
                 $.each(item.options, function () {
+                    //console.log(this.products.length);
                     if (this.products.length > 0) {
+                        //console.log(this.products.length);
                         $widget.optionsMap[item.id][this.id] = {
                             price: parseInt(
                                 $widget.options.jsonConfig.optionPrices[this.products[0]].finalPrice.amount,
@@ -490,6 +472,29 @@ define([
                         };
 
                     }
+                    // if(!$("body").hasClass("catalog-product-view")){                        
+                    //     //var total_swatch = $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').length;
+                    //     var total_swatch = item.options.length;
+                    //     //console.log(total_swatch);
+                    //     console.log(item.options);
+                    //     var x=3;
+                    //     var moreswatch =  total_swatch - x;
+                    //     if(total_swatch > 3){
+                    //        x=(x-total_swatch < 0) ? 3 : x-total_swatch;
+                    //         //console.log(container);
+                    //         $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option').not(':lt('+x+')').hide();
+                    //         $(container.context).children('#loadMore').text('+'+moreswatch).addClass('swatchitem'+item.id);
+                            
+                    //         $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
+                    //         $(container.context).children('#loadMore').click(function () {
+                    //                 x= (x+moreswatch <= total_swatch) ? x+moreswatch : total_swatch;
+                    //                 $(container.context).children('.swatch-attribute').children('.swatch-attribute-options').children('.swatch-option:lt('+x+')').show();
+                    //                 $(this).hide();
+                    //         });
+                    //         $(container.context).children('.swatchitem'+item.id).insertAfter('.swatch-attribute .swatch-attribute-options .swatch-option:last-child');
+                    //     }
+
+                    // }                    
                 });
 
             });
@@ -533,7 +538,11 @@ define([
                 moreText = this.options.moreButtonText,
                 countAttributes = 0,
                 html = '';
-
+                
+             //console.log(this.options.jsonConfig.attributes);   
+             //console.log(config.options.length);   
+             var moreswatches = config.options.length - moreLimit;
+             //console.log(moreswatches);
             if (!this.options.jsonSwatchConfig.hasOwnProperty(config.id)) {
                 return '';
             }
@@ -549,14 +558,16 @@ define([
                     attr,
                     swatchImageWidth,
                     swatchImageHeight;
-
+                
                 if (!optionConfig.hasOwnProperty(this.id)) {
                     return '';
                 }
 
                 // Add more button
+                //console.log(moreLimit);
+
                 if (moreLimit === countAttributes++) {
-                    html += '<a href="#" class="' + moreClass + '"><span>' + moreText + '</span></a>';
+                    html += '<a href="#" class="' + moreClass + '"><span> +' + moreswatches + '</span></a>';
                 }
 
                 id = this.id;
@@ -614,8 +625,7 @@ define([
                     // Default
                     html += '<div class="' + optionClass + '" ' + attr + '>' + label + '</div>';
                 }
-            });
-
+            });            
             return html;
         },
 

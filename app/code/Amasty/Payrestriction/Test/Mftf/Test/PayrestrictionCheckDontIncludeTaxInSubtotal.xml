@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckDontIncludeTaxInSubtotal">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Setting Dont Include Tax In Subtotal"/>
+            <description value="Check Payment Restriction Setting Dont Include Tax In Subtotal"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-02"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckDontIncludeTaxInSubtotal"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Delete All Restrictions Rule and Custom Settings -->
+            <actionGroup ref="AdminEditGeneralSettingPayrestriction" stepKey="chooseConfigBeforeTest">
+                <argument name="settingIncludeTaxInSubtotal" value="includeTaxInSubtotalPayrestriction.no"/>
+                <argument name="settingUseSubtotalAfterDiscount" value="useSubtotalAfterDiscountPayrestriction.default"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckDontIncludeTaxInSubtotal"/>
+            </actionGroup>
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseAfterTest"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckDontIncludeTaxInSubtotal"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddConditionsWithInput" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckDontIncludeTaxInSubtotal"/>
+            <argument name="actionsConditionsOptions" value="_subtotal"/>
+            <argument name="actionsConditionsOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="payrestrictionCheckDontIncludeTaxInSubtotal.conditions"/>
+        </actionGroup>
+
+        <!--Add First Product to Cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!--Add Second Product to Cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagOvernightDuffle"/>
+        </actionGroup>
+
+        <!--Check Payment Method as Guest-->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

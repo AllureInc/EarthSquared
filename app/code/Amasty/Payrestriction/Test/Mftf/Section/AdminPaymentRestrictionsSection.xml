@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminPaymentRestrictionsGridSection">
+        <element name="AddNewRuleButton" type="button" selector="//button[@title='Add Rule']"/>
+        <!-- Choose MassAction-->
+        <element name="MassActionSelectAllShipRule" type="select" selector="//div[@class='action-multicheck-wrap']//label"/>
+        <element name="EmptyGrid" type="block" selector="//table[@data-role='grid']//tr[@class='data-grid-tr-no-data']"/>
+        <!-- Select Options For Actions-->
+        <element name="ActionsButton" type="button" selector="//button[@title='Select Items']"/>
+        <element name="ActionsDelete" type="button" selector="//div[@class='action-menu-items']//span[contains(text(), 'Delete')]"/>
+        <element name="ConfirmAction" type="button" selector="//button[@class='action-primary action-accept']"/>
+        <!-- Filters -->
+        <element name="FiltersButton" type="button" selector="//button[@data-action='grid-filter-expand']"/>
+        <element name="FiltersNameInput" type="button" selector="//input[@name='name']"/>
+        <element name="FiltersApplyButton" type="button" selector="//button[@data-action='grid-filter-apply']" timeout="10"/>
+        <element name="FiltersClearAll" type="button" selector="//button[@data-action='grid-filter-reset']" timeout="10"/>
+        <!-- Table -->
+        <element name="TableRowOne" type="text" selector="tr[data-repeat-index='0']"/>
+        <element name="SuccessMessageDeletedRule" type="block"
+                 selector="//div[@id='messages']//div[contains(string(), 'Payment Restriction has been successfully deleted')]"/>
+    </section>
+
+
+    <section name="AdminPaymentRestrictionSection">
+        <element name="Save" type="button" selector="//button[@id='save']"/>
+        <element name="Delete" type="button" selector="//button[@id='delete']"/>
+        <element name="SaveAndContinueEdit" type="button" selector="//button[@id='save_and_continue_edit']"/>
+        <element name="ModalAcceptButton" type="button" selector="button.action-accept"/>
+        <!-- General Tab-->
+        <element name="RestrictionsTab" type="button" selector="//a[@name='restrictions']"/>
+        <element name="Name" type="input" selector="//input[@name='name']"/>
+        <element name="Status" type="select" selector="//select[@name='is_active']"/>
+        <element name="Methods" type="select" selector="//select[@id='rule_methods']"/>
+
+        <!-- StoresAndCustomers Tab-->
+        <element name="StoresAndCustomersTab" type="button" selector="//a[@name='stores_groups']"/>
+        <element name="AdminArea" type="select" selector="//select[@name='for_admin']"/>
+        <element name="Stores" type="select" selector="//select[@id='stores']"/>
+        <element name="CustomerGroups" type="select" selector="//select[@id='cust_groups']"/>
+
+        <!-- Conditions Tab -->
+        <element name="ConditionsTab" type="button" selector="//a[@name='conditions']"/>
+        <element name="ConditionsText" type="block" selector="//fieldset[@id='rule_conditions_fieldset']"/>
+        <element name="ButtonAddConditions" type="button" selector="//div[@class='rule-tree']//span[@class='rule-param rule-param-new-child']"/>
+        <element name="BackordersSelect" type="select" selector="//select[@name='out_of_stock']"/>
+
+        <!-- Cart Price Rules Tab-->
+        <element name="CartPriceRulesTab" type="button" selector="//a[@name='coupons']"/>
+        <element name="ApplyCouponCode" type="input" selector="//input[@name='coupon']"/>
+        <element name="ApplyShoppingCartRule" type="select" selector="//select[@id='rule_discount_id']"/>
+        <element name="DontApplyCouponCode" type="input" selector="//input[@name='coupon_disable']"/>
+        <element name="DontApplyShoppingCartRule" type="select" selector="//select[@id='rule_discount_id_disable']"/>
+    </section>
+
+</sections>

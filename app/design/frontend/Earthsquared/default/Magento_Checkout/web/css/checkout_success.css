@@ -1,4 +1,7 @@
 /*-- success --*/
+.checkout-onepage-success header .section1 a.backlink {
+    display: none;
+}
 .checkout-onepage-success .page-title-wrapper{
 	text-align: center;
     width: 100%;

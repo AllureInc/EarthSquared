@@ -221,7 +221,7 @@ define([
                 this.getPopUp().closeModal();
                 $('#opc-new-shipping-address').hide();
                 this.isNewAddressAdded(true);
-                $('.action-add-new-shipping').hide();
+                //$('.action-add-new-shipping').hide();
             }
         },
 
@@ -288,7 +288,7 @@ define([
 
             if (!quote.shippingMethod()) {
                 this.errorValidationMessage(
-                    $t('The shipping method is missing. Select the shipping method and try again.')
+                    $t('Please select a delivery method.')
                 );
 
                 return false;

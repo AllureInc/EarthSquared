@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckDontApplyInAdminArea">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Dont Apply In Admin Area"/>
+            <description value="Check Payment Restriction Dont Apply In Admin Area"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-09"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckDontApplyInAdminArea"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings Before Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigBeforeTest"/>
+            <actionGroup ref="AdminActivatePurchaseOrder" stepKey="ActivatePurchaseOrderMethod"/>
+            <actionGroup ref="AdminActivateBankTransferPayment" stepKey="ActivateBankTransferMethod"/>
+            <actionGroup ref="AdminActivateCashOnDeliveryPayment" stepKey="ActivateCashOnDeliveryMethod"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckDontApplyInAdminArea"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingPurchaseOrder" stepKey="ReturnDefaultSettingPurchaseOrder"/>
+            <actionGroup ref="AdminReturnDefaultSettingBankTransferPayment" stepKey="ReturnDefaultSettingBankTransfer"/>
+            <actionGroup ref="AdminReturnDefaultSettingCashOnDeliveryPayment" stepKey="ReturnDefaultSettingCashOnDelivery"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckDontApplyInAdminArea"/>
+        </actionGroup>
+
+        <!-- Choose Customer and Products for Order -->
+        <actionGroup ref="AdminCreateOrderChooseUserAndAddProducts" stepKey="CheckNoCheckMoney">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="customerEmail" value="payrestrictionCheckApplyInAdminArea.email"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods in Admin Area -->
+        <actionGroup ref="AdminCheckPaymentMethodInAdminArea" stepKey="CheckHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+        <actionGroup ref="AdminCheckPaymentMethodInAdminArea" stepKey="CheckHavePurchaseOrder">
+            <argument name="paymentMethods" value="paymentPurchaseOrder"/>
+        </actionGroup>
+        <actionGroup ref="AdminCheckPaymentMethodInAdminArea" stepKey="CheckHaveBankTransfer">
+            <argument name="paymentMethods" value="paymentBankTransferPayment"/>
+        </actionGroup>
+        <actionGroup ref="AdminCheckPaymentMethodInAdminArea" stepKey="CheckHaveCashOnDelivery">
+            <argument name="paymentMethods" value="paymentCashOnDeliveryPayment"/>
+        </actionGroup>
+
+    </test>
+</tests>

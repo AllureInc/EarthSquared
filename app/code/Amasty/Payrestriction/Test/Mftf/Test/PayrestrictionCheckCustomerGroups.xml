@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckCustomerGroups">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Payment Restriction Customer Groups"/>
+            <description value="Check Payment Restriction Customer Groups"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-11"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckCustomerGroups"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings Before Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigBeforeTest"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed">
+                <argument name="products" value="_theWatchClamberData"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckCustomerGroups"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckCustomerGroups"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionCustomerGroups" stepKey="ChooseCustomerGroups">
+            <argument name="paymentRestriction" value="payrestrictionCheckCustomerGroups"/>
+            <argument name="applyForCustomerGroups" value="payrestrictionCheckCustomerGroups.customerGroups"/>
+        </actionGroup>
+
+        <!--Add Product to Cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!--Check No Payment Method as 'NOT LOGGED IN'-->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoPaymentCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Login As Veronica-->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Customer (Veronika) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPage2">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart">
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+    </test>
+</tests>

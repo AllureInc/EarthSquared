@@ -1,0 +1,282 @@
+<?php
+/**
+ * @var $block \Dolphin\Freeshippingbar\Block\Shippingbar
+ */
+
+use Magento\Checkout\Model\Cart;
+use Magento\Customer\Model\Session;
+
+$quote = $block->getCheckoutSession()->getQuote();
+
+$Threshold = $block->getThreshold();
+$calCulateSubtotal = $block->getcalCulateSubtotal();
+
+$ActionName = $block->getActionName();
+
+$sucess_message = $block->getSucessMessage();
+$sticky = $block->getSticky();
+$barposition = $block->getBarPosition();
+$closebutton = $block->getCloseButton();
+$DisplayBarIn = $block->getDisplayBarIn();
+$DisplayOn = $block->getDisplayOn();
+$BarSize = $block->getBarSize();
+$LoadDelayTime = $block->getLoadDelayTime();
+$HideAfter = $block->getHideAfter();
+$FontFamily = $block->getFontFamily();
+$TextAlign = $block->getTextAlign();
+$FontColor = $block->getFontColor();
+$ShippingPriceColor = $block->getShippingPriceColor();
+$CloseButtonColor = $block->getCloseButtonColor();
+$BgColor = $block->getBgColor();
+$AnimationEffect = $block->getAnimationEffect();
+$CustomCss = $block->getCustomCss();
+$CurrencySymbol = $block->getCurrencySymbol();
+
+$NOTLOGGEDIN = [];
+$General = [];
+$Wholesale = [];
+$Retailer = [];
+
+if ($FontFamily == 'Open Sans') {
+    $ApplyFont = "'Open Sans', sans-serif";
+}
+if ($FontFamily == 'Lato') {
+    $ApplyFont = "'Lato', sans-serif";
+}
+if ($FontFamily == 'Roboto') {
+    $ApplyFont = "'Roboto', sans-serif";
+}
+if ($FontFamily == 'Poppins') {
+    $ApplyFont = "'Poppins', sans-serif";
+}
+if ($FontFamily == 'Oswald') {
+    $ApplyFont = "'Oswald', sans-serif";
+}
+if ($FontFamily == 'Raleway') {
+    $ApplyFont = "'Raleway', sans-serif";
+}
+if ($FontFamily == 'PT Sans') {
+    $ApplyFont = "'PT Sans', sans-serif";
+}
+if ($FontFamily == 'Ubuntu') {
+    $ApplyFont = "'Ubuntu', sans-serif";
+}
+
+if ($barposition == 'Page Top') {
+    $position = 'top: 0;';
+}
+
+if ($barposition == 'Content Top') {
+    $position = 'top: 0;';
+}
+
+if ($barposition == 'Content Bottom') {
+    $position = 'bottom: 0;';
+}
+
+foreach ($Threshold as $Thresholdvalue) {
+    if ($Thresholdvalue['customer_group'] == 'NOT LOGGED IN') {
+        array_push($NOTLOGGEDIN, $Thresholdvalue['threshold_value']);
+        array_push($NOTLOGGEDIN, $Thresholdvalue['notification']);
+    }
+    if ($Thresholdvalue['customer_group'] == 'General') {
+        array_push($General, $Thresholdvalue['threshold_value']);
+        array_push($General, $Thresholdvalue['notification']);
+    }
+    if ($Thresholdvalue['customer_group'] == 'Wholesale') {
+        array_push($Wholesale, $Thresholdvalue['threshold_value']);
+        array_push($Wholesale, $Thresholdvalue['notification']);
+    }
+    if ($Thresholdvalue['customer_group'] == 'Retailer') {
+        array_push($Retailer, $Thresholdvalue['threshold_value']);
+        array_push($Retailer, $Thresholdvalue['notification']);
+    }
+}
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create(Session::class);
+
+
+$cart = $objectManager->get(Cart::class);
+
+if ($calCulateSubtotal == 'Inclusive Of Tax') {
+
+    $quoteItems = $cart->getQuote()->getAllItems();
+    $subtotalInclTax = 0;
+    foreach ($quoteItems as $item) {
+        $subtotalInclTax += $item->getRowTotalInclTax();
+    }
+
+    $subTotal = (int)$subtotalInclTax;
+    $grandTotal = (int)$cart->getQuote()->getGrandTotal();
+} else {
+    $subTotal = (int)$cart->getQuote()->getSubtotal();
+    $grandTotal = (int)$cart->getQuote()->getGrandTotal();
+}
+
+if (((strpos($DisplayOn, 'Home Page') !== false) && $ActionName == 'cms_index_index') ||
+  ((strpos($DisplayOn, 'Product Page') !== false) && $ActionName == 'catalog_product_view') ||
+  ((strpos($DisplayOn, 'Category Page') !== false) && $ActionName == 'catalog_category_view') ||
+  ((strpos($DisplayOn, 'Search Result Page') !== false) && $ActionName == 'catalogsearch_result_index') ||
+  ((strpos($DisplayOn, 'Cart Page') !== false) && $ActionName == 'checkout_cart_index') ||
+  ((strpos($DisplayOn, 'Checkout Page') !== false) && $ActionName == 'checkout_index_index')
+  ) {
+    ?>
+<div id="shippingbar"
+class="shippingbar <?php
+if ($sticky == 1) { echo /* @noEscape */ 'sticky'; }
+if ($DisplayBarIn == 'Both') { echo /* @noEscape */ ' mobile desktop ';}
+if ($DisplayBarIn == 'Desktop') { echo /* @noEscape */ ' desktop ';}
+if ($DisplayBarIn == 'Mobile') { echo /* @noEscape */ ' mobile ';}
+echo /* @noEscape */ $AnimationEffect; ?>"
+>
+    <?php
+    if ($customerSession->isLoggedIn()) {
+        // customer login action
+        $group = $block->getCustomerGroup();
+        if ($group == 'General') {
+            $price = '<span class="threshold_value" id="threshold_value">'.$CurrencySymbol.$General[0].'</span>';
+            $notes = $General[1];
+
+            if ($subTotal >= $General[0]) {
+                echo /* @noEscape */ $block->escapeHtml($sucess_message);
+            } else {
+                echo /* @noEscape */ str_replace('{thresholdValue}', $price, $notes);
+            }
+        }
+
+        if ($group == 'Wholesale') {
+            $price = '<span class="threshold_value" id="threshold_value">'.$CurrencySymbol.$Wholesale[0].'</span>';
+            $notes = $Wholesale[1];
+            $final_remain = $Wholesale[0] - $subTotal;
+            $remain = '<span class="threshold_value remain_value" id="remain_value">'.
+            $CurrencySymbol.$final_remain.'</span>';
+
+            if ($subTotal >= $Wholesale[0]) {
+                echo /* @noEscape */ $sucess_message;
+            } else {
+                $notes = str_replace('{thresholdValue}', $price, $notes);
+                echo /* @noEscape */ str_replace('{leftValue}', $remain, $notes);
+            }
+        }
+
+        if ($group == 'Retailer') {
+            $price = '<span class="threshold_value" id="threshold_value">'.$CurrencySymbol.$Retailer[0].'</span>';
+            $notes = $Retailer[1];
+            $final_remain = $Retailer[0] - $subTotal;
+            $remain = '<span class="threshold_value remain_value" id="remain_value">'.
+            $CurrencySymbol.$final_remain.'</span>';
+
+            if ($subTotal >= $Retailer[0]) {
+                echo /* @noEscape */ $sucess_message;
+            } else {
+                $notes = str_replace('{thresholdValue}', $price, $notes);
+                echo /* @noEscape */ str_replace('{leftValue}', $remain, $notes);
+            }
+        }
+
+    } else {
+          // Customer is not logged in
+          $price = '<span class="threshold_value" id="threshold_value">'.$CurrencySymbol.$NOTLOGGEDIN[0].'</span>';
+          $notes = $NOTLOGGEDIN[1];
+
+        if ($subTotal >= $NOTLOGGEDIN[0]) {
+            echo /* @noEscape */ $block->escapeHtml($sucess_message);
+        } else {
+            echo /* @noEscape */ str_replace('{thresholdValue}', $price, $notes);
+        }
+
+    }
+    ?>
+    <?php if ($closebutton == 1) { ?>
+         <a href="javascript:;" class="close" id="close_shipping_bar"></a>
+    <?php } ?>
+</div>
+<?php } ?>
+
+<style type="text/css">
+.shippingbar {
+    background: <?= /* @noEscape */ $BgColor; ?>;
+    color: <?= /* @noEscape */ $FontColor; ?>;
+    font-family: <?= /* @noEscape */ $ApplyFont; ?>;
+    text-align: <?= /* @noEscape */ $TextAlign; ?>;
+
+}
+body {
+    height: auto;
+}
+.shippingbar.sticky {
+    <?= /* @noEscape */ $position; ?>;
+}
+span.threshold_value {
+    color: <?= /* @noEscape */ $ShippingPriceColor; ?>;
+}
+.close:before, .close:after {
+  background-color: <?= /* @noEscape */ $CloseButtonColor; ?>;
+}
+
+.FadeIn {
+-webkit-animation:fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) <?= /* @noEscape */ $LoadDelayTime?>s both;
+animation:fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) <?= /* @noEscape */ $LoadDelayTime?>s both;
+}
+.FadeOut {
+-webkit-animation:fade-out 1s ease-out <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:fade-out 1s ease-out <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInTop {
+-webkit-animation:bounce-in-top 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-top 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInRight {
+-webkit-animation:bounce-in-right 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-right 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInBottom {
+-webkit-animation:bounce-in-bottom 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-bottom 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInLeft {
+-webkit-animation:bounce-in-left 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-left 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInForward {
+-webkit-animation:bounce-in-fwd 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-fwd 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.BounceInBack {
+-webkit-animation:bounce-in-bck 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+animation:bounce-in-bck 2s <?= /* @noEscape */ $LoadDelayTime ?>s both;
+}
+.SlideINForward {
+-webkit-animation:
+slide-in-fwd-center 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) <?= /* @noEscape */ $LoadDelayTime?>s both;
+animation:slide-in-fwd-center 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) <?= /* @noEscape */ $LoadDelayTime?>s both;
+}
+.SlideINBack {
+-webkit-animation:
+slide-in-bck-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) <?= /* @noEscape */ $LoadDelayTime?>s both;
+animation:slide-in-bck-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) <?= /* @noEscape */ $LoadDelayTime?>s both;
+}
+.PuffIn {
+-webkit-animation:
+puff-in-center 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) <?= /* @noEscape */ $LoadDelayTime?>s both;
+animation:puff-in-center 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) <?= /* @noEscape */ $LoadDelayTime?>s both;
+}
+.PuffOut {
+-webkit-animation:
+puff-out-center 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) <?=/* @noEscape */$LoadDelayTime?>s both;
+animation:puff-out-center 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) <?= /* @noEscape */ $LoadDelayTime?>s both;
+}
+<?= /* @noEscape */ $CustomCss; ?>
+</style>
+
+<script type="text/javascript">
+  require(['jquery'], function($){
+    jQuery(document).ready( function(c) {
+      jQuery(document).on('click','#close_shipping_bar',function(e){
+        jQuery(this).parent('#shippingbar').delay(2500).fadeOut();
+      });
+    });
+  });
+</script>

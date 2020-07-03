@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckTwoRulesAndOrderInAccount">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Work Two Rules and Order In Customer Account"/>
+            <description value="Check Work Two Rules and Order In Customer Account"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-21"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Checkout"/>
+            <group value="PayrestrictionCheckTwoRulesAndOrderInAccount"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminActivatePurchaseOrder" stepKey="ActivatePurchaseOrderMethod"/>
+            <actionGroup ref="AdminActivateBankTransferPayment" stepKey="ActivateBankTransferMethod"/>
+            <actionGroup ref="AdminActivateCashOnDeliveryPayment" stepKey="ActivateCashOnDeliveryMethod"/>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteFirstRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckTwoRulesAndOrderInAccount1"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteSecondRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckTwoRulesAndOrderInAccount2"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingPurchaseOrder" stepKey="ReturnDefaultSettingPurchaseOrder"/>
+            <actionGroup ref="AdminReturnDefaultSettingBankTransferPayment" stepKey="ReturnDefaultSettingBankTransfer"/>
+            <actionGroup ref="AdminReturnDefaultSettingCashOnDeliveryPayment" stepKey="ReturnDefaultSettingCashOnDelivery"/>
+            <actionGroup ref="DeleteProductFromTheCartIfTestWithLoginFailed" stepKey="DeleteProductIfTestFailed2">
+                <argument name="products" value="_theBagWayfarerMessenger"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create First Payment Restriction Rule -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction1">
+            <argument name="paymentRestriction" value="payrestrictionCheckTwoRulesAndOrderInAccount1"/>
+        </actionGroup>
+
+        <!-- Create Second Payment Restriction Rule -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction2">
+            <argument name="paymentRestriction" value="payrestrictionCheckTwoRulesAndOrderInAccount2"/>
+        </actionGroup>
+
+        <!--Login -->
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="LogIn">
+            <argument name="Customer" value="CustomerLogIn"/>
+        </actionGroup>
+
+        <!-- Add Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty2"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Customer (Veronika) -->
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="FillShippingCheckoutPageAsCustomer">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveBankTransfer">
+            <argument name="paymentMethods" value="paymentBankTransferPayment"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCashOnDelivery">
+            <argument name="paymentMethods" value="paymentCashOnDeliveryPayment"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoPurchaseOrder">
+            <argument name="paymentMethods" value="paymentPurchaseOrder"/>
+        </actionGroup>
+
+        <!-- Create Order and Check Payment Method in Account -->
+        <actionGroup ref="StorefrontCreateOrderAsCustomerAndCheckPaymentInAccount" stepKey="CreateOrderAsCustomer">
+            <argument name="paymentMethods" value="paymentBankTransferPayment"/>
+        </actionGroup>
+
+    </test>
+</tests>

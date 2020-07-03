@@ -1,0 +1,1 @@
+<?php namespace Dolphin\CustomerAccountLinksManager\Controller\Account; class ExtendIndex extends \Magento\Customer\Controller\Account\Index {   public function execute()  {    $resultRedirect = $this->resultRedirectFactory->create();    $resultRedirect->setPath('sales/order/history');    return $resultRedirect;  }}

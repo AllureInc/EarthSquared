@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<dolphin_freeshippingbar>
+			<general_setting>
+				<enable>1</enable>
+			</general_setting>
+			<display_setting>
+				<threshold/>
+				<sucess_message/>
+				<bar_position/>
+				<sticky>1</sticky>
+				<close_button>1</close_button>
+				<calculate_subtotal/>
+				<display_bar_in>Both</display_bar_in>
+				<display_on/>
+			</display_setting>
+			<bar_design_setting>
+				<bar_size>Small</bar_size>
+				<load_delay_time>1</load_delay_time>
+				<hide_after>0</hide_after>
+				<font_family>Open Sans</font_family>
+				<text_align>Center</text_align>
+				<font_color>#000000</font_color>
+				<shipping_price_color>#C2041D</shipping_price_color>
+				<close_button_color>#000000</close_button_color>
+				<bg_color>#98BAE4</bg_color>
+				<animation_effect>Fade In</animation_effect>
+				<custom_css/>
+			</bar_design_setting>
+		</dolphin_freeshippingbar>
+	</default>
+</config>

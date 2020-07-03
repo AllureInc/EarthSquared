@@ -1,10 +1,17 @@
 .quickorder{
 	color:#616161;
 	font-family: 'Futura Bk BT Medium';
+	display:none;
 }
 .quickorder img{    margin: 0 6px;    width: 15px;}
 .benefits.trade{
-	margin: 118px 0px;
+	margin: 80px 0px;
+}
+.catalog-product-view .box-tocart.trade .field.qty #qty{
+	text-align: left;
+    padding: 0px 0px 0px 20px;
+    width: 100%;
+    border-right:0px;
 }
 .product-social-links .product-addto-links .action.towishlist.trade:before{
 	content:'';
@@ -14,11 +21,12 @@
 	height:16px;	
 }
 .product-info-main .product-options-bottom .box-tocart.trade{
-	margin-top:51px !important;
+	margin-top:30px !important;
 }
-.product-info-main .product-options-bottom .box-tocart.trade .field.qty{
-	 top: 18px;
+.product-info-main .product-options-bottom .box-tocart.trade .field.qty {
+    top: 0;
     right: 30px;
+    margin-bottom: 0;
 }
 .catalog-product-view .box-tocart.trade .field.qty #qty-error.mage-error{
     width: 100%;
@@ -82,7 +90,7 @@
 .customer-address-index .block.block-addresses-default .box.new-address {  height: 177px;  padding-top: 65px;}
 .customer-address-index .block.block-addresses-default .box.new-address span.plus_sign {    font-size: 16px;    font-weight: bold;}
 .customer-address-index .block.block-addresses-default .box.new-address span {    margin-top: 2px;}
-.wishlist-index-index .wishlist_count {    top: 8%;    left: 28%;}
+.wishlist-index-index .wishlist_count {   left: 28%;}
 
 div#confirmBox #confirmButtons.amcart-confirm-buttons {    bottom: 38.2%;}
 div#confirmBox .ampage-bottom-info .benefits-ul {    margin-top: 55px;}
@@ -109,6 +117,15 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 	    width: 296px;	   
 	}
 }
+
+
+@media screen and (max-width: 1440px) {  
+.page-wrapper.stickymenu .navigation.sw-megamenu .level0 a {
+    padding: 0;
+}
+}
+
+
 @media screen and (max-width: 767px)
 {
 	header .logo img.tradelogo {

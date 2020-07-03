@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckAuthorizeAndEWay">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Payment Restriction via the Admin"/>
+            <title value="Check Restrict Authorize And eWay"/>
+            <description value="Check Restrict Authorize And eWay"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-27"/>
+            <group value="PayrestrictionCheckExternalPayments"/>
+            <group value="PayrestrictionCheckExternalPaymentsAuthorizeAndEWay"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <!-- Custom Settings for Test -->
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseBeforeTest"/>
+            <actionGroup ref="AdminActivateAuthorizePayment" stepKey="activateAuthorize">
+                <argument name="paymentMethodsAccess" value="paymentMethodCredentialsAuthorize"/>
+            </actionGroup>
+            <actionGroup ref="AdminActivateEWayPayment" stepKey="activateEWay">
+                <argument name="paymentMethodsAccess" value="paymentMethodCredentialsEWay"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!-- Delete Rules and Return Default Settings -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckAuthorizeAndEWay"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingAuthorizePayment" stepKey="returnDefaultSettingAuthorize"/>
+            <actionGroup ref="AdminReturnDefaultSettingEWayPayment" stepKey="returnDefaultSettingEWay"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!-- Create Payment Restriction -->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckAuthorizeAndEWay"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionAddConditionsWithInput" stepKey="AddCond">
+            <argument name="paymentRestriction" value="payrestrictionCheckAuthorizeAndEWay"/>
+            <argument name="actionsConditionsOptions" value="_subtotal"/>
+            <argument name="actionsConditionsOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="payrestrictionCheckAuthorizeAndEWay.conditions"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddConfigurableProductToCart" stepKey="AddConfigProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theMenHoodiesChazKangerooHoodie"/>
+            <argument name="size" value="payrestrictionCheckAuthorizeAndEWay.sizeMH01"/>
+            <argument name="color" value="payrestrictionCheckAuthorizeAndEWay.colorMH01"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveEWay">
+            <argument name="paymentMethods" value="paymentEWay"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveAuthorize">
+            <argument name="paymentMethods" value="paymentAuthorize"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney1">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagOvernightDuffle"/>
+        </actionGroup>
+
+        <!-- Check Payment Methods as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoEWay">
+            <argument name="paymentMethods" value="paymentEWay"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoAuthorize">
+            <argument name="paymentMethods" value="paymentAuthorize"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney2">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>

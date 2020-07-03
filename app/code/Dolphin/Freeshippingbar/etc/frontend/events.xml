@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="core_layout_render_element">
+		<observer instance="Dolphin\Freeshippingbar\Observer\Frontend\Set\Block" name="dolphin_freeshippingbar_observer_frontend_set_block_set_block"/>
+	</event>
+</config>

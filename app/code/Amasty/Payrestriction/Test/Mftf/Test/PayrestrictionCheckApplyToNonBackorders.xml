@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Payrestriction
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="PayrestrictionCheckApplyToNonBackordrers">
+        <annotations>
+            <features value="Restriction Rule Creation"/>
+            <stories value="Create a Restriction Rule via the Admin"/>
+            <title value="Check Payment Restriction Apply This Rule To Non Backordrers"/>
+            <description value="Check Payment Restriction Apply This Rule To Non Backordrers"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="PR-MFTF-16"/>
+            <group value="Amasty"/>
+            <group value="Payrestriction"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="PayrestrictionCheckApplyToNonBackordrers"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="AdminDefaultSettingPayrestriction" stepKey="chooseConfigSettingBeforeTest"/>
+            <!-- Setting Product -->
+            <actionGroup ref="AdminEditAdvancedInventoryQtyProduct" stepKey="ChangingProductQty">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="qty" value="payrestrictionCheckApplyToNonBackordrers.firstQty"/>
+            </actionGroup>
+            <actionGroup ref="AdminEditSettingBackordersProduct" stepKey="ChangingProductBackordersSetting">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="backordersValue" value="payrestrictionCheckApplyToNonBackordrers.backordersValueProduct"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="AdminDeletePaymentRestrictionsRule" stepKey="DeleteCreatedRestrictionsRules">
+                <argument name="paymentRestrictionRule" value="payrestrictionCheckApplyToNonBackordrers"/>
+            </actionGroup>
+            <actionGroup ref="AdminEditAdvancedInventoryQtyProduct" stepKey="ChangingProductQty">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+                <argument name="qty" value="payrestrictionCheckApplyToNonBackordrers.secondQty"/>
+            </actionGroup>
+            <actionGroup ref="AdminReturnDefaultSettingBackordersProduct" stepKey="ReturnDefaultSettingProduct">
+                <argument name="products" value="_theBagJoustDuffleBag"/>
+            </actionGroup>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create Payment Restriction-->
+        <actionGroup ref="AdminCreatePaymentRestrictionRule" stepKey="CreatePaymentRestriction">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyToNonBackordrers"/>
+        </actionGroup>
+        <actionGroup ref="AdminEditPaymentRestrictionBackorders" stepKey="AddBackordersSettingIntoRule">
+            <argument name="paymentRestriction" value="payrestrictionCheckApplyToNonBackordrers"/>
+            <argument name="backordersValue" value="payrestrictionCheckApplyToNonBackordrers.backordersValueRule"/>
+        </actionGroup>
+
+        <!-- Add First Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check No Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage1">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckNoPaymentMethod" stepKey="checkNoCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart">
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Add Second Product to Cart -->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductToCart">
+            <argument name="addProductQty" value="_enterQty2"/>
+            <argument name="products" value="_theBagJoustDuffleBag"/>
+        </actionGroup>
+
+        <!-- Check Payment Method as Guest -->
+        <actionGroup ref="StorefrontCheckoutFillShippingAddressAsGuest" stepKey="FillShippingCheckoutPage2">
+            <argument name="customer" value="defaultCustomerPayrestrictionData"/>
+            <argument name="shippingMethodsOnCheckout" value="BestWayMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckPaymentMethod" stepKey="checkHaveCheckMoney">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+
+    </test>
+</tests>
