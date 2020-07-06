@@ -27,6 +27,9 @@ use Magento\Customer\Model\CustomerRegistry;
 use IWD\SalesRep\Model\User as SalesrepUser;
 use IWD\SalesRep\Model\B2BCustomer as SalesrepCustomer;
 use Psr\Log\LoggerInterface as PsrLogger;
+use Magento\Customer\Model\ForgotPasswordToken\GetCustomerByToken;
+use Magento\Framework\App\ObjectManager;
+
 
 class AccountManagement extends \Magento\Customer\Model\AccountManagement
 {
@@ -49,6 +52,10 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
      * @var \Magento\Framework\App\ResourceConnection
      */
     private $connection;
+    /**
+     * @var GetCustomerByToken
+     */
+    private $getByToken;
 
     public function __construct(
         CustomerFactory $customerFactory,
@@ -75,7 +82,8 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
         ObjectFactory $objectFactory,
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         \Magento\Framework\App\ResourceConnection $connection,
-        \IWD\SalesRep\Model\ResourceModel\B2BCustomer\CollectionFactory $salesrepCustomerCollectionFactory
+        \IWD\SalesRep\Model\ResourceModel\B2BCustomer\CollectionFactory $salesrepCustomerCollectionFactory,
+        GetCustomerByToken $getByToken = null
     ) {
         parent::__construct(
             $customerFactory,
@@ -107,6 +115,9 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
         $this->customerFactory = $customerFactory;
         $this->connection = $connection;
         $this->salesrepCustomerCollectionFactory = $salesrepCustomerCollectionFactory;
+        $objectManager = ObjectManager::getInstance();
+        $this->getByToken = $getByToken
+            ?: $objectManager->get(GetCustomerByToken::class);
     }
 
     /**
@@ -115,9 +126,7 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
     public function resetPassword($email, $resetToken, $newPassword)
     {
         if(!$email) {
-            $method = new \ReflectionMethod($this,'matchCustomerByRpToken');
-            $method->setAccessible(true);
-            $customer = $method->invoke($this, $resetToken);
+            $customer = $this->getByToken->execute($resetToken);
 
             $res = parent::resetPassword($customer->getEmail(), $resetToken, $newPassword);
             $this->changeAdminUserPasswordByEmail($customer->getEmail());
@@ -127,6 +136,10 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
             $this->changeAdminUserPasswordByEmail($email);
         }
 
+        return $res;
+
+        $res = parent::resetPassword($email, $resetToken, $newPassword);
+        $this->changeAdminUserPasswordByEmail($email);
         return $res;
     }
 

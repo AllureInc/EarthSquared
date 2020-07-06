@@ -12,7 +12,7 @@
                 </arguments>
                 <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.massaction" as="grid.massaction">
                     <arguments>
-                        <argument name="massaction_id_field" xsi:type="string">id</argument>
+                        <argument name="massaction_id_field" xsi:type="string">stock_id</argument>
                         <argument name="form_field_name" xsi:type="string">ids</argument>
                         <argument name="use_select_all" xsi:type="string">1</argument>
                         <argument name="options" xsi:type="array">

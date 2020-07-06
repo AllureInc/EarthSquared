@@ -52,7 +52,7 @@ class DefaultQty extends AbstractRenderer
                 $qty
             );
             if ($salableQuantity) {
-                $salableQuantityText = "<span>&nbsp;&nbsp;&nbsp;" . _('Salable Quantity:') . " {$salableQuantity}</span>";
+                $salableQuantityText = "<span>&nbsp;&nbsp;&nbsp;" . 'Salable Quantity:' . " {$salableQuantity}</span>";
             }
         }
 
@@ -79,7 +79,7 @@ class DefaultQty extends AbstractRenderer
      */
     private function getQty($row)
     {
-        if (interface_exists(\Magento\InventorySalesApi\Api\GetProductSalableQtyInterface::class)) {
+        if (interface_exists(Magento\InventorySalesApi\Api\GetProductSalableQtyInterface::class)) {
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $getProductSalable = $objectManager->create(\Magento\InventorySalesApi\Api\GetProductSalableQtyInterface::class);
             $stockId = str_replace('qty', '', $this->getColumn()->getIndex());
