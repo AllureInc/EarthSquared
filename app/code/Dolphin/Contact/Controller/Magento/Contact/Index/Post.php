@@ -2,8 +2,14 @@
 
 namespace Dolphin\Contact\Controller\Magento\Contact\Index;
 
+use Magento\Framework\App\Request\DataPersistorInterface;
+
 class Post extends \Magento\Contact\Controller\Index\Post
 {
+    /**
+     * @var DataPersistorInterface
+     */
+    private $dataPersistor;
 
     /**
      * @var \Magento\Framework\Controller\Result\RedirectFactory
@@ -46,13 +52,15 @@ class Post extends \Magento\Contact\Controller\Index\Post
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        DataPersistorInterface $dataPersistor
     ) {
         $this->resultRedirectFactory = $resultRedirectFactory;
         $this->messageManager = $messageManager;
         $this->inlineTranslation = $inlineTranslation;
         $this->transportBuilder = $transportBuilder;
         $this->scopeConfig = $scopeConfig;
+        $this->dataPersistor = $dataPersistor;
     }
 
     /**
@@ -110,12 +118,15 @@ class Post extends \Magento\Contact\Controller\Index\Post
             $this->messageManager->addSuccess(
                 __('Thanks for getting in touch.  Please allow us up to two working days to respond.  For any urgent queries please email us at sales@earthsquared.com or call us on 01620 892289.')
             );
+            $this->dataPersistor->clear('contact_us');
             return $this->resultRedirectFactory->create()->setPath('contact-us');
         } catch (\Exception $e) {
             $this->inlineTranslation->resume();
             $this->messageManager->addError(
                 __('We can\'t process your request right now. Sorry, that\'s all we know.')
             );
+            $this->dataPersistor->clear('contact_us');
+
             return $this->resultRedirectFactory->create()->setPath('contact-us');
         }
     }

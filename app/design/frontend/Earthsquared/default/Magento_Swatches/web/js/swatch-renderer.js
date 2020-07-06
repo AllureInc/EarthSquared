@@ -12,7 +12,8 @@ define([
     'priceUtils',
     'jquery-ui-modules/widget',
     'jquery/jquery.parsequery',
-    'mage/validation/validation'
+    'mage/validation/validation',
+    'Earthsquared_ProductSkuswitch/js/swatch-custom-validator'
 ], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils) {
     'use strict';
 
@@ -671,7 +672,17 @@ define([
          * @param {Object} config
          * @private
          */
-        _RenderFormInput: function (config) {
+        _RenderFormInput: function (config) {   
+            if($('body').hasClass('catalog-product-view')){         
+            return '<input class="' + this.options.classes.attributeInput + ' super-attribute-select" ' +
+                'name="super_attribute[' + config.id + ']" ' +
+                'type="text" ' +
+                'value="" ' +
+                'data-selector="super_attribute[' + config.id + ']" ' +
+                'data-validate="{\'custom-required-rule\': true}" ' +
+                'aria-required="true" ' +
+                'aria-invalid="false">';
+            } else {
             return '<input class="' + this.options.classes.attributeInput + ' super-attribute-select" ' +
                 'name="super_attribute[' + config.id + ']" ' +
                 'type="text" ' +
@@ -680,6 +691,7 @@ define([
                 'data-validate="{required: true}" ' +
                 'aria-required="true" ' +
                 'aria-invalid="false">';
+            }
         },
 
         /**
@@ -1320,7 +1332,9 @@ define([
                 }
 
                 if (isInitial) {
-                    $(this.options.mediaGallerySelector).AddFotoramaVideoEvents();
+                    if ($.isFunction($(this.options.mediaGallerySelector).AddFotoramaVideoEvents)) {
+                        $(this.options.mediaGallerySelector).AddFotoramaVideoEvents();
+                    }
                 } else {
                     $(this.options.mediaGallerySelector).AddFotoramaVideoEvents({
                         selectedOption: this.getProduct(),

@@ -10,9 +10,10 @@
                 <price>5.00</price>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
 				<infotext>flatrate2</infotext>
-                <handling_type>F</handling_type>
+                <handling_type>F</handling_type>                
 			 </flatrate1>
 			 <flatrate2>
                 <active>0</active>
@@ -22,6 +23,7 @@
                 <price>5.00</price>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
 				<infotext>flatrate2</infotext>
                 <handling_type>F</handling_type>
@@ -35,6 +37,7 @@
                 <title>Flat Rate</title>
 				<infotext></infotext>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
             </flatrate3>
@@ -47,6 +50,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
             </flatrate4>
@@ -59,6 +63,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate5>
@@ -71,6 +76,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate6>
@@ -83,6 +89,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate7>
@@ -95,6 +102,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate8>
@@ -107,6 +115,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate9>
@@ -119,6 +128,7 @@
 				<infotext></infotext>
                 <title>Flat Rate</title>
                 <type>I</type>
+                <shippinginfo></shippinginfo>
                 <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
                 <handling_type>F</handling_type>
 			</flatrate10>

@@ -6,7 +6,7 @@ var config = {
             },
             'Magento_Swatches/js/swatch-renderer': {
                 'Earthsquared_ProductSkuswitch/js/model/swatch-skuswitch': true
-            }
+            }                      
         }
  }
 };

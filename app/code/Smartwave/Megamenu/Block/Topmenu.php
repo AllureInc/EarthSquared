@@ -168,7 +168,7 @@ class Topmenu extends \Magento\Framework\View\Element\Template
 
                     $html .= '<li class="ui-menu-item ' . $item_class . '">';
                     if (count($sub_children) > 0) {
-                        $html .= '<div class="open-children-toggle"></div>';
+                        //$html .= '<div class="open-children-toggle"></div>';
                     }
                     if ($level == 1 && $sw_menu_icon_img) {
                         $html .= '<div class="menu-thumb-img"><a class="menu-thumb-link" href="' . $this->_categoryHelper->getCategoryUrl($child) . '"><img src="' . $this->_helper->getBaseUrl() . 'catalog/category/' . $sw_menu_icon_img . '" alt="' . $child->getName() . '"/></a></div>';
@@ -271,7 +271,7 @@ class Topmenu extends \Magento\Framework\View\Element\Template
 
                 $html .= '<li class="ui-menu-item ' . $item_class . $sw_menu_float_type . '">';
                 if (count($children) > 0) {
-                    $html .= '<div class="open-children-toggle"></div>';
+                    //$html .= '<div class="open-children-toggle"></div>';
                 }
                 $categoryload = $this->_categoryFactory->create()->load($category->getId());
 

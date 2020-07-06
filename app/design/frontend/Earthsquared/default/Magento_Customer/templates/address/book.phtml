@@ -58,7 +58,9 @@
                 </div>
             </div>
         <?php endif ?>
-		
+
+		<?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Address\Grid")->setTemplate("Magento_Customer::address/grid-custom.phtml")->toHtml();?>
+
 		<div class="box new-address">
 				<span class="plus_sign">+</span>
                 <span><?= $block->escapeHtml(__('Add new address')) ?></span>

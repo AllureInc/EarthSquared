@@ -6,23 +6,45 @@
 
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
-<?php $helper = $this->helper('Earthsquared\Customize\Helper\Data'); 
+<?php $helper = $this->helper('Earthsquared\Customize\Helper\Data');
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();    
+$stockItem = $objectManager->get('\Magento\CatalogInventory\Api\StockRegistryInterface'); 
 ?>
+<?php $qtyinc = '';
+$qtyvalue = '';
+ ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to my Bag'); ?>
 <?php if ($_product->isSaleable()) :?>
 <div class="box-tocart trade">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()) :?>        
-          
+<?php
+        if($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+              $_children = $_product->getTypeInstance()->getUsedProducts($_product);
+              foreach ($_children as $child){ 
+                //$product = $objectManager->get('Magento\Catalog\Model\Product')->load($child->getId());          
+                $productStock = $stockItem->getStockItem($child->getId());    
+                $qtyinc = $productStock->getQtyIncrements();            
+              }           
+        } else { 
+                $productStock = $stockItem->getStockItem($_product->getId());    
+                $qtyinc = $productStock->getQtyIncrements();
+        }
+        ?>           
             <div class="field qty">
               <label class="label" for="qty"><span><?= $block->escapeHtml(__('Quantity')) ?></span></label>
               <div class="control">
+                <?php if($qtyinc == '') {
+                    $qtyvalue = $block->getProductDefaultQty();
+                } else {
+                      $qtyvalue = $qtyinc;
+                } ?>                
                   <input type="number"
                          name="qty"
                          id="qty"
                          min="0" 
-                         value="<?= $block->getProductDefaultQty() * 1 ?>"
+                         value="<?= $qtyvalue * 1 ?>"
                          title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
                          class="input-text qty"
                          data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"

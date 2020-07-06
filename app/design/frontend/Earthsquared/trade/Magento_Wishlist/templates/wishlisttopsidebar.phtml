@@ -31,7 +31,12 @@ $wishlistHelper = $this->helper(\Magento\Wishlist\Helper\Data::class);
                                         <span data-bind="html: product_name"></span>
                                     </a>
                                 </strong>
-
+                                <div>
+                                    <!-- ko if: product_has_required_options && attribute-->
+                                    <label><?= $block->escapeHtml(__('Color')) ?></label>
+                                    <span data-bind="html: attribute"></span>
+                                    <!-- /ko -->
+                                </div>
                             </div>
                             <div class="price-addto">
                                 <div data-bind="html: product_price"></div>
@@ -58,6 +63,10 @@ $wishlistHelper = $this->helper(\Magento\Wishlist\Helper\Data::class);
                         </div>
                     </li>
                 </ol>
+                <div class="wishlist-total"> <!-- ko if: wishlist().subtotal -->
+                    <div class="wishlist-title"><?= $block->escapeHtmlAttr(__('Subtotal')) ?></div>
+                    <div class="wishlist-subtotal"><span data-bind="text: wishlist().subtotal" class="subtotal"></span></div>
+            <!-- /ko --></div>
                 <div class="actions-toolbar no-display" data-bind="css: {'no-display': null}">
                     <div class="primary">
                         <a class="action details"

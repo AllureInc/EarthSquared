@@ -10,6 +10,7 @@ class FontFamily implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return [
+            ['value' => 'Website Default Font', 'label' => __('Website Default Font')],
             ['value' => 'Open Sans', 'label' => __('Open Sans')],
             ['value' => 'Lato', 'label' => __('Lato')],
             ['value' => 'Roboto', 'label' => __('Roboto')],
@@ -24,6 +25,7 @@ class FontFamily implements \Magento\Framework\Option\ArrayInterface
     public function toArray()
     {
         return [
+            'Website Default Font' => __('Website Default Font'),
             'Open Sans' => __('Open Sans'),
             'Lato' => __('Lato'),
             'Roboto' => __('Roboto'),

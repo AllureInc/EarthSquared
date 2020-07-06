@@ -63,7 +63,10 @@
     padding-left: 16px;    
 }
 #checkout.checkout-container.tradeopc .opc-block-summary .items-in-cart{
-    margin-top:120px;
+    margin-top:40px;
+}
+body.shipping #checkout.checkout-container.tradeopc .opc-block-summary .items-in-cart{
+	margin-top: 127px;
 }
 @media only screen and (max-width: 767px){
 	.checkout-billing-address .field-select-billing #billing_address_id{
@@ -79,10 +82,17 @@
 	#shipping.checkout-shipping-address #checkout-step-shipping .field.addresses .select-shipping-address-dd, .checkout-billing-address .field-select-billing select{
 		background-size: 23px;
     	background-position: 97%;
+        font-size: 14px;
+    	line-height: 100%;
+    	color: #4D4D4D;
 	}
 	#shipping.checkout-shipping-address #checkout-step-shipping .add-new-address-form-inline button.action-add-new-shipping{
 		width: 100%;
 		margin-left: 0;
+	    font-size: 15px;
+	    line-height: 100%;
+	    text-align: center;
+	    color: #757575;		
 	}
 	.add-new-address-form-inline .action-add-new-shipping:before{
 		    padding: 0px;
@@ -122,7 +132,7 @@
     		top: -5px;
 	}
 	#billing-address-same-as-shipping-shared{
-		    top: 1px !important;		    
+		    top: -3px !important;		    
 	}
 	#checkout.tradeopc #co-payment-form .field.choice:not(.payment-method-title){
 		    margin: 0px 0px 10px 0px;
@@ -135,4 +145,10 @@
 	#checkout .minicart-items{
 		display: block !important;
 	}
+}
+
+@media only screen and (max-width: 768px){
+body.shipping #checkout.checkout-container.tradeopc .opc-block-summary .items-in-cart {
+    margin-top: 25px;
+}
 }

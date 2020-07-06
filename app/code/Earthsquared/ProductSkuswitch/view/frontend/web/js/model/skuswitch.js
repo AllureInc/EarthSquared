@@ -14,9 +14,11 @@ define([
  
             if(simpleSku != '') {
                 $('div.product-info-main .psku span').html(simpleSku);
+                $('div.product-info-main .psku').html(simpleSku);
             }
             if(simpleName != '') {
                 $('div.product-info-main .page-title-wrapper.product h1 span').html(simpleName);
+                $('div.product-info-main .am-title').html(simpleName);
             }            
             return result;
         });

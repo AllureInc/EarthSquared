@@ -48,6 +48,11 @@ class Block implements \Magento\Framework\Event\ObserverInterface
                 $sub_position = 'after="-"';
             }
 
+            if ($barposition == 'Order Summary') {
+                $position = 'cart.summary';
+                $sub_position = 'after="-"';
+            }
+
             $layout = $observer->getEvent()->getLayout();
 
             if ($layout->hasElement($position)) {

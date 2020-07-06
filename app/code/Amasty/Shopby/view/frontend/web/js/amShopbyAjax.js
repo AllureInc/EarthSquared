@@ -297,7 +297,7 @@ define([
 
             var productList = $(this.selectors.products_wrapper);
             if (this.options.scrollUp && productList.length) {
-                $(document).scrollTop(productList.offset().top);
+                //$(document).scrollTop(productList.offset().top);
             }
             $('.amshopby-filters-bottom-cms').remove();
             productList.append(data.bottomCmsBlock);

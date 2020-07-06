@@ -1,14 +1,19 @@
-.customer-account-login .copyright .developed,.customer-account-create .copyright .developed{
+.customer-account-login .copyright .developed,.customer-account-create .copyright .developed , .customer-account-forgotpassword  .copyright .developed{
     padding-left: 25px;
 }
 
+
 /* customer login us page */
-.customer-account-login #maincontent{
-     display: inline-block;
-    align-items: center;
+.customer-account-login #maincontent {
+    flex-flow: column;
+    align-items: center;display: flex;
     justify-content: center;
 }
-.customer-account-login	.login-container .block.block-customer-login {max-width: 340px;    margin-top: 26px !important; float: none;    padding: 0;    margin: auto;}
+.customer-account-login #maincontent .columns {
+    max-width: 340px;
+    width: 100%;
+}
+.customer-account-login	.login-container .block.block-customer-login { margin-top: 26px !important; }
 .customer-account-login .page-title-wrapper {    display: none;}
 .login-container .block.block-customer-login {    width: 100%;margin: 0;}
 .block.block-customer-login .block-title {    text-align: center;    border: none;margin-bottom: 5px;}
@@ -32,8 +37,8 @@ div#checkoutguestlogin .actions-toolbar .primary button {    margin-top: 10px;}
 .customer-account-login .field.password {    margin-bottom: 0;}
 .customer-account-login .actions-toolbar .primary {    width: 100%;    margin-top: 0;}
 .customer-account-login .actions-toolbar .secondary { width: auto;   float: right;}
-.customer-account-login a.action.remind {    font-size: 12px;    font-family: Futura Bk BT Medium;     letter-spacing: 0.01em; color: #4D4D4D;}
-.customer-account-login .actions-toolbar .primary button {    background: #4D4D4D !important;    width: 100%;
+.customer-account-login a.action.remind {    font-size: 13px;    font-family: Futura Bk BT Medium;     letter-spacing: 0.01em; color: #4D4D4D;}
+.customer-account-login .actions-toolbar .primary button {  font-size: 15px;  background: #4D4D4D !important;    width: 100%;
     height: 44px; letter-spacing: 0.04em;}
 .block.block-customer-login {    margin-bottom: 0;}
 .login-container .fieldset:after {display:none;}
@@ -41,7 +46,7 @@ div#checkoutguestlogin .actions-toolbar .primary button {    margin-top: 10px;}
     margin-top: 9px;    margin: 0 auto;}
 .block.block-new-customer p {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;}
 .block.block-new-customer p a {    font-size: 14px;    font-family: Futura Bk BT Medium;    color: #4D4D4D;    margin-left: 5px;}
-.customer-account-login header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
+.customer-account-login header.page-header {    background: #fff;    padding-bottom: 15px;}
 .customer-account-login footer.page-footer {    display: none;}
 .customer-account-login ul.footer-checkout {    display: block;    float: right;padding: 0;margin-bottom: 0;}
 .customer-account-login ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
@@ -61,6 +66,7 @@ a.backlink:before {
     margin-right: 7px;
     background-position: 0px 3px;
 }
+
 a.backlink { font-size: 14px;    font-family: Futura Bk BT;    color: #9E9E9E;    position: relative;    top: 10px;}
 .section_phone a.phonelink {    font-size: 14px;    font-family: Futura Bk BT;    color: #4D4D4D;
     margin-left: 5px;}
@@ -138,7 +144,7 @@ section#slider_demo .item a {
 .customer-account-create ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
 .customer-account-create ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
 .customer-account-create  header .section3 {    display: none;}
-.customer-account-create header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
+.customer-account-create header.page-header {    background: #fff;    padding-bottom: 15px;}
 .customer_account_create_top_part .item a.firest:before {content: '';    background: url(../images/worldwide.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;    display: inline-block;float: left;
     margin-right: 15px;    background-position: 0;}
 .customer_account_create_top_part .item a.second:before {content: '';    background: url(../images/art-and-design.png) no-repeat;    width: 35px;    height: 35px;    background-size: 100%;float: left;    display: inline-block;    margin-right: 15px;    background-position: 0;}
@@ -148,7 +154,7 @@ section#slider_demo .item a {
 .customer-account-create .form.create.account h3 {  margin-bottom: 20px; padding-top: 7px; font-size: 13px;    text-transform: uppercase;
     font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.04em;    border: none;
     position: relative;    text-align: center;}
-.customer-account-create .form.create.account input { font-family: Futura Bk BT;   height: 60px;    background: #FFFFFF;
+.customer-account-create .form.create.account input { font-family: Futura Bk BT; color: #9E9E9E;  height: 60px;    background: #FFFFFF;
     padding: 20px;    border: 1px solid #E0E0E0; font-size: 12px;}
 .customer-account-create .form.create.account .field.field-name-firstname {    width: 161px;    float: left;}
 .customer-account-create .form.create.account .field.field-name-lastname {    width: 161px;  float: right;}
@@ -302,7 +308,7 @@ div#checkoutguestlogin .actions-toolbar .primary button{
     font-size: 12px;    color: #4D4D4D;}
 .account .table-wrapper thead tr th {  padding-left: 14px;
     padding-top: 11px;  border: none;    font-family: Futura Bk BT;border-right: none;
-    font-size: 12px;    font-weight: 600;  background-color: #fff; color: #616161;}
+    font-size: 13px;    font-weight: 600;  background-color: #fff; color: #616161;}
 .account .data.table .col.actions a {    font-family: Futura Bk BT;    font-size: 12px; color: #4D4D4D !important;}
 .account .table-wrapper tbody tr td {    padding-left: 14px;    padding-top: 12px;    font-family: Futura Bk BT;    border-right: none;
     font-size: 12px;    color: #616161;}
@@ -486,32 +492,77 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .block.block-addresses-default .box strong.box-title span {    background: #4D4D4D;    padding: 4px 6px;
     color: #fff;    font-family: Futura Bk BT;    font-size: 11px !important;    letter-spacing: 1px;
     font-weight: normal;}
-.block.block-addresses-default .box address {    font-family: Futura Bk BT;    font-size: 14px !important;
+.block.block-addresses-default .box address span.add-name {    font-size: 12px;}
+.block.block-addresses-default .box address {    font-family: Futura Bk BT;    font-size: 11px !important;
     color: #757575;}
-.block.block-addresses-default .box a.action.edit span {    font-family: Futura Bk BT;   font-size: 14px !important;
-    color: #757575;}
-.block.block-addresses-default .box.new-address {    clear: none !important;    height: 178px;    text-align: center;    padding-top: 62px;}
+.block.block-addresses-default .box a.action span {    font-family: Futura Bk BT;    font-size: 12px !important;    color: #4D4D4D;}
+.block.block-addresses-default .box.new-address {   clear: none !important;    height: 204px;    padding-top: 20px;    margin-bottom: 40px;
+    text-align: left;}
+.block.block-addresses-default .box.new-address:last-child {    clear: none !important;    height: 178px;    text-align: center;    padding-top: 62px;}
+
 .block.block-addresses-default .box.new-address span {    width: 100%;    float: left;}
 .block.block-addresses-default .box.new-address span.plus_sign {    color: #F87883; font-weight: bold;    font-size: 18px;    margin-bottom: 5px;}
 .form-address-edit .actions-toolbar {    float: left;    width: 100%;}
 .form-address-edit input {    background: #FFFFFF;    padding: 20px;    font-family: Futura Bk BT;    height: 60px;    padding-left: 20px;
     padding-right: 20px;    font-size: 12px;    border: 1px solid #E0E0E0;}
-.form-address-edit select { height: 60px;    background: #FFFFFF;    padding: 20px;  border: 1px solid #E0E0E0;}
+.form-address-edit select {    height: 60px;      padding: 20px;    font-family: Futura Bk BT;    border: 1px solid #E0E0E0;
+    font-size: 12px;    color: #4D4D4D;}
 .form-address-edit .field {    width: 383px;    float: left;    margin-right: 20px;margin-bottom: 40px;}
-.form-address-edit .field.street {    width: 784px;    float: left;}
+.form-address-edit .field.street {    width: 784px;    float: left; position: relative;}
+.form-address-edit div#street_1-error {    position: absolute;    bottom: -24px;}
 .form-address-edit .field.street input#street_2 {    width: 383px;    float: right;}
 .form-address-edit .field.street input#street_1 {    width: 383px;    float: left;}
 .form-address-edit .field.company {    width: 784px;}
 .form-address-edit fieldset.fieldset {    width: 100%;    float: left;margin-bottom: 0;}
 .form-address-edit .field.choice.set.billing {  margin-bottom: 30px;  clear: both;}
-.form-address-edit .field.choice input {  height: 19px;    width: 19px;    margin-top: -3px;    float: left;}
+.form-address-edit .field.choice input {  
+	margin-top: -3px;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #4d4d4d;
+    top: 4px;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    outline: none;
+    margin: 0!important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0px;
+    border: 1px solid #BDBDBD;
+    min-width: 18px;	
+    padding:0; 
+}
+.form-address-edit .field.choice input:checked{
+	background-color: #4d4d4d;
+    color: #fff;
+    border: 0px !important;
+    text-align: center;  
+    top: 0;  
+}
+.form-address-edit .field.choice input:checked:after{
+	background: url(../images/tick.png) no-repeat;
+    content: '';
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 100%;
+    text-align: center;
+    background-position: 0 2px;
+}
 .form-address-edit  .field.choice span {    font-family: Futura Bk BT;  font-size: 14px !important;}
 .form-address-edit .primary {    width: 383px;}
 .form-address-edit button.action.primary span {    font-size: 15px !important;}
 .form-address-edit button.action.primary {    background: #4D4D4D !important;    width: 383px;   height: 60px;line-height: 15px !important;}
 .message.info {    float: left;    width: 100%;}
 .box.new-address {    cursor: pointer;}
+.block.block-addresses-default .box a.action {    float: left;    margin-right: 20px;}
+.block.block-addresses-default .box.new-address .box-actions .action:after { display:none;}
 .block.block-addresses-default .box a.action.edit span:before {    content: '';    background: url(../images/pen.png) no-repeat;   background-position: 0; background-size: 100%;
+    width: 12px;    padding-left: 15px;    margin-right: 5px;    height: 12px;}
+.block.block-addresses-default .box a.action.delete span:before {    content: '';    background: url(../images/garbage.png) no-repeat;   background-position: 0; background-size: 100%;
     width: 12px;    padding-left: 15px;    margin-right: 5px;    height: 12px;}
 .block.block-addresses-default {    margin-top: 18px;    padding-left: 10px;}
 .form-address-edit .actions-toolbar .primary {    display: inline-block;    width: 100%;}
@@ -549,14 +600,21 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 .customer-account-forgotpassword ul.footer-checkout li a {    font-size: 14px;    color: #4D4D4D;}
 .customer-account-forgotpassword ul.footer-checkout li {    list-style-type: none;margin-left: 25px; display: inline-block;}
 .customer-account-forgotpassword  header .section3 {    display: none;}
-.customer-account-forgotpassword header.page-header {    background: #FAFAFA;    padding-bottom: 15px;}
+.customer-account-forgotpassword header.page-header {    background: #fff;    padding-bottom: 15px;}
 
 .customer-account-forgotpassword h1.page-title {    margin-bottom: 0;}
-.customer-account-forgotpassword .page-title-wrapper span.base {    font-size: 12.5px !important;    text-transform: uppercase;    
-	font-family: Futura Bk BT Medium;    color: #4D4D4D;    letter-spacing: 0.0648em;}
+.customer-account-forgotpassword .page-title-wrapper span.base {
+    font-size: 12px !important;
+    text-transform: uppercase;
+    font-family: Futura Bk BT Medium;
+    color: #4D4D4D;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
 .customer-account-forgotpassword main#maincontent {    max-width: 380px;    margin-top: 87px;}
 .customer-account-forgotpassword form {    min-width: 100% !important;}
-.customer-account-forgotpassword p a {    color: #4D4D4D;    font-family: Futura Bk BT;    font-size: 14.7px;    letter-spacing: 0.17px;}
+.customer-account-forgotpassword p a {    color: #4D4D4D;    font-family: Futura Bk BT Medium;    font-size: 14px;}
+.customer-account-forgotpassword p a b {    font-weight: 500 !important;}
 .customer-account-forgotpassword form input {   font-family: Futura Bk BT; height: 60px;    padding-left: 20px;    padding-right: 20px;    font-size: 12px;}
 .customer-account-forgotpassword .primary {    width: 100%;}
 .customer-account-forgotpassword fieldset.fieldset {   margin-bottom: 29px;}
@@ -631,9 +689,12 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
     a.backlink{
         color: #757575;
     }
-    form#login-form fieldset.fieldset.login div{
-        margin-top: 10px;
-    }    
+form#login-form fieldset.fieldset.login div {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+}  
     form#login-form fieldset.fieldset.login div.email{
         margin-bottom: 30px;
     }
@@ -717,16 +778,17 @@ content: '';  background: url(../images/view_oredr.svg) no-repeat;    width: 14p
 .block-collapsible-nav .content li:nth-child(2):before {    content: '';    background: url(../images/heart.png) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(3):before {    content: '';    background: url(../images/address.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/address.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(4):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(5):before {    content: '';    background: url(../images/information.png) no-repeat;    width: 16px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
 
-.block-collapsible-nav .content li:nth-child(5):before {    content: '';    background: url(../images/manage_payment.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
+.block-collapsible-nav .content li:nth-child(3):before {    content: '';    background: url(../images/manage_payment.svg) no-repeat;    width: 18px;    height: 56px;    background-size: 100%;    display: inline-block;   float: left;
     background-position: 0 20px;  margin-left: 20px;   margin-right: 10px;}
-	
 
+.block-collapsible-nav .content li:nth-child(6):before {    content: '';    background: url(../images/logout.png) no-repeat;    width: 18px;
+    height: 56px;    background-size: 100%;    display: inline-block;    float: left;    background-position: 0 20px;    margin-left: 20px; margin-right: 10px;}
 
 /* order view page */
 .sales-order-view h1.page-title {    float: left;}
@@ -748,6 +810,10 @@ table#my-orders-table td.col.sku {    display: none;}
 .sales-order-view  .right_part table { border: 1px solid #EEEEEE;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table th { font-weight: 500 !important;    font-size: 12px !important; text-transform: uppercase;}
 .sales-order-view  .right_part th {    text-align: center;    padding: 23px 18px;}
+.order-details-items .item-options dt {    font-weight: normal;}
+.order-details-items .items-qty .item span.content {    font-family: Futura Bk BT;    font-style: normal;  font-weight: normal;    font-size: 13px;
+    color: #4D4D4D;}
+.sales-order-view .table-wrapper.order-items table#my-orders-table td dl.item-options {    font-size: 13px;    color: #757575;  font-family: Futura Bk BT;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td .product {    font-weight: 500 !important;font-size: 14px !important; color: #4D4D4D;}
 .account .table-wrapper tbody tr td.col.qty span.title {    display: none;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td span.price {font-weight: 500 !important;font-size: 14px !important; color: #4D4D4D;}
@@ -755,14 +821,22 @@ table#my-orders-table td.col.sku {    display: none;}
 .sales-order-view .table-wrapper.order-items table#my-orders-table td.subtotal span.price {    color: #212121;}
 .sales-order-view .actions-toolbar.order-actions-toolbar {    width: 66%;    position: absolute;  top: 52px;  left: 6px;  text-align: right;}
 .sales-order-view a.action.order {    font-size: 14px !important;    color: #4D4D4D;    border: 1px solid #4D4D4D;  padding: 10px 22px;    margin-right: 0;}
-.sales-order-view  .right_part th {    text-align: left;    text-transform: uppercase;    font-size: 12px;
+.sales-order-view  .right_part th {   color: #4D4D4D; text-align: left;    text-transform: uppercase;    font-size: 12px;
     font-weight: normal;    font-family: Futura Bk BT;}
 .sales-order-view  .right_part th strong {    font-weight: normal;}
-.sales-order-view  .right_part td {    text-align: right;    padding: 23px 18px;    font-size: 15px;    font-family: Futura Bk BT;
-    letter-spacing: 0.04em;    text-transform: uppercase;    color: #212121;}
+.sales-order-view .right_part tr.discount span.price {
+    color: #4CAF50;
+}
+.sales-order-view  .right_part td {    text-align: right;    padding: 23px 18px;    font-size: 14px;    font-family: Futura Bk BT;
+    letter-spacing: 0.04em;    text-transform: uppercase;    color: #4D4D4D;}
 .sales-order-view  .right_part tr {    border-bottom: 1px solid #EEEEEE;}
-.sales-order-view .block-order-details-view .box-title span {    text-transform: uppercase;    font-size: 11px !important;    font-weight: normal;
-    font-family: Futura Bk BT;}
+.sales-order-view .block-order-details-view .box-title span {
+    text-transform: uppercase;
+    font-size: 11px !important;
+    color: #4D4D4D;
+    font-weight: 500;
+    font-family: Futura Bk BT;
+}
 .account .column.main .block.block-order-details-view .block-content:not(.widget) .box .box-content {    color: #757575;    font-family: Futura Bk BT;
     font-style: normal;    font-weight: normal;    font-size: 12px;    line-height: 20px;}
 .sales-order-view .right_part h1 {    font-style: normal;    font-weight: 500;    font-size: 15px;    letter-spacing: 0.04em;
@@ -824,7 +898,11 @@ table#my-orders-table td.col.sku {    display: none;}
 
 .order-products-toolbar.toolbar.bottom {    border-top: 1px solid #EEEEEE;    padding-top: 25px;}
 .order-products-toolbar.toolbar.bottom p.toolbar-amount {    display: none;}
-.order_count {    position: absolute;    top: 8%;    left: 16%;}
+.order_count {
+    position: absolute;
+    top: 55px;
+    left: 22%;
+}
 .order-products-toolbar .pages .item {    margin: 0 8px 0 16px;    font-size: 15px;}
 .order-products-toolbar .pages .item strong.page {    color: #fff;    width: 30px;    height: 30px;    font-size: 15px;    border-radius: 2px;
     font-weight: normal;    background: #757575;    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.12);}
@@ -867,7 +945,7 @@ background: url(../images/right-arrow.png) no-repeat;
 .order_count {
     position: absolute;
     top: 10px;
-    left: 32%;
+    left: 47%;
 }
 section#slider_demo .item {
     display: inline-block;padding-left: 15px;
@@ -900,6 +978,7 @@ section#slider_demo .item {
 .account.page-layout-2columns-left .sidebar-main {
     margin-top: unset;
     order: 0;
+    z-index: 1;
 }
 .customer_account_create_top_part {
     margin-bottom: 31px;
@@ -969,7 +1048,7 @@ form#login-form fieldset.fieldset.login div.secondary {
     font-size: 16px;
     font-weight: bold;
 }
-.block.block-addresses-default .box.new-address {
+.block.block-addresses-default .box.new-address:last-child {
     height: 114px !important;
     padding-top: 30px !important;
 }
@@ -1051,11 +1130,17 @@ form#login-form fieldset.fieldset.login div.secondary {
     padding-top: 0;
 }
 .customer-account-create .header.content .section1 {
-    top: 00;
+    top: 8px;
     left: 24px;
 }
 .form_main_part {
     padding-left: 3px;
 
+}
+.customer-account-create .form.create.account h3 {
+    font-size: 12px;font-weight: 500;
+}
+.customer-account-create div#password-strength-meter-container {
+    display: none;
 }
 }

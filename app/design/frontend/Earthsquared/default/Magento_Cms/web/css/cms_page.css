@@ -195,6 +195,18 @@ img.contain_image {    height: 61px;}
 .cms-our-story .breadcrumbs , .cms-bespoke-white-label-projects .breadcrumbs {  display: none !important;}
 .cms-our-story  .page-title , .cms-bespoke-white-label-projects .page-title {    margin-bottom: 40px;}	
 .about_info ul li {    padding: 12px;}
+
+.cms-delivery-details .breadcrumbs , .cms-privacy-policy .breadcrumbs , .cms-terms-conditions .breadcrumbs {
+    display: none !important;
+}
+.cms-delivery-details .news_bar , .cms-privacy-policy .news_bar , .cms-terms-conditions .news_bar , .contact-index-index .news_bar , 
+ .cms-fair-trade-information .news_bar ,  .cms-trade-fairs .news_bar {
+    display: flex;
+}
+.cms-trade-fairs .about_us_main {
+    padding: 0;
+}
+
 }
 
 @media screen and (max-width: 576px) {

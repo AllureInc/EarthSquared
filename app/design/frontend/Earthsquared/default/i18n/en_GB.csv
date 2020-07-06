@@ -4,9 +4,14 @@
 "Stored Payment Methods","Manage Payments"
 "Shipping & Handling","Delivery"
 "Order Total","Grand Total"
+"Tax","Vat"
+"First Name","First Name *",module,Magento_Checkout
+"Last Name","Last Name *",module,Magento_Checkout
 "Company","Company Name",module,Magento_Checkout
-"Street Address","Address",module,Magento_Checkout
-"%1: Line %2","Address Line %2",module,Magento_Checkout
-"State/Province","County/State/Province",module,Magento_Checkout
-"Zip/Postal Code","Postcode/ZIP",module,Magento_Checkout
-"Phone Number","Telephone",module,Magento_Checkout
+"Street Address","Address *",module,Magento_Checkout
+"%1: Line %2","Address Line %2 *",module,Magento_Checkout
+"State/Province","County/State/Province *",module,Magento_Checkout
+"Zip/Postal Code","Postcode/ZIP *",module,Magento_Checkout
+"Phone Number","Telephone *",module,Magento_Checkout
+"City","City *",module,Magento_Checkout
+"Thanks for contacting us with your comments and questions. We'll respond to you very soon.","Thanks for getting in touch.  Please allow us up to two working days to respond.  For any urgent queries please email us at sales@earthsquared.com or call us on 01620 892289."

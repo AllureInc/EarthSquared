@@ -23,6 +23,16 @@
 		<p></p>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
+        <div class="field nature_of_business">
+            <div class="control">
+                <select name="nature_of_business" id="nature_of_business">
+                    <option value="0"><?= __('Nature of Business') ?></option>
+                    <option value="1"><?= __('Shop') ?></option>
+                    <option value="2"><?= __('eCommerce') ?></option>
+                    <option value="3"><?= __('Other') ?></option>
+                </select>
+            </div>
+        </div>
         <?= $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Name::class)->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
         
 
@@ -161,16 +171,7 @@
             </div>
         </div>
         
-        <div class="field nature_of_business">
-            <div class="control">
-                <select name="nature_of_business" id="nature_of_business">
-					<option value="0"><?= __('Select') ?></option>
-					<option value="1"><?= __('Shop') ?></option>
-					<option value="2"><?= __('eCommerce') ?></option>
-					<option value="3"><?= __('Other') ?></option>
-                </select>
-            </div>
-        </div>
+        
         
         <div class="field nature_of_business_other" style="display:none;">
             <div class="control">

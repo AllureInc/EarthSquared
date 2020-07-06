@@ -9,6 +9,35 @@ use Magento\Framework\View\Element\Html\Select;
 class ThresholdType extends Select
 {
     /**
+     * @param Context  $context
+     * @param Registry $coreRegistry
+     * @param array    $data
+     */
+    public function __construct(
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $groupCollectionFactory,
+        array $data = []
+    ) {
+        $this->groupCollectionFactory = $groupCollectionFactory;
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Retrieve customer group collection
+     *
+     * @return GroupCollection
+     */
+    public function getCustomerGroupCollection()
+    {
+        if (!$this->hasData('customer_group_collection')) {
+            $collection = $this->groupCollectionFactory->create();
+            $this->setData('customer_group_collection', $collection);
+        }
+
+        return $this->getData('customer_group_collection');
+    }
+
+    /**
      * Set "name" for <select> element
      *
      * @param string $value
@@ -38,18 +67,24 @@ class ThresholdType extends Select
     public function _toHtml(): string
     {
         if (!$this->getOptions()) {
-            $this->setOptions($this->getSourceOptions());
+            $this->setOptions($this->getCustomerGroup());
         }
         return parent::_toHtml();
     }
 
-    private function getSourceOptions(): array
+    public function getCustomerGroup()
     {
-        return [
-            ['label' => 'NOT LOGGED IN', 'value' => 'NOT LOGGED IN'],
-            ['label' => 'General', 'value' => 'General'],
-            ['label' => 'Wholesale', 'value' => 'Wholesale'],
-            ['label' => 'Retailer', 'value' => 'Retailer'],
-        ];
+        $customerGroupArr = [];
+        $customerGroupCollection = $this->getCustomerGroupCollection();
+        if ($customerGroupCollection != '') {
+            foreach ($customerGroupCollection as $customerGroup) {
+                $customerGroupArr[] = ['label' => $customerGroup->getCode(), 'value' => $customerGroup->getCode()];
+            }
+            $customerGroupArr[] = ['label' => "All Groups", 'value' => "All Groups"];
+        } else {
+            $customerGroupArr[] = ['label' => 'NOT LOGGED IN', 'value' => 'NOT LOGGED IN'];
+        }
+
+        return $customerGroupArr;
     }
 }

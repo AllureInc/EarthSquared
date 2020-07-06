@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Address\Grid $block */
+$customerAddressView = $block->getData('customer_address');
+$blockObj= $block->getLayout()->createBlock('Magento\Customer\Block\Address\Book');
+?>
+<?php if ($_pAddsses = $block->getAdditionalAddresses()) : ?>
+	<?php foreach ($_pAddsses as $address) : ?>
+		<div class="box new-address">
+			<div class="box-content">
+				<address>
+                        <?= $blockObj->getAddressHtml($blockObj->getAddressById($address->getId())) ?>
+                    </address>
+			</div>
+                <div class="box-actions">
+                    <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $address->getId()])) ?>">
+                        <span><?= $block->escapeHtml(__('Edit')) ?></span>
+                    </a>
+                    <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($address->getId()) ?>"><span><?= $block->escapeHtml(__('Remove')) ?></span></a>
+                </div>
+        </div>
+		<?php endforeach; ?>
+	<?php else : ?>
+		<div class="box new-address">
+			<div class="box-content">
+            <p class="empty"><?= $block->escapeHtml(__('You have no other address entries in your address book.')) ?></p>
+            </div>
+        </div>
+        <?php endif ?>
+<script type="text/x-magento-init">
+    {
+        ".page-main": {
+            "address": {
+                "deleteAddress": "div a.delete[role='delete-address']",
+                "deleteUrlPrefix": "<?= $block->escapeJs($block->escapeUrl($block->getDeleteUrl())) ?>id/",
+                "addAddress": "button[role='add-address']",
+                "addAddressLocation": "<?= $block->escapeJs($block->escapeUrl($block->getAddAddressUrl())) ?>"
+            }
+        }
+    }
+</script>

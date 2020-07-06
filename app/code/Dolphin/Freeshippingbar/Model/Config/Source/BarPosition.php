@@ -13,6 +13,7 @@ class BarPosition implements \Magento\Framework\Option\ArrayInterface
             ['value' => 'Page Top', 'label' => __('Page Top')],
             ['value' => 'Content Top', 'label' => __('Content Top')],
             ['value' => 'Content Bottom', 'label' => __('Content Bottom')],
+            ['value' => 'Order Summary', 'label' => __('Order Summary (only for cart page)')],
         ];
     }
 
@@ -22,6 +23,7 @@ class BarPosition implements \Magento\Framework\Option\ArrayInterface
             'Page Top' => __('Page Top'),
             'Content Top' => __('Content Top'),
             'Content Bottom' => __('Content Bottom'),
+            'Order Summary' => __('Order Summary'),
         ];
     }
 }

@@ -9,13 +9,13 @@
 <?php $_company = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Company::class) ?>
 <?php $_telephone = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Telephone::class) ?>
 <?php $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::class) ?>
-<form class="form-address-edit" style="display:none;"
+<form class="form-address-edit" style="opacity:0;height:0;"
       action="<?= $block->escapeUrl($block->getSaveUrl()) ?>"
       method="post"
       id="form-validate"
       enctype="multipart/form-data"
       data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-    <fieldset class="fieldset">
+    <fieldset class="fieldset" style="opacity:0;height:0;">
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getBlockHtml('formkey') ?>
@@ -205,7 +205,8 @@
 require(['jquery', 'jquery/ui'], function($){
   jQuery(document).ready( function() {
     $(".box.new-address").click(function(){
-	  $(".form-address-edit").show();
+    $(".form-address-edit").css({"height": "auto", "opacity": "1"});
+	  $(".form-address-edit .fieldset").css({"height": "auto", "opacity": "1"});
 	});
   });
 });

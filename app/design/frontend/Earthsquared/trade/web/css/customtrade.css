@@ -3,14 +3,20 @@
 	font-family: 'Futura Bk BT Medium';
 	display:none;
 }
+
 .quickorder img{    margin: 0 6px;    width: 15px;}
 .benefits.trade{
 	margin: 80px 0px;
 }
+
+.customer-account-login header.page-header {    background: #FAFAFA !important;  }
+.customer-account-create header.page-header {    background: #FAFAFA !important; }
+.customer-account-forgotpassword header.page-header {    background: #FAFAFA !important;  }
+
 .catalog-product-view .box-tocart.trade .field.qty #qty{
 	text-align: left;
     padding: 0px 0px 0px 20px;
-    width: 100%;
+    width: 100%;font-size: 11px;
     border-right:0px;
 }
 .product-social-links .product-addto-links .action.towishlist.trade:before{
@@ -87,7 +93,7 @@
 .featurecategories p {       margin-bottom: 0;}
 .featurecategories .details a {    display: inline-block;    margin-top: 28px;}
 .customer-address-index .block.block-addresses-default {    margin-top: 16px;    padding-left: 14px;}
-.customer-address-index .block.block-addresses-default .box.new-address {  height: 177px;  padding-top: 65px;}
+.customer-address-index .block.block-addresses-default .box.new-address:last-child {    height: 177px;    padding-top: 65px;}
 .customer-address-index .block.block-addresses-default .box.new-address span.plus_sign {    font-size: 16px;    font-weight: bold;}
 .customer-address-index .block.block-addresses-default .box.new-address span {    margin-top: 2px;}
 .wishlist-index-index .wishlist_count {   left: 28%;}
@@ -141,6 +147,10 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
     	height: 34px;
 	}
 	
+	.sw-megamenu.navigation li.level0 > .level-top {
+
+    color: #4D4D4D;
+}
 
 	.tradesocial .quick{
 		padding-bottom: 15px;	
@@ -160,6 +170,9 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 	.quickorder	img{display: none;}
 	.cart-summary{
 		margin-bottom:0px;
+	}
+	.catalog-product-view .box-tocart.trade .field.qty #qty{
+		font-size: 14px;
 	}
 }
 
@@ -191,3 +204,6 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 }
 
 
+.box4.text-center:last-child .benefit-desc {
+    padding: 0 0 !important;
+}

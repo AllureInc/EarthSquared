@@ -228,8 +228,12 @@ if($helper->isCustomerLoggedIn()){
                 }                               
                 $(".top-toolbar .custom-select label.init").on("click", function() {
                   $(this).next("#sorter").toggle();
-                });  
-                
+                }); 
+                //setTimeout(function () { 
+                   var lengthp = $('.products.list.items .product.item').length;
+                   console.log(lengthp);
+                   $('.catalog-category-view .page-title span').html('('+lengthp+' items)');
+                //}, 100);
             });
           });
 </script>

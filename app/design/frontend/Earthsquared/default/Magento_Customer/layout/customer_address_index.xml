@@ -11,10 +11,10 @@
 		<css src="Magento_Customer::css/coustomer_page.css"/>
     </head>
     <body>
-	
-		<referenceBlock name="address_grid" remove="true"/>
-
-
+	   <referenceBlock name="address_grid" remove="true"/>
+		<referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="customer_page_head_components" template="Magento_Customer::js/components.phtml"/>
+        </referenceBlock>
 		<referenceBlock name="page.main.title">
             <action method="setPageTitle">
                 <argument translate="true" name="title" xsi:type="string">Address Book</argument>

@@ -36,6 +36,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                                               
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -111,6 +115,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                                                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -186,6 +194,11 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>  
+                                                 
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -261,6 +274,11 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field> 
+                                                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -336,6 +354,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -411,6 +433,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -486,6 +512,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -561,6 +591,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -636,6 +670,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>
@@ -711,6 +749,10 @@
                     <validate>validate-number validate-zero-or-greater</validate>
 					<depends><field id="active">1</field></depends>
                 </field>
+                <field id="shippinginfo" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Shipping Description</label>
+                    <depends><field id="active">1</field></depends>
+                </field>                  
 				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Displayed Error Message</label>
 					<depends><field id="active">1</field></depends>

@@ -40,8 +40,8 @@ define([
             // }
             //console.log(shippingMethodTitle);
             return shippingMethodTitle ?
-                '(' +shippingMethod['carrier_title'] + shippingMethodTitle +')':
-                '(' +shippingMethod['carrier_title'] + ')';
+                '' +shippingMethod['carrier_title'] + shippingMethodTitle +'':
+                '' +shippingMethod['carrier_title'] + '';
         },
 
         /**

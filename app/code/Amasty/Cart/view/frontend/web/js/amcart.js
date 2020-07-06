@@ -236,7 +236,10 @@ define([
                             }
 
                         });
-                    } else {
+                    } else if (response.is_add_to_cart === 1 && response.b2_name === "View Cart") {
+                        return true;
+											
+					} else {
                         if (response.redirect) {
                             window.location = response.redirect;
                             return true;

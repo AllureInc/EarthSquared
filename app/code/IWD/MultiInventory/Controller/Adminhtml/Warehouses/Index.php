@@ -13,8 +13,11 @@ class Index extends AbstractAction
      */
     public function execute()
     {
+
         $resultPage = $this->initAction();
+
         $resultPage->getConfig()->getTitle()->prepend(__('Sources'));
+       
         return $resultPage;
     }
 }

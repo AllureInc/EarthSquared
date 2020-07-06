@@ -201,7 +201,10 @@ define([
                         if ($.mage.amShopbyApplyFilters) {
                             $.mage.amShopbyApplyFilters.prototype.showButtonCounter(response.productsCount);
                         }
-                        
+                        var totalcountFilter = response.productsCount;
+                        if(totalcountFilter > 0){
+                           $('.catalog-category-view .page-title span').html('('+ totalcountFilter+ ' items)');
+                        }
                         $(window).scroll(function() {
                             var y = $(this).scrollTop();
                             var top = $('.page-header').height();
@@ -310,7 +313,7 @@ define([
 
             var productList = $(this.selectors.products_wrapper);
             if (this.options.scrollUp && productList.length) {
-                $(document).scrollTop(productList.offset().top);
+                //$(document).scrollTop(productList.offset().top);
             }
             $('.amshopby-filters-bottom-cms').remove();
             productList.append(data.bottomCmsBlock);

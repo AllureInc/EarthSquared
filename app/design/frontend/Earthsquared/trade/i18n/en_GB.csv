@@ -3,11 +3,16 @@
 "Order Total Incl. Tax","GRAND TOTAL"
 "Stored Payment Methods","Manage Payments"
 "Shipping & Handling","Delivery"
-"Order Total","Grand Total Incl. Tax"
+"Order Total","Grand Total Incl. VAT"
+"Grand Total","Grand Total Incl. VAT"
+"Tax","Vat"
 "%1 has been moved to your wish list.","%1 has been moved to your saved list."
+"First Name","First Name *",module,Magento_Checkout
+"Last Name","Last Name *",module,Magento_Checkout 
 "Company","Company Name",module,Magento_Checkout
-"Street Address","Address",module,Magento_Checkout
-"%1: Line %2","Address Line %2",module,Magento_Checkout
-"State/Province","County/State/Province",module,Magento_Checkout
-"Zip/Postal Code","Postcode/ZIP",module,Magento_Checkout
-"Phone Number","Telephone",module,Magento_Checkout
+"Street Address","Address *",module,Magento_Checkout
+"%1: Line %2","Address Line %2 *",module,Magento_Checkout
+"State/Province","County/State/Province *",module,Magento_Checkout
+"Zip/Postal Code","Postcode/ZIP *",module,Magento_Checkout
+"Phone Number","Telephone *",module,Magento_Checkout
+"City","City *",module,Magento_Checkout
