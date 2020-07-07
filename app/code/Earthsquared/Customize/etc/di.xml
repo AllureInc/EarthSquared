@@ -5,4 +5,5 @@
         <type name="Magento\Eav\Model\Entity\Collection\AbstractCollection">
     		<plugin name="find_duplicate_entry" type="Earthsquared\Customize\Plugin\Collection" sortOrder="20"/>
  		</type>
+ 		<preference for="Magento\CatalogSearch\Block\Result" type="Earthsquared\Customize\Block\Result" /> 		
     </config>

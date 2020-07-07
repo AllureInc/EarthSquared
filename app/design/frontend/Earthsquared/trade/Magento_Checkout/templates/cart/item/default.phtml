@@ -228,23 +228,3 @@ if($_helper->isMobile()){ ?>
     </tr>   
 </tbody>
 <?php } ?>
-
-
-<script type="text/javascript">
-    require(["jquery"],function($){        
-        $(".qty-inc").unbind('click').click(function(){
-            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
-                $(this).parents('.field.qty').find("input.input-text.qty").val((+$(this).parents('.field.qty').find("input.input-text.qty").val() + 1) || 0);
-                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
-                $(this).focus();
-            }
-        });
-        $(".qty-dec").unbind('click').click(function(){
-            if($(this).parents('.field.qty').find("input.input-text.qty").is(':enabled')){
-                $(this).parents('.field.qty').find("input.input-text.qty").val(($(this).parents('.field.qty').find("input.input-text.qty").val() - 1 > 0) ? ($(this).parents('.field.qty').find("input.input-text.qty").val() - 1) : 0);
-                $(this).parents('.field.qty').find("input.input-text.qty").trigger('change');
-                $(this).focus();
-            }
-        });
-    });
-</script>

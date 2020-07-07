@@ -203,10 +203,8 @@ General,General
 "Leave the Single-choice Filter Visible after Selection","Leave the Single-choice Filter Visible after Selection"
 "If 'Yes' it will also display the radio buttons near the options. Choose 'No' to hide the filter once value is selected as well as radio buttons.","If 'Yes' it will also display the radio buttons near the options. Choose 'No' to hide the filter once value is selected as well as radio buttons."
 "Number of Unfolded Options in State","Number of Unfolded Options in State"
-"Category Title and Description","Category Title and Description"
-"Please open Stores -> Attributes -> Product -> [open attribute] -> Properties ->
-[open attribute option settings] in order to define Title, Description, Image and CMS block for your filter options.","Please open Stores -> Attributes -> Product -> [open attribute] -> Properties ->
-[open attribute option settings] in order to define Title, Description, Image and CMS block for your filter options."
+"Add Title, Description and CMS Blocks of the Selected Filters","Add Title, Description and CMS Blocks of the Selected Filters"
+"Title, Description and CMS blocks of the applied filters will be added to the category and brand pages.","Title, Description and CMS blocks of the applied filters will be added to the category and brand pages."
 "Add the title & description of the selected filters","Add the title & description of the selected filters"
 "The title & description of the applied filters will be added to the category and brand pages","The title & description of the applied filters will be added to the category and brand pages"
 "Add Filter Title","Add Filter Title"
@@ -215,7 +213,7 @@ General,General
 "Replace Category Image","Replace Category Image"
 "Category Image will be replaced if filter option have custom image uploaded.","Category Image will be replaced if filter option have custom image uploaded."
 "Replace Category CMS Block","Replace Category CMS Block"
-"Category CMS Block will be replaced if filter option have custom CMS Block defined","Category CMS Block will be replaced if filter option have custom CMS Block defined"
+"Category CMS Block will be replaced if filter option has custom Top CMS Block defined.","Category CMS Block will be replaced if filter option has custom Top CMS Block defined."
 "Children Categories Block","Children Categories Block"
 "Category's Thumbnail Image Size","Category's Thumbnail Image Size"
 "Show Image Labels","Show Image Labels"

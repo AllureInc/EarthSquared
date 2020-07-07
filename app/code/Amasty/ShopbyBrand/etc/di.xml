@@ -29,4 +29,9 @@
         </arguments>
     </type>
 
+    <type name="Amasty\ShopbyBrand\Model\ProductCount">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory</argument>
+        </arguments>
+    </type>
 </config>

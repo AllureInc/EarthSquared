@@ -98,9 +98,15 @@
         </arguments>
     </type>
 
-    <type name="Amasty\ShopbyBrand\Model\ProductCount">
+    <type name="Magento\CatalogStaging\Model\ResourceModel\Fulltext\Collection">
         <arguments>
-            <argument name="collectionFactory" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory</argument>
+            <argument name="searchCriteriaBuilder" xsi:type="object">Magento\Framework\Api\Search\SearchCriteriaBuilder</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <arguments>
+            <argument name="searchCriteriaBuilder" xsi:type="object">Magento\Framework\Api\Search\SearchCriteriaBuilder</argument>
         </arguments>
     </type>
 </config>

@@ -1055,7 +1055,8 @@ define([
             $(function () {
                 var $element = $(self.element[0]);
                 $element.click(function (e) {
-                    $element.parent().addClass('am-item-removed');                                        
+                    $element.parent().addClass('am-item-removed');
+                    $element.trigger('sync');
                     $.mage.amShopbyFilterAbstract.prototype.renderShowButton(e, $element);
                     self.apply($element.data('remove-url'), true);
                     e.preventDefault();
@@ -1078,7 +1079,8 @@ define([
             $(function () {
                 var $element = $(self.element[0]),
                     links = $element.find(self.options.selectors.filterItem),
-                    filters = [];                   
+                    filters = [];
+
                 if (links.length) {
                     $(links).each(function (index, value) {
                         var filter = {
@@ -1087,11 +1089,9 @@ define([
                         };
                         filters.push(filter);
 
-                        $(value).find('a').on("click", function (e) {                            
-                            $(this).parent().addClass('am-item-removed');                     
-                            //$(this).parent().addClass('am-item-removed656565'); 
-                            //setTimeout(function(){ $('.am_shopby_apply_filters .am-show-button button:first-child').click()}, 100);                            
-                            $.mage.amShopbyFilterAbstract.prototype.renderShowButton(e, this);                            
+                        $(value).find('a').on("click", function (e) {
+                            $(this).parent().addClass('am-item-removed');
+                            $.mage.amShopbyFilterAbstract.prototype.renderShowButton(e, this);
                             self.apply(filter);
                             if (e) {
                                 e.stopPropagation();

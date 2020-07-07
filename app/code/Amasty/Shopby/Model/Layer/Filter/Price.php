@@ -355,8 +355,8 @@ class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements F
 
         $ranges = $this->groupHelper->getGroupAttributeMinMaxRanges($this->getAttributeModel()->getAttributeId());
         if ($ranges) {
-            if (isset($ranges[$fromPrice . 'to' . $toPrice])) {
-                return __($ranges[$fromPrice . 'to' . $toPrice]);
+            if (isset($ranges[$fromPrice . '-' . $toPrice])) {
+                return __($ranges[$fromPrice . '-' . $toPrice]);
             }
         }
         $formattedFromPrice = $this->priceCurrency->format($fromPrice);
@@ -365,7 +365,7 @@ class Price extends \Magento\CatalogSearch\Model\Layer\Filter\Price implements F
         } elseif ($fromPrice == $toPrice && $this->dataProvider->getOnePriceIntervalValue()) {
             return $formattedFromPrice;
         } else {
-            return __('%1 to %2', $formattedFromPrice, $this->priceCurrency->format($toPrice));
+            return __('%1 - %2', $formattedFromPrice, $this->priceCurrency->format($toPrice));
         }
     }
 }

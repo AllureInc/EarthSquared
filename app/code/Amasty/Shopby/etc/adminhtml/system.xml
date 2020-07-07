@@ -62,9 +62,8 @@
                 </field>
             </group>
             <group id="heading" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Category Title and Description</label>
-                <comment><![CDATA[Please open Stores -> Attributes -> Product -> [open attribute] -> Properties ->
-[open attribute option settings] in order to define Title, Description, Image and CMS block for your filter options.]]></comment>
+                <label>Add Title, Description and CMS Blocks of the Selected Filters</label>
+                <comment><![CDATA[Title, Description and CMS blocks of the applied filters will be added to the category and brand pages.]]></comment>
                 <field id="apply_to" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label><![CDATA[Add the title & description of the selected filters]]></label>
                     <source_model>Amasty\Shopby\Model\Source\Attribute\Extended</source_model>
@@ -91,7 +90,7 @@
                 <field id="replace_cms_block" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Replace Category CMS Block</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Category CMS Block will be replaced if filter option have custom CMS Block defined</comment>
+                    <comment>Category CMS Block will be replaced if filter option has custom Top CMS Block defined.</comment>
                 </field>
             </group>
             <group id="children_categories" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">

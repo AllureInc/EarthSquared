@@ -539,18 +539,17 @@ fieldset.password .field { position: relative;   margin-bottom: 30px;    clear: 
 	background-color: #4d4d4d;
     color: #fff;
     border: 0px !important;
-    text-align: center;  
-    top: 0;  
+    text-align: center;        
 }
 .form-address-edit .field.choice input:checked:after{
 	background: url(../images/tick.png) no-repeat;
     content: '';
-    width: 12px;
-    height: 12px;
-    display: inline-block;
-    background-size: 100%;
+    width: 18px;
+    height: 18px;
+    display: block;
+    background-size: 12px 12px;
     text-align: center;
-    background-position: 0 2px;
+    background-position: 3px 3px;
 }
 .form-address-edit  .field.choice span {    font-family: Futura Bk BT;  font-size: 14px !important;}
 .form-address-edit .primary {    width: 383px;}

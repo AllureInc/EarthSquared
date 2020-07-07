@@ -12,7 +12,7 @@ use Magento\Framework\App\Helper\Context;
 
 class Group extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const LAST_POSSIBLE_OPTION_ID = (2 << 31) - 1;
+    const LAST_POSSIBLE_OPTION_ID = (2 << 30) - 1;
 
     /**
      * @var \Amasty\Shopby\Model\ResourceModel\GroupAttr\CollectionFactory
