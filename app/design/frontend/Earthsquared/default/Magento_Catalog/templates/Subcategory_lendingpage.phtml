@@ -30,13 +30,13 @@ if(count($subcats) > 0)
             //$_imgHtml_placeholder = $this->getUrl('pub/media').'catalog/category/placeholder.png';
             $_imgHtml1 = '<img src="' . $_imgHtml_placeholder . '" />';
             
-           if ($_imgUrl = $_category->getThumbnail()) {
-				
-				$_imgUrl = $this->helper('Earthsquared\Customize\Helper\Data')->getCategoryResizeImg($_category->getThumbnail(),276,288);
+           if ($_imgUrl = $_category->getImage()) {
+				    
+				$_imgUrl = $this->helper('Earthsquared\Customize\Helper\Data')->getCategoryResizeImg($_category->getImage(),276,288);
 				//$_imgUrl = $this->getUrl('pub/media').'catalog/category/'.$image;
                 $_imgHtml = '<img src="' . $_imgUrl . '" />';
                 
-                $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'thumbnail');
+                $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
                 /* @escapeNotVerified */
                 echo '<li><a href="' . $subcaturl . '" class="block-promo" title="' . $subcat->getName() . '">' . $_imgHtml . '<span class="contentname"><span>' . $subcat->getName() . '</span></span></a></li>';
             }

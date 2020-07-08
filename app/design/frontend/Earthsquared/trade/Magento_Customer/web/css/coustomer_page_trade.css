@@ -17,7 +17,7 @@
 .block-customer-login-trade {    width: 60%;  margin-top: 10%;  float: right;   padding-left: 20px;}
 .block-new-customer-trade {   display: none; width: 60%;    float: right;}
 .block-new-customer-trade .block.block-new-customer {    margin: 0 auto;    float: none !important; }
-.login_register_sidebar_main .site_logo {    width: 287px;}
+.customer-account-create .login_register_sidebar_main .site_logo.register {    width: 287px; display: block !important;}
 .customer-account-login .actions-toolbar .primary button {    height: 50px;}
 .customer-account-login .login-container .block.block-customer-login {    max-width: 455px;    margin-top: 34px !important;    float: left;
     padding-left: 5px;    margin: auto;}
@@ -26,7 +26,7 @@
     width: 100%;    font-family: Tiempos Headline Medium;    font-weight: 500;  text-align: left;}
 .block-customer-login-trade .actions-toolbar .secondary {    float: left;}
 .customer-account-login .actions-toolbar .primary button span {    font-size: 15px;    font-weight: 500;    font-family: Futura Bk BT Medium;}
-.login_register_sidebar_main {    float: left;padding: 150px 65px;    background: linear-gradient(0deg, #EDB6BB, #EDB6BB);    width: 31.4%;}
+.login_register_sidebar_main {    float: left;padding: 172px 65px;    background: linear-gradient(0deg, #EDB6BB, #EDB6BB);    width: 31.4%;}
 .login_register_sidebar_main .customer_account_create_top_part { padding-top: 42px; padding-right: 0;   background: none;}
 .login_register_sidebar_main h3 {    font-size: 23px;    text-align: left;    font-family: Futura Bk BT Medium;    color: rgba(0, 0, 0, 0.6);}
 .login_register_sidebar_main p {    font-size: 14px;    color: #4D4D4D;    font-family: Futura Bk BT;    line-height: 25px;    text-align: left;}
@@ -36,17 +36,41 @@
 .login_register_sidebar_main .list_part .item a {    font-size: 15px;    color: #4D4D4D;}
 .login_register_sidebar_main .last_part_link {    float: left;    margin-top: 14%; width: 100%;text-align: left;}
 .login_register_sidebar_main .last_part_link a.register_link { font-family: Futura Bk BT; font-size: 20px;color: #4D4D4D !important; font-weight: 500;}
-
+.login_register_sidebar_main .last_part_link a.register_link:after,.last_part_link_mobile a.register_link:after{
+    background: url('../images/next-right.png') no-repeat;
+    background-size: 100%;
+    width:13px;
+    height:13px;
+    display: inline-block;
+    content:'';
+}
+.last_part_link_mobile a.register_link:after{
+    margin-left: 5px;
+}
 .login_register_sidebar_main .list_part .item:first-child {    margin-bottom: 0;    margin-top: 13px;}
 .login_register_sidebar_main .list_part .item:nth-child(2) {  margin-bottom: 0;      margin-top: 10px;}
 .login_register_sidebar_main .list_part .item:nth-child(3) {  margin-bottom: 0;      margin-top: 8px;}
 .login_register_sidebar_main .list_part .item:nth-child(4) {    margin-bottom: 0;    margin-top: 13px;}
-
-
-.customer_account_create_top_part .item a.firest:before {    width: 24px;}
-.customer_account_create_top_part .item a.second:before {    width: 18px;}
-.customer_account_create_top_part .item a.third:before {    width: 20px;    height: 24px;}
-.customer_account_create_top_part .item a.four:before {  margin-right: 0 !important;  height: 26px !important;    width: 39px !important; background-position: -5px -4px !important;}
+.customer_account_create_top_part .item a.firest:before {
+    content: '';
+    background: url(../images/view.png) no-repeat;
+  background-size: 100%;
+}
+.customer_account_create_top_part .item a.second:before {
+    content: '';
+    background: url(../images/flash.png) no-repeat;background-size: 100%;    
+}
+.customer_account_create_top_part .item a.third:before {
+    content: '';
+    background: url(../images/box.png) no-repeat;background-size: 100%;
+}
+    
+.customer_account_create_top_part .item a.four:before {
+    content: '';
+    background: url(../images/bookmark.png) no-repeat !important;background-size: 100% !important;    
+}
+.customer_account_create_top_part .item a:before {  width: 24px !important; height: 32px !important;     background-position: 0px 5px !important;}
+.customer_account_create_top_part .item a.four:before {   height: 26px !important;    width: 24px !important; background-position: 0px 3px !important;}
 
 @media screen and (max-width: 1440px) {  
 .login_register_sidebar_main h3 {    font-size: 23px; }
@@ -119,7 +143,16 @@
 .customer-account-login .max-width-section ul.footer-checkout { border-bottom: 1px solid rgba(0, 0, 0, 0.2);}
 .customer-account-login .header.content .section1 {    top: 8px !important;}
 }
-
+@media screen and (max-width: 767px) {
+    .customer-account-login .login-container .block.block-customer-login{
+        margin:34px auto 0px !important;
+        float:none;
+    }
+    .customer-account-login .site_logo,.customer-account-login a.backlink{
+        display: none;
+    }
+    
+}   
 @media screen and (max-width: 375px) {
 .form_main_part_trade {    padding-left: 15px;    padding-right: 15px;}
 .customer-account-create  .form_main_part_trade .form.create.account .field.field-name-firstname , .customer-account-create .form_main_part_trade .form.create.account .field.email_address , .customer-account-create .form.create.account .field.city , .customer-account-create .form.create.account .field.password {
@@ -195,7 +228,7 @@
     margin-top: 27px;
 }
 .login_register_sidebar_main {
-    padding: 40px 13px;
+    padding: 22px 13px 40px;
 }
 .login_register_sidebar_main .customer_account_create_top_part {
     padding-top: 16px;

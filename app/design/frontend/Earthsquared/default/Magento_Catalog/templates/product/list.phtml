@@ -230,9 +230,9 @@ if($helper->isCustomerLoggedIn()){
                   $(this).next("#sorter").toggle();
                 }); 
                 //setTimeout(function () { 
-                   var lengthp = $('.products.list.items .product.item').length;
-                   console.log(lengthp);
-                   $('.catalog-category-view .page-title span').html('('+lengthp+' items)');
+                    var lengthp = $('.top-toolbar .toolbar-amount .toolbar-number:last-child').text();
+                    console.log(lengthp);
+                    $('.catalog-category-view .page-title span').html('('+lengthp+' items)');
                 //}, 100);
             });
           });
