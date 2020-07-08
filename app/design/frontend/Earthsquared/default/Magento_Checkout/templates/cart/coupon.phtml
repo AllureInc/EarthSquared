@@ -12,7 +12,7 @@
 $hasCouponCode = (bool) strlen($block->getCouponCode());
 ?>
 <div class="block discount"
-     id="block-discount">    
+     id="block-discount">
     <div class="content" data-role="content" aria-labelledby="block-discount-heading">
         <form id="discount-coupon-form"
               action="<?= $block->escapeUrl($block->getUrl('checkout/cart/couponPost')) ?>"
@@ -21,9 +21,10 @@ $hasCouponCode = (bool) strlen($block->getCouponCode());
                                                "removeCouponSelector": "#remove-coupon",
                                                "applyButton": "button.action.apply",
                                                "cancelButton": "button.action.cancel"}}'>
+
             <div class="fieldset coupon<?= $hasCouponCode ? ' applied' : '' ?>">
                 <input type="hidden" name="remove" id="remove-coupon" value="0" />
-                <div class="field">                    
+                <div class="field">
                     <div class="control">
                         <input type="text"
                                class="input-text"
@@ -31,25 +32,25 @@ $hasCouponCode = (bool) strlen($block->getCouponCode());
                                name="coupon_code"
                                value="<?= $block->escapeHtmlAttr($block->getCouponCode()) ?>"
                                placeholder="<?= $block->escapeHtmlAttr(__('Apply Gift Voucher')) ?>"
-                                <?php if ($hasCouponCode) :?>
-                                   disabled="disabled"
-                                <?php endif; ?>
                         />
                     </div>
                 </div>
                 <div class="actions-toolbar">
-                    <?php if (!$hasCouponCode) :?>
-                    <div class="primary">
-                        <button class="action apply primary" type="button" value="<?= $block->escapeHtmlAttr(__('Apply')) ?>">
-                            <span><?= $block->escapeHtml(__('Apply')) ?></span>
-                        </button>
-                    </div>
-                    <?php else :?>
-                        <div class="primary">
-                            <button  type="button" class="action cancel primary" value="<?= $block->escapeHtmlAttr(__('Cancel')) ?>"><span><?= $block->escapeHtml(__('Cancel')) ?></span></button>
-                        </div>
-                    <?php endif; ?>
+                      <div class="primary">
+                          <button class="action primary submit-coupon" type="button" value="<?= $block->escapeHtmlAttr(__('Apply')) ?>">
+                              <span><?= $block->escapeHtml(__('Apply')) ?></span>
+                          </button>
+                      </div>
                 </div>
+            </div>
+
+            <?php if ($hasCouponCode) :?>
+                <div class="message message-success success loaded">
+                    <div><?= __('Gift Voucher %1 successfully applied. You received a discount of %2',$block->getCouponCode(), $block->getDiscountAmount()); ?><a href="JavaScript:void(0);" class='change-coupon'>change</a></div>
+                </div>
+            <?php endif; ?>
+            <div class="message" id="ajax_message">
+                <div></div>
             </div>
             <?php if (!$hasCouponCode) : ?>
                 <?= /* @noEscape */ $block->getChildHtml('captcha') ?>
@@ -57,3 +58,10 @@ $hasCouponCode = (bool) strlen($block->getCouponCode());
         </form>
     </div>
 </div>
+<script type="text/x-magento-init">
+    {
+        "#discount-coupon-form": {
+            "submitCoupon": {}
+        }
+    }
+</script>

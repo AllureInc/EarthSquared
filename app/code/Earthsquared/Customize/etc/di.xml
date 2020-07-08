@@ -5,5 +5,7 @@
         <type name="Magento\Eav\Model\Entity\Collection\AbstractCollection">
     		<plugin name="find_duplicate_entry" type="Earthsquared\Customize\Plugin\Collection" sortOrder="20"/>
  		</type>
- 		<preference for="Magento\CatalogSearch\Block\Result" type="Earthsquared\Customize\Block\Result" /> 		
+ 		<preference for="Magento\CatalogSearch\Block\Result" type="Earthsquared\Customize\Block\Result" />
+ 		<preference for="Magento\Checkout\Controller\Cart\CouponPost" type="Earthsquared\Customize\Controller\Cart\CouponPost" />
+ 		<preference for="Magento\Checkout\Block\Cart\Coupon" type="Earthsquared\Customize\Block\Cart\Coupon" />
     </config>
