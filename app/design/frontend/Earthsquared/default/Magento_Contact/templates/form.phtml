@@ -52,23 +52,23 @@ echo $this->getLayout()
 </form>
 
 <style>
-input:focus::-webkit-input-placeholder {
+input:focus::-webkit-input-placeholder , textarea:focus::-webkit-input-placeholder {
     font-size: .75em;
     position: relative;
     top: -15px; 
     transition: 0.2s ease-out;
 }
 
-input::-webkit-input-placeholder {
+input::-webkit-input-placeholder , textarea::-webkit-input-placeholder {
     transition: 0.2s ease-in;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
     padding-top: 10px;
     transition: 0.2s ease-in;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], textarea {
     transition: 0.2s ease-in;
 }
 

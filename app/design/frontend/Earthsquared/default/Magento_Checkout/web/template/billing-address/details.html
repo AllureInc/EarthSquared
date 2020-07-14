@@ -12,7 +12,7 @@
     <div class="billingaddress">        
         <text args="_.values(currentBillingAddress().street).join(', ')"/><br/>
         <text args="currentBillingAddress().city "/>, <span text="currentBillingAddress().region"></span> <text args="currentBillingAddress().postcode"/><br/>
-        <text args="getCountryName(currentBillingAddress().countryId)"/><br/>
+        <text args="getCountryName(currentBillingAddress().countryId)"/>,<br/><text args="currentBillingAddress().telephone"/><br/>
     </div>    
 
     <each args="data: currentBillingAddress().customAttributes, as: 'element'">

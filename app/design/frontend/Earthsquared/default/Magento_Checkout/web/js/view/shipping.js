@@ -26,7 +26,8 @@ define([
     'Magento_Checkout/js/checkout-data',
     'uiRegistry',
     'mage/translate',
-    'Magento_Checkout/js/model/shipping-rate-service'
+    'Magento_Checkout/js/model/shipping-rate-service',
+    'Magento_Checkout/js/model/shipping-save-processor'    
 ], function (
     $,
     _,
@@ -49,7 +50,8 @@ define([
     checkoutDataResolver,
     checkoutData,
     registry,
-    $t
+    $t,
+    shippingSaveProcessor    
 ) {
     'use strict';
 
@@ -194,14 +196,14 @@ define([
         showFormPopUp: function () {
             this.isFormPopUpVisible(true);
         },
-        
+
         closeNewAddress: function() {
             $('#opc-new-shipping-address').hide();
         },
         /**
          * Save new shipping address
          */
-        saveNewAddress: function () {            
+        saveNewAddress: function () {
             var addressData,
                 newShippingAddress;
 
@@ -243,7 +245,8 @@ define([
         selectShippingMethod: function (shippingMethod) {
             selectShippingMethodAction(shippingMethod);
             checkoutData.setSelectedShippingRate(shippingMethod['carrier_code'] + '_' + shippingMethod['method_code']);
-            setShippingInformationAction();
+            //setShippingInformationAction(); Issue in billing address
+            //shippingSaveProcessor.saveShippingInformation(quote.shippingAddress().getType());
             return true;
         },
 
@@ -251,7 +254,7 @@ define([
          * Set shipping information handler
          */
         setShippingInformation: function () {
-            if (this.validateShippingInformation()) {
+            if (this.validateShippingInformation()) {                
                 quote.billingAddress(null);
                 checkoutDataResolver.resolveBillingAddress();
                 registry.async('checkoutProvider')(function (checkoutProvider) {

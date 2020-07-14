@@ -1088,11 +1088,21 @@ class Order extends \Magento\Sales\Model\Order
      * @param bool $reload
      * @return \IWD\OrderManager\Model\Quote\Quote
      */
-    public function getQuote($reload = false)
+    /*public function getQuote($reload = false)
     {
         if ($reload || empty($this->quote->getId())) {
             $quoteId = $this->getQuoteId();
             $this->quote->load($quoteId);
+        }
+        return $this->quote;
+    }*/
+    public function getQuote($reload = false)
+    {
+
+        if ($reload || empty($this->quote->getId())) {
+            $order = $this->orderRepository->get($this->getId());
+            $quote =  $this->quoteRepository->get($order->getQuoteId());
+            $this->quote = $quote;
         }
         return $this->quote;
     }

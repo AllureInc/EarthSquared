@@ -19,7 +19,7 @@
 		</action>
 	</referenceBlock>
 
-		<move element="customer.wishlist.buttons" destination="content"  before="-"/>
+	<!--	<move element="customer.wishlist.buttons" destination="content"  before="-"/> -->
 
 
         <referenceBlock name="customer.wishlist.item.comment" remove="true"/>

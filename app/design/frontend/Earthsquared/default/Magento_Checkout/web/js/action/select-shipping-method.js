@@ -9,12 +9,14 @@
 define([
     '../model/quote',
 	'jquery',
-    'Magento_Checkout/js/action/get-totals'	
-], function (quote, $, getTotalsAction) {
+    'Magento_Checkout/js/action/get-totals',
+	'Magento_Checkout/js/model/cart/totals-processor/default'
+], function (quote, $, getTotalsAction, totalsDefaultProvider) {
     'use strict';
     return function (shippingMethod) {
         quote.shippingMethod(shippingMethod);		
 		var deferred = $.Deferred();
-		getTotalsAction([], deferred);		
+		//getTotalsAction([], deferred);
+		totalsDefaultProvider.estimateTotals(quote.shippingAddress());		
     };
 });

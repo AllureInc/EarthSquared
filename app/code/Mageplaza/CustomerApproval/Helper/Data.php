@@ -196,7 +196,7 @@ class Data extends AbstractData
         $customer = $this->customerRegistry->retrieve($customerId);
         $this->approvalAction($customer, AttributeOptions::NOTAPPROVE);
         // send email
-        $this->emailApprovalAction($customer, 'not_approve');
+        //$this->emailApprovalAction($customer, 'not_approve');
     }
 
     /**

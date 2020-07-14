@@ -21,14 +21,14 @@ if($helper->isCustomerLoggedIn()){
        <?php 
         if ($_product->isSaleable()) { ?>   
             <div class="mobileview wishlistp">
-                <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+                <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'bookmark.png' ?>" /></a>
             </div>
         <?php } ?>
     <?php } ?>   
 <?php } else { ?>
 <?php if ($_product->isSaleable()) { ?>   
     <div class="mobileview wishlistp">
-        <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'heart.png' ?>" /></a>
+        <a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img src="<?php echo $this->getUrl('pub/media/icons/').'bookmark.png' ?>" /></a>
     </div>
 <?php } } ?>
 

@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Image $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+$image_width = 1000;
+$image_height = 1000;
+$imageDisplayAreaHover = 'category_page_grid';
+$imageDisplayArea = 'category_page_grid-hover';
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$productImage = $_imagehelper->init($product, $imageDisplayArea)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);
+$productImageUrl = $productImage->getUrl();
+$productHoverImage = $_imagehelper->init($product, $imageDisplayAreaHover)->constrainOnly(true)->keepAspectRatio(TRUE)->keepFrame(true)->resize($image_width,$image_height);
+$productHoverImageUrl = $productHoverImage->getUrl();
+?>
+<a class="product-item-photo" tabindex="-1" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>">
+    <span class="product-image-container" style="width:100%;">
+    	<span class="product-image-wrapper" style="padding-bottom: 100%;">
+    		<img class="product-image-photo" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>" onmouseover="this.src='<?php echo ($productHoverImageUrl) ? $productHoverImageUrl : $productImageUrl ?>';" onmouseout="this.src='<?php echo $productImageUrl; ?>';" />
+		</span>
+	</span>
+</a>

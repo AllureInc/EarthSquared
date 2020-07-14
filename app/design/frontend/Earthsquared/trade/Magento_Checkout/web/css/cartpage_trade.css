@@ -1,5 +1,7 @@
 /* cart page */
-
+#shippingbar.hideshippingbar{
+    display: none;
+}
 button.action.primary.checkout[disabled="disabled"]{
     opacity: 0.4;
 }
@@ -10,7 +12,7 @@ div#block-discount_trade .title::after {display:none;}
 #block-discount_trade #coupon_code {    height: 60px;    color: #4d4d4d;  font-size: 12px;font-family: 'Futura Bk BT Medium';    padding: 0 20px;}
 div#block-discount_trade .title {    float: left;    width: 100%;}
 div#block-discount_trade .content {    float: left;    width: 100%;}
-
+.checkout-cart-index  .message.notice.shippingbarenable{display: none;}
 /* end cart page */
 
 

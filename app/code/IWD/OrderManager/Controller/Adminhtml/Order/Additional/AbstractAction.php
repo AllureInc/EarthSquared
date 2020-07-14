@@ -170,7 +170,7 @@ abstract class AbstractAction extends \IWD\OrderManager\Controller\Adminhtml\Ord
     {
 
 
-        $this->getConnection()->beginTransaction();
+       // $this->getConnection()->beginTransaction();
         // step 0: update edited information (ordered items, order address ...)
         if (!$this->getRequest()->getParam('skip_save', false)) {
             $this->update();
@@ -192,15 +192,15 @@ abstract class AbstractAction extends \IWD\OrderManager\Controller\Adminhtml\Ord
         if ($this->needUpdatePaymentInfo()) {
             return $this->formForUpdatePaymentInfo();
         }
-
+        $this->doReAuthorization();
         // step 3: re-authorize new order amount
-        if ($this->doReAuthorization()) {
+        /*if () {
             $this->getConnection()->commit();
 
         }else{
             $this->getConnection()->rollBack();
             throw new LocalizedException(__('You can\'t edit order.'));
-        }
+        }*/
 
         // step 4: additional actions: multi stock, ...
         $this->_eventManager->dispatch('iwd_ordermanager_additional_after_reauthorization', ['additional' => $this]);

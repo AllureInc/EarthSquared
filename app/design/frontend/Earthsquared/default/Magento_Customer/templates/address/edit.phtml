@@ -9,13 +9,13 @@
 <?php $_company = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Company::class) ?>
 <?php $_telephone = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Telephone::class) ?>
 <?php $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::class) ?>
-<form class="form-address-edit" style="opacity:0;height:0;"
+<form class="form-address-edit"
       action="<?= $block->escapeUrl($block->getSaveUrl()) ?>"
       method="post"
       id="form-validate"
       enctype="multipart/form-data"
       data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-    <fieldset class="fieldset" style="opacity:0;height:0;">
+    <fieldset class="fieldset">
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getBlockHtml('formkey') ?>
@@ -63,7 +63,7 @@
         </div>
 		
 		<div class="field region required">
-            <div class="control">
+            <div class="control"> 
                 <select id="region_id" name="region_id"
                         title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>"
                         class="validate-select region_id" <?= /* @noEscape */ !$block->getConfig('general/region/display_all') ? ' disabled="disabled"' : '' ?>>
@@ -72,7 +72,7 @@
                 <input type="text"
                        id="region"
                        name="region"
-					   placeholder="County/State/Province*"
+					   placeholder="County/State/Province"
                        value="<?= $block->escapeHtmlAttr($block->getRegion()) ?>"
                        title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>"
                        class="input-text validate-not-number-first <?= $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('region')) ?>"<?= !$block->getConfig('general/region/display_all') ? ' disabled="disabled"' : '' ?>/>
@@ -202,11 +202,13 @@
 </script>
 
 <script>
-require(['jquery', 'jquery/ui'], function($){
+require(['jquery', 'jquery/ui'], function($){  
   jQuery(document).ready( function() {
+    $(".customer-address-index .form-address-edit").css({"height": "0", "opacity": "0"});
+    $(".customer-address-index .form-address-edit .fieldset").css({"height": "0", "opacity": "0"});
     $(".box.new-address").click(function(){
-    $(".form-address-edit").css({"height": "auto", "opacity": "1"});
-	  $(".form-address-edit .fieldset").css({"height": "auto", "opacity": "1"});
+    $(".customer-address-index .form-address-edit").css({"height": "auto", "opacity": "1"});
+	  $(".customer-address-index .form-address-edit .fieldset").css({"height": "auto", "opacity": "1"});
 	});
   });
 });

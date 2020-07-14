@@ -18,23 +18,18 @@
     <input type="hidden" name="website_id_dws" id="website_id_dws" value="trade" />
     <fieldset class="fieldset create info">
         <h2><?= $block->escapeHtml(__('Apply for a Trade Account')) ?></h2><br>
-		<p><?= $block->escapeHtml(__('Please allow 1-2 days for us to review your application.')) ?></p>
-		<p>If you do not hear back from us within 2-3 days please call us on <b>01620 892289</b> or email: <b>mail@earthsquared.com</b></p>
+		<?php
+        echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('trade_registration_description')
+        ->toHtml();
+        ?>
 		<p></p>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
-        <div class="field nature_of_business">
-            <div class="control">
-                <select name="nature_of_business" id="nature_of_business">
-                    <option value="0"><?= __('Nature of Business') ?></option>
-                    <option value="1"><?= __('Shop') ?></option>
-                    <option value="2"><?= __('eCommerce') ?></option>
-                    <option value="3"><?= __('Other') ?></option>
-                </select>
-            </div>
-        </div>
+
         <?= $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Name::class)->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
-        
+
 
         <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
         <?php if ($_dob->isEnabled()) : ?>
@@ -53,19 +48,19 @@
     </fieldset>
     <?php //if ($block->getShowAddressFields()) : ?>
             <input type="hidden" name="create_address" value="1" />
-			
-			<div class="field email_address required">            
+
+			<div class="field email_address required">
 				<div class="control">
 					<input type="email" placeholder="Email address*"  name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email address*')) ?>" class="input-text" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
 				</div>
 			</div>
-			
+
             <?php $_company = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Company::class) ?>
             <?php if ($_company->isEnabled()) : ?>
                 <?= $_company->setCompany($block->getFormData()->getCompany())->toHtml() ?>
             <?php endif ?>
 
-           
+
             <?php $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::class) ?>
             <?php if ($_fax->isEnabled()) : ?>
                 <?= $_fax->setFax($block->getFormData()->getFax())->toHtml() ?>
@@ -120,7 +115,7 @@
                     <?php //phpcs:enable ?>
                 </div>
             </div>
-			
+
 			 <?php $_telephone = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Telephone::class) ?>
             <?php if ($_telephone->isEnabled()) : ?>
                 <?= $_telephone->setTelephone($block->getFormData()->getTelephone())->toHtml() ?>
@@ -132,8 +127,8 @@
                     <?= $block->getCountryHtmlSelect() ?>
                 </div>
             </div>
-			
-			
+
+
             <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
             <?php if ($addressAttributes) : ?>
                 <?php $addressAttributes->setEntityType('customer_address'); ?>
@@ -143,14 +138,14 @@
             <?php endif;?>
             <input type="hidden" name="default_billing" value="1">
             <input type="hidden" name="default_shipping" value="1">
-    
+
 
     <?php //endif; ?>
     <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-        
-        
+
+
         <div class="field password required">
-            
+
             <div class="control">
                 <input type="password" name="password" id="password"
                        title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
@@ -160,54 +155,63 @@
                        data-password-min-character-sets="<?= $block->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
                        data-validate="{required:true, 'validate-customer-password':true}"
                        autocomplete="off">
-               
+
             </div>
 
         </div>
         <div class="field confirmation required">
-           
+
             <div class="control">
                 <input type="password" placeholder="<?= $block->escapeHtmlAttr(__('Confirm Password*')) ?>" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
             </div>
         </div>
-        
-        
-        
-        <div class="field nature_of_business_other" style="display:none;">
+
+         <div class="field nature_of_business required">
             <div class="control">
-                <input type="text" placeholder="<?= $block->escapeHtmlAttr(__('Nature of Business Other')) ?>" data-validate="{required:true}" name="nature_of_business_other" title="<?= $block->escapeHtmlAttr(__('Nature of Business Other')) ?>" id="nature-of-business-other" class="input-text">
+                <select name="nature_of_business" id="nature_of_business" data-validate="{required:true}">
+                    <option value=""><?= __('Nature of Business*') ?></option>
+                    <option value="1"><?= __('Shop') ?></option>
+                    <option value="2"><?= __('eCommerce') ?></option>
+                    <option value="3"><?= __('Other') ?></option>
+                </select>
             </div>
         </div>
-        
+
+        <div class="field nature_of_business_other" style="display:none;">
+            <div class="control">
+                <input type="text" placeholder="<?= $block->escapeHtmlAttr(__('Please specify nature of business')) ?>" data-validate="{required:true}" name="nature_of_business_other" title="<?= $block->escapeHtmlAttr(__('Please specify nature of business')) ?>" id="nature-of-business-other" class="input-text">
+            </div>
+        </div>
+
         <div class="field additional_information">
             <div class="control">
                 <input type="text" placeholder="<?= $block->escapeHtmlAttr(__('Additional Information')) ?>" name="additional_information" title="<?= $block->escapeHtmlAttr(__('Additional Information')) ?>" id="additional-information" class="input-text">
             </div>
         </div>
-		
+
 		<?php /*
 		<div class="field choice terms">
                 <input type="checkbox" name="terms"  value="1" id="is_terms"<?php if ($block->getFormData()->getIsSubscribed()) : ?> checked="checked"<?php endif; ?> class="checkbox">
                 <label for="is_terms" class="label"><span><?= $block->escapeHtml(__('I agree to the')) ?><a href="<?php echo $block->getUrl('terms-conditions') ?>"><?= $block->escapeHtml(__('Terms and Conditions')) ?></a></span></label>
             </div>
-		
+
 		<?php if ($block->isNewsletterEnabled()) : ?>
             <div class="field choice newsletter">
                 <input type="checkbox" name="is_subscribed" title="<?= $block->escapeHtmlAttr(__('Sign Up for Newsletter')) ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()) : ?> checked="checked"<?php endif; ?> class="checkbox">
                 <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Sign Up for Newsletter')) ?></span></label>
             </div>
-            
+
             <?= $block->getChildHtml('customer.form.register.newsletter') ?>
         <?php endif ?>
-		*/?>		
+		*/?>
         <?= $block->getChildHtml('form_additional_info') ?>
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Apply')) ?>"><span><?= $block->escapeHtml(__('Apply')) ?></span></button>
         </div>
-		
-		<div class="block block-new-login">   
+
+		<div class="block block-new-login">
 			<div class="block-content">
 				<p><?= $block->escapeHtml(__('Already have an account?')) ?><a href="<?php echo $block->getUrl('customer/account/login') ?>"><b><?= $block->escapeHtml(__('Sign in')) ?></b></a></p>
 			</div>
@@ -297,6 +301,7 @@ require([
 require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
 	$('#nature_of_business').on('change', function (e) {
 		var optionSelected = $("option:selected", this);
+        $(this).addClass('selectedoptions');
 		var valueSelected = this.value;
 		if(valueSelected == 3){
 			$('.nature_of_business_other').show();
@@ -304,6 +309,7 @@ require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
 			$('.nature_of_business_other').hide();
 		}
 	});
+
   $(document).ready( function() {
               $('.owl-carousel').owlCarousel({
                 loop: true,
@@ -314,7 +320,7 @@ require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
                     items: 1,
 					dots: false,
                     nav: false
-					
+
                   },
                   600: {
                     items: 2,
@@ -337,7 +343,7 @@ require(['jquery', 'mageplaza/core/owl.carousel'], function ($) {
 input:focus::-webkit-input-placeholder {
     font-size: .75em;
     position: relative;
-    top: -15px; 
+    top: -15px;
     transition: 0.2s ease-out;
 }
 

@@ -20,24 +20,38 @@ class Coupon extends \Magento\Checkout\Block\Cart\Coupon
      * @param array $data
      * @codeCoverageIgnore
      */
+    protected $_quoteFactory;
+
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Quote\Model\Cart\CartTotalRepository $cartTotalRepository,
+        \Magento\Checkout\Model\Session $session,
         \Magento\Framework\Pricing\Helper\Data $helperPrice,
+        \Magento\Quote\Model\QuoteFactory $quoteFactory,
         array $data = []
     ) {
         parent::__construct($context, $customerSession, $checkoutSession, $data);
         $this->_isScopePrivate = true;
-        $this->cartTotalRepository = $cartTotalRepository;
+        $this->_session = $session;
         $this->helperPrice = $helperPrice;
+        $this->_quoteFactory = $quoteFactory;
     }
 
     public function getDiscountAmount()
     {
-        $totals = $this->cartTotalRepository->get($this->getQuote()->getId());
-        $discountAmount = $this->helperPrice->currency(number_format(abs($totals->getDiscountAmount()), 2), true, false);
+        $quoteId = $this->_session->getQuote()->getId();        
+        $q = $this->_quoteFactory->create()->load($quoteId);
+        // echo "<pre>";
+        // print_r($q->getData());
+        // exit;
+        //$totals = $this->cartTotalRepository->get($this->getQuote()->getId());
+        // $quote = $this->_session->getQuote()->getId();
+        // print_r($quote->getData());exit;
+        // echo $totals->getDiscountAmount();
+        // exit;
+        $discountAmountQuote = $q->getBaseSubtotal() - $q->getBaseSubtotalWithDiscount();
+        $discountAmount = $this->helperPrice->currency(abs($discountAmountQuote), true, false);
         return $discountAmount;
     }
 

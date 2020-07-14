@@ -28,6 +28,7 @@ class Result extends \Magento\CatalogSearch\Block\Result
 
     public function getSearchQueryText()
     {
-        return __('Showing %1 results for "%2"', $this->getResultCount(), $this->catalogSearchData->getEscapedQueryText());
+        $count = $this->_getQuery()->getNumResults();
+        return __('Showing %1 results for "%2"', $count, $this->catalogSearchData->getEscapedQueryText());
     }
 }

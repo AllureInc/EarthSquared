@@ -19,9 +19,9 @@ foreach ($categoryProducts as $product) { ?>
 				{
 					$image_hover_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(288, 288)->getUrl();
 					?>
-					<img src="<?php echo $image_url; ?>" onmouseover="this.src='<?php echo ($image_hover_url) ? $image_hover_url : $image_url ?>';" onmouseout="this.src='<?php echo $image_url; ?>';" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />	
+					<img src="<?php echo $image_hover_url; ?>" onmouseover="this.src='<?php echo ($image_url) ? $image_url : $image_url ?>';" onmouseout="this.src='<?php echo $image_hover_url; ?>';" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />	
 				<?php }  else { ?>
-					<img src="<?php echo $image_url; ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />	
+					<img src="<?php echo $image_hover_url; ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />	
 				<?php } ?>
 
 			<div class="product-detail">

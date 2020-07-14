@@ -46,7 +46,9 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Quote\Model\Cart\CartTotalRepository $cartTotalRepository,
-        \Magento\Framework\Pricing\Helper\Data $helperPrice
+        \Magento\Framework\Pricing\Helper\Data $helperPrice,
+        \Magento\Checkout\Model\Session $session,
+        \Magento\Quote\Model\QuoteFactory $quoteFactory
     ) {
         parent::__construct(
             $context,
@@ -61,6 +63,8 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
         $this->resultJsonFactory = $resultJsonFactory;
         $this->cartTotalRepository = $cartTotalRepository;
         $this->helperPrice = $helperPrice;
+        $this->_session = $session;
+        $this->_quoteFactory = $quoteFactory;
     }
 
     /**
@@ -94,8 +98,13 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
             }
 
             if ($codeLength) {
-                $totals = $this->cartTotalRepository->get($cartQuote->getId());
-                $discountAmount = $this->helperPrice->currency(number_format(abs($totals->getDiscountAmount()), 2), true, false);
+                //echo $cartQuote->getId();exit;
+                $quoteId = $this->_session->getQuote()->getId();        
+                $q = $this->_quoteFactory->create()->load($quoteId);
+                $discountAmountQuote = $q->getBaseSubtotal() - $q->getBaseSubtotalWithDiscount();
+                $discountAmount = $this->helperPrice->currency(abs($discountAmountQuote), true, false);
+                //$totals = $this->cartTotalRepository->get($cartQuote->getId());                
+                //$discountAmount = $this->helperPrice->currency(number_format(abs($totals->getDiscountAmount()), 2), true, false);
                 $escaper = $this->_objectManager->get(\Magento\Framework\Escaper::class);
                 $coupon = $this->couponFactory->create();
                 $coupon->load($couponCode, 'code');
@@ -105,7 +114,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                         $response = [
                             'errors' => false,
                             'message' => __(
-                                'Gift Voucher "%1" successfully applied. You received a discount of %2',
+                                $escaper->escapeHtml('Gift Voucher "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
                                 $escaper->escapeHtml($couponCode),
                                 $discountAmount
                             ),
@@ -124,7 +133,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                         $response = [
                             'errors' => false,
                             'message' => __(
-                                'Gift Voucher "%1" successfully applied. You received a discount of %2',
+                                $escaper->escapeHtml('Gift Voucher "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
                                 $escaper->escapeHtml($couponCode),
                                 $discountAmount
                             ),

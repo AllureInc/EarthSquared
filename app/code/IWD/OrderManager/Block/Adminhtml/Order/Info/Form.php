@@ -140,11 +140,32 @@ class Form extends AbstractForm
     public function getCreatedAt()
     {
         $createdAt = $this->getOrder()->getCreatedAt();
-        $date = new \DateTime($createdAt, new \DateTimeZone('UTC'));
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $block = $objectManager->create('\Magento\Sales\Block\Adminhtml\Order\View\Info');
+
+        $orderStoreDate = $block->formatDate(
+            $createdAt,
+            \IntlDateFormatter::MEDIUM,
+            true,
+            $block->getTimezoneForStore($this->getOrder()->getStore())
+        );
+
+
+        /* $orderStoreDate = $this->block->formatDate(
+             $createdAt,
+             \IntlDateFormatter::MEDIUM,
+             true,
+             $this->block->getTimezoneForStore($this->getOrder()->getStore())
+         );*/
+
+        //  $date = new \DateTime($createdAt, new \DateTimeZone('UTC'));
         //TODO: fix logic
         //$timezone = new \DateTimeZone($this->timezone->getConfigTimezone('store', $this->getOrder()->getStore()));
         //$date->setTimezone($timezone);
-        return $date->format('Y-m-d H:i:s');
+
+        return date('Y-m-d H:i:s', strtotime($orderStoreDate));
     }
 
     /**

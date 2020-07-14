@@ -4,14 +4,17 @@
 	display:none;
 }
 
+.block-collapsible-nav .content li:nth-child(2):before {
+    background: url(../images/bookmark.png) no-repeat !important;
+    background-position: 0px 20px !important;
+    background-size: 18px !important;
+}
+
 .quickorder img{    margin: 0 6px;    width: 15px;}
 .benefits.trade{
 	margin: 80px 0px;
 }
 
-.customer-account-login header.page-header {    background: #FAFAFA !important;  }
-.customer-account-create header.page-header {    background: #FAFAFA !important; }
-.customer-account-forgotpassword header.page-header {    background: #FAFAFA !important;  }
 
 .catalog-product-view .box-tocart.trade .field.qty #qty{
 	text-align: left;
@@ -127,7 +130,7 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 
 @media screen and (max-width: 1440px) {  
 .page-wrapper.stickymenu .navigation.sw-megamenu .level0 a {
-    padding: 0;
+    padding: 0px 10px 0px;
 }
 }
 
@@ -173,6 +176,12 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 	}
 	.catalog-product-view .box-tocart.trade .field.qty #qty{
 		font-size: 14px;
+	}
+	.page-products .products-grid .product-item-info .action-button a.towishlist:hover .hover-wish {
+ 	   display: none;
+	}
+	.page-products .products-grid .product-item-info .action-button a.towishlist:hover .nhover-wish {
+ 	   display: block;
 	}
 }
 
