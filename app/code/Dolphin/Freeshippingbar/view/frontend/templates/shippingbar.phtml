@@ -221,23 +221,38 @@ if ($customerSession->isLoggedIn()) {
                             echo /* @noEscape */$block->escapeHtml($sucess_message);
                         } else {
                             $notes = str_replace('{thresholdValue}', $price, $notes);
-                            echo /* @noEscape */str_replace('{leftValue}', $remain, $notes);
+                            echo /* @noEscape */str_replace('{leftValue}', $remain, $notes);                            
                         }
+                        if($subTotal <= 250){
+                        ?>
+                        <style type="text/css">
+                            .shippingbar {
+                                background: #E8F5E9 !important;
+                                color: #4CAF50 !important;
+                            }
+                            span.threshold_value {
+                               color: #4CAF50 !important;
+                            }
+                        </style>
+                        <?php }
                     } 
-                    if($subTotal < 100)
-                    {                        
-                        $notes = $allGroup[3];
-                        $final_remain = $allGroup[2] - $subTotal;
-                        $remain = '<span class="threshold_value remain_value" id="remain_value">' .
-                            $CurrencySymbol . $final_remain . '</span>';
+                    
 
-                        if ($subTotal <= $allGroup[2]) {                               
-                            echo $notes;                          
-                        } else {
-                            $notes = str_replace('{thresholdValue}', $price, $notes);
-                            echo /* @noEscape */str_replace('{leftValue}', $remain, $notes);
-                        }
-                    }                     
+
+                    // if($subTotal < 100)
+                    // {                        
+                    //     $notes = $allGroup[3];
+                    //     $final_remain = $allGroup[2] - $subTotal;
+                    //     $remain = '<span class="threshold_value remain_value" id="remain_value">' .
+                    //         $CurrencySymbol . $final_remain . '</span>';
+
+                    //     if ($subTotal <= $allGroup[2]) {                               
+                    //         echo $notes;                          
+                    //     } else {
+                    //         $notes = str_replace('{thresholdValue}', $price, $notes);
+                    //         echo /* @noEscape */str_replace('{leftValue}', $remain, $notes);
+                    //     }
+                    // }                     
         }
 
     } else {
@@ -343,6 +358,9 @@ animation:puff-out-center 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) <?=/* @noE
 <script type="text/javascript">
   require(['jquery'], function($){
     jQuery(document).ready( function(c) {     
+    if(jQuery("#shippingbar").html().trim().length == 0){ 
+        jQuery("#shippingbar").addClass('hideshippingbar');
+    }
       jQuery(document).on('click','#close_shipping_bar',function(e){
         jQuery(this).parent('#shippingbar').delay(2500).fadeOut();
       });

@@ -158,6 +158,7 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 	.tradesocial .quick{
 		padding-bottom: 15px;	
     	border-bottom: 1px solid #eee;
+    	display:none;
 	}
 	.tradesocial .socialtrade{
 		    margin-top: 18px;

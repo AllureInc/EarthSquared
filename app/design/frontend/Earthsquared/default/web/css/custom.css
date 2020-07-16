@@ -2052,6 +2052,9 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
     z-index: 1;
 }
 .catalog-product-view .product-label.sale-label{display: none;}
+.catalogsearch-result-index .filter-current.am-filter-current{
+	    top: 115px;
+}
 .filter-current.am-filter-current{
 	position: absolute;
     right: 0;    
@@ -3816,6 +3819,12 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
     	top: 131px;
     	width: 97%;    	
 	}	
+	.catalogsearch-result-index #layered-filter-block .block-title.filter-title{
+		top:70px;
+	}
+	.catalogsearch-result-index.page-products .toolbar .toolbar-sorter.sorter{
+		top:40px !important;
+	}
 	#layered-filter-block.filter.active .block-title.filter-title
 	{
 		position: fixed;
@@ -3847,9 +3856,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 #amasty-shopby-product-list .products.wrapper {
     margin-top: 95px;
 }
-	.catalogsearch-result-index #amasty-shopby-product-list .products.wrapper{
-		    margin-top: 0;
-	}	
+	
 	.filter.active .block-subtitle{
 		display:block !important;
 		text-transform: uppercase;
@@ -3944,9 +3951,7 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 		border:0px !important;
 		margin:80px 0px 0px !important;		
 	}	
-	.catalogsearch-result-index .filter-current.am-filter-current{
-		    margin: 142px 0px 0px !important;
-	}
+	
 	.filter .filter-current .items{
 		display:block !important;
 	}
@@ -4540,6 +4545,9 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 .catalogsearch-result-index .breadcrumbs{display: none !important;}
 .catalogsearch-result-index .products-grid .products {
 	width:100%;float: left;
+}
+.catalogsearch-result-index .page-title{
+	font-size:22px;
 }
 
 }

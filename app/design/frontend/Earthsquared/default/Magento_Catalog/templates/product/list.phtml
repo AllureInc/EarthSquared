@@ -172,6 +172,8 @@ if($helper->isCustomerLoggedIn()){
                                         <?php endif; */ ?>
                                     <?php endif; ?>
                                 </div>
+                                <input type="hidden" name="pname" value="<?php echo $_product->getName() ?>" />
+                                <input type="hidden" name="pid" value="<?php echo $_product->getId() ?>" />
                                 <div data-role="add-to-links" class="action-button"<?= strpos($pos, $viewMode . '-secondary') ? $block->escapeHtmlAttr($position) : '' ?>> 
                                     
                                         <?php  if($helper->isCustomerLoggedIn()) { 
@@ -235,5 +237,25 @@ if($helper->isCustomerLoggedIn()){
                     $('.catalog-category-view .page-title span').html('('+lengthp+' items)');
                 //}, 100);
             });
+                $('.products-grid .action.towishlist').on("click",function(){                    
+                  var productName = $(this).parent().parent('.product-detail-action').children('input[name="pname"]').val();
+                  var productId = $(this).parent().parent('.product-detail-action').children('input[name="pid"]').val();
+                  //console.log(productName + productId);
+                  $.ajax({
+                      url: '<?php echo $this->getUrl('customize/index/addtowishlist') ?>',
+                      method: 'get',
+                      data: { productId: productId},
+                      dataType: 'json',
+                      showLoader:true,
+                      success: function(data){                
+                          var redirect = data.result.redirect;                
+                          if(redirect) {
+                              window.location.href = '<?php echo $this->getUrl('customer/account/login') ?>';
+                          } else {                  
+                              $('.page.messages div:last-child').html('<div class="message-success success message">'+ productName +""+data.result.message+'</div>');
+                          }
+                      } 
+                  }); 
+              });            
           });
 </script>

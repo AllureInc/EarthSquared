@@ -170,7 +170,9 @@ section#slider_demo .item a {
 .customer-account-create .form.create.account .field.field-name-lastname {    width: 161px;  float: right;}
 .customer-account-create .form.create.account .field.choice.newsletter {   display: none;  float: left;    width: 100%;}
 .customer-account-create .form.create.account .field {    margin-bottom: 30px;}
-
+.customer-account-create .form.create.account .field-recaptcha{
+    margin-bottom: 30px;
+}
 .sales-order-view a.action.order span:before {
     content: '';
     background: url(../images/reorder.png) no-repeat;
@@ -862,6 +864,12 @@ letter-spacing: 0.04em;    color: #4D4D4D;    }
 .sales-order-view  .right_part tr {    border-bottom: 1px solid #EEEEEE;}
 .sales-order-view .right_part tr.subtotal{
     order:1;
+}
+.sales-order-view .right_part tr.discount {
+    order: 2;
+}
+.sales-order-view .right_part tr.shipping {
+    order: 3;
 }
 .sales-order-view .right_part tr.grand_total{
     order:4;
