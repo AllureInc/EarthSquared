@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @copyright Copyright (c) 2015 Fooman Limited (http://www.fooman.co.nz)
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/styles-old.css"/>
+        <css src="Fooman_PdfCore::css/fix.css"/> <!-- apparently some PayPal feature means fileupload fields can't have a tool-tip -->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   after="system.config.edit"
+                   name="fooman_pdfcore_colourpicker_js"
+                   as="fooman_pdfcore_colourpicker_js"
+                   template="Fooman_PdfCore::colour_picker_js.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

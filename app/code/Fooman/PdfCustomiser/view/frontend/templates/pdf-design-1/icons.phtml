@@ -1,0 +1,51 @@
+<?php
+/**
+ * @var \Fooman\PdfDesign\Block\DesignOne\Icons $block
+ */
+$design = $block->getDesign();
+$primColour = $design->getPrimaryColour($block->getStoreId());
+$secColour = $design->getSecondaryColour($block->getStoreId());
+
+$svgLocation = $block->getSvgIconAsString('location', $primColour, $secColour);
+$svgMail = $block->getSvgIconAsString('mail', $primColour, $secColour);
+$svgPhone = $block->getSvgIconAsString('phone', $primColour, $secColour);
+$svgWWW = $block->getSvgIconAsString('www', $primColour, $secColour);
+?>
+
+<table width="100%">
+    <?php if ($block->getStreetAddress() || $block->getCity() || $block->getPostcode()): ?>
+    <tr style="line-height: 7mm;">
+        <td width="10%"><tcpdf method="ImageSVG" <?= /* @noEscape */ $block->getEncodedParams([$svgLocation]) ?> /></td>
+        <td width="90%"
+            style="font-size: <?= /* @noEscape */ $block->getFontsize('small') ?>;"
+        ><?= /* @noEscape */ $block->getStreetAddress() ?>,
+            <?= $block->escapeHtml($block->getCity()) ?>
+            <?= $block->escapeHtml($block->getPostcode()) ?></td>
+    </tr>
+    <?php endif; ?>
+    <?php if ($block->getPhone()): ?>
+    <tr style="line-height: 7mm;">
+        <td width="10%"><tcpdf method="ImageSVG" <?= /* @noEscape */ $block->getEncodedParams([$svgPhone]) ?> /></td>
+        <td width="90%"
+            style="font-size: <?= /* @noEscape */ $block->getFontsize('small')?>;"
+        ><?= $block->escapeHtml($block->getPhone()) ?></td>
+    </tr>
+    <?php endif; ?>
+    <?php if ($block->getEmail()): ?>
+    <tr style="line-height: 7mm;">
+        <td width="10%"><tcpdf method="ImageSVG" <?= /* @noEscape */ $block->getEncodedParams([$svgMail]) ?> /></td>
+        <td width="90%"
+            style="font-size: <?= /* @noEscape */ $block->getFontsize('small')?>;"
+        ><?= /* @noEscape */ $block->getEmail() ?></td>
+    </tr>
+    <?php endif; ?>
+    <?php if ($block->getWebsite()): ?>
+    <tr style="line-height: 7mm;">
+        <td width="10%"><tcpdf method="ImageSVG" <?= /* @noEscape */ $block->getEncodedParams([$svgWWW]) ?> /></td>
+        <td width="90%"
+            style="font-size: <?= /* @noEscape */ $block->getFontsize('small')?>;"
+        ><?= /* @noEscape */ $block->getWebsite() ?></td>
+    </tr>
+    <?php endif; ?>
+</table>
+<br/>

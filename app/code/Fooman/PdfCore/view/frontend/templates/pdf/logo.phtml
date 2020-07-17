@@ -1,0 +1,20 @@
+<?php
+/**
+ * @copyright Copyright (c) 2015 Fooman Limited (http://www.fooman.co.nz)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * @var \Fooman\PdfCore\Block\Pdf\Template\Logo $block
+ */
+?>
+<?php $logoPath = $block->getLogoPath(); ?>
+<?php $maxHeight = $block->getLogoMaxHeight(); ?>
+
+<?php if ($logoPath):
+    $logoDim = $block->getLogoDimensions($maxHeight);
+    ?><img src="<?= /* @noEscape@ */ $logoPath ?>" height="<?= /* @noEscape@ */ $logoDim['height'] ?>"
+         width="<?= /* @noEscape@ */ $logoDim['width'] ?>"/><?php
+endif; ?>

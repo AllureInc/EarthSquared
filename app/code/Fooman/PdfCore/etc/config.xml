@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+  ~ @copyright Copyright (c) 2015 Fooman Limited (http://www.fooman.co.nz)
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sales_pdf>
+            <all>
+                <!--Page Settings-->
+                <allpagesize>A4</allpagesize>
+                <allpageorientation>P</allpageorientation>
+                <allmargintop>15</allmargintop>
+                <allmarginbottom>25</allmarginbottom>
+                <allmarginsides>20</allmarginsides>
+                <page>
+                    <nobginadmin>0</nobginadmin>
+                </page>
+
+                <!--Font and Barcode Settings-->
+                <allfont>helvetica</allfont>
+                <allfontsize>12</allfontsize>
+                <allbarcode>C39E+</allbarcode>
+                <barcode_source>sku</barcode_source>
+
+                <!--Logo Settings-->
+                <logo>
+                    <placement>auto-left</placement>
+                    <maxheight>25</maxheight>
+                </logo>
+
+                <!--Miscellanous-->
+                <openinbrowser>1</openinbrowser>
+                <allqtyasint>1</allqtyasint>
+            </all>
+        </sales_pdf>
+    </default>
+</config>
+
