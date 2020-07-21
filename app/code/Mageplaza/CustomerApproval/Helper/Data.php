@@ -221,7 +221,7 @@ class Data extends AbstractData
             $customerData->setId($customer->getId());
             $customerData->setCustomAttribute('is_approved', $typeApproval);
             if($typeApproval=="approved"){
-				$customerData->setGroupId(1);
+				$customerData->setGroupId(2);
 			}else{
 				$customerData->setGroupId(27);	
 			}

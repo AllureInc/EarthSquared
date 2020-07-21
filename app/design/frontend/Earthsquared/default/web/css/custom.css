@@ -3011,6 +3011,34 @@ ul.sortorder-options li.active,.toolbar .toolbar-sorter.sorter .sorter-label spa
 #cart-totals .table.totals tbody tr{
 	border-bottom: 1px solid #eee !important;
 }
+.cart-summary .cart-totals table.totals tbody{
+	display:flex;
+	flex-flow: column;
+}
+#cart-totals .table.totals tbody tr.totals{
+	order: 2; 
+}
+#cart-totals .table.totals tbody tr.totals.sub{
+	order: 1; 
+}
+#cart-totals .table.totals tbody tr.totals.excl{
+	order:3;
+}
+#cart-totals .table.totals tbody tr.totals-tax{
+	order:5;
+}
+#cart-totals .table.totals tbody tr.grand.totals.excl{
+	order:4;
+}
+#cart-totals .table.totals tbody tr.grand.totals.incl{
+	order:6;
+}
+#cart-totals tbody .mark{
+	float: left;
+}
+#cart-totals tbody .amount{
+	float: right;
+}
 .action.primary.checkout {
 	background: #4D4D4D !important;
     text-align: center;

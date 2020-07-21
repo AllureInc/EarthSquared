@@ -43,5 +43,6 @@
 				<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>	
 				
         </referenceContainer> 
+         <referenceBlock name="page.messages" remove="true" />
     </body>
 </page>

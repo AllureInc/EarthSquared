@@ -430,11 +430,39 @@ right: 34px;
     border-top:0px;
 }
 #checkout .opc-block-summary .table-totals tr{
-    border-bottom: 0px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+.opc-block-summary table.table-totals tbody{
+    display:flex;
+    flex-flow: column;
+}
+.opc-block-summary table.table-totals tbody tr.totals{
+    order: 2; 
+}
+.opc-block-summary table.table-totals tbody tr.totals.sub{
+    order: 1; 
+}
+.opc-block-summary table.table-totals tbody tr.totals.excl{
+    order:3;
+}
+.opc-block-summary table.table-totals tbody tr.totals-tax{
+    order:5;
+}
+.opc-block-summary table.table-totals tbody tr.grand.totals.excl{
+    order:4;
+}
+.opc-block-summary table.table-totals tbody tr.grand.totals.incl{
+    order:6;
+}
+.opc-block-summary table.table-totals .mark{
+    float: left;
+}
+.opc-block-summary table.table-totals .amount{
+    float: right;
 }
 #checkout .opc-block-summary .table-totals tr th, #checkout .opc-block-summary .table-totals tr td {
     padding: 23px 0px;
-    border-top: 1px solid #eee !important;
+    border-top: 0px solid #eee !important;
 }
 #checkout .opc-block-summary .table-totals tr th,#checkout .opc-block-summary .table-totals tr th .label{
     text-transform: uppercase;
@@ -686,7 +714,7 @@ textarea {
     font-size: 12px;
 }
 #checkout .opc-block-summary .table-totals tr:last-child{
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 0px solid #e0e0e0;
 }
 #checkout #billing_address_id{
     width: 98%;

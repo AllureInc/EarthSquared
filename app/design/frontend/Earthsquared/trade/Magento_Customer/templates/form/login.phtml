@@ -21,6 +21,7 @@
     <div class="block-title">
         <h2 id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Sign in using Email')) ?></h2>
     </div>
+    <?php  echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Messages")->setTemplate("Magento_Theme::messages.phtml")->toHtml(); ?>
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
               action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"

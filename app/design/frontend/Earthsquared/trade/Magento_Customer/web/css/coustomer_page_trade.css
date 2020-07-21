@@ -7,7 +7,6 @@
 @media screen and (min-width: 768px) {  
 .customer-account-login header.page-header {    display: none;}
 .customer-account-login .column.main {    padding-bottom: 0;}
-
 }
 .customer-account-login main#maincontent .message-error.error.message {
     margin: 0;
@@ -20,6 +19,9 @@
 }
 .customer-account-create .form.create.account select {
     border: 1px solid #E0E0E0;
+}
+.block-customer-login-trade .form.form-login{
+    margin-top: 20px;
 }
 .block-new-customer-trade {   display: none; width: 60%;    float: right;}
 .block-new-customer-trade .block.block-new-customer {    margin: 0 auto;    float: none !important; }

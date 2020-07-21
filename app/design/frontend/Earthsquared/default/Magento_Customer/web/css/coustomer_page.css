@@ -875,10 +875,10 @@ letter-spacing: 0.04em;    color: #4D4D4D;    }
     order:4;
 }
 .sales-order-view .right_part tr.totals-tax{
-    order:3;
+    order:5;
 }
 .sales-order-view .right_part tr.grand_total_incl{
-    order:5;
+    order:6;
 }
 .sales-order-view .right_part tr.shipping
 .sales-order-view .block-order-details-view .box-title span {
