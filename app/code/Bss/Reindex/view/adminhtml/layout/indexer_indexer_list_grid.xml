@@ -42,36 +42,7 @@
             </arguments>
         </referenceBlock>
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Text" name="content.bsscontent">
-                <action method="setText">
-                    <argument translate="true" name="text" xsi:type="string">
-                        <![CDATA[
-                            <script>
-                                require(['jquery', 'domReady!'], function($){
-                                    'use strict';
-                                    $('.bss-reindex-info').closest('.message-success.success').addClass('bss-hidden');
-                                    $('.bss-reindex-show').click(function () {
-                                        if ($('.bss-reindex-info').length > 0) {
-                                            $('.bss-reindex-info').each(function () {
-                                                if ($(this).closest('.message-success.success').hasClass('bss-hidden')) {
-                                                    $(this).closest('.message-success.success').removeClass('bss-hidden');
-                                                } else {
-                                                    $(this).closest('.message-success.success').addClass('bss-hidden');
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
-                            </script>
-                            <style>
-                                .bss-hidden{
-                                    display: none;
-                                }
-                            </style>
-                        ]]>
-                    </argument>
-                </action>
-            </block>
+            <block class="Bss\Reindex\Block\Backend\Grid\Indexer" name="content.bsscontent"/>
         </referenceContainer>
     </body>
 </page>

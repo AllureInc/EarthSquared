@@ -8,4 +8,8 @@
  		<preference for="Magento\CatalogSearch\Block\Result" type="Earthsquared\Customize\Block\Result" />
  		<preference for="Magento\Checkout\Controller\Cart\CouponPost" type="Earthsquared\Customize\Controller\Cart\CouponPost" />
  		<preference for="Magento\Checkout\Block\Cart\Coupon" type="Earthsquared\Customize\Block\Cart\Coupon" />
+ 		<preference for='Magento\Sales\Block\Order\Totals' type='Earthsquared\Customize\Block\Order\Totals'/>	
+	    <type name="Magento\Quote\Model\ShippingMethodManagement">
+	        <plugin name="shipping_method_management" type="Earthsquared\Customize\Plugin\Model\ShippingMethodManagement" disabled="false"/>
+	    </type> 		
     </config>

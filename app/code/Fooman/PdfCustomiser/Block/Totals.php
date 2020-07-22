@@ -203,7 +203,8 @@ class Totals extends \Fooman\PdfCore\Block\Pdf\Block
                 $line['amount'] = isset($taxLine['amount']) ? $taxLine['amount'] : '';
                 $line['base_amount'] = isset($taxLine['base_amount']) ? $taxLine['base_amount'] : '';
             } else {
-                $line['label'] = $taxLine['title'] . ' (' . (float)$taxLine['percent'] . '%):';
+                $line['label'] = __('Tax') . ':';
+                //$line['label'] = $taxLine['title'] . ' (' . (float)$taxLine['percent'] . '%):';
                 $line['amount'] = $this->getAmountPrefix()
                     . $this->getOrder()->getOrderCurrency()->formatTxt($taxLine['tax_amount']);
                 $line['base_amount'] = $this->getAmountPrefix()

@@ -22,9 +22,9 @@
         <?php else: ?>
             <td width="50%"
                 valign="top">&nbsp;<?= /* @noEscape */ $block->getLogoBlock() ?></td>
-            <td valign="top"
+            <td width="50%" valign="top"
                 height="30mm"
-                style="font-weight:bold; font-size:<?= /* @noEscape */ $block->getFontsize('large') ?>"
+                style="text-align:right;font-weight:bold; font-size:<?= /* @noEscape */ $block->getFontsize('large') ?>"
             ><?= $block->escapeHtml($block->getTitle()) ?></td>
         <?php endif; ?>
     </tr>

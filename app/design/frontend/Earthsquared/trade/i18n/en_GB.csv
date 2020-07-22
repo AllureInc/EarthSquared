@@ -1,8 +1,8 @@
-"Cart Subtotal","Subtotal"
 "Stored Payment Methods","Manage Payments"
-"Shipping & Handling","Delivery"
-"Tax","Vat"
-"Order Total Excl. Tax","Grand Total Excl. VAT"
+"Shipping & Handling","SHIPPING"
+"Tax","VAT"
+"Subtotal","ORDER VALUE"
+"Order Total Excl. Tax","SUBTOTAL"
 "%1 has been moved to your wish list.","%1 has been moved to your saved list."
 "First Name","First Name *",module,Magento_Checkout
 "Last Name","Last Name *",module,Magento_Checkout 
@@ -15,10 +15,12 @@
 "Are you sure you would like to remove this item from the shopping cart?","Are you sure you would like to remove this item from your shopping bag?"
 
 "%1 has been added to your Wish List.","%1 has been added to your Saved for Later.",
-
+" has been added to your Wish List."," has been added to your Saved for Later."
 "You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link."
 "Grand Total","Grand Total Incl. VAT"
-"Order Total Incl. Tax","Grand Total Incl. VAT"
-"Order Total (Excl.Tax)","Grand Total (Excl.VAT)"
-"Order Total (Incl.Tax)","Grand Total (Incl.VAT)"
+"Order Total Incl. Tax","GRAND TOTAL INCL. VAT"
+"Grand Total (Excl.Tax)","SUBTOTAL"
+"Grand Total Excl.VAT","SUBTOTAL"
+"Grand Total (Incl.Tax)","GRAND TOTAL INCL. VAT"
+"Cart Subtotal","ORDER VALUE"
 

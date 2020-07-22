@@ -37,7 +37,7 @@ define(
 
                 _.each(this.collectPlaces, function(place) {
                     var container = registry.filter('index = ' + place);
-
+                    console.log(container.length);
                     if (container.length) {
                         _.each(container[0].elems(), function(elem) {
                             if (elem.visible()) {

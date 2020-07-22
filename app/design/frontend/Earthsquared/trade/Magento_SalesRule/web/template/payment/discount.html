@@ -1,0 +1,48 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-option _collapsible opc-payment-additional discount-code">    
+    <div class="payment-option-title field choice trade" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+            <!-- ko i18n: '+ Apply Discount Code'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <form class="form form-discount trade" id="discount-form">
+            <div class="payment-option-inner">
+                <div class="field">                    
+                    <div class="control">
+                        <input class="input-text"
+                               type="text"
+                               id="discount-code"
+                               name="discount_code"
+                               data-validate="{'required-entry':true}"
+                               data-bind="value: couponCode, attr:{placeholder: $t('Apply Gift Voucher')} " />
+                    </div>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">                    
+                        <button class="action action-apply" type="submit" data-bind="'value': $t('Apply'), click: apply">
+                            <span><!-- ko i18n: 'Apply'--><!-- /ko --></span>
+                        </button>                                   
+                </div>
+            </div>
+            <!-- ko if: isApplied() -->
+                <div class="message message-success success loaded">
+                    <span data-bind="text: showApplyMessage()"></span> 
+                    <a href="JavaScript:void(0);" class="change-coupon" data-bind="click: showCouponForm">Change</a>
+                </div>  
+            <!-- /ko -->
+            <!-- ko foreach: getRegion('captcha') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </form>
+    </div>
+</div>

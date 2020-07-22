@@ -31,6 +31,8 @@ class Form extends AbstractAction
      */
     protected $_order;
 
+
+    protected $quoteRepository;
     /**
      * @param Context $context
      * @param PageFactory $resultPageFactory
@@ -43,11 +45,14 @@ class Form extends AbstractAction
         PageFactory $resultPageFactory,
         Data $helper,
         Quote $quote,
-        Order $order
+        Order $order,
+        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
+        $actionType = self::ACTION_GET_FORM
     ) {
-        parent::__construct($context, $resultPageFactory, $helper);
+        parent::__construct($context, $resultPageFactory, $helper, $actionType);
         $this->_quote = $quote;
         $this->_order = $order;
+        $this->quoteRepository = $quoteRepository;
     }
 
     /**
@@ -64,7 +69,8 @@ class Form extends AbstractAction
             throw new LocalizedException(__('Can not load block'));
         }
 
-        $quote = $this->getQuote();
+
+        $quote =  $this->quoteRepository->get($this->getOrder()->getQuoteId());
         $order = $this->getOrder();
         $shippingFormContainer->setQuote($quote);
         $shippingFormContainer->setOrder($order);
@@ -78,6 +84,7 @@ class Form extends AbstractAction
      */
     protected function getQuote()
     {
+
         $quoteId = $this->getOrder()->getQuoteId();
         return $this->_quote->load($quoteId);
     }

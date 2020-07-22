@@ -41,6 +41,7 @@
 	        	
 				<block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>	
 				
-        </referenceContainer> 
+        </referenceContainer>
+       
     </body>
 </page>

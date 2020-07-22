@@ -5,14 +5,13 @@
  * @package Amasty_Shopby
  */
 
-
 namespace Amasty\Shopby\Plugin\Ajax;
 
 use Amasty\Shopby\Helper\State;
 use Magento\Catalog\Model\Category;
 use Magento\Framework\App\ActionFlag;
-use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\Request\Http;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Layout\Element;
 
@@ -150,8 +149,8 @@ class Ajax
             $tags = $this->addXTagCache($products, $tags);
             $productList = $products->getChildBlock('product_list') ?: $products->getChildBlock('search_result_list');
             $productsCount = $productList
-                ? $productList->getLoadedProductCollection()->getSize()
-                : $products->getResultCount();
+            ? $productList->getLoadedProductCollection()->getSize()
+            : $products->getResultCount();
         }
 
         $navigation = $layout->getBlock('catalog.leftnav') ?: $layout->getBlock('catalogsearch.leftnav');
@@ -205,20 +204,20 @@ class Ajax
         }
 
         $currentCategory = $productList && $productList->getLayer()
-            ? $productList->getLayer()->getCurrentCategory()
-            : false;
+        ? $productList->getLayer()->getCurrentCategory()
+        : false;
 
         $isDisplayModePage = $currentCategory && $currentCategory->getDisplayMode() == Category::DM_PAGE;
 
         $responseData = [
-            'categoryProducts'=> $categoryProducts . $swatchesChooseHtml . $this->getAdditionalConfigs($layout),
+            'categoryProducts' => $categoryProducts . $swatchesChooseHtml . $this->getAdditionalConfigs($layout),
             'navigation' =>
-                ($navigation ? $navigation->toHtml() : '')
-                . $shopbyCollapseHtml
-                . ($applyButton ? $applyButton->toHtml() : ''),
+            ($navigation ? $navigation->toHtml() : '')
+            . $shopbyCollapseHtml
+            . ($applyButton ? $applyButton->toHtml() : ''),
             'navigationTop' =>
-                ($navigationTop ? $navigationTop->toHtml() : '')
-                . ($applyButtonTop ? $applyButtonTop->toHtml() : ''),
+            ($navigationTop ? $navigationTop->toHtml() : '')
+            . ($applyButtonTop ? $applyButtonTop->toHtml() : ''),
             'breadcrumbs' => $breadcrumbs ? $breadcrumbs->toHtml() : '',
             'h1' => $h1 ? $h1->toHtml() : '',
             'title' => $title->get(),
@@ -228,11 +227,11 @@ class Ajax
             'productsCount' => $productsCount,
             'js_init' => $jsInit ? $jsInit->toHtml() : '',
             'isDisplayModePage' => $isDisplayModePage,
-            'currentCategoryId' => $currentCategory ? $currentCategory->getId() ?: 0 : 0,
+            'currentCategoryId' => $currentCategory ? $currentCategory->getId() ?: 0: 0,
             'currency' => $this->getBlockHtml($layout, 'currency'),
             'store' => $this->getBlockHtml($layout, 'store_language'),
             'store_switcher' => $this->getBlockHtml($layout, 'store_switcher'),
-            'behaviour' => $this->getBlockHtml($layout, 'wishlist_behaviour')
+            'behaviour' => $this->getBlockHtml($layout, 'wishlist_behaviour'),
         ];
         if ($layout->getBlock('category.amshopby.ajax')) {
             $responseData['newClearUrl'] = $layout->getBlock('category.amshopby.ajax')->getClearUrl();
@@ -409,8 +408,8 @@ class Ajax
             [
                 'data' => [
                     'page' => $html,
-                    'pageType' => 'catalog_category_view'
-                ]
+                    'pageType' => 'catalog_category_view',
+                ],
             ]
         );
         $this->eventManager->dispatch('amoptimizer_process_ajax_page', ['data' => $dataObject]);

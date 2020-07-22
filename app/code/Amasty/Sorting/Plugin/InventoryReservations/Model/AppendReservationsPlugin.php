@@ -95,6 +95,7 @@ class AppendReservationsPlugin
             if ($orderItem->getParentItemId()
                 && $orderItem->getParentItem()->getProductType() == Configurable::TYPE_CODE
                 && $orderItem->getSku() == $reservation->getSku()
+            	&& $orderItem->getParentItem()->getProduct()
             ) {
                 try {
                     $reservation = $this->getReservationBuilder()

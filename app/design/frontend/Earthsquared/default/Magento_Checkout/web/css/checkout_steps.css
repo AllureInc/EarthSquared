@@ -437,13 +437,13 @@ right: 34px;
     flex-flow: column;
 }
 .opc-block-summary table.table-totals tbody tr.totals{
-    order: 2; 
+    order: 3; 
 }
 .opc-block-summary table.table-totals tbody tr.totals.sub{
     order: 1; 
 }
 .opc-block-summary table.table-totals tbody tr.totals.excl{
-    order:3;
+    order:2;
 }
 .opc-block-summary table.table-totals tbody tr.totals-tax{
     order:5;
@@ -464,7 +464,7 @@ right: 34px;
     padding: 23px 0px;
     border-top: 0px solid #eee !important;
 }
-#checkout .opc-block-summary .table-totals tr th,#checkout .opc-block-summary .table-totals tr th .label{
+#checkout .opc-block-summary .table-totals tr th,#checkout .opc-block-summary .table-totals tr th .label,#checkout .opc-block-summary .table-totals tr.grand.excl th strong{
     text-transform: uppercase;
     color: #4d4d4d;
     font-size: 12px;
@@ -481,6 +481,11 @@ right: 34px;
     color: #4d4d4d;     
     text-transform: uppercase !important;
     letter-spacing: 0.04em;
+ }
+ #checkout .opc-block-summary .table-totals tr.grand.excl td strong{
+    font-family: 'Futura Bk BT';
+    color: #4d4d4d;
+    font-size: 14px;
  }
  .opc-block-summary .table-totals .grand th strong{
     color:#4d4d4d;

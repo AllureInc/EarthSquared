@@ -15,7 +15,7 @@ class Wishlist extends \Magento\Wishlist\CustomerData\Wishlist
     /**
      * @var string
      */
-    const SIDEBAR_ITEMS_NUMBER = 3;
+    const SIDEBAR_ITEMS_NUMBER = 50;
 
     /**
      * @var \Magento\Wishlist\Helper\Data
@@ -122,6 +122,21 @@ class Wishlist extends \Magento\Wishlist\CustomerData\Wishlist
         }
         return array_sum($price);
     }
+    protected function getItems()
+    {
+        $this->view->loadLayout();
+
+        $collection = $this->wishlistHelper->getWishlistItemCollection();
+        $collection->clear()->setPageSize(self::SIDEBAR_ITEMS_NUMBER)
+            ->setInStockFilter(true)->setOrder('added_at');
+
+        $items = [];
+        foreach ($collection as $wishlistItem) {
+            $items[] = $this->getItemData($wishlistItem);
+        }
+        return $items;
+    }
+
     protected function getItemData(\Magento\Wishlist\Model\Item $wishlistItem)
     {
         $product = $wishlistItem->getProduct();

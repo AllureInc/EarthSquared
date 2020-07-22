@@ -24,21 +24,20 @@
             <td width="50%"
                 valign="top">&nbsp;<?= /* @noEscape */ $block->getLogoBlock() ?></td>
             <td valign="top"
+                width="50%"
                 height="30mm"
-                style="font-weight:bold;font-size:<?= /* @noEscape */ $block->getFontsize('large') ?>"
+                style="text-align:right;font-weight:bold;font-size:<?= /* @noEscape */ $block->getFontsize('large') ?>"
             ><?= $block->escapeHtml($block->getTitle()) ?></td>
         <?php endif; ?>
     </tr>
     <tr>
-        <td valign="top" width="50%"><?= $block->escapeHtml(__('Invoice #')) ?>:
+        <td valign="top" width="50%" style="font-weight:bold;"><?= $block->escapeHtml(__('Invoice #')) ?>:
             <?= $block->escapeHtml($invoice->getIncrementId()) ?><br/>
-            <?= $block->escapeHtml(__('Invoice Date')) ?>:
-            <?= /* @noEscape */ $block->getFormattedDate($invoice->getCreatedAt()) ?><br/>
             <?php if ($block->showOrderIncrementId()): ?>
-                <?= $block->escapeHtml(__('Order #') . ': ' . $order->getIncrementId()) ?><br/>
-            <?php endif; ?>
-            <?= $block->escapeHtml(__('Order Date')) ?>:
-            <?= /* @noEscape */ $block->getFormattedDate($order->getCreatedAt()) ?>
+            <?= $block->escapeHtml(__('Order #') . ': ' . $order->getIncrementId()) ?><br/>
+            <?php endif; ?>            
+            <?= $block->escapeHtml(__('Date')) ?>:
+            <?= /* @noEscape */ $block->getFormattedDate($invoice->getCreatedAt()) ?>
         </td>
         <td valign="top"><?= /* @noEscape */ nl2br($block->getOwnerAddress()) ?></td>
     </tr>
@@ -52,7 +51,7 @@
                 <table>
                     <tr>
                         <td width="5%"></td>
-                        <td width="45%"><?= $block->escapeHtml(__('Sold to:')) ?>
+                        <td width="45%"><?= $block->escapeHtml(__('Invoice to:')) ?>
                         <br/><?= /* @noEscape */ $block->getBillingAddress() ?></td>
                         <td width="5%"></td>
                         <td width="45%"><?= $block->escapeHtml(__('Ship to:')) ?>
@@ -60,7 +59,7 @@
                     </tr>
                 </table>
             </td>-->
-            <td valign="top" width="50%"><?= $block->escapeHtml(__('Sold to:')) ?><br/>
+            <td valign="top" width="50%"><?= $block->escapeHtml(__('Invoice to:')) ?><br/>
                 <?= /* @noEscape */ $block->getBillingAddress() ?></td>
             <td valign="top"><?php if (!$order->getIsVirtual()):
                 ?><?= $block->escapeHtml(__('Ship to:')) ?>

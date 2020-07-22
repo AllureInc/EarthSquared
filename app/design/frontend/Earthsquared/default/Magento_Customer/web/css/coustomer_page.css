@@ -866,10 +866,10 @@ letter-spacing: 0.04em;    color: #4D4D4D;    }
     order:1;
 }
 .sales-order-view .right_part tr.discount {
-    order: 2;
+    order: 3;
 }
 .sales-order-view .right_part tr.shipping {
-    order: 3;
+    order: 2;
 }
 .sales-order-view .right_part tr.grand_total{
     order:4;

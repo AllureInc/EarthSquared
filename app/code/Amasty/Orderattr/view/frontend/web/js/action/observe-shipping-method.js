@@ -1,11 +1,12 @@
 define([
     'ko',
+    'jquery',
     'underscore',
     'mageUtils',
     'uiClass',
     'Magento_Checkout/js/model/shipping-service',
     'Magento_Checkout/js/model/quote'
-], function (ko, _, utils, Class, shippingService, quote) {
+], function (ko, $,  _, utils, Class, shippingService, quote) {
     'use strict';
 
     return Class.extend({
@@ -47,8 +48,14 @@ define([
 
             if (!this.element.hidedByDepend) {
                 this.element.visible(visible);
+            }            
+            if(shippingMethodCode == "freeshipping_freeshipping"){
+               $('.order-attributes-form .step-title').show();
+               this.element.visible(true);
+            } else{
+               $('.order-attributes-form .step-title').show(); 
+               this.element.visible(true);
             }
-
             this.relationInitCheck();
 
             return visible;
