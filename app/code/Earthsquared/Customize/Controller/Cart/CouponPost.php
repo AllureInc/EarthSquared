@@ -95,9 +95,8 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                 $cartQuote->getShippingAddress()->setCollectShippingRates(true);
                 $cartQuote->setCouponCode($isCodeLengthValid ? $couponCode : '')->collectTotals();
                 $this->quoteRepository->save($cartQuote);
-            }
-
-            if ($codeLength) {
+            }            
+            if ($codeLength != 0) {
                 //echo $cartQuote->getId();exit;
                 $quoteId = $this->_session->getQuote()->getId();        
                 $q = $this->_quoteFactory->create()->load($quoteId);
@@ -108,13 +107,20 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                 $escaper = $this->_objectManager->get(\Magento\Framework\Escaper::class);
                 $coupon = $this->couponFactory->create();
                 $coupon->load($couponCode, 'code');
+                $store = $this->_objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+                if($store->getStore()->getWebsiteId() == 1)
+                {
+                    $labeled = "Promotional Code";
+                } else {
+                    $labeled = "Gift Voucher";
+                }
                 if (!$itemsCount) {
                     if ($isCodeLengthValid && $coupon->getId()) {
-                        $this->_checkoutSession->getQuote()->setCouponCode($couponCode)->save();
+                        $this->_checkoutSession->getQuote()->setCouponCode($couponCode)->save();                        
                         $response = [
                             'errors' => false,
                             'message' => __(
-                                $escaper->escapeHtml('Gift Voucher "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
+                                $escaper->escapeHtml($labeled.' "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
                                 $escaper->escapeHtml($couponCode),
                                 $discountAmount
                             ),
@@ -123,7 +129,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                         $response = [
                             'errors' => true,
                             'message' => __(
-                                'The Gift Voucher "%1" is not valid.',
+                                'The '.$labeled.' "%1" is not valid.',
                                 $escaper->escapeHtml($couponCode)
                             ),
                         ];
@@ -133,7 +139,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                         $response = [
                             'errors' => false,
                             'message' => __(
-                                $escaper->escapeHtml('Gift Voucher "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
+                                $escaper->escapeHtml($labeled.' "%1" successfully applied. You received a discount of <span>%2</span>',['span']),
                                 $escaper->escapeHtml($couponCode),
                                 $discountAmount
                             ),
@@ -142,7 +148,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
                         $response = [
                             'errors' => true,
                             'message' => __(
-                                'The Gift Voucher "%1" is not valid.',
+                                'The '.$labeled.' "%1" is not valid.',
                                 $escaper->escapeHtml($couponCode)
                             ),
                         ];
@@ -151,7 +157,7 @@ class CouponPost extends \Magento\Checkout\Controller\Cart\CouponPost
             } else {
                 $response = [
                     'errors' => true,
-                    'message' => __('You canceled the Gift Voucher.'),
+                    'message' => __('You canceled the '.$labeled.'.'),
                 ];
             }
         } catch (\Magento\Framework\Exception\LocalizedException $e) {

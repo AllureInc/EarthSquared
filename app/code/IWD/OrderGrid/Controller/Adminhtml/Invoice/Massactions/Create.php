@@ -33,6 +33,8 @@ class Create extends AbstractMassAction
      */
     protected $invoiceOrder;
 
+    protected $orderRepository;
+
     /**
      * @param Context $context
      * @param Filter $filter
@@ -43,12 +45,14 @@ class Create extends AbstractMassAction
         Context $context,
         Filter $filter,
         CollectionFactory $collectionFactory,
-        InvoiceOrderInterface $invoiceOrder
+        InvoiceOrderInterface $invoiceOrder,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
     )
     {
         parent::__construct($context, $filter);
         $this->collectionFactory = $collectionFactory;
         $this->invoiceOrder = $invoiceOrder;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -69,10 +73,18 @@ class Create extends AbstractMassAction
     protected function massAction(AbstractCollection $collection)
     {
         $countInvoiceOrder = 0;
+        $invoiceAlreadyExistsForOrder = 0;
+
         foreach ($collection->getItems() as $order) {
             try {
-                $this->invoiceOrder->execute($order->getId());
-                $countInvoiceOrder++;
+                $loadOrder = $this->orderRepository->get($order->getId());
+                if(!$loadOrder->getInvoiceCollection()->count()){
+                    $this->invoiceOrder->execute($order->getId());
+                    $countInvoiceOrder++;
+                }else{
+                    $invoiceAlreadyExistsForOrder++;
+                    break;
+                }
             } catch (\Exception $e) {
                 $message = '#%1 ' . $e->getMessage();
                 $this->messageManager->addErrorMessage(__($message, $order->getIncrementId()));
@@ -83,7 +95,7 @@ class Create extends AbstractMassAction
 
         if ($countNonInvoiceOrder && $countInvoiceOrder) {
             $this->messageManager->addErrorMessage(__('%1 order(s) cannot be invoice.', $countNonInvoiceOrder));
-        } elseif ($countNonInvoiceOrder) {
+        } elseif ($countNonInvoiceOrder && !$invoiceAlreadyExistsForOrder) {
             $this->messageManager->addErrorMessage(__('You cannot invoice the order(s).'));
         }
 

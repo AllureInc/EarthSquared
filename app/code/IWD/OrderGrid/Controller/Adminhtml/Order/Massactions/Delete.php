@@ -52,6 +52,7 @@ class Delete extends AbstractMassAction
             $order = clone $this->order->load($item->getId());
             if ($order->isAllowDeleteOrder()) {
                 $order->delete();
+                $this->removeRmaByOrderId($item->getId());
                 $countDeletedOrder++;
             }
         }
@@ -76,6 +77,17 @@ class Delete extends AbstractMassAction
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath($this->getComponentRefererUrl());
         return $resultRedirect;
+    }
+
+    public function removeRmaByOrderId($orderId){
+        if (class_exists(\Magento\Rma\Model\Rma::class)) {
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $rmaModel = clone $objectManager->create('\Magento\Rma\Model\RmaFactory')->create();
+            $rmaCollection = $rmaModel->getCollection()->addFieldToSelect('*')->addFieldToFilter('order_id', $orderId);
+            foreach($rmaCollection as $key => $item) {
+                $rmaModel->load($item->getEntityId())->delete();
+            }
+        }
     }
 
     /**

@@ -39,6 +39,8 @@ class InvoiceShip extends AbstractMassAction
      */
     protected $shipOrder;
 
+    protected $orderRepository;
+
     /**
      * @param Context $context
      * @param Filter $filter
@@ -50,13 +52,15 @@ class InvoiceShip extends AbstractMassAction
         Filter $filter,
         CollectionFactory $collectionFactory,
         InvoiceOrderInterface $invoiceOrder,
-        ShipOrderInterface $shipOrder
+        ShipOrderInterface $shipOrder,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
     )
     {
         parent::__construct($context, $filter);
         $this->collectionFactory = $collectionFactory;
         $this->invoiceOrder = $invoiceOrder;
         $this->shipOrder = $shipOrder;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -78,11 +82,20 @@ class InvoiceShip extends AbstractMassAction
     {
         $countInvoiceOrder = 0;
         $countShipOrder = 0;
+        $invoiceAlreadyExistsForOrder = 0;
+        $shippingAlreadyExistsForOrder = 0;
         $items = $collection->getItems();
+
         foreach ($items as $order) {
             try {
-                $this->invoiceOrder->execute($order->getId());
-                $countInvoiceOrder++;
+                $loadOrder = $this->orderRepository->get($order->getId());
+                if(!$loadOrder->getInvoiceCollection()->count()){
+                    $this->invoiceOrder->execute($order->getId());
+                    $countInvoiceOrder++;
+                }else{
+                    $invoiceAlreadyExistsForOrder++;
+                    break;
+                }
             } catch (\Exception $e) {
                 $message = '#%1 ' . $e->getMessage();
                 $this->messageManager->addErrorMessage(__($message, $order->getIncrementId()));
@@ -93,8 +106,14 @@ class InvoiceShip extends AbstractMassAction
 
         foreach ($items as $order) {
             try {
-                $this->shipOrder->execute($order->getId());
-                $countShipOrder++;
+                $loadOrder = $this->orderRepository->get($order->getId());
+                if(!$loadOrder->getShipmentsCollection()->count()){
+                    $this->shipOrder->execute($order->getId());
+                    $countShipOrder++;
+                }else{
+                    $shippingAlreadyExistsForOrder++;
+                    break;
+                }
             } catch (\Exception $e) {
                 $message = '#%1 ' . $e->getMessage();
                 $this->messageManager->addErrorMessage(__($message, $order->getIncrementId()));
@@ -107,7 +126,7 @@ class InvoiceShip extends AbstractMassAction
 
         if ($countNonInvoiceOrder && $countInvoiceOrder) {
             $this->messageManager->addErrorMessage(__('%1 order(s) cannot be invoice.', $countNonInvoiceOrder));
-        } elseif ($countNonInvoiceOrder) {
+        } elseif ($countNonInvoiceOrder && !$invoiceAlreadyExistsForOrder) {
             $this->messageManager->addErrorMessage(__('You cannot invoice the order(s).'));
         }
 
@@ -120,7 +139,7 @@ class InvoiceShip extends AbstractMassAction
 
         if ($countNonShipOrder && $countShipOrder) {
             $this->messageManager->addErrorMessage(__('%1 order(s) cannot be ship.', $countNonShipOrder));
-        } elseif ($countNonShipOrder) {
+        } elseif ($countNonShipOrder && !$shippingAlreadyExistsForOrder) {
             $this->messageManager->addErrorMessage(__('You cannot ship the order(s).'));
         }
 

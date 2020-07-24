@@ -54,7 +54,11 @@ class MassAction extends BaseMassAction
                 continue;
             }
 
-            $newConfigActions[] = $configItem;
+            if($configItem['type'] == 'status'){
+                array_unshift($newConfigActions,$configItem);
+            }else{
+                $newConfigActions[] = $configItem;
+            }
         }
 
         $config['actions'] = $newConfigActions;

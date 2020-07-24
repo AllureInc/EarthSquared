@@ -40,6 +40,7 @@ define([
          */
         apply: function () {
             if (this.validate()) {
+                $('.trade#discount-form').removeClass('removedCoupon');
                 setCouponCodeAction(couponCode(), isApplied);
                 $('.message.message-success.success.loaded').show();
             }
@@ -52,20 +53,16 @@ define([
             if (this.validate()) {
                 couponCode('');
                 cancelCouponAction(isApplied);
+                $('.trade#discount-form').addClass('removedCoupon');                
             }
+
         },
 
-        showApplyMessage: function(){
+        showApplyMessage: function(){            
             $('.trade#discount-form .payment-option-inner').hide();
             $('.trade#discount-form .actions-toolbar').hide();
             var discount = parseFloat(quote.totals().subtotal - quote.totals().subtotal_with_discount);           
-            return $t('Gift Voucher gifttest successfully applied. You received a discount of £'+discount.toFixed(2));
-        },
-
-        showCouponForm: function(){
-            $('.trade#discount-form .payment-option-inner').show();
-            $('.trade#discount-form .actions-toolbar').show();
-            $('.message.message-success.success.loaded').hide();
+            return $t('Promotional Code '+quote.totals().coupon_code+' successfully applied. You received a discount of £'+discount.toFixed(2));
         },
 
         /**

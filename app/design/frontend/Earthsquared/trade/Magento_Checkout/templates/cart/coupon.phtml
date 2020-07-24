@@ -35,7 +35,7 @@ $hasCouponCode = (bool) strlen($block->getCouponCode());
                                id="coupon_code"
                                name="coupon_code"
                                value="<?= $block->escapeHtmlAttr($block->getCouponCode()) ?>"
-                               placeholder="<?= $block->escapeHtmlAttr(__('Apply Gift Voucher')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Apply Promotional Code')) ?>"
                         />
                     </div>
                 </div>
@@ -50,8 +50,8 @@ $hasCouponCode = (bool) strlen($block->getCouponCode());
             <?php if ($hasCouponCode) :?>
                 <div class="message message-success success loaded">
                     <div>
-                      <?= $block->escapeHtml(__('Gift Voucher %1 successfully applied. You received a discount of <span>%2</span>',$block->getCouponCode(), $block->getDiscountAmount()),['span']) ?>
-                      <a href="JavaScript:void(0);" class='change-coupon'>change</a></div>
+                      <?= $block->escapeHtml(__('Promotional Code %1 successfully applied. You received a discount of <span>%2</span>',$block->getCouponCode(), $block->getDiscountAmount()),['span']) ?>
+                      <a href="JavaScript:void(0);" class='change-coupon'>remove</a></div>
                 </div>
             <?php endif; ?>
             <div class="message" id="ajax_message">

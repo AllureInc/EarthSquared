@@ -50,8 +50,10 @@ class Addtowishlist extends Action {
        
         $wishlist->addNewItem($product);
         $wishlist->save();
+        $wishlist->getItemCollection();
+        $wishlistproductCount = count($wishlist);  
 
-        $jsonData = ['result' => ['status' => 200, 'redirect' => 0, 'message' => __(' has been added to your Wish List.')]];
+        $jsonData = ['result' => ['status' => 200, 'redirect' => 0, 'message' => __(' has been added to your Wish List.'), 'wishcount' => $wishlistproductCount]];
         $result = $this->jsonFactory->create()->setData($jsonData);
         return $result;
     }

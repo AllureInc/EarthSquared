@@ -32,7 +32,7 @@ define([
 
     /** Set payment methods to collection */
     paymentService.setPaymentMethods(methodConverter(window.checkoutConfig.paymentMethods));
-
+    
     return Component.extend({
         defaults: {
             template: 'Magento_Checkout/payment',
@@ -40,8 +40,10 @@ define([
         },
         isVisible: ko.observable(quote.isVirtual()),
         quoteIsVirtual: quote.isVirtual(),
-        isPaymentMethodsAvailable: ko.computed(function () {
-            return paymentService.getAvailablePaymentMethods().length > 0;
+        isPaymentMethodsAvailable: ko.computed(function () {                    
+            $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
+            $('.savedgroup').insertBefore('.payment-method.savedcardinfo');                                       
+            return paymentService.getAvailablePaymentMethods().length > 0;            
         }),
 
         /** @inheritdoc */
@@ -55,11 +57,11 @@ define([
                 this.isVisible,
                 _.bind(this.navigate, this),
                 this.sortOrder
-            );
-
+            );     
+           // console.log('hello155555555');      
             return this;
         },
-
+       
         /**
          * Navigate method.
          */
@@ -71,7 +73,12 @@ define([
                 stepNavigator.setHash('shipping');
             } else {
                 getPaymentInformation().done(function () {
-                    self.isVisible(true);
+                    self.isVisible(true);                    
+                    setTimeout(function(){ 
+                        $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
+                        $('.savedgroup').insertBefore('.payment-method.savedcardinfo');              
+                    }, 3000);
+                     
                 });
             }
         },

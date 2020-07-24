@@ -71,7 +71,7 @@ abstract class AbstractMassAction extends Action
      */
     protected function getComponentRefererUrl()
     {
-        return $this->filter->getComponentRefererUrl() ?: 'sales/*/';
+        return $this->filter->getComponentRefererUrl() ?: 'sales/order/index';
     }
 
 

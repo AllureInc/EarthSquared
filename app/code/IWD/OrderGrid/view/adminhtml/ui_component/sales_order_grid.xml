@@ -257,7 +257,7 @@
         <column name="iwd_order_creditmemo_number" class="IWD\OrderGrid\Ui\Component\Listing\Columns\Creditmemo">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Creditmemos</item>
+                    <item name="label" xsi:type="string" translate="true">Credit Memo</item>
                     <item name="filter" xsi:type="string">text</item>
                     <item name="bodyTmpl" xsi:type="string">IWD_OrderGrid/product/items.html</item>
                     <item name="component" xsi:type="string">IWD_OrderGrid/js/grid/items</item>
