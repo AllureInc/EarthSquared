@@ -1,0 +1,70 @@
+<?php
+use Magento\Framework\App\Action\Action;
+$categoryIds = [238,3];
+$ids = array();
+$categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
+$type = 'widget-new-grid';
+?>
+<div class="quickorder-product-collection">
+<?php 
+foreach ($categories as $category) {
+    $maincategoryId = $category->getId();
+    $collection = $block->getChildCategoriesCollection($maincategoryId);
+    ?>
+    <div class="subcategory-collection">
+    <?php 
+    foreach($collection as $subcategory)
+    {
+    	$ids = $subcategory->getId();
+		$categoryProducts = $block->getProductCollectionByCategory($ids);
+		if(count($categoryProducts) > 0) {
+		?> 
+    		<div class="subcategory-name"><?php echo $subcategory->getName() ?> <span>(<?php echo count($categoryProducts).' Items'; ?>)</span></div>   	
+	    	<div class="subcategoryproduct-collection">
+		    	<?php 
+				foreach ($categoryProducts as $product) { ?>
+					<div class="quickproduct">
+					 	<div class="proudctimage">
+					 		<?php 
+					 			if($product->getLifestyleImage() != ""){
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 120)->getUrl();
+								} else {
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 120)->getUrl();
+								}
+					 		?>
+					 		<img src="<?php echo $image_url; ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />
+					 	</div>
+						<div class="quickproduct-detail">
+							<div class="product-name"><?php echo $product->getName(); ?>								
+								<?php echo $block->getProductDetailsHtml($product); ?>
+							</div>
+							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?></div>
+						</div>
+						<div class="productprice-qty">
+							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
+							<div class="field qty">
+     							<div href="javascript:void(0)" class="qty-dec">-</div> 
+	                               <input type="number"
+										   name="qty" 
+										   id="qty"
+										   min="1"
+										   value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+										   title="<?php /* @escapeNotVerified */ echo __('Quantity') ?>" class="input-text qty form-control"
+										   data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+										/>
+                                <div href="javascript:void(0)" class="qty-inc">+</div> 								
+							</div>
+						</div>						
+					</div>				 	
+				<?php } ?>
+			</div>
+			<?php 
+		}
+    }
+    ?>
+	</div>
+    <?php
+}
+
+?> 
+</div>

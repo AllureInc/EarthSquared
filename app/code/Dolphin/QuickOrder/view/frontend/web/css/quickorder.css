@@ -1,0 +1,93 @@
+.quickorder-product-collection,.subcategory-collection,.subcategory-name,.subcategoryproduct-collection,.quickproduct{
+	width:100%;float: left;
+}
+.quickorder-product-collection{
+	max-width:1005px;
+}
+.subcategory-name{
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 100%;
+	color: #4D4D4D;
+	font-family: Tiempos Headline Medium;
+	border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+.subcategory-name span{
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 100%;
+    font-family: Futura Bk BT;
+    color: #616161;
+}
+.proudctimage{
+	width: 10%;
+	float: left;
+}
+.quickproduct-detail,.productprice-qty{
+    width: 45%;
+    float: left;
+    padding: 0 20px;
+} 
+.quickproduct-detail .product-name,.quickproduct-detail .product-ref{
+	width: 50%;
+    float: left;
+}
+.quickproduct-detail .product-name{
+	font-size: 15px;
+    line-height: 100%;
+    color: #4D4D4D;
+    padding-right: 5px;
+}
+.product-ref{
+	font-size: 13px;
+    line-height: 100%;
+    color: #9E9E9E;
+}
+.productprice-qty .price{
+	font-size: 14px;
+    line-height: 140%;    
+    color: #000000;
+    font-family: Futura Bk BT Medium;
+    width: auto;
+    float: left;
+}
+.quickproduct{
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+}
+.quickproduct .swatch-option{
+    height: 24px !important;
+    min-width: 24px !important;
+    width: 24px !important;
+    border: 0px solid #bdbdbd !important;
+    border-radius: 100%;
+}
+.quickproduct .swatch-option.selected, .quickproduct .swatch-option:hover{
+	outline: none !important;
+    transform-style: preserve-3d;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+.productprice-qty .price-label{
+	display: none;
+}
+.productprice-qty .field.qty{
+	border: 1px solid #EEE;
+    width: 90px;
+    float: right;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.productprice-qty .field.qty #qty{
+    width: 30px;
+    border-width: 0px 1px 0px 1px !important;
+    border-color: #EEE;
+    padding: 0;
+    height: 30px;
+    margin-top: -1px;
+    text-align: center;
+}

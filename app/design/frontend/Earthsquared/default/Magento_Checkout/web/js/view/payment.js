@@ -40,7 +40,7 @@ define([
         },
         isVisible: ko.observable(quote.isVirtual()),
         quoteIsVirtual: quote.isVirtual(),
-        isPaymentMethodsAvailable: ko.computed(function () {                    
+        isPaymentMethodsAvailable: ko.computed(function () {               
             $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
             $('.savedgroup').insertBefore('.payment-method.savedcardinfo');                                       
             return paymentService.getAvailablePaymentMethods().length > 0;            

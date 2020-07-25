@@ -1,7 +1,7 @@
 <?php
-namespace Dolphin\QuickOrderForm\Controller\Index;
+namespace Dolphin\QuickOrder\Controller\Index;
 
-class Quickorder extends \Magento\Framework\App\Action\Action
+class Index extends \Magento\Framework\App\Action\Action
 {
 	protected $_pageFactory;
 
@@ -15,9 +15,6 @@ class Quickorder extends \Magento\Framework\App\Action\Action
 
 	public function execute()
 	{
-		echo "etst";
-		exit;
-		$resultPage = $this->_pageFactory->create();
-        return $resultPage;
+		return $this->_pageFactory->create();
 	}
 }

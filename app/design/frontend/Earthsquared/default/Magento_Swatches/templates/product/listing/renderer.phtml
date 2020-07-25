@@ -26,8 +26,7 @@ $configurableViewModel = $block->getConfigurableViewModel()
                 "jsonConfig": <?= /* @noEscape */ $block->getJsonConfig() ?>,
                 "jsonSwatchConfig": <?= /* @noEscape */ $block->getJsonSwatchConfig() ?>,
                 "mediaCallback": "<?= $block->escapeJs($block->escapeUrl($block->getMediaCallback())) ?>",
-                "jsonSwatchImageSizeConfig": <?= /* @noEscape */ $block->getJsonSwatchSizeConfig() ?>,
-                "showTooltip": <?= $block->escapeJs($configurableViewModel->getShowSwatchTooltip()) ?>
+                "jsonSwatchImageSizeConfig": <?= /* @noEscape */ $block->getJsonSwatchSizeConfig() ?>               
             }
         }
     }
