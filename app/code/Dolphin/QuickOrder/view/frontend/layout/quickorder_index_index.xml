@@ -2,18 +2,40 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<head>
 		<title>Quick Order Form</title>
-		<css src="Dolphin_QuickOrder::css/quickorder.css" />		
+		<css src="Dolphin_QuickOrder::css/quickorder.css" />		        
 	</head>
 	<body>
-		 <referenceBlock name="quickorder.swatchrenderer">
+ 		<referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Quick Order Form</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Quick Order Form</item>
+                    <item name="label" xsi:type="string">Quick Order Form</item>
+                </argument>
+            </action>
+        </referenceBlock>		
+		<referenceBlock name="quickorder.swatchrenderer">
                 <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
         </referenceBlock> 
 	    <referenceContainer name="content">
-	        <block class="Dolphin\QuickOrder\Block\Index" name="quickorder_index_index" template="Dolphin_QuickOrder::quickorder.phtml">
+            <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.search" template="Dolphin_QuickOrder::quicksearch.phtml" before="-" />
+	        <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.products.list" template="Dolphin_QuickOrder::quickorder.phtml">
 				<block class="Magento\Framework\View\Element\RendererList" name="quickorder.swatchrenderer" as="quickorder.toprenderers">
                    	<block class="Magento\Framework\View\Element\Template" as="default"/>
-                </block>						        			
+                </block>                         					        			
 	        </block>
-	    </referenceContainer>
+            <block class="BoxLeaf\InfinateScroll\Block\Scroll"
+                   ifconfig="infinatescroll/general/enable"
+                   name="infinite.js" template="BoxLeaf_InfinateScroll::scroll.phtml"
+                   after="quickorder.products.list"/>
+	    </referenceContainer>	    
 	</body>
 </page>

@@ -22,18 +22,26 @@
     color: #616161;
 }
 .proudctimage{
-	width: 10%;
+	width: 13%;
 	float: left;
 }
 .quickproduct-detail,.productprice-qty{
-    width: 45%;
+    width: 70%;
     float: left;
     padding: 0 20px;
 } 
-.quickproduct-detail .product-name,.quickproduct-detail .product-ref{
-	width: 50%;
+.productprice-qty{
+    width:30%;
+}
+.quickproduct-detail .product-name{
+    width:60%;
     float: left;
 }
+.quickproduct-detail .product-ref{
+    width:40%;
+    float: left;
+}
+
 .quickproduct-detail .product-name{
 	font-size: 15px;
     line-height: 100%;
@@ -52,11 +60,12 @@
     font-family: Futura Bk BT Medium;
     width: auto;
     float: left;
+    font-weight: 500 !important;
 }
 .quickproduct{
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 .quickproduct .swatch-option{
     height: 24px !important;
@@ -71,23 +80,77 @@
     border: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 .productprice-qty .price-label{
-	display: none;
+	display: none !important;
 }
-.productprice-qty .field.qty{
+.productprice-qty .field.quickqty{
 	border: 1px solid #EEE;
-    width: 90px;
+    width: 120px;
     float: right;
     text-align: center;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.productprice-qty .field.qty #qty{
-    width: 30px;
+.productprice-qty .field.quickqty #qty{
+    width: 40px;
     border-width: 0px 1px 0px 1px !important;
     border-color: #EEE;
     padding: 0;
-    height: 30px;
+    height: 40px;
     margin-top: -1px;
     text-align: center;
+    color:#4d4d4d;
+}
+.productprice-qty .qty-inc, .productprice-qty .qty-dec{
+    color:#9e9e9e !important;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.quickorder-index-index .breadcrumbs{
+    margin: 20px auto 25px !important;
+    max-width: 1264px !important;
+    padding: 0 20px !important;
+}
+.quickproduct .product-image-photo{
+    position: relative;
+}
+.product-items .quickproduct .product-item-details{
+    margin-top:0px;
+    width:100%;
+    align-items: center;
+    display: flex;
+}
+.quickorder-product-collection .order-products-toolbar{width:100%;float: left;}
+.quickorder-product-collection .limiter{display: none;}
+
+.quicksearchbox #quicksearchform .field{
+    width: 100%;
+    float: left;
+    max-width: 434px;
+    position: relative;
+}
+.quicksearchbox #quicksearchform label{
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    margin-bottom: 0;
+}
+.quicksearchbox #quicksearchform label img{
+    width:15px;
+}
+.quicksearchbox #quicksearchform #quicksearch{
+    background: #f5f5f5;
+    height: 50px;
+    border: 1px solid #f5f5f5;
+    padding: 0 20px 0px 50px;
+    color: #616161;
+    font-size: 14px;
+    font-family: Futura Bk BT;
+    border-radius: 0px;
+}
+.quicksearchbox{
+    width: 100%;
+    float: left;
+    margin-bottom: 80px;
 }

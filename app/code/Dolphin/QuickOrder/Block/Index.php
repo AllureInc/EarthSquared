@@ -28,7 +28,7 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->priceHelper = $priceHelper;
         $this->listProductBlock = $listProductBlock;
         parent::__construct($context);
-    }  
+    }   
     protected function getDetailsRendererList()
     {
         return $this->getDetailsRendererListName() ? $this->getLayout()->getBlock(
@@ -102,22 +102,42 @@ class Index extends \Magento\Framework\View\Element\Template
     } 
 
     public function getChildCategoriesCollection($id)
-    {
+    {        
     	$category = $this->_categoryFactory->create()->load($id);
-    	$childrenCategories = $category->getChildrenCategories();
+    	$childrenCategories = $category->getChildrenCategories();              
     	return $childrenCategories;
     }
-    public function getProductCollectionByCategory($id)
+    public function getProductCollectionByCategory($id, $subcatname)
     {
-    	$storeid = 1;
+    	$storeid = 1;        
+        $page=($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;        
+        $pageSize=($this->getRequest()->getParam('limit'))? $this->getRequest()->getParam('limit') : 1;
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
         $collection->addCategoriesFilter(['in' => $id]);          
         $collection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
-        $collection->addStoreFilter($storeid);          
+        $collection->addStoreFilter($storeid);   
+        
+
+        $pager = $this->getLayout()->createBlock(
+            'Magento\Theme\Block\Html\Pager',
+            'test.news.pager'
+        )->setShowPerPage(true)->setCollection(
+            $collection
+        );
+        $this->setChild('pager', $pager);
+        $collection->setPageSize(20);
+        $collection->setCurPage($page);
+        $collection->load();
+        // echo "<pre>";
+        // print_r($collection->getData('category_ids'));
+        // exit;
         return $collection;
     }
-
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
     public function getProductPrice($price)
     {
         return $this->priceHelper->currency($price, true, false);

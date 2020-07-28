@@ -2,38 +2,52 @@
 use Magento\Framework\App\Action\Action;
 $categoryIds = [238,3];
 $ids = array();
+$subname = array();
+$productCount = array();
 $categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
 $type = 'widget-new-grid';
 ?>
-<div class="quickorder-product-collection">
+<div class="products wrapper grid">
+<div class="quickorder-product-collection products list items product-items">
 <?php 
 foreach ($categories as $category) {
-    $maincategoryId = $category->getId();
-    $collection = $block->getChildCategoriesCollection($maincategoryId);
-    ?>
-    <div class="subcategory-collection">
-    <?php 
+    $maincategoryId = $category->getId();    
+    $collection = $block->getChildCategoriesCollection($maincategoryId);        
     foreach($collection as $subcategory)
     {
-    	$ids = $subcategory->getId();
-		$categoryProducts = $block->getProductCollectionByCategory($ids);
-		if(count($categoryProducts) > 0) {
-		?> 
-    		<div class="subcategory-name"><?php echo $subcategory->getName() ?> <span>(<?php echo count($categoryProducts).' Items'; ?>)</span></div>   	
-	    	<div class="subcategoryproduct-collection">
-		    	<?php 
-				foreach ($categoryProducts as $product) { ?>
-					<div class="quickproduct">
-					 	<div class="proudctimage">
+    	$ids[] = $subcategory->getId(); 
+    	$subcatname[$subcategory->getId()] = $subcategory->getName().' '.$subcategory->getProductCount();
+    	//$productcount[] = $subcategory->getProductCount();      
+    	///$catname = $block->getSubcatnameCount($subcategory->getName(),$subcategory->getProductCount());
+    	?>
+    	<?php /* <div class="subcategory-name <?php echo $subcategory->getId() ?>"><?php echo $subcategory->getName() ?><span>(<?php echo $subcategory->getProductCount() ?> Items)</span></div>  */ ?>
+    	<?php 			
+    }    
+}
+?>
+	<?php 
+		$categoryProducts = $block->getProductCollectionByCategory($ids,$subcatname);
+				
+		if(count($categoryProducts) > 0) {		?> 								 		
+		    	<?php $i=0; 		    	
+				foreach ($categoryProducts as $product) { 																				
+					?>
+					<!--<div class="subcategory-name"></div>-->
+					<div class="subcategoryproduct-collection item product product-item">					
+					<div class="product-item">
+					<div class="quickproduct product-item-info">
+					<a href="<?php echo $product->getProductUrl() ?>" class="product photo product-item-photo proudctimage">											 	
 					 		<?php 
-					 			if($product->getLifestyleImage() != ""){
-									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 120)->getUrl();
+					 			if($product->getLifestyleImage() != ""){ 
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
 								} else {
-									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 120)->getUrl();
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
 								}
 					 		?>
-					 		<img src="<?php echo $image_url; ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />
-					 	</div>
+					 		<img class="product-image-photo" src="<?php //echo $image_url; ?><?php echo $this->getUrl().'pub/media/bluestagscarf_lifestyle.jpg' ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />
+					 	
+					 </a>
+					 <div class="product-item-details">
 						<div class="quickproduct-detail">
 							<div class="product-name"><?php echo $product->getName(); ?>								
 								<?php echo $block->getProductDetailsHtml($product); ?>
@@ -42,7 +56,7 @@ foreach ($categories as $category) {
 						</div>
 						<div class="productprice-qty">
 							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
-							<div class="field qty">
+							<div class="field quickqty">
      							<div href="javascript:void(0)" class="qty-dec">-</div> 
 	                               <input type="number"
 										   name="qty" 
@@ -54,17 +68,50 @@ foreach ($categories as $category) {
 										/>
                                 <div href="javascript:void(0)" class="qty-inc">+</div> 								
 							</div>
-						</div>						
-					</div>				 	
-				<?php } ?>
-			</div>
+						</div>
+						<div class="addquick">add</div>
+					</div>						
+					</div>	
+					</div>	
+					</div>		 	
+				<?php $i++; } ?>
+			
 			<?php 
-		}
-    }
-    ?>
-	</div>
-    <?php
-}
-
-?> 
+		} ?>
+		<?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom" style="display: none;">
+        	<?php echo $block->getPagerHtml(); // for display pager block which we create in block file.   ?>
+        </div>
+    <?php endif ?>
 </div>
+
+</div>  
+<div class="quicksidebar">
+	
+</div> 
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "quickorder": {}
+        }
+    }
+</script> 
+<script>				  
+            require([
+              'jquery',
+              'jquery/ui'   
+            ], function ($) {                   	
+    			$(document).on('click','.qty-inc', function(){                
+                      if($(this).parents('.field.quickqty').find("input.input-text.qty").is(':enabled')){
+                          $(this).parents('.field.quickqty').find("input.input-text.qty").val((+$(this).parents('.field.quickqty').find("input.input-text.qty").val() + 1) || 0);
+                          $(this).focus();
+                      }
+                  });
+                $(document).on('click','.qty-dec', function(){                  
+                      if($(this).parents('.field.quickqty').find("input.input-text.qty").is(':enabled')){
+                          $(this).parents('.field.quickqty').find("input.input-text.qty").val(($(this).parents('.field.quickqty').find("input.input-text.qty").val() - 1 > 0) ? ($(this).parents('.field.quickqty').find("input.input-text.qty").val() - 1) : 0);                          
+                          $(this).focus();
+                      }
+                  });               
+          });
+</script>

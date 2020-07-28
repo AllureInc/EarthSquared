@@ -40,9 +40,11 @@ define([
         },
         isVisible: ko.observable(quote.isVirtual()),
         quoteIsVirtual: quote.isVirtual(),
-        isPaymentMethodsAvailable: ko.computed(function () {               
-            $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
-            $('.savedgroup').insertBefore('.payment-method.savedcardinfo');                                       
+        isPaymentMethodsAvailable: ko.computed(function () {      
+        	setTimeout(function(){ 
+         	   $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
+         	   $('.savedgroup').insertBefore('.payment-method.savedcardinfo');                                       
+         	}, 3000);
             return paymentService.getAvailablePaymentMethods().length > 0;            
         }),
 
@@ -74,10 +76,11 @@ define([
             } else {
                 getPaymentInformation().done(function () {
                     self.isVisible(true);                    
-                    setTimeout(function(){ 
-                        $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
-                        $('.savedgroup').insertBefore('.payment-method.savedcardinfo');              
-                    }, 3000);
+                    // setTimeout(function(){ 
+                    // 	console.log('navigate');
+                    //     $('.payment-method.savedcardinfo').insertBefore('.payment-method.payment-method-braintree');
+                    //     $('.savedgroup').insertBefore('.payment-method.savedcardinfo');              
+                    // }, 3000);
                      
                 });
             }
