@@ -2,7 +2,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<head>
 		<title>Quick Order Form</title>
-		<css src="Dolphin_QuickOrder::css/quickorder.css" />		        
+		<css src="Dolphin_QuickOrder::css/quickorder.css" />
+        <script src="Dolphin_QuickOrder::js/quickorder.js" />
 	</head>
 	<body>
  		<referenceBlock name="breadcrumbs">
@@ -27,7 +28,7 @@
         </referenceBlock> 
 	    <referenceContainer name="content">
             <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.search" template="Dolphin_QuickOrder::quicksearch.phtml" before="-" />
-	        <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.products.list" template="Dolphin_QuickOrder::quickorder.phtml">
+	        <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.products.list" template="Dolphin_QuickOrder::quickorder.phtml" cacheable="false">
 				<block class="Magento\Framework\View\Element\RendererList" name="quickorder.swatchrenderer" as="quickorder.toprenderers">
                    	<block class="Magento\Framework\View\Element\Template" as="default"/>
                 </block>                         					        			

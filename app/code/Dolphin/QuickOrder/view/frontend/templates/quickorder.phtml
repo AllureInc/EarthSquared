@@ -27,13 +27,13 @@ foreach ($categories as $category) {
 ?>
 	<?php 
 		$categoryProducts = $block->getProductCollectionByCategory($ids,$subcatname);
-				
+			//echo "asdiusaid--------". count($categoryProducts);	   
 		if(count($categoryProducts) > 0) {		?> 								 		
 		    	<?php $i=0; 		    	
 				foreach ($categoryProducts as $product) { 																				
 					?>
 					<!--<div class="subcategory-name"></div>-->
-					<div class="subcategoryproduct-collection item product product-item">					
+					<div class="subcategoryproduct-collection item product product-item" id="left<?php echo $product->getId() ?>">					
 					<div class="product-item">
 					<div class="quickproduct product-item-info">
 					<a href="<?php echo $product->getProductUrl() ?>" class="product photo product-item-photo proudctimage">											 	
@@ -49,10 +49,13 @@ foreach ($categories as $category) {
 					 </a>
 					 <div class="product-item-details">
 						<div class="quickproduct-detail">
-							<div class="product-name"><?php echo $product->getName(); ?>								
-								<?php echo $block->getProductDetailsHtml($product); ?>
-							</div>
+							<div class="product-name"><span class="subpname"><?php echo $product->getName(); ?></span>								
+								<?php echo $block->getProductDetailsHtml($product); ?>								
+								<div class="swatch-error"></div>
+							</div>							
 							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?></div>
+							<input type="hidden" class="productid" name="productid" value="<?php echo $product->getId() ?>" />
+							<input type="hidden" class="type_id" name="type_id" value="<?php echo $product->getTypeId() ?>" />
 						</div>
 						<div class="productprice-qty">
 							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
@@ -68,8 +71,7 @@ foreach ($categories as $category) {
 										/>
                                 <div href="javascript:void(0)" class="qty-inc">+</div> 								
 							</div>
-						</div>
-						<div class="addquick">add</div>
+						</div>						
 					</div>						
 					</div>	
 					</div>	
@@ -86,32 +88,34 @@ foreach ($categories as $category) {
 </div>
 
 </div>  
-<div class="quicksidebar">
+<div class="quicksidebar">		
+	<?php 
 	
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$cookieManager = $objectManager->get('Magento\Framework\Stdlib\CookieManagerInterface');
+	$cookieData = json_decode($cookieManager->getCookie('rowcollection'),true);	
+	// echo "<pre>";
+	// print_r($cookieData);
+	if(isset($_COOKIE['rowcollection']))
+	{	//echo "yes";
+		?>
+		<div class="subtotal"></div>
+		<div class="subrowitems">			
+			<?php foreach($cookieData as $data)
+			{
+				if(count($data['selectedOptionsData']) > 0) {
+			 ?>
+					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+				<?php } else { ?>
+					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+				<?php } ?>
+			<?php } ?>
+		</div>
+	<?php } else { //echo "no";
+		?>
+		<div class="subtotal"></div>
+		<div class="subrowitems"></div>
+		<?php
+	}	
+	?>	
 </div> 
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "quickorder": {}
-        }
-    }
-</script> 
-<script>				  
-            require([
-              'jquery',
-              'jquery/ui'   
-            ], function ($) {                   	
-    			$(document).on('click','.qty-inc', function(){                
-                      if($(this).parents('.field.quickqty').find("input.input-text.qty").is(':enabled')){
-                          $(this).parents('.field.quickqty').find("input.input-text.qty").val((+$(this).parents('.field.quickqty').find("input.input-text.qty").val() + 1) || 0);
-                          $(this).focus();
-                      }
-                  });
-                $(document).on('click','.qty-dec', function(){                  
-                      if($(this).parents('.field.quickqty').find("input.input-text.qty").is(':enabled')){
-                          $(this).parents('.field.quickqty').find("input.input-text.qty").val(($(this).parents('.field.quickqty').find("input.input-text.qty").val() - 1 > 0) ? ($(this).parents('.field.quickqty').find("input.input-text.qty").val() - 1) : 0);                          
-                          $(this).focus();
-                      }
-                  });               
-          });
-</script>

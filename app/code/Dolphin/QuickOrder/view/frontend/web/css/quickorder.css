@@ -1,3 +1,11 @@
+.quicksidebar{
+    position: fixed;
+    top: 170px;
+    right:0px;
+    border: 1px solid #EEEEEE;
+    width: 397px;
+    padding: 25px;
+}
 .quickorder-product-collection,.subcategory-collection,.subcategory-name,.subcategoryproduct-collection,.quickproduct{
 	width:100%;float: left;
 }
@@ -123,7 +131,68 @@
 }
 .quickorder-product-collection .order-products-toolbar{width:100%;float: left;}
 .quickorder-product-collection .limiter{display: none;}
-
+.selecteditemstitle{
+    font-size:14px;
+    font-family:'Futura Bk BT Medium';
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #4D4D4D;
+}
+.selecteditemstitle span{
+    color: #757575;
+    font-size: 13px;
+    line-height: 100%;
+    font-family:'Futura Bk BT';
+}
+.subrowitems{
+    padding-top: 23px;
+}
+.subrowitems .rowdata{
+    border-bottom:1px solid #FAFAFA;
+    padding: 23px 0px;
+    display:flex;
+    flex-flow:row;
+    font-size: 13px;
+    width: 100%;
+    align-items: center;
+}
+.quicksidebar .subtotal{
+    text-transform: uppercase;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-family: 'Futura Bk BT Medium';
+}
+.quicksidebar .subtotal span{
+    text-transform: none;
+    color: #757575;
+    font-size: 13px;
+    font-family: Futura Bk BT;
+    padding-left: 5px;
+}
+.rowdata .rowqty{
+    width: 15%;
+    float: left;
+}
+.rowdata .rownameswatches{
+    width: 65%;
+    float: left;
+}
+.rowdata .editrow,.rowdata .removerow{
+    width: 10%;
+    float: left;
+        cursor: pointer;
+}
+.rowdata .rowqty span {
+    width: 28px;
+    float: left;
+    height: 28px;
+    border: 1px solid #757575;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 100%;
+    background: #757575;
+    color: #fff;
+}
 .quicksearchbox #quicksearchform .field{
     width: 100%;
     float: left;
