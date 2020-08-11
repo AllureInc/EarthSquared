@@ -17,4 +17,6 @@
 
     <preference for="Magento\Braintree\Block\Form" type="IWD\OrderManager\Block\Adminhtml\Order\View\Form" />
 
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Create\Search\Grid" type="IWD\OrderManager\Block\Adminhtml\Order\Create\Search\Grid"/>
+
 </config>
