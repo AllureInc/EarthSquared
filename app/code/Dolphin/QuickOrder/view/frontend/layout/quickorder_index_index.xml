@@ -6,6 +6,8 @@
         <script src="Dolphin_QuickOrder::js/quickorder.js" />
 	</head>
 	<body>
+        <move element="quickorder.quickneedhelp" destination="page.main.title" after="-" />
+
  		<referenceBlock name="breadcrumbs">
             <action method="addCrumb">
                 <argument name="crumbName" xsi:type="string">Home</argument>
@@ -26,6 +28,9 @@
 		<referenceBlock name="quickorder.swatchrenderer">
                 <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
         </referenceBlock> 
+        <referenceContainer name="page.top">
+            <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.quickneedhelp" template="Dolphin_QuickOrder::quickneedhelp.phtml" before="-" />
+        </referenceContainer>       
 	    <referenceContainer name="content">
             <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.search" template="Dolphin_QuickOrder::quicksearch.phtml" before="-" />
 	        <block class="Dolphin\QuickOrder\Block\Index" name="quickorder.products.list" template="Dolphin_QuickOrder::quickorder.phtml" cacheable="false">

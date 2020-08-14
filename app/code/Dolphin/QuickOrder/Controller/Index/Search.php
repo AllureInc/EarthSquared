@@ -1,78 +1,61 @@
 <?php
-namespace Dolphin\QuickOrder\Block;
+namespace Dolphin\QuickOrder\Controller\Index;
 
-use Magento\Catalog\Block\Product\ListProduct;
-use Magento\Catalog\Model\Product;
-
-class Index extends \Magento\Framework\View\Element\Template
+class Search extends \Magento\Framework\App\Action\Action
 {
-
-    /**
-     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
-     */
+    protected $_pageFactory;
+    protected $coreSession;
+    protected $resultJsonFactory;
     protected $_productCollectionFactory;
     protected $_categoryFactory;
     protected $priceHelper;
-    protected $_categoryCollectionFactory;
+    protected $_categoryCollectionFactory;    
 
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Session\SessionManagerInterface $coreSession,
+        \Magento\Framework\View\Result\PageFactory $pageFactory,
+        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Magento\Checkout\Model\Cart $cart,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\Catalog\Model\CategoryFactory $categoryFactory,
         \Magento\Catalog\Block\Product\ListProduct $listProductBlock,
         \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory,
-        \Magento\Framework\Pricing\Helper\Data $priceHelper
+        \Magento\Framework\Pricing\Helper\Data $priceHelper,        
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
+        $this->_pageFactory = $pageFactory;
+        $this->coreSession = $coreSession;
+        $this->_objectManager = $objectManager;
+        $this->cart = $cart;
         $this->_categoryCollectionFactory = $categoryCollectionFactory;
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_categoryFactory = $categoryFactory;
         $this->priceHelper = $priceHelper;
         $this->listProductBlock = $listProductBlock;
-        parent::__construct($context);
-    }
-    protected function getDetailsRendererList()
-    {
-        return $this->getDetailsRendererListName() ? $this->getLayout()->getBlock(
-            $this->getDetailsRendererListName()
-        ) : $this->getChildBlock(
-            'quickorder.toprenderers'
-        );
-    }
-    public function getProductDetailsHtml(\Magento\Catalog\Model\Product $product)
-    {
-        $renderer = $this->getDetailsRenderer($product->getTypeId());
-        if ($renderer) {
-            $renderer->setProduct($product);
-            return $renderer->toHtml();
-        }
-        return '';
+        $this->resultJsonFactory = $resultJsonFactory;
+        return parent::__construct($context);
     }
 
-    public function getDetailsRenderer($type = null)
+    public function execute()
     {
-        if ($type === null) {
-            $type = 'default';
+        $categoryIds = [238,3];
+        echo $querySearch = $_REQUEST['querysearch'];
+        exit;
+        $ids = array();
+        $subname = array();
+        $productCount = array();
+        $sproducts = array();
+        $categories = $this->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
+        foreach ($categories as $category) {
+            $maincategoryId = $category->getId();
+            $collection = $this->getChildCategoriesCollection($maincategoryId);
+            foreach($collection as $subcategory)
+            {
+                    $ids[] = $subcategory->getId();
+            }
         }
-        $rendererList = $this->getDetailsRendererList();
-        if ($rendererList) {
-            return $rendererList->getRenderer($type, 'default');
-        }
-        return null;
-    }
-
-    public function getProductPricetoHtml(
-        \Magento\Catalog\Model\Product $product,
-        $priceType = null
-    ) {
-        $priceRender = $this->getLayout()->getBlock('product.price.render.default');
-        $price = '';
-        if ($priceRender) {
-            $price = $priceRender->render(
-                \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
-                $product
-            );
-        }
-        return $price;
+        $scategoryProducts = $this->getProductCollectionByCategory($ids);         
     }
     public function getCategoryCollection($isActive = true, $level = false, $sortBy = false, $pageSize = false)
     {
@@ -111,8 +94,8 @@ class Index extends \Magento\Framework\View\Element\Template
     public function getProductCollectionByCategory($id)
     {
         $storeid = 1;
-        $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
-        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 1;
+        //$page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
+        //$pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 1;
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
         $collection->addCategoriesFilter(['in' => $id]);
@@ -131,15 +114,15 @@ class Index extends \Magento\Framework\View\Element\Template
         // print_r($collection->getData());
         // exit;
 
-        $pager = $this->getLayout()->createBlock(
-            'Magento\Theme\Block\Html\Pager',
-            'test.news.pager'
-        )->setShowPerPage(true)->setCollection(
-            $collection
-        );
-        $this->setChild('pager', $pager);
-        $collection->setPageSize(50);
-        $collection->setCurPage($page);
+        // $pager = $this->getLayout()->createBlock(
+        //     'Magento\Theme\Block\Html\Pager',
+        //     'test.news.pager'
+        // )->setShowPerPage(true)->setCollection(
+        //     $collection
+        // );
+        // $this->setChild('pager', $pager);
+        // $collection->setPageSize(50);
+        // $collection->setCurPage($page);
         $collection->load();
 
         // echo "<pre>";
@@ -147,24 +130,4 @@ class Index extends \Magento\Framework\View\Element\Template
         // exit;
         return $collection;
     }    
-    public function getPagerHtml()
-    {
-        return $this->getChildHtml('pager');
-    }
-    public function getProductPrice($price)
-    {
-        return $this->priceHelper->currency($price, true, false);
-    }
-    public function getAddToCartPostParams($product)
-    {
-        return $this->listProductBlock->getAddToCartPostParams($product);
-    }
-    public function getAddToWishlistParams($product)
-    {
-        return $this->_wishlistHelper->getAddParams($product);
-    }
-    public function getAddToCompareUrl()
-    {
-        return $this->_compareProduct->getAddUrl();
-    }
 }

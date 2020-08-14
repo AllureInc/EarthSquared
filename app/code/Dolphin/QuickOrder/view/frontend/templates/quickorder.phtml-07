@@ -1,0 +1,121 @@
+<?php
+use Magento\Framework\App\Action\Action;
+$categoryIds = [238,3];
+$ids = array();
+$subname = array();
+$productCount = array();
+$categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
+$type = 'widget-new-grid';
+?>
+<div class="products wrapper grid">
+<div class="quickorder-product-collection products list items product-items">
+<?php 
+foreach ($categories as $category) {
+    $maincategoryId = $category->getId();    
+    $collection = $block->getChildCategoriesCollection($maincategoryId);        
+    foreach($collection as $subcategory)
+    {
+    	$ids[] = $subcategory->getId(); 
+    	$subcatname[$subcategory->getId()] = $subcategory->getName().' '.$subcategory->getProductCount();
+    	//$productcount[] = $subcategory->getProductCount();      
+    	///$catname = $block->getSubcatnameCount($subcategory->getName(),$subcategory->getProductCount());
+    	?>
+    	<?php /* <div class="subcategory-name <?php echo $subcategory->getId() ?>"><?php echo $subcategory->getName() ?><span>(<?php echo $subcategory->getProductCount() ?> Items)</span></div>  */ ?>
+    	<?php 			
+    }    
+}
+?>
+	<?php 
+		$categoryProducts = $block->getProductCollectionByCategory($ids,$subcatname);
+			//echo "asdiusaid--------". count($categoryProducts);	   
+		if(count($categoryProducts) > 0) {		?> 								 		
+		    	<?php $i=0; 		    	
+				foreach ($categoryProducts as $product) { 																				
+					?>
+					<!--<div class="subcategory-name"></div>-->
+					<div class="subcategoryproduct-collection item product product-item" id="left<?php echo $product->getId() ?>">					
+					<div class="product-item">
+					<div class="quickproduct product-item-info">
+					<a href="<?php echo $product->getProductUrl() ?>" class="product photo product-item-photo proudctimage">											 	
+					 		<?php 
+					 			if($product->getLifestyleImage() != ""){ 
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
+								} else {
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
+								}
+					 		?>
+					 		<img class="product-image-photo" src="<?php //echo $image_url; ?><?php echo $this->getUrl().'pub/media/bluestagscarf_lifestyle.jpg' ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />
+					 	
+					 </a>
+					 <div class="product-item-details">
+						<div class="quickproduct-detail">
+							<div class="product-name"><span class="subpname"><?php echo $product->getName(); ?></span>								
+								<?php echo $block->getProductDetailsHtml($product); ?>								
+								<div class="swatch-error"></div>
+							</div>							
+							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?></div>
+							<input type="hidden" class="productid" name="productid" value="<?php echo $product->getId() ?>" />
+							<input type="hidden" class="type_id" name="type_id" value="<?php echo $product->getTypeId() ?>" />
+						</div>
+						<div class="productprice-qty">
+							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
+							<div class="field quickqty">
+     							<div href="javascript:void(0)" class="qty-dec">-</div> 
+	                               <input type="number"
+										   name="qty" 
+										   id="qty"
+										   min="1"
+										   value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+										   title="<?php /* @escapeNotVerified */ echo __('Quantity') ?>" class="input-text qty form-control"
+										   data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+										/>
+                                <div href="javascript:void(0)" class="qty-inc">+</div> 								
+							</div>
+						</div>						
+					</div>						
+					</div>	
+					</div>	
+					</div>		 	
+				<?php $i++; } ?>
+			
+			<?php 
+		} ?>
+		<?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom" style="display: none;">
+        	<?php echo $block->getPagerHtml(); // for display pager block which we create in block file.   ?>
+        </div>
+    <?php endif ?>
+</div>
+
+</div>  
+<div class="quicksidebar">		
+	<?php 
+	
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$cookieManager = $objectManager->get('Magento\Framework\Stdlib\CookieManagerInterface');
+	$cookieData = json_decode($cookieManager->getCookie('rowcollection'),true);	
+	// echo "<pre>";
+	// print_r($cookieData);
+	if(isset($_COOKIE['rowcollection']))
+	{	//echo "yes";
+		?>
+		<div class="subtotal"></div>
+		<div class="subrowitems">			
+			<?php foreach($cookieData as $data)
+			{
+				if(count($data['selectedOptionsData']) > 0) {
+			 ?>
+					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+				<?php } else { ?>
+					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+				<?php } ?>
+			<?php } ?>
+		</div>
+	<?php } else { //echo "no";
+		?>
+		<div class="subtotal"></div>
+		<div class="subrowitems"></div>
+		<?php
+	}	
+	?>	
+</div> 

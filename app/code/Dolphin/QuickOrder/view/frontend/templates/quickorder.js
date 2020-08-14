@@ -5,7 +5,7 @@ require([
     'jquery/ui',
     'Magento_Ui/js/modal/modal',
     'jquery/jquery-storageapi',
-    'mage/storage'    
+    'mage/storage'
 ], function($,customerData,modal,storage){
 	var cookieData = new Array();
 var updatedcookieData = new Array();
@@ -194,32 +194,17 @@ var updatedcookieData = new Array();
 			loadSubtotalSection();
 		decreaseSideBar();
 	});
-	var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');	
-	$('#quicksearch').keyup(function() {		
-		var querysearch = $(this).val();
-		//console.log(querysearch);
-		//if($(querysearch).length > 3){			
-			$.ajax({
-				showLoader: true,
-				dataType: 'json',
-				method: 'GET',
-				url: 'http://staging-trade.earthsquared.com/quickorder/index/search',
-				data: {'querysearch':querysearch},
-				success: function(responce)
-				{	
-					console.log(responce);
-				}
-			});
-		// }
+	var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');
+	$('#quicksearch').keyup(function() {
 	    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
 	    $rows.show().filter(function() {
 	        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
 	        return !~text.indexOf(val);
-	    }).hide();	   
+	    }).hide();
 	});
-	$(document).on('click','#addtobagall', function(event){
-	//$("#addtobagall").click(function(){
+
+	$("#addtobagall").click(function(){
 		if(!$('.subrowitems').children().length > 0){
 			$('.allproductmsg').remove();
 			$('.page.messages').before('<div class="message error allproductmsg">Please Select Product</div>');
@@ -395,13 +380,12 @@ var updatedcookieData = new Array();
 
             //alert("Page loaded.");
             $(".subrowitems").hide();
-            $(document).on('click','.quicksidebar .subtotal.outer', function(){
-            //$(".quicksidebar .subtotal.outer").click(function(){
+            $(".quicksidebar .subtotal.outer").click(function(){
                 $(this).parent().toggleClass("active");
                 $(".subrowitems").toggle();
             });
-            $(document).on('click','.subtotal.inner span.close-all', function(event){
-			//$(".subtotal.inner span.close-all").click(function(event){
+
+			$(".subtotal.inner span.close-all").click(function(event){
 	        event.preventDefault();
 				console.log("click");
 		        $(this).parent().parent().parent(".quicksidebar").toggleClass("active");

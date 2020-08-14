@@ -4,55 +4,74 @@ $categoryIds = [238,3];
 $ids = array();
 $subname = array();
 $productCount = array();
+$sproducts = array();
 $categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
 $type = 'widget-new-grid';
 ?>
 <div class="products wrapper grid">
 <div class="quickorder-product-collection products list items product-items">
-<?php 
+<?php
 foreach ($categories as $category) {
-    $maincategoryId = $category->getId();    
-    $collection = $block->getChildCategoriesCollection($maincategoryId);        
+    $maincategoryId = $category->getId();
+    $collection = $block->getChildCategoriesCollection($maincategoryId);
     foreach($collection as $subcategory)
     {
-    	$ids[] = $subcategory->getId(); 
-    	$subcatname[$subcategory->getId()] = $subcategory->getName().' '.$subcategory->getProductCount();
-    	//$productcount[] = $subcategory->getProductCount();      
+    	$ids[] = $subcategory->getId();
+    	$subcatname[$subcategory->getId()] = $subcategory->getName();
+    	$productcount[$subcategory->getId()] = $subcategory->getProductCount();
     	///$catname = $block->getSubcatnameCount($subcategory->getName(),$subcategory->getProductCount());
     	?>
     	<?php /* <div class="subcategory-name <?php echo $subcategory->getId() ?>"><?php echo $subcategory->getName() ?><span>(<?php echo $subcategory->getProductCount() ?> Items)</span></div>  */ ?>
-    	<?php 			
-    }    
+    	<?php
+    }
 }
 ?>
-	<?php 
-		$categoryProducts = $block->getProductCollectionByCategory($ids,$subcatname);
-			//echo "asdiusaid--------". count($categoryProducts);	   
-		if(count($categoryProducts) > 0) {		?> 								 		
-		    	<?php $i=0; 		    	
-				foreach ($categoryProducts as $product) { 																				
+<?php 
+	$scategoryProducts = $block->getSearchProductCollectionByCategory($ids); 
+	$scategoryProductsjson =  json_encode($scategoryProducts->getData());	
+		
+?>
+	<?php
+		$displayCategoryId = '';
+		$categoryProducts = $block->getProductCollectionByCategory($ids);
+			//echo "asdiusaid--------". count($categoryProducts);
+		if(count($categoryProducts) > 0) {		?>
+		    	<?php $i=0;
+				foreach ($categoryProducts as $product) {
 					?>
-					<!--<div class="subcategory-name"></div>-->
-					<div class="subcategoryproduct-collection item product product-item" id="left<?php echo $product->getId() ?>">					
+
+					<div class="subcategoryproduct-collection item product product-item" id="left<?php echo $product->getId() ?>">
+						<?php if($displayCategoryId != $product->getData('category_id')): ?>
+							<div class="subcategory-name remove-cat-<?php echo $product->getData('category_id'); ?>" data-id='remove-cat-<?php echo $product->getData('category_id'); ?>'>
+								<?php
+									$displayCategoryId = $product->getData('category_id');
+									if(isset($subcatname[$displayCategoryId])){
+										echo $subcatname[$displayCategoryId];
+										echo '<span>('.$productcount[$displayCategoryId].' items)</span>';
+									}
+								?>
+							</div>
+						<?php endif; ?>
 					<div class="product-item">
+						<div class="product-name mobile-screen"><span class="subpname-mobile"><?php echo $product->getName(); ?></span></div>
 					<div class="quickproduct product-item-info">
-					<a href="<?php echo $product->getProductUrl() ?>" class="product photo product-item-photo proudctimage">											 	
-					 		<?php 
-					 			if($product->getLifestyleImage() != ""){ 
-									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
+					<a href="<?php echo $product->getProductUrl() ?>" class="product photo product-item-photo proudctimage">
+					 		<?php
+					 			if($product->getLifestyleImage() != ""){
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image_hover')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(140, 140)->getUrl();
 								} else {
-									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(100, 100)->getUrl();
+									$image_url = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(140, 140)->getUrl();
 								}
 					 		?>
 					 		<img class="product-image-photo" src="<?php //echo $image_url; ?><?php echo $this->getUrl().'pub/media/bluestagscarf_lifestyle.jpg' ?>" alt="<?php echo $product->getName(); ?>" title="<?php echo $product->getName(); ?>" />
-					 	
+
 					 </a>
 					 <div class="product-item-details">
 						<div class="quickproduct-detail">
-							<div class="product-name"><span class="subpname"><?php echo $product->getName(); ?></span>								
-								<?php echo $block->getProductDetailsHtml($product); ?>								
+							<div class="product-name desk-screen"><span class="subpname"><?php echo $product->getName(); ?></span>
+								<?php echo $block->getProductDetailsHtml($product); ?>
 								<div class="swatch-error"></div>
-							</div>							
+							</div>
 							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?></div>
 							<input type="hidden" class="productid" name="productid" value="<?php echo $product->getId() ?>" />
 							<input type="hidden" class="type_id" name="type_id" value="<?php echo $product->getTypeId() ?>" />
@@ -60,62 +79,103 @@ foreach ($categories as $category) {
 						<div class="productprice-qty">
 							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
 							<div class="field quickqty">
-     							<div href="javascript:void(0)" class="qty-dec">-</div> 
+     							<div href="javascript:void(0)" class="qty-dec" data-id="<?php echo $product->getId() ?>">-</div>
 	                               <input type="number"
-										   name="qty" 
+										   name="qty"
 										   id="qty"
 										   min="1"
 										   value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
 										   title="<?php /* @escapeNotVerified */ echo __('Quantity') ?>" class="input-text qty form-control"
 										   data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
 										/>
-                                <div href="javascript:void(0)" class="qty-inc">+</div> 								
+                                <div href="javascript:void(0)" class="qty-inc">+</div>
 							</div>
-						</div>						
-					</div>						
-					</div>	
-					</div>	
-					</div>		 	
+						</div>
+					</div>
+					</div>
+					</div>
+					</div>
 				<?php $i++; } ?>
-			
-			<?php 
+
+			<?php
 		} ?>
-		<?php if ($block->getPagerHtml()): ?>
+
+</div>
+<div class="quickorder-fixside"></div>
+</div>
+<?php if ($block->getPagerHtml()): ?>
         <div class="order-products-toolbar toolbar bottom" style="display: none;">
         	<?php echo $block->getPagerHtml(); // for display pager block which we create in block file.   ?>
         </div>
     <?php endif ?>
-</div>
+<div class="quicksidebar">
+	<?php
 
-</div>  
-<div class="quicksidebar">		
-	<?php 
-	
 	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 	$cookieManager = $objectManager->get('Magento\Framework\Stdlib\CookieManagerInterface');
-	$cookieData = json_decode($cookieManager->getCookie('rowcollection'),true);	
-	// echo "<pre>";
+	$cookieData = json_decode($cookieManager->getCookie('rowcollection'),true);
+	//  echo "<pre>";
+	//   echo "----";
 	// print_r($cookieData);
+	//   echo "----";
 	if(isset($_COOKIE['rowcollection']))
 	{	//echo "yes";
 		?>
-		<div class="subtotal"></div>
-		<div class="subrowitems">			
+		<div class="subtotal outer">Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0 <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span></div>
+		<div class="subrowitems">
+			<div class="subtotal inner"></div>
 			<?php foreach($cookieData as $data)
 			{
+
 				if(count($data['selectedOptionsData']) > 0) {
 			 ?>
-					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+					<div class="rowdata selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
 				<?php } else { ?>
-					<div class="rowdata" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+					<div class="rowdata not-selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
 				<?php } ?>
 			<?php } ?>
 		</div>
-	<?php } else { //echo "no";
-		?>
-		<div class="subtotal"></div>
-		<div class="subrowitems"></div>
-		<?php
-	}	
-	?>	
-</div> 
+	<?php } else { ?>
+		<div class="subtotal outer">Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0 <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span></div>
+
+		<div class="subrowitems">
+			<div class="subtotal inner"></div>
+		</div>
+	<?php } ?>
+	<div class="action alladdtocart">
+		<button class="submit" type="button" id="addtobagall"><span>Add To Bag</span></button>
+	</div>
+</div>
+<script type="text/javascript">
+	window.location.addToProductUrl = "<?php echo $this->getUrl('quickorder/index/add'); ?>";	
+</script>
+<script type="text/javascript">require(['jquery'],function($){
+    $(document).ready(function(){
+    	//var $rows = '<?php echo $scategoryProductsjson ?>';
+		//$('#quicksearch').keyup(function() {
+			// $($rows).each(function( index , value) {
+			// 	console.log(value);
+			// });
+		    // var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+		    // $rows.show().filter(function() {
+		    //     var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+		    //     return !~text.indexOf(val);
+		    // }).hide();
+		//});
+    	/*sideBar();
+	   	function sideBar(){
+	   		var windowHeight = window.innerHeight;
+			var headerHeight = $('.page-header').height();
+			var menuHeight = $('.sections.nav-sections').height();
+			var totaldecHeight = headerHeight + menuHeight;
+			var btnHeight = $('.action.alladdtocart').height();
+			var totalHeight = windowHeight - totaldecHeight;
+			var withoutBtn = totalHeight - btnHeight;
+			$('.quicksidebar').css('height',withoutBtn+'px');
+			$('.quicksidebar').css('overflow-y','scroll');
+	   	}*/
+    });
+});
+</script>
+
