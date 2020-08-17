@@ -1,12 +1,11 @@
 <?php
 namespace Dolphin\QuickOrder\Block;
-
+ 
 use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Catalog\Model\Product;
 
-class Index extends \Magento\Framework\View\Element\Template
+class Search extends \Magento\Framework\View\Element\Template
 {
-
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
@@ -80,7 +79,7 @@ class Index extends \Magento\Framework\View\Element\Template
     public function getCategoryCollection($isActive = true, $level = false, $sortBy = false, $pageSize = false)
     {
         $collection = $this->_categoryCollectionFactory->create();
-        $collection->addAttributeToSelect('*');        
+        $collection->addAttributeToSelect('*');
 
         // select only active categories
         if ($isActive) {
@@ -112,19 +111,16 @@ class Index extends \Magento\Framework\View\Element\Template
         return $childrenCategories;
     }
     public function getProductCollectionByCategory($id)
-    {        
+    {
         $storeid = 1;
-        
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 1;
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
-        $collection->addCategoriesFilter(['in' => array_reverse($id)]);
+        $collection->addCategoriesFilter(['in' => $id]);
         $collection->addAttributeToFilter('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
-        $collection->addAttributeToFilter('type_id', ['eq' => 'simple']);     
-        $collection->addAttributeToFilter('visibility', 1);              
+        $collection->addAttributeToFilter('type_id', 'simple');
         $collection->addStoreFilter($storeid);
-
         //echo $collection->getSelect();exit;
         $collection->getSelect()->join(
             'catalog_category_product',
@@ -134,11 +130,10 @@ class Index extends \Magento\Framework\View\Element\Template
             array(
                 'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
         )->where('catalog_category_product.category_id IN(' . implode(',', $id) . ')')->group('e.entity_id')->order('catalog_category_product.category_id ASC');
-
         // echo "<pre>";
         // print_r($collection->getData());
-        // exit; 
-        //echo $collection->getSelect();exit;       
+        // exit;
+
         $pager = $this->getLayout()->createBlock(
             'Magento\Theme\Block\Html\Pager',
             'test.news.pager'
@@ -146,7 +141,7 @@ class Index extends \Magento\Framework\View\Element\Template
             $collection
         );
         $this->setChild('pager', $pager);
-        $collection->setPageSize(100);
+        $collection->setPageSize(20);
         $collection->setCurPage($page);
         $collection->load();
 
@@ -154,34 +149,7 @@ class Index extends \Magento\Framework\View\Element\Template
         // print_r($collection->getData());
         // exit;
         return $collection;
-    } 
-    public function getCountProductCollectionByCategory($id)
-    {        
-        $storeid = 1;                
-        $collection = $this->_productCollectionFactory->create();
-        $collection->addAttributeToSelect('*');
-        $collection->addCategoriesFilter(['in' => $id]);
-        $collection->addAttributeToFilter('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
-        $collection->addAttributeToFilter('type_id', ['eq' => 'simple']);     
-        $collection->addAttributeToFilter('visibility', 1);              
-        $collection->addStoreFilter($storeid);
-
-        //echo $collection->getSelect();exit;
-        $collection->getSelect()->join(
-            'catalog_category_product',
-            'e.entity_id=`catalog_category_product`.product_id', ['category_id', 'product_id'])->join(
-            'catalog_category_entity_varchar',
-            new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
-            array(
-                'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . $id . ')')->group('e.entity_id');//->order('catalog_category_product.category_id ASC');
-                
-        
-        // echo "<pre>";
-        // print_r($collection->getData());
-        // exit;
-        return count($collection->getData());
-    }  
+    }    
     public function getPagerHtml()
     {
         return $this->getChildHtml('pager');
@@ -211,6 +179,5 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->_category = $this->_categoryFactory->create();
         $this->_category->load($categoryId);        
         return $this->_category;
-    }
-
+    }    
 }

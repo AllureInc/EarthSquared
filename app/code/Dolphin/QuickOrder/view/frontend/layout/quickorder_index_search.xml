@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			 <block class="Dolphin\QuickOrder\Block\Search" name="quickorder.products.list" template="Dolphin_QuickOrder::quicksearchResult.phtml" cacheable="false">
+				<block class="Magento\Framework\View\Element\RendererList" name="quickorder.swatchrenderer" as="quickorder.toprenderers">
+                   	<block class="Magento\Framework\View\Element\Template" as="default"/>
+                </block>                         					        			
+	        </block>
+		</referenceContainer>
+	</body>
+</page>

@@ -195,29 +195,27 @@ var updatedcookieData = new Array();
 		decreaseSideBar();
 	});
 	var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');	
-	$('#quicksearch').keyup(function() {		
-		var querysearch = $(this).val();
-		//console.log(querysearch);
-		//if($(querysearch).length > 3){			
+	var total_qty_new1 = 0;	
+	$('#quicksearch').keyup(function() {
+		if ($(this).val().length > 3) {		
+			var querysearch = $(this).val();							
 			$.ajax({
 				showLoader: true,
 				dataType: 'json',
-				method: 'GET',
+				type: 'GET',
 				url: 'http://staging-trade.earthsquared.com/quickorder/index/search',
 				data: {'querysearch':querysearch},
 				success: function(responce)
 				{	
-					console.log(responce);
+					$('.quickorder-product-collection.products.list.items.product-items').empty();
+					$.each(responce,function(index,value){						
+						var html = '<div class="subcategoryproduct-collection item product product-item" id="left'+value.id+'"><div class="product-item"><div class="product-name mobile-screen"><span class="subpname-mobile">'+value.name+'</span></div><div class="quickproduct product-item-info"><a href="'+value.product_url+'" class="product photo product-item-photo proudctimage">		<img class="product-image-photo" src="http://staging-trade.earthsquared.com/pub/media/bluestagscarf_lifestyle.jpg" alt="'+value.name+'" title="'+value.name+'"></a><div class="product-item-details"><div class="quickproduct-detail"><div class="product-name desk-screen"><span class="subpname">'+value.name+'</span><div class="swatch-error"></div></div><div class="product-ref">Product Reference: '+value.sku+'</div><input type="hidden" class="productid" name="productid" value="'+value.id+'"></div><div class="productprice-qty"><div class="price"><div class="price-box"><span class="price">'+value.price+'</span></div></div><div class="field quickqty"><div href="javascript:void(0)" class="qty-dec" data-id="'+value.id+'">-</div><input type="number" name="qty" id="qty" min="1" value="0" title="Quantity" class="input-text qty form-control" data-validate="null"><div href="javascript:void(0)" class="qty-inc">+</div></div></div></div></div></div></div>';
+						$('.quickorder-product-collection.products.list.items.product-items').append(html); 
+					});										
 				}
-			});
-		// }
-	    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-	    $rows.show().filter(function() {
-	        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-	        return !~text.indexOf(val);
-	    }).hide();	   
-	});
+			});		
+		}	    
+	});	
 	$(document).on('click','#addtobagall', function(event){
 	//$("#addtobagall").click(function(){
 		if(!$('.subrowitems').children().length > 0){
@@ -274,7 +272,7 @@ var updatedcookieData = new Array();
 		if(!!$.cookie('rowcollection') != "")
 		{
 			var loadcookieCollection_new = $.parseJSON($.cookie('rowcollection'));
-			var total_qty_new = 0;
+			var total_qty_new = 0;			
 			$.each(loadcookieCollection_new,function(index,value){
 				total_qty_new = parseInt(total_qty_new) + parseInt(value.qty);
 				console.log(value.qty);
@@ -282,8 +280,14 @@ var updatedcookieData = new Array();
 			});
 			var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 			//$('.quicksidebar .subtotal').html('Selected Items<span class="total_products">(<span class="countqty">'+total_qty_new+'</span> Products</span> , <span class="total_items">'+total_items+' Items)</span>');
-
-		$('.quicksidebar .subtotal').html('Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">'+total_qty_new+'</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">'+total_items+' <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span>');
+			if($('.quicksidebar .subrowitems').length > 0){
+				if($('.quicksidebar .subrowitems').height() > 618){
+					$('.subrowitems').addClass('inneractive');		        	
+		        	$('.subrowitems').addClass('moreitems');
+		        	$('.quicksidebar').addClass('active');
+				}
+			}
+		$('.quicksidebar .subtotal').html('Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">'+total_qty_new+'</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">'+total_items+' <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span>');		
 		}
 	}
 
@@ -426,15 +430,15 @@ var updatedcookieData = new Array();
  //        $(".subrowitems").hide();
 	// });
 
-	$(".page-title-wrapper .need_morehelp span").click(function(event){
-	        event.preventDefault();
-        $(this).parent().toggleClass("active");
-        $(".page-title-wrapper .need_morehelp .tooltip_text").toggle();
-	});
-	$(".page-title-wrapper .need_morehelp span").hover(function(event){
-	        event.preventDefault();
-        $(this).parent().toggleClass("active");
-        $(".page-title-wrapper .need_morehelp .tooltip_text").toggle();
-	});
+		$(".page-title-wrapper .need_morehelp.mobileview span").click(function(event){
+		    event.preventDefault();        
+		    $(this).parent().toggleClass("active");
+	        $(".page-title-wrapper .need_morehelp .tooltip_text").toggle();
+		});
+		$(".page-title-wrapper .need_morehelp.desktopview span").hover(function(event){
+		        event.preventDefault();
+	        $(this).parent().toggleClass("active");
+	        $(".page-title-wrapper .need_morehelp .tooltip_text").toggle();
+		});
 
 });

@@ -17,8 +17,8 @@ define([
     'ko'
 ], function (_, registry, utils, Collapsible, confirm, alert, $t, ko) {
     'use strict';
-    var printActions = ['iwd_invoice_create_print', 'iwd_ship_create_print', 'iwd_invoice_ship_create_print'];
-    var runActions = ['pdfinvoices_order', 'pdfshipments_order', 'iwd_invoice_ship_print'];
+    var printActions = ['iwd_invoice_create_print', 'iwd_ship_create_print', 'iwd_invoice_ship_create_print'];    
+    var runActions = ['fooman_order_pdfshipments', 'fooman_order_pdfshipments', 'iwd_invoice_ship_print'];
 
     return Collapsible.extend({
         defaults: {

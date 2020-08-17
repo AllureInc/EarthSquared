@@ -221,8 +221,9 @@ if($helper->isCustomerLoggedIn()){
 <?php endif; ?>
 <script type="text/javascript">
             require([
-              'jquery'   
-            ], function ($) {
+              'jquery',
+              'Magento_Customer/js/customer-data'   
+            ], function ($, customerData) {
             $(document).ready(function(){                                
                 if($(".top-toolbar ul.sortorder-options li").hasClass("active")){
                     var liactive = $('.top-toolbar ul.sortorder-options li.active').text();
@@ -253,6 +254,9 @@ if($helper->isCustomerLoggedIn()){
                               window.location.href = '<?php echo $this->getUrl('customer/account/login') ?>';
                           } else {                  
                               $('.page.messages div:last-child').html('<div class="message-success success message">'+ productName +""+data.result.message+'</div>');
+                              var sections = ['wishlist'];
+                              customerData.invalidate(sections);
+                              customerData.reload(sections, true);
                           }
                       } 
                   }); 
