@@ -122,7 +122,7 @@ class Index extends \Magento\Framework\View\Element\Template
         $collection->addCategoriesFilter(['in' => array_reverse($id)]);
         $collection->addAttributeToFilter('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
         $collection->addAttributeToFilter('type_id', ['eq' => 'simple']);     
-        $collection->addAttributeToFilter('visibility', 1);              
+        $collection->addAttributeToFilter('visibility', 1);                      
         $collection->addStoreFilter($storeid);
 
         //echo $collection->getSelect();exit;
@@ -133,12 +133,8 @@ class Index extends \Magento\Framework\View\Element\Template
             new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
             array(
                 'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . implode(',', $id) . ')')->group('e.entity_id')->order('catalog_category_product.category_id ASC');
-
-        // echo "<pre>";
-        // print_r($collection->getData());
-        // exit; 
-        //echo $collection->getSelect();exit;       
+        )->where('catalog_category_product.category_id IN(' . implode(',', array_reverse($id)) . ')')->group('e.entity_id');//->order('catalog_category_product.category_id DESC');
+        
         $pager = $this->getLayout()->createBlock(
             'Magento\Theme\Block\Html\Pager',
             'test.news.pager'
@@ -174,13 +170,13 @@ class Index extends \Magento\Framework\View\Element\Template
             new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
             array(
                 'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . $id . ')')->group('e.entity_id');//->order('catalog_category_product.category_id ASC');
+        )->where('catalog_category_product.category_id IN(' . $id . ')')->group('e.entity_id');//->order('catalog_category_product.category_id DESC');
                 
         
         // echo "<pre>";
         // print_r($collection->getData());
         // exit;
-        return count($collection->getData());
+        return count($collection->getData());        
     }  
     public function getPagerHtml()
     {

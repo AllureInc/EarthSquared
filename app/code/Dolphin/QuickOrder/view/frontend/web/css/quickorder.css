@@ -636,6 +636,7 @@ span.subpname {
 .subrowitems.moreitems {
     height: 420px;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .subtotal.inner span.close-all:after {
     display: inline-block !important;

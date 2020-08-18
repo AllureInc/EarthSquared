@@ -1,7 +1,6 @@
 .quickorder{
-	color:#616161;
-	font-family: 'Futura Bk BT Medium';
-	display:none;
+	color:#616161 !important;
+	font-family: 'Futura Bk BT Medium';	
 }
 
 .block-collapsible-nav .content li:nth-child(2):before {
@@ -157,8 +156,7 @@ div#confirmBox .ampage-bottom-info .benefits-ul li p {
 
 	.tradesocial .quick{
 		padding-bottom: 15px;	
-    	border-bottom: 1px solid #eee;
-    	display:none;
+    	border-bottom: 1px solid #eee;    	
 	}
 	.tradesocial .socialtrade{
 		    margin-top: 18px;

@@ -153,7 +153,7 @@ class Search extends \Magento\Framework\App\Action\Action
             new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
             array(
                 'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . implode(',', $id) . ')')->group('e.entity_id')//->order('catalog_category_product.category_id ASC');        
+        )->where('catalog_category_product.category_id IN(' . implode(',', $id) . ')')->group('e.entity_id');//->order('catalog_category_product.category_id ASC');        
         $collection->addAttributeToFilter(
         [
             ['attribute' => 'name', 'like' => '%'.$querySearch.'%'],

@@ -16,10 +16,10 @@
     	<move element="product.info.sku.top" destination="product.info.main" after="page.main.title" />
     	<referenceBlock name="product.info.sku" remove="true" />
     	<referenceBlock name="product.info.stock.sku" remove="true" />
-    	<referenceContainer name="product.info.social">
+    	<!-- <referenceContainer name="product.info.social">
     		<block class="Magento\Catalog\Block\Product\View" name="product.info.socialmedia" template="Magento_Catalog::product/view/socialmedia.phtml"/>
-		</referenceContainer>
-		<move element="product.info.social" destination="product.info.main" after="-" />
+		</referenceContainer> -->
+		<move element="mp.SocialShare.InlineCart" destination="product.info.main" after="-" />
 		<referenceBlock name="view.addto.compare" remove="true" />
 		<block class="Magento\Cms\Block\Block" name="product_details_three_benefits">
 		    <arguments>

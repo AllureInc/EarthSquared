@@ -179,6 +179,7 @@ var updatedcookieData = new Array();
 	        }, 1000);
 	    }
 	    $(focusTarget).children('.product-item').children('.quickproduct').children('.product-item-details').children('.productprice-qty').children('.quickqty').children('#qty').focus();
+		$('.subrowitems.inneractive').hide();	    
 	});
 	$(document).on('click','.removerow', function(){
 		var delRowFromHtml = $(this).closest('.rowdata').attr('id');
@@ -196,7 +197,7 @@ var updatedcookieData = new Array();
 	});
 	var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');	
 	var total_qty_new1 = 0;	
-	$('#quicksearch').keyup(function() {
+	$('#quicksearch').keyup(function(e) {				
 		if ($(this).val().length > 3) {		
 			var querysearch = $(this).val();							
 			$.ajax({
@@ -212,9 +213,26 @@ var updatedcookieData = new Array();
 						var html = '<div class="subcategoryproduct-collection item product product-item" id="left'+value.id+'"><div class="product-item"><div class="product-name mobile-screen"><span class="subpname-mobile">'+value.name+'</span></div><div class="quickproduct product-item-info"><a href="'+value.product_url+'" class="product photo product-item-photo proudctimage">		<img class="product-image-photo" src="http://staging-trade.earthsquared.com/pub/media/bluestagscarf_lifestyle.jpg" alt="'+value.name+'" title="'+value.name+'"></a><div class="product-item-details"><div class="quickproduct-detail"><div class="product-name desk-screen"><span class="subpname">'+value.name+'</span><div class="swatch-error"></div></div><div class="product-ref">Product Reference: '+value.sku+'</div><input type="hidden" class="productid" name="productid" value="'+value.id+'"></div><div class="productprice-qty"><div class="price"><div class="price-box"><span class="price">'+value.price+'</span></div></div><div class="field quickqty"><div href="javascript:void(0)" class="qty-dec" data-id="'+value.id+'">-</div><input type="number" name="qty" id="qty" min="1" value="0" title="Quantity" class="input-text qty form-control" data-validate="null"><div href="javascript:void(0)" class="qty-inc">+</div></div></div></div></div></div></div>';
 						$('.quickorder-product-collection.products.list.items.product-items').append(html); 
 					});										
+					
+				}, 
+				complete: function(responce)
+				{
+					var loadcookieCollection_new = $.parseJSON($.cookie('rowcollection'));
+					console.log(loadcookieCollection_new);				
+			 		$.each(loadcookieCollection_new,function(index,value){			
+						//console.log(value.qty);
+						$('#left'+index).children('.product-item').children('.quickproduct').children('.product-item-details').children('.productprice-qty').children('.quickqty').children('#qty').attr('value',value.qty);
+					});
 				}
 			});		
-		}	    
+		} 
+		var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');
+		var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+	    $rows.show().filter(function() {
+	        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+	        return !~text.indexOf(val);
+	    }).hide();    
 	});	
 	$(document).on('click','#addtobagall', function(event){
 	//$("#addtobagall").click(function(){
@@ -399,12 +417,12 @@ var updatedcookieData = new Array();
 
             //alert("Page loaded.");
             $(".subrowitems").hide();
-            $(document).on('click','.quicksidebar .subtotal.outer', function(){
+            $(document).on('touchstart','.quicksidebar .subtotal.outer', function(){
             //$(".quicksidebar .subtotal.outer").click(function(){
                 $(this).parent().toggleClass("active");
                 $(".subrowitems").toggle();
             });
-            $(document).on('click','.subtotal.inner span.close-all', function(event){
+            $(document).on('touchstart','.subtotal.inner span.close-all', function(event){
 			//$(".subtotal.inner span.close-all").click(function(event){
 	        event.preventDefault();
 				console.log("click");

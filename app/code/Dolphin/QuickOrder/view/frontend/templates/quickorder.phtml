@@ -23,7 +23,7 @@ foreach ($categories as $category) {
 
     	$subcatname[$subcategory->getId()] = $subcategory->getName();
     	//$subparentname[$subcategory->getId()] = $subcategory->getParentCategory()->getName();
-    	$productcount[$subcategory->getId()] = $block->getCountProductCollectionByCategory($subcategory->getId());    	
+    	$productcount[$subcategory->getId()] = $block->getCountProductCollectionByCategory($subcategory->getId());   	
     	//$productcount[$subcategory->getId()] = $subcategory->getProductCount();
     	///$catname = $block->getSubcatnameCount($subcategory->getName(),$subcategory->getProductCount());
     	?>
@@ -37,18 +37,19 @@ foreach ($categories as $category) {
 		$displayMainCategoryId = '';
 		$categoryProducts = $block->getProductCollectionByCategory($ids);
 		
+		
 			//echo "asdiusaid--------". count($categoryProducts);		
 		if(count($categoryProducts) > 0) {		?>			
 		    	<?php $i=0;		    	
 				foreach ($categoryProducts as $product) {
+
 					?>
 
-					<div class="subcategoryproduct-collection item product product-item" id="left<?php echo $product->getId() ?>">						
-
+					<div class="subcategoryproduct-collection item product product-item cat<?php echo $product->getData('category_id') ?>" id="left<?php echo $product->getId() ?>">												
 						<?php if($displayCategoryId != $product->getData('category_id')): ?>							
 							
 							<?php $parent = $block->getParentCategory($product->getData('category_id')); ?>
-							<div class="maincategory-name remove-cat-<?php echo $product->getData('category_id'); ?>"><?php echo $parent->getName(); ?></div>															
+							<div class="maincategory-name remove-cat-<?php echo $product->getData('category_id'); ?>"><?php echo $parent->getName(); ?></div>	 													
 							<div class="subcategory-name remove-cat-<?php echo $product->getData('category_id'); ?>" data-id='remove-cat-<?php echo $product->getData('category_id'); ?>'>
 								<?php
 									$displayCategoryId = $product->getData('category_id');
