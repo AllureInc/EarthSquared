@@ -18,7 +18,7 @@ foreach ($categories as $category) {
     $collection = $block->getChildCategoriesCollection($maincategoryId); 
     
     foreach($collection as $subcategory)
-    {
+    {    	
     	$ids[] = $subcategory->getId();
 
     	$subcatname[$subcategory->getId()] = $subcategory->getName();
@@ -46,10 +46,10 @@ foreach ($categories as $category) {
 					?>
 
 					<div class="subcategoryproduct-collection item product product-item cat<?php echo $product->getData('category_id') ?>" id="left<?php echo $product->getId() ?>">												
-						<?php if($displayCategoryId != $product->getData('category_id')): ?>							
+						<?php  if($displayCategoryId != $product->getData('category_id')): ?>							
 							
 							<?php $parent = $block->getParentCategory($product->getData('category_id')); ?>
-							<div class="maincategory-name remove-cat-<?php echo $product->getData('category_id'); ?>"><?php echo $parent->getName(); ?></div>	 													
+																		
 							<div class="subcategory-name remove-cat-<?php echo $product->getData('category_id'); ?>" data-id='remove-cat-<?php echo $product->getData('category_id'); ?>'>
 								<?php
 									$displayCategoryId = $product->getData('category_id');
@@ -59,7 +59,7 @@ foreach ($categories as $category) {
 									}
 								?>
 							</div>
-						<?php endif; ?>						
+						<?php endif;  ?>						
 					<div class="product-item">
 						<div class="product-name mobile-screen"><span class="subpname-mobile"><?php echo $product->getName(); ?></span></div>
 					<div class="quickproduct product-item-info">
@@ -80,7 +80,7 @@ foreach ($categories as $category) {
 								<?php echo $block->getProductDetailsHtml($product); ?>
 								<div class="swatch-error"></div>
 							</div>
-							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?></div>
+							<div class="product-ref">Product Reference: <?php echo $product->getSku() ?><input type="hidden" name="product-ref" id="product-ref" value="<?php echo $product->getSku() ?>" /></div>
 							<input type="hidden" class="productid" name="productid" value="<?php echo $product->getId() ?>" />
 							<input type="hidden" class="type_id" name="type_id" value="<?php echo $product->getTypeId() ?>" />
 						</div>
@@ -137,9 +137,9 @@ foreach ($categories as $category) {
 
 				if(count($data['selectedOptionsData']) > 0) {
 			 ?>
-					<div class="rowdata selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+					<div class="rowdata selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="<?php echo $data['sku'] ?>"/></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
 				<?php } else { ?>
-					<div class="rowdata not-selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
+					<div class="rowdata not-selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="<?php echo $data['sku'] ?>"/></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
 				<?php } ?>
 			<?php } ?>
 		</div>

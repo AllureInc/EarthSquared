@@ -40,7 +40,7 @@ var updatedcookieData = new Array();
 
 	            var product_id = $(this).closest('.subcategoryproduct-collection').find('.productid').val();
 				var name =  $(this).closest('.subcategoryproduct-collection').find('.product-name .subpname').text();
-				var sku = $(this).closest('.subcategoryproduct-collection').find('.product-ref').text();
+				var sku = $(this).closest('.subcategoryproduct-collection').find('#product-ref').attr('value');
 
 				var qty = $(inputqty).val();
 
@@ -93,7 +93,7 @@ var updatedcookieData = new Array();
 								console.log("flag 1");
 									if(sidedata[0].selectedOptionsData.length === 0)
 									{
-										var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
+										var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
 										$('.quicksidebar .subrowitems .rowdata#_'+sidedata[0].product_id+'').replaceWith(html);
 										//var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 										//$('.quicksidebar .subtotal').html('Selected Items <span class="total_products">('+click_qty+' Products</span> , <span class="total_items">'+total_items+' Items)</span>');
@@ -101,13 +101,13 @@ var updatedcookieData = new Array();
 									} else {
 										if($(this).children().find('.swatches').attr('id') == 'a'+sidedata[0].selectedOptionsData.associated_id)
 										{
-											var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
+											var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
 											$('.quicksidebar .subrowitems .rowdata#_'+sidedata[0].product_id+'').replaceWith(html);
 											//var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 											//$('.quicksidebar .subtotal').html('Selected Items <span class="total_products">('+click_qty+' Products</span> , <span class="total_items">'+total_items+' Items)</span>');
 											return false;
 										} else {
-											var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
+											var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
 											$('.quicksidebar .subrowitems').append(html);
 											//var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 											//$('.quicksidebar .subtotal').html('Selected Items <span class="total_products">('+click_qty+' Products</span> , <span class="total_items">'+total_items+' Items)</span>');
@@ -121,12 +121,12 @@ var updatedcookieData = new Array();
 								console.log("flag 0");
 		                	    if(sidedata[0].selectedOptionsData.length === 0)
 								{
-									var html = '<div class="rowdata selected row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
+									var html = '<div class="rowdata selected row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
 									$('.quicksidebar .subrowitems').append(html);
 									//var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 									//$('.quicksidebar .subtotal').html('Selected Items <span class="total_products">('+click_qty+' Products</span> , <span class="total_items">'+total_items+' Items)</span>');
 								} else {
-									var html = '<div class="rowdata not-sel row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
+									var html = '<div class="rowdata not-sel row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div><div class="swatches" id="a'+sidedata[0].selectedOptionsData.associated_id+'">Colour: '+sidedata[0].selectedOptionsData.option_label+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
 									$('.quicksidebar .subrowitems').append(html);
 									//var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 									//$('.quicksidebar .subtotal').html('Selected Items <span class="total_products">('+click_qty+' Products</span> , <span class="total_items">'+total_items+' Items)</span>');
@@ -177,9 +177,17 @@ var updatedcookieData = new Array();
 	        $('html, body').stop().animate({
 	            scrollTop: target.offset().top - 100
 	        }, 1000);
+	    } else {
+	        var sideskunotFound = $(this).next('#sidebarsku').val();
+	        $('#quicksearch').val(sideskunotFound);
+			$('#quicksearch').trigger('keyup');		        
 	    }
-	    $(focusTarget).children('.product-item').children('.quickproduct').children('.product-item-details').children('.productprice-qty').children('.quickqty').children('#qty').focus();
-		$('.subrowitems.inneractive').hide();	    
+	    if(focusTarget){
+	    	$(focusTarget).children('.product-item').children('.quickproduct').children('.product-item-details').children('.productprice-qty').children('.quickqty').children('#qty').focus();
+	    } 
+		if($(window).width() < 580)	{
+			$('.subrowitems.inneractive').hide();	    	
+		}		
 	});
 	$(document).on('click','.removerow', function(){
 		var delRowFromHtml = $(this).closest('.rowdata').attr('id');
@@ -210,7 +218,7 @@ var updatedcookieData = new Array();
 				{	
 					$('.quickorder-product-collection.products.list.items.product-items').empty();
 					$.each(responce,function(index,value){						
-						var html = '<div class="subcategoryproduct-collection item product product-item" id="left'+value.id+'"><div class="product-item"><div class="product-name mobile-screen"><span class="subpname-mobile">'+value.name+'</span></div><div class="quickproduct product-item-info"><a href="'+value.product_url+'" class="product photo product-item-photo proudctimage">		<img class="product-image-photo" src="http://staging-trade.earthsquared.com/pub/media/bluestagscarf_lifestyle.jpg" alt="'+value.name+'" title="'+value.name+'"></a><div class="product-item-details"><div class="quickproduct-detail"><div class="product-name desk-screen"><span class="subpname">'+value.name+'</span><div class="swatch-error"></div></div><div class="product-ref">Product Reference: '+value.sku+'</div><input type="hidden" class="productid" name="productid" value="'+value.id+'"></div><div class="productprice-qty"><div class="price"><div class="price-box"><span class="price">'+value.price+'</span></div></div><div class="field quickqty"><div href="javascript:void(0)" class="qty-dec" data-id="'+value.id+'">-</div><input type="number" name="qty" id="qty" min="1" value="0" title="Quantity" class="input-text qty form-control" data-validate="null"><div href="javascript:void(0)" class="qty-inc">+</div></div></div></div></div></div></div>';
+						var html = '<div class="subcategoryproduct-collection item product product-item" id="left'+value.id+'"><div class="product-item"><div class="product-name mobile-screen"><span class="subpname-mobile">'+value.name+'</span></div><div class="quickproduct product-item-info"><a href="'+value.product_url+'" class="product photo product-item-photo proudctimage">		<img class="product-image-photo" src="http://staging-trade.earthsquared.com/pub/media/bluestagscarf_lifestyle.jpg" alt="'+value.name+'" title="'+value.name+'"></a><div class="product-item-details"><div class="quickproduct-detail"><div class="product-name desk-screen"><span class="subpname">'+value.name+'</span><div class="swatch-error"></div></div><div class="product-ref">Product Reference: '+value.sku+'<input type="hidden" name="product-ref" id="product-ref" value="'+value.sku+'" /></div><input type="hidden" class="productid" name="productid" value="'+value.id+'"></div><div class="productprice-qty"><div class="price"><div class="price-box"><span class="price">'+value.price+'</span></div></div><div class="field quickqty"><div href="javascript:void(0)" class="qty-dec" data-id="'+value.id+'">-</div><input type="number" name="qty" id="qty" min="1" value="0" title="Quantity" class="input-text qty form-control" data-validate="null"><div href="javascript:void(0)" class="qty-inc">+</div></div></div></div></div></div></div>';
 						$('.quickorder-product-collection.products.list.items.product-items').append(html); 
 					});										
 					
@@ -226,13 +234,13 @@ var updatedcookieData = new Array();
 				}
 			});		
 		} 
-		var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');
-		var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+		// var $rows = $('.quickorder-product-collection .subcategoryproduct-collection');
+		// var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-	    $rows.show().filter(function() {
-	        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-	        return !~text.indexOf(val);
-	    }).hide();    
+	 //    $rows.show().filter(function() {
+	 //        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+	 //        return !~text.indexOf(val);
+	 //    }).hide();    
 	});	
 	$(document).on('click','#addtobagall', function(event){
 	//$("#addtobagall").click(function(){
