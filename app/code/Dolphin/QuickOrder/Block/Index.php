@@ -111,21 +111,31 @@ class Index extends \Magento\Framework\View\Element\Template
         $childrenCategories = $category->getChildrenCategories();
         return $childrenCategories;
     }
-    public function getProductCollectionByCategory($id)
+    public function getProductCollectionByCategory()
     {        
         $storeid = 1;
-        
+        $parentId1 = 238;
+        $parentId2 = 3; 
+        $awchildids = array();
+        $sschildids = array();        
+
+        // group 1 collection 
+        $awcollection = $this->getChildCategoriesCollection($parentId1);             
+        foreach($awcollection as $subcategory)
+        {       
+            $awchildids[] = $subcategory->getId();
+        }
+ 
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 1;
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
-        $collection->addCategoriesFilter(['in' => $id]);
+        $collection->addCategoriesFilter(['in' => $awchildids]);
         $collection->addAttributeToFilter('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
         $collection->addAttributeToFilter('type_id', ['eq' => 'simple']);     
         $collection->addAttributeToFilter('visibility', 1);                      
         $collection->addStoreFilter($storeid);
-
-        //echo $collection->getSelect();exit;
+        
         $collection->getSelect()->join(
             'catalog_category_product',
             'e.entity_id=`catalog_category_product`.product_id', ['category_id', 'product_id'])->join(
@@ -133,24 +143,95 @@ class Index extends \Magento\Framework\View\Element\Template
             new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
             array(
                 'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . implode(',', $id) . ')')->group('e.entity_id')->order('catalog_category_product.category_id ASC');
+        )->where('catalog_category_product.category_id IN(' . implode(',', $awchildids) . ')')->group('e.entity_id')->order('catalog_category_product.category_id ASC');
+
+        // group 2 collection     
+        $sscollection = $this->getChildCategoriesCollection($parentId2);             
+        foreach($sscollection as $subcategory)
+        {       
+            $sschildids[] = $subcategory->getId();
+        }
+
+        $collection1 = $this->_productCollectionFactory->create();
+        $collection1->addAttributeToSelect('*');
+        $collection1->addCategoriesFilter(['in' => $sschildids]);
+        $collection1->addAttributeToFilter('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+        $collection1->addAttributeToFilter('type_id', ['eq' => 'simple']);     
+        $collection1->addAttributeToFilter('visibility', 1);                      
+        $collection1->addStoreFilter($storeid);
         
-        //echo $collection->getSelect();exit;
+        $collection1->getSelect()->join(
+            'catalog_category_product',
+            'e.entity_id=`catalog_category_product`.product_id', ['category_id', 'product_id'])->join(
+            'catalog_category_entity_varchar',
+            new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
+            array(
+                'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
+        )->where('catalog_category_product.category_id IN(' . implode(',', $sschildids) . ')')->group('e.entity_id')->order('catalog_category_product.category_id ASC');
+
+        // echo $collection->getSelect();
+        // echo "<br/>";
+        // echo $collection1->getSelect();
+        // exit;
+
+        // Now set both collection group array                 
+        $awgroup = array(); 
+        foreach($collection as $group1)
+        {            
+            $awgroup[] = $group1->getId();
+            $awCatids[] = $group1->getData('category_id');
+        } 
+        $ssgroup = array();    
+        
+        foreach($collection1 as $group2)
+        {            
+            $ssgroup[] = $group2->getId();
+            $ssCatids[] = $group2->getData('category_id');
+        } 
+
+        // here we merge both collection group
+        $merged_ids = array_merge($awgroup, $ssgroup);
+        $merged_cat_ids = array_merge($awCatids, $ssCatids);
+        
+        
+
+        $mergeCollection = $this->_productCollectionFactory->create();
+        $mergeCollection->addAttributeToSelect('*');        
+        $mergeCollection->addAttributeToFilter('entity_id', ['in' => $merged_ids]);            
+        $mergeCollection->joinField('category_id','catalog_category_product','category_id','product_id = entity_id', null, 'left');   
+        $mergeCollection->addAttributeToFilter('category_id', array('in' => array_unique($merged_cat_ids)));
+        $mergeCollection->getSelect()->order("find_in_set(e.entity_id,'" . implode(',', $merged_ids) . "')")->group('e.entity_id');
+        
+        // $mergeCollection->getSelect()->join(
+        //     'catalog_category_product',
+        //     'e.entity_id=`catalog_category_product`.product_id', ['category_id', 'product_id'])->join(
+        //     'catalog_category_entity_varchar',
+        //     new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
+        //     array(
+        //         'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
+        // )->where('catalog_category_product.category_id IN(' .  implode(',',array_unique($merged_cat_ids) . ')')->group('e.entity_id');
+
+         // echo $mergeCollection->getSelect();
+         //exit;
+         // echo "<pre>";
+         // print_r($mergeCollection->getData());
+         // exit;
+
         $pager = $this->getLayout()->createBlock(
             'Magento\Theme\Block\Html\Pager',
             'test.news.pager'
         )->setShowPerPage(true)->setCollection(
-            $collection
+            $mergeCollection
         );
         $this->setChild('pager', $pager);
-        $collection->setPageSize(100);
-        $collection->setCurPage($page);
-        $collection->load();
+        $mergeCollection->setPageSize(100);
+        $mergeCollection->setCurPage($page);
+        $mergeCollection->load();
 
         // echo "<pre>";
         // print_r($collection->getData());
         // exit;
-        return $collection;
+        return $mergeCollection;
     } 
     public function getCountProductCollectionByCategory($id)
     {        
@@ -162,20 +243,9 @@ class Index extends \Magento\Framework\View\Element\Template
         $collection->addAttributeToFilter('type_id', ['eq' => 'simple']);     
         $collection->addAttributeToFilter('visibility', 1);              
         $collection->addStoreFilter($storeid);
-        
-        $collection->getSelect()->join(
-            'catalog_category_product',
-            'e.entity_id=`catalog_category_product`.product_id', ['category_id', 'product_id'])->join(
-            'catalog_category_entity_varchar',
-            new \Zend_Db_Expr('`catalog_category_entity_varchar`.entity_id=`catalog_category_product`.category_id AND catalog_category_entity_varchar.attribute_id = (select attribute_id from eav_attribute where attribute_code = \'name\' and entity_type_id = 3)'),
-            array(
-                'categories' => new \Zend_Db_Expr('group_concat(`catalog_category_entity_varchar`.value SEPARATOR ",")'))
-        )->where('catalog_category_product.category_id IN(' . $id . ')')->group('e.entity_id')->order('catalog_category_product.category_id DESC');
                 
-        
-        // echo "<pre>";
-        // print_r($collection->getData());
-        // exit;
+        $collection->joinField('category_id','catalog_category_product','category_id','product_id = entity_id', null, 'left');   
+        $collection->addAttributeToFilter('category_id', array('in' => $id));        
         return count($collection->getData());        
     }  
     public function getPagerHtml()

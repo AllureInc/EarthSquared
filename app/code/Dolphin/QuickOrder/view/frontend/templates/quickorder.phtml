@@ -6,7 +6,7 @@ $subname = array();
 $productCount = array();
 $sproducts = array();
 $maincategoryName = array();
-$categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds)->addAttributeToSort('entity_id', 'desc');;
+$categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
 
 $type = 'widget-new-grid';
 ?>
@@ -15,41 +15,32 @@ $type = 'widget-new-grid';
 <?php
 foreach ($categories as $category) {
      $maincategoryId = $category->getId();
-    $collection = $block->getChildCategoriesCollection($maincategoryId); 
+     $collection = $block->getChildCategoriesCollection($maincategoryId); 
     
     foreach($collection as $subcategory)
     {    	
     	$ids[] = $subcategory->getId();
-
-    	$subcatname[$subcategory->getId()] = $subcategory->getName();
-    	//$subparentname[$subcategory->getId()] = $subcategory->getParentCategory()->getName();
-    	$productcount[$subcategory->getId()] = $block->getCountProductCollectionByCategory($subcategory->getId());   	
-    	//$productcount[$subcategory->getId()] = $subcategory->getProductCount();
-    	///$catname = $block->getSubcatnameCount($subcategory->getName(),$subcategory->getProductCount());
-    	?>
-    	<?php /* <div class="subcategory-name <?php echo $subcategory->getId() ?>"><?php echo $subcategory->getName() ?><span>(<?php echo $subcategory->getProductCount() ?> Items)</span></div>  */ ?>
-    	<?php
+    	$subcatname[$subcategory->getId()] = $subcategory->getName();    	
+    	$productcount[$subcategory->getId()] = $block->getCountProductCollectionByCategory($subcategory->getId());   	    	    	
     }
 }
 ?>
-	<?php
+	<?php		
 		$displayCategoryId = '';
-		$displayMainCategoryId = '';
-		$categoryProducts = $block->getProductCollectionByCategory($ids);
+		$displayMainCategoryId = '';		
+		$categoryProducts = $block->getProductCollectionByCategory();		
 		
-		
-			//echo "asdiusaid--------". count($categoryProducts);		
 		if(count($categoryProducts) > 0) {		?>			
 		    	<?php $i=0;		    	
 				foreach ($categoryProducts as $product) {
-
 					?>
-
 					<div class="subcategoryproduct-collection item product product-item cat<?php echo $product->getData('category_id') ?>" id="left<?php echo $product->getId() ?>">												
-						<?php  if($displayCategoryId != $product->getData('category_id')): ?>							
-							
+						<?php if($displayCategoryId != $product->getData('category_id')): ?>							
+							<?php if($displayMainCategoryId != $block->getParentCategory($product->getData('category_id'))): ?>
 							<?php $parent = $block->getParentCategory($product->getData('category_id')); ?>
-																		
+								<div class="maincategory-name remove-cat-<?php echo $product->getData('category_id'); ?>"><?php echo $parent->getName(); ?></div>	 		
+							<?php endif; ?>
+
 							<div class="subcategory-name remove-cat-<?php echo $product->getData('category_id'); ?>" data-id='remove-cat-<?php echo $product->getData('category_id'); ?>'>
 								<?php
 									$displayCategoryId = $product->getData('category_id');
@@ -59,7 +50,8 @@ foreach ($categories as $category) {
 									}
 								?>
 							</div>
-						<?php endif;  ?>						
+						<?php endif; ?>
+											
 					<div class="product-item">
 						<div class="product-name mobile-screen"><span class="subpname-mobile"><?php echo $product->getName(); ?></span></div>
 					<div class="quickproduct product-item-info">
