@@ -33,6 +33,9 @@ class Grid extends \Magento\Sales\Block\Adminhtml\Order\Create\Search\Grid
             $order = $objectManager->create('\Magento\Sales\Model\Order')
                 ->load($orderId);
 
+            if(is_null($order->getEntityId())){
+                return $this->_sessionQuote->getStore();
+            }
             return $order->getStore();
         }catch (\Exception $e){
             return $this->_sessionQuote->getStore();

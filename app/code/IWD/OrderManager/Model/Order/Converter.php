@@ -399,10 +399,7 @@ class Converter extends AbstractModel
      */
     private function prepareProduct($productId, $store)
     {
-        $product = $this->_productLoader
-            ->getById($productId)
-            ->setStore($store)
-            ->setStoreId($store->getStoreId());
+        $product = $this->_productLoader->getById($productId,false,$store->getStoreId());
 
         if (!$product->getId()) {
             throw new LocalizedException(

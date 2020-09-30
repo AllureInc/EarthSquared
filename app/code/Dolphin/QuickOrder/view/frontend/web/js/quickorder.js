@@ -9,7 +9,7 @@ require([
 ], function($,customerData,modal,storage){
 	var cookieData = new Array();
 var updatedcookieData = new Array();
-	$( document ).ready(function() {
+	$( document ).ready(function() {		
 		loadSubtotalSection();
 		//sideBar();
 	});
@@ -61,28 +61,28 @@ var updatedcookieData = new Array();
 				dataString.push(rowcollection);
 
 				var sidedata = $.parseJSON(JSON.stringify(dataString));
-				console.log(sidedata);
+				//console.log(sidedata);
 
-				cookieData.push(rowcollection);
-
+				cookieData.push(rowcollection);				
 				var newCookieData = {}
 
 				//old cookie data push to new
 				var total_qty = 0;
-				if(!!$.cookie('rowcollection') != "")
+				if(!!localStorage.getItem('rowcollection') != "")
 				{
-					newCookieData = $.parseJSON($.cookie('rowcollection'));
+					newCookieData = $.parseJSON(localStorage.getItem('rowcollection'));
 					// $.each(newCookieData,function(index,value){
 					// 	total_qty = parseInt(total_qty) + parseInt(value.qty);
 					// });
 				}
-
+				console.log('cookieLength-->'+cookieData.length);
 				for(var i=0; i<cookieData.length; i++) {
 					newCookieData[cookieData[i]['product_id']] = cookieData[i];
 				}
-
+				console.log(newCookieData);
 				// `newCookieData` is now:
-				$.cookie("rowcollection", JSON.stringify(newCookieData));
+				localStorage.setItem("rowcollection", JSON.stringify(newCookieData));
+				//$.cookie("rowcollection", JSON.stringify(newCookieData));
 					var flag = 0;
 				//click_qty = parseInt(sidedata[0].qty) + parseInt(click_qty);
 				//console.log(click_qty);
@@ -90,7 +90,7 @@ var updatedcookieData = new Array();
 							if($(this).attr('id') == '_'+sidedata[0].product_id){
 								flag = 1;
 
-								console.log("flag 1");
+								//console.log("flag 1");
 									if(sidedata[0].selectedOptionsData.length === 0)
 									{
 										var html = '<div class="rowdata row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
@@ -118,7 +118,7 @@ var updatedcookieData = new Array();
 							}
 						});
 		                if(flag == 0){
-								console.log("flag 0");
+								//console.log("flag 0");
 		                	    if(sidedata[0].selectedOptionsData.length === 0)
 								{
 									var html = '<div class="rowdata selected row'+sidedata[0].product_id+'" id="_'+sidedata[0].product_id+'"><div class="rowqty"><span>'+sidedata[0].qty+'</span></div><div class="rownameswatches"><div class="rowname">'+sidedata[0].name+'</div></div><div class="editrow"><a href="#left'+sidedata[0].product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+sidedata[0].sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';
@@ -156,13 +156,13 @@ var updatedcookieData = new Array();
 		});
 		$('.quicksidebar .subtotal .total_products .countqty').text(sumall);
 
-		if(!!$.cookie('rowcollection') != "")
+		if(!!localStorage.getItem('rowcollection') != "")
 		{
-			var cookieCollection = $.parseJSON($.cookie('rowcollection'));
+			var cookieCollection = $.parseJSON(localStorage.getItem('rowcollection'));
 			if(cookieCollection.hasOwnProperty(mainId)){
 				cookieCollection[mainId]['qty'] = $(this).next().val();
 			}
-			$.cookie('rowcollection',JSON.stringify(cookieCollection));
+			localStorage.setItem('rowcollection',JSON.stringify(cookieCollection));
 		}
 
 		decreaseSideBar();
@@ -194,11 +194,11 @@ var updatedcookieData = new Array();
 		$('#'+delRowFromHtml+'').remove();
 		var delRowFromCookie = delRowFromHtml.replace("_", "");
 
-			if(!!$.cookie('rowcollection') != "")
+			if(!!localStorage.getItem('rowcollection') != "")
 			{
-				var cookieCollection = $.parseJSON($.cookie('rowcollection'));
+				var cookieCollection = $.parseJSON(localStorage.getItem("rowcollection"));
 				delete cookieCollection[delRowFromCookie];
-				$.cookie('rowcollection',JSON.stringify(cookieCollection));
+				localStorage.setItem('rowcollection',JSON.stringify(cookieCollection));
 			}
 			loadSubtotalSection();
 		decreaseSideBar();
@@ -225,7 +225,7 @@ var updatedcookieData = new Array();
 				}, 
 				complete: function(responce)
 				{
-					var loadcookieCollection_new = $.parseJSON($.cookie('rowcollection'));
+					var loadcookieCollection_new = $.parseJSON(localStorage.getItem('rowcollection'));
 					console.log(loadcookieCollection_new);				
 			 		$.each(loadcookieCollection_new,function(index,value){			
 						//console.log(value.qty);
@@ -253,7 +253,9 @@ var updatedcookieData = new Array();
 		$.ajax({
 			showLoader: true,
 			dataType: 'json',
+			method: 'POST',
 			url: window.location.addToProductUrl,
+			data: {rowcollection: localStorage.getItem('rowcollection')},
 			success: function(responce)
 			{
 				$('.listitemerror').remove();
@@ -272,11 +274,10 @@ var updatedcookieData = new Array();
 				    }, 500);
 				}else{
 					// Remove all row
-					//$.cookie("rowcollection", null, { path: '/' });
-					$(".subrowitems .rowdata" ).each(function( index ) {
-						$(this).find('.removerow').trigger('click');
-					});
+					//$.cookie("rowcollection", null, { path: '/' });										
 					$('.subrowitems').html('');
+					localStorage.removeItem('rowcollection');
+					$('.quicksidebar .subtotal').html('Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0<span class="itm"> Items</span><span class="right_br">)</span></span><span class="close-all">close</span>');		
 					$('.page.messages').before('<div class="message success allproductmsg">'+responce.message+'</div>');
 					var sections = ['cart'];
 		            customerData.invalidate(sections);
@@ -287,7 +288,7 @@ var updatedcookieData = new Array();
 				    }, 500);
 				}
 	            setTimeout(function(){
-	            	$('#addtobagall span').html("Add to Bag");
+	            	$('#addtobagall span').html("Add to my Bag");
 	           	}, 800);
 	           	$('body').loader().loader('hide');
 			}
@@ -295,15 +296,18 @@ var updatedcookieData = new Array();
 	});
 
 	function loadSubtotalSection(){
-		if(!!$.cookie('rowcollection') != "")
+		if(!!localStorage.getItem('rowcollection') != "")
 		{
-			var loadcookieCollection_new = $.parseJSON($.cookie('rowcollection'));
+			var loadcookieCollection_new = $.parseJSON(localStorage.getItem('rowcollection'));
+			console.log(loadcookieCollection_new);
 			var total_qty_new = 0;			
-			$.each(loadcookieCollection_new,function(index,value){
-				total_qty_new = parseInt(total_qty_new) + parseInt(value.qty);
-				console.log(value.qty);
+			var htmll = '';
+			$.each(loadcookieCollection_new,function(index,value){				
+				total_qty_new = parseInt(total_qty_new) + parseInt(value.qty);				
 				$('#left'+index).children('.product-item').children('.quickproduct').children('.product-item-details').children('.productprice-qty').children('.quickqty').children('#qty').attr('value',value.qty);
+				htmll += '<div class="rowdata selected row'+value.product_id+'" id="_'+value.product_id+'"><div class="rowqty"><span>'+value.qty+'</span></div><div class="rownameswatches"><div class="rowname">'+value.name+'</div></div><div class="editrow"><a href="#left'+value.product_id+'"><img src="http://staging-trade.earthsquared.com/pub/media/pen.png"></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="'+value.sku+'"/></div><div class="removerow"><img src="http://staging-trade.earthsquared.com/pub/media/garbage.png"></div></div>';				
 			});
+			$('.quicksidebar .subrowitems').html(htmll);				
 			var total_items = $('.quicksidebar .subrowitems .rowdata').length;
 			//$('.quicksidebar .subtotal').html('Selected Items<span class="total_products">(<span class="countqty">'+total_qty_new+'</span> Products</span> , <span class="total_items">'+total_items+' Items)</span>');
 			if($('.quicksidebar .subrowitems').length > 0){

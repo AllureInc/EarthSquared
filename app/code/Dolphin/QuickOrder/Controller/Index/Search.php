@@ -80,7 +80,7 @@ class Search extends \Magento\Framework\App\Action\Action
             }
         }
         $scategoryProducts = $this->getsProductCollectionByCategory($ids,$querySearch);
-        $displayCategoryId = '';         
+        
         foreach($scategoryProducts as $product)
         {
             if($product->getLifestyleImage() != ""){
@@ -88,13 +88,7 @@ class Search extends \Magento\Framework\App\Action\Action
             } else {
                 $image_url = $this->imageHelper->init($product, 'product_small_image')->constrainOnly(true)->keepAspectRatio(true)->keepTransparency(true)->keepFrame(true)->setImageFile($product->getFile())->resize(140, 140)->getUrl();
             }
-            $type = 'widget-new-grid';
-
-            $displayCategoryId = $product->getData('category_id');
-            if(isset($subcatname[$displayCategoryId])){
-                echo $subcatname[$displayCategoryId];
-                echo '<span>('.$productcount[$displayCategoryId].' items)</span>';
-            }
+            $type = 'widget-new-grid';            
             
             $response[] =  ['name' => $product->getName(), 'sku' => $product->getSku(), 'id' => $product->getId(),'price' => $this->priceHelper->currency($product->getPrice(), true, false), 'image' => $image_url, 'category_id' => $product->getData('category_id'), 'product_url' => $product->getProductUrl()];           
         }                

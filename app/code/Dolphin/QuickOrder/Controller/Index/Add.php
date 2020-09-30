@@ -26,11 +26,11 @@ class Add extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $resultJson = $this->resultJsonFactory->create();
-        if (isset($_COOKIE['rowcollection'])) {
+        if (isset($_POST['rowcollection'])) {
             $storeId = $this->_objectManager->get(
                 \Magento\Store\Model\StoreManagerInterface::class
             )->getStore()->getId();
-            $cookieData = json_decode($_COOKIE['rowcollection'], true);
+            $cookieData = json_decode($_POST['rowcollection'], true);
             if (count($cookieData) > 0) {
                 $response = [
                     'errors' => false,

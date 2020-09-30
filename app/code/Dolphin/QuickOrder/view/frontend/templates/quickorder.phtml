@@ -77,7 +77,7 @@ foreach ($categories as $category) {
 							<input type="hidden" class="type_id" name="type_id" value="<?php echo $product->getTypeId() ?>" />
 						</div>
 						<div class="productprice-qty">
-							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>
+							<div class="price"><?php echo $this->getProductPricetoHtml($product, $type); ?></div>							
 							<div class="field quickqty">
      							<div href="javascript:void(0)" class="qty-dec" data-id="<?php echo $product->getId() ?>">-</div>
 	                               <input type="number"
@@ -95,7 +95,7 @@ foreach ($categories as $category) {
 					</div>
 					</div>
 					</div>
-				<?php $i++; } ?>
+				<?php $i++; } ?> 
 
 			<?php 
 		} ?>
@@ -108,52 +108,17 @@ foreach ($categories as $category) {
         	<?php echo $block->getPagerHtml(); // for display pager block which we create in block file.   ?>
         </div>
     <?php endif ?>
-<div class="quicksidebar">
-	<?php
 
-	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-	$cookieManager = $objectManager->get('Magento\Framework\Stdlib\CookieManagerInterface');
-	$cookieData = json_decode($cookieManager->getCookie('rowcollection'),true);
-	//  echo "<pre>";
-	//   echo "----";
-	// print_r($cookieData);
-	//   echo "----";
-	if(isset($_COOKIE['rowcollection']))
-	{	//echo "yes";
-		?>
-		<div class="subtotal outer">Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0 <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span></div>
-		<div class="subrowitems">
-			<div class="subtotal inner"></div>
-			<?php foreach($cookieData as $data)
-			{
+<div class="quicksidebar">	
+	<div class="subtotal outer">Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0 <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span></div>
 
-				if(count($data['selectedOptionsData']) > 0) {
-			 ?>
-					<div class="rowdata selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div><div class="swatches" id="a<?php echo $data['selectedOptionsData']['associated_id'] ?>">Colour: <?php echo $data['selectedOptionsData']['option_label'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="<?php echo $data['sku'] ?>"/></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
-				<?php } else { ?>
-					<div class="rowdata not-selected" id="_<?php echo $data['product_id'] ?>"><div class="rowqty pd"><span><?php echo $data['qty']; ?></span></div><div class="rownameswatches"><div class="rowname pd"><?php echo $data['name'] ?></div></div><div class="editrow pd"><a href="#left<?php echo $data['product_id'] ?>"><img src="<?php echo $this->getUrl().'pub/media/pen.png' ?>" /></a><input type="hidden" id="sidebarsku" name="sidebarsku" value="<?php echo $data['sku'] ?>"/></div><div class="removerow pd"><img src="<?php echo $this->getUrl().'pub/media/garbage.png' ?>" /></div></div>
-				<?php } ?>
-			<?php } ?>
-		</div>
-	<?php } else { ?>
-		<div class="subtotal outer">Selected Items<span class="total_products"><span class="left_br">(</span><span class="countqty">0</span> <span class="prod">Products</span></span> <span class="comma">,</span> <span class="total_items">0 <span class="itm">Items</span><span class="right_br">)</span></span><span class="close-all">close</span></div>
-
-		<div class="subrowitems">
-			<div class="subtotal inner"></div>
-		</div>
-	<?php } ?>
+	<div class="subrowitems">
+		<div class="subtotal inner"></div>
+	</div>	
 	<div class="action alladdtocart">
-		<button class="submit" type="button" id="addtobagall"><span>Add To Bag</span></button>
+		<button class="submit" type="button" id="addtobagall"><span>Add To my Bag</span></button>
 	</div>
 </div>
 <script type="text/javascript">
 	window.location.addToProductUrl = "<?php echo $this->getUrl('quickorder/index/add'); ?>";	
-</script>
-
-<script type="text/javascript">
-	require(['jquery'],function($){
-    	$(document).ready(function(){  
-
-    	});
-    });
 </script>
