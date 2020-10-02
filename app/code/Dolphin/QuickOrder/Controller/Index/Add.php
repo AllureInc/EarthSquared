@@ -35,7 +35,7 @@ class Add extends \Magento\Framework\App\Action\Action
                 $response = [
                     'errors' => false,
                     'productId' => '',
-                    'message' => __("All Product's Added Successfully."),
+                    'message' => __("All products added successfully."),
                 ];
                 //print_r($cookieData);exit;
                 foreach ($cookieData as $data) {

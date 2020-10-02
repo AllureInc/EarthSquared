@@ -9,7 +9,7 @@
     background-size: 18px !important;
 }
 
-.quickorder img{    margin: 0 6px;    width: 15px;}
+.quickorder img{    margin: 0 6px; position: relative;    top: -1px;}
 .benefits.trade{
 	margin: 80px 0px;
 }
@@ -23,7 +23,7 @@
 }
 .product-social-links .product-addto-links .action.towishlist.trade:before{
 	content:'';
-	background: url('../images/bookmark.png') no-repeat;
+	background: url('../images/bookmark.png') no-rexpeat;
 	background-size:100%;
 	width:16px; 
 	height:16px;	

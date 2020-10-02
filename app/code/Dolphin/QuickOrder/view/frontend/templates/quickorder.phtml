@@ -119,6 +119,7 @@ foreach ($categories as $category) {
 		<button class="submit" type="button" id="addtobagall"><span>Add To my Bag</span></button>
 	</div>
 </div>
+<input type="hidden" id="baseurl" name="baseurl" value="<?php echo $this->getUrl() ?>" />
 <script type="text/javascript">
 	window.location.addToProductUrl = "<?php echo $this->getUrl('quickorder/index/add'); ?>";	
 </script>
