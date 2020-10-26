@@ -10,6 +10,7 @@
 <?php $invoice = $block->getInvoice() ?>
 <?php $order = $block->getOrder() ?>
 <?php $design = $block->getDesign() ?>
+<?php $orderAttrCollection = $this->helper('Earthsquared\Customize\Helper\Data')->getCustomOrderattr($order); ?>
 
 <table width="100%" border="0" cellpadding="2" cellspacing="0">
     <tr>
@@ -35,7 +36,11 @@
             <?= $block->escapeHtml($invoice->getIncrementId()) ?><br/>
             <?php if ($block->showOrderIncrementId()): ?>
             <?= $block->escapeHtml(__('Order #') . ': ' . $order->getIncrementId()) ?><br/>
-            <?php endif; ?>            
+            <?php endif; ?>     
+            <?php if($orderAttrCollection->getData('purchase_order_number') != '') { ?>
+                <?= $block->escapeHtml(__('Purchase Order #')) ?>:
+                <?php echo $orderAttrCollection->getData('purchase_order_number'); ?><br/>
+            <?php } ?>                    
             <?= $block->escapeHtml(__('Date')) ?>:
             <?= /* @noEscape */ $block->getFormattedDate($invoice->getCreatedAt()) ?>
         </td>

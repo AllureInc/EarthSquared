@@ -9,6 +9,13 @@
 ?>
 <?php $order = $block->getOrder() ?>
 <?php $design = $block->getDesign() ?>
+<?php $orderAttrCollection = $this->helper('Earthsquared\Customize\Helper\Data')->getCustomOrderattr($order); 
+// echo "<pre>";
+// print_r($orderAttrCollection->getData());
+// echo $orderAttrCollection->getData('purchase_order_number');
+
+// exit;
+?>
 
 <table width="100%" border="0" cellpadding="2" cellspacing="0">
     <tr>
@@ -30,12 +37,16 @@
     </tr>
     <tr>
         <td valign="top" width="50%"><?= $block->escapeHtml(__('Order #')) ?>:
-            <?= $block->escapeHtml($order->getIncrementId()) ?><br/>
-            <?= $block->escapeHtml(__('Order Date')) ?>:
-            <?= /* @noEscape */ $block->getFormattedDate($order->getCreatedAt()) ?><br/>
-        </td>
+            <?= $block->escapeHtml($order->getIncrementId()) ?><br/>            
+                <?php if($orderAttrCollection->getData('purchase_order_number') != '') { ?>
+                    <?= $block->escapeHtml(__('Purchase Order #')) ?>:
+                    <?php echo $orderAttrCollection->getData('purchase_order_number'); ?><br/>
+                <?php } ?>            
+            <?= $block->escapeHtml(__('Order Date')) ?>:            
+            <?= /* @noEscape */ $block->getFormattedDate($order->getCreatedAt()) ?><br/>            
+        </td>       
         <td valign="top"><?= /* @noEscape */ nl2br($block->getOwnerAddress()) ?></td>
-    </tr>
+    </tr>   
     <tr>
         <td colspan="2">&nbsp;</td>
     </tr>

@@ -6,7 +6,6 @@
 "Shipping & Handling","SHIPPING"
 "Order Total","Grand Total"
 "Tax","VAT"
-"Subtotal","ORDER VALUE"
 "First Name","First Name *",module,Magento_Checkout
 "Last Name","Last Name *",module,Magento_Checkout
 "Company","Company Name",module,Magento_Checkout

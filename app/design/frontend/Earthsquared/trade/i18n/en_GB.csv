@@ -1,7 +1,6 @@
 "Stored Payment Methods","Manage Payments"
 "Shipping & Handling","SHIPPING"
 "Tax","VAT"
-"Subtotal","ORDER VALUE"
 "Order Total Excl. Tax","SUBTOTAL"
 "%1 has been moved to your wish list.","%1 has been moved to your saved list."
 "First Name","First Name *",module,Magento_Checkout
